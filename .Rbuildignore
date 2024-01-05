@@ -1,2 +1,16 @@
 ^arcgeocoder\.Rproj$
 ^\.Rproj\.user$
+^README\.Rmd$
+^revdep$
+^codemeta\.json$
+^CITATION\.cff$
+^CRAN-SUBMISSION$
+^cran-comments\.md$
+^pkgdown$
+^pkgdown\.yaml$
+^pkgdown\.yml$
+^\.imgbotconfig$
+^\.lintr$
+^CODE_OF_CONDUCT\.md$
+^CONTRIBUTING\.md$
+^LICENSE\.md$
