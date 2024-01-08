@@ -1,13 +1,29 @@
 Package: arcgeocoder
-Title: What the Package Does (One Line, Title Case)
+Title: Geocoding with the 'ArcGIS' REST API Service
 Version: 0.0.0.9000
 Authors@R: 
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
-Description: What the package does (one paragraph).
+Description: Lite interface for geocoding and reverse geocoding with the
+    'ArcGIS' REST API service
+    <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
 License: MIT + file LICENSE
-URL: https://github.com/dieghernan/arcgeocoder
+URL: https://dieghernan.github.io/nominatimlite/,
+    https://github.com/dieghernan/arcgeocoder
 BugReports: https://github.com/dieghernan/arcgeocoder/issues
+Depends: 
+    R (>= 3.6.0)
+Imports: 
+    dplyr (>= 1.0.0),
+    jsonlite (>= 1.7.0)
+Suggests: 
+    testthat (>= 3.0.0),
+    tidygeocoder
+Config/Needs/website: dieghernan/gitdevr
+Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+X-schema.org-applicationCategory: cartography
+X-schema.org-keywords: r, geocoding, arcgis, address, reverse-geocoding,
+    rstats, r-package, api-wrapper

@@ -37,3 +37,15 @@ This is a basic example which shows you how to solve a common problem:
 library(arcgeocoder)
 ## basic example code
 ```
+
+## Citation
+
+```{r echo=FALSE, results='asis'}
+print(citation("arcgeocoder"), style = "html")
+```
+
+A BibTeX entry for LaTeX users is
+
+```{r echo=FALSE, comment=""}
+toBibtex(citation("arcgeocoder"))
+```

@@ -4,13 +4,14 @@
 \name{arcgeocoder-package}
 \alias{arcgeocoder}
 \alias{arcgeocoder-package}
-\title{arcgeocoder: What the Package Does (One Line, Title Case)}
+\title{arcgeocoder: Geocoding with the 'ArcGIS' REST API Service}
 \description{
-What the package does (one paragraph).
+Lite interface for geocoding and reverse geocoding with the 'ArcGIS' REST API service \url{https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm}.
 }
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://dieghernan.github.io/nominatimlite/}
   \item \url{https://github.com/dieghernan/arcgeocoder}
   \item Report bugs at \url{https://github.com/dieghernan/arcgeocoder/issues}
 }

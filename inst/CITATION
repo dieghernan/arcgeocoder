@@ -1,0 +1,20 @@
+year <- format(Sys.time(), "%Y")
+abs <- trimws(gsub("\\s+", " ", meta$Description))
+abs <- gsub("'", "", abs)
+title <- gsub("'", "", meta$Title, fixed = TRUE)
+title <- gsub("ArcGIS", "{ArcGIS}", title, fixed = TRUE)
+title <- gsub("API", "{API}", title, fixed = TRUE)
+title <- gsub("REST", "{REST}", title, fixed = TRUE)
+
+
+bibentry(
+  "Manual",
+  header = "To cite the 'arcgeocoder' package in publications use:",
+  title = paste("{arcgeocoder}:", title),
+  author = person("Diego", "Hernangómez"),
+  year = year,
+  key = "R-arcgeocoder",
+  version = meta$Version,
+  url = unlist(strsplit(meta$URL, ","))[1],
+  abstract = abs
+)
