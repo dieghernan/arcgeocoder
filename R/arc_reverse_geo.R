@@ -18,7 +18,7 @@
 #' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
 #'  the progress of the function.
 #' @param custom_query API-specific parameters to be used, passed as a named
-#'   list (ie. `list(featureTypes = "POI")`). See **Details**.
+#'   list (i.e. `list(featureTypes = "POI")`). See **Details**.
 #'
 #'
 #' @details

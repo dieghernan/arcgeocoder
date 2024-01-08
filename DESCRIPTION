@@ -8,7 +8,7 @@ Description: Lite interface for geocoding and reverse geocoding with the
     'ArcGIS' REST API service
     <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
 License: MIT + file LICENSE
-URL: https://dieghernan.github.io/nominatimlite/,
+URL: https://dieghernan.github.io/arcgeocoder/,
     https://github.com/dieghernan/arcgeocoder
 BugReports: https://github.com/dieghernan/arcgeocoder/issues
 Depends: 

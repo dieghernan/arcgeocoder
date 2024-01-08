@@ -26,11 +26,11 @@ preferred-citation:
     orcid: https://orcid.org/0000-0001-8457-4658
   year: '2024'
   version: 0.0.0.9000
-  url: https://dieghernan.github.io/nominatimlite/
+  url: https://dieghernan.github.io/arcgeocoder/
   abstract: Lite interface for geocoding and reverse geocoding with the ArcGIS REST
     API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
 repository-code: https://github.com/dieghernan/arcgeocoder
-url: https://dieghernan.github.io/nominatimlite/
+url: https://dieghernan.github.io/arcgeocoder/
 contact:
 - family-names: Hernangómez
   given-names: Diego
@@ -45,6 +45,9 @@ keywords:
 - rstats
 - r-package
 - api-wrapper
+- api-rest
+- arcgis-api
+- gis
 references:
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
@@ -95,9 +98,6 @@ references:
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
   year: '2024'
-  identifiers:
-  - type: url
-    value: https://arxiv.org/abs/1403.2805
   version: '>= 1.7.0'
 - type: software
   title: testthat

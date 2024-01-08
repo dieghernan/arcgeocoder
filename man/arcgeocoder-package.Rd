@@ -6,12 +6,14 @@
 \alias{arcgeocoder-package}
 \title{arcgeocoder: Geocoding with the 'ArcGIS' REST API Service}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Lite interface for geocoding and reverse geocoding with the 'ArcGIS' REST API service \url{https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm}.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://dieghernan.github.io/nominatimlite/}
+  \item \url{https://dieghernan.github.io/arcgeocoder/}
   \item \url{https://github.com/dieghernan/arcgeocoder}
   \item Report bugs at \url{https://github.com/dieghernan/arcgeocoder/issues}
 }

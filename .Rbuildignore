@@ -18,3 +18,4 @@
 ^arcgeocoder.*\.tar\.gz$
 ^arcgeocoder.*\.tgz$
 ^\.github$
+^data-raw$

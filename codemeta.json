@@ -4,7 +4,7 @@
   "identifier": "arcgeocoder",
   "description": "Lite interface for geocoding and reverse geocoding with the 'ArcGIS' REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.",
   "name": "arcgeocoder: Geocoding with the 'ArcGIS' REST API Service",
-  "relatedLink": "https://dieghernan.github.io/nominatimlite/",
+  "relatedLink": "https://dieghernan.github.io/arcgeocoder/",
   "codeRepository": "https://github.com/dieghernan/arcgeocoder",
   "issueTracker": "https://github.com/dieghernan/arcgeocoder/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
+  "runtimePlatform": "R version 4.3.2 (2023-10-31 ucrt)",
   "author": [
     {
       "@type": "Person",
@@ -105,8 +105,8 @@
     "SystemRequirements": null
   },
   "applicationCategory": "cartography",
-  "keywords": ["r", "geocoding", "arcgis", "address", "reverse-geocoding", "rstats", "r-package", "api-wrapper"],
-  "fileSize": "24.378KB",
+  "keywords": ["r", "geocoding", "arcgis", "address", "reverse-geocoding", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "gis"],
+  "fileSize": "114.471KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -119,7 +119,10 @@
         }
       ],
       "name": "{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service",
-      "url": "https://dieghernan.github.io/nominatimlite/"
+      "url": "https://dieghernan.github.io/arcgeocoder/"
     }
-  ]
+  ],
+  "readme": "https://github.com/dieghernan/arcgeocoder/blob/main/README.md",
+  "contIntegration": ["https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/dieghernan/arcgeocoder"],
+  "developmentStatus": "https://www.repostatus.org/#wip"
 }

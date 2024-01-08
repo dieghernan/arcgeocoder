@@ -36,7 +36,7 @@ returned.}
 the progress of the function.}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
-list (ie. \code{list(featureTypes = "POI")}). See \strong{Details}.}
+list (i.e. \code{list(featureTypes = "POI")}). See \strong{Details}.}
 }
 \value{
 A \CRANpkg{tibble} with the results.
