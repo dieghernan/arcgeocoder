@@ -54,6 +54,33 @@ unnest_reverse <- function(x) {
 }
 
 
+unnest_geo <- function(x) {
+  # Candidates
+  x_cand <- x$candidates
+
+  maybe_df <- vapply(x_cand, is.data.frame, FUN.VALUE = logical(1))
+  # Extract first those that are not
+  endobj <- dplyr::as_tibble(x_cand[maybe_df == FALSE])
+
+  unnes <- maybe_df[maybe_df == TRUE]
+
+  df_list <- lapply(names(unnes), function(y) {
+    x_cand[, y]
+  })
+
+  unnested <- dplyr::bind_cols(df_list)
+  endobj <- dplyr::bind_cols(endobj, unnested)
+
+
+  if ("spatialReference" %in% names(x)) {
+    bb <- dplyr::as_tibble(x$spatialReference)
+    endobj <- dplyr::bind_cols(endobj, bb)
+  }
+
+
+  return(endobj)
+}
+
 keep_names_rev <- function(x, address = "address", return_coords = FALSE,
                            full_results = FALSE,
                            colstokeep = address) {
@@ -78,6 +105,17 @@ empty_tbl_rev <- function(x, address) {
 
   # Reorder and get only address
   x <- x[, address]
+
+  x
+}
+
+empty_tbl <- function(x, lat, lon) {
+  init_nm <- names(x)
+  x <- dplyr::as_tibble(x)
+  x$lat <- as.double(NA)
+  x$lon <- x$lat
+
+  names(x) <- c(init_nm, lat, lon)
 
   x
 }

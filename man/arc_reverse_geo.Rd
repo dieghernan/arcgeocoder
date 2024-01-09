@@ -39,7 +39,7 @@ returned.}
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}
 
-\item{outsr}{The spatial reference of the x,y coordinates returned by a
+\item{outsr}{The spatial reference of the \verb{x,y} coordinates returned by a
 geocode request. By default is \code{NULL} (i.e. the parameter won't be used in
 the query). See \strong{Details}.}
 

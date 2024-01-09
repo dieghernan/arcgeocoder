@@ -80,6 +80,8 @@ arc_api_call <- function(url, destfile, quiet) {
     )
   }
 
+  url <- URLencode(url)
+
   # nocov start
   dwn_res <-
     tryCatch(

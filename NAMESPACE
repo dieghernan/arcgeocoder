@@ -2,6 +2,7 @@
 
 export(arc_reverse_geo)
 export(arcgeocoder_check_access)
+importFrom(utils,URLencode)
 importFrom(utils,download.file)
 importFrom(utils,setTxtProgressBar)
 importFrom(utils,txtProgressBar)

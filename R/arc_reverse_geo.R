@@ -17,7 +17,7 @@
 #' @param verbose if `TRUE` then detailed logs are output to the console.
 #' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
 #'  the progress of the function.
-#' @param outsr The spatial reference of the x,y coordinates returned by a
+#' @param outsr The spatial reference of the `x,y` coordinates returned by a
 #'   geocode request. By default is `NULL` (i.e. the parameter won't be used in
 #'   the query). See **Details**.
 #' @param langcode Sets the language in which reverse-geocoded addresses are
@@ -191,6 +191,7 @@ arc_reverse_geo <- function(x, y, address = "address", full_results = FALSE,
     all_res <- all_res[, !nm %in% c("x", "y")]
   }
 
+  all_res[all_res == ""] <- NA
   return(all_res)
 }
 

@@ -6,5 +6,5 @@
 NULL
 
 # import stuffs
-#' @importFrom utils download.file txtProgressBar setTxtProgressBar
+#' @importFrom utils download.file txtProgressBar setTxtProgressBar URLencode
 NULL
