@@ -82,13 +82,12 @@ unnest_geo <- function(x) {
   return(endobj)
 }
 
-keep_names_rev <- function(x, address = "address", return_coords = FALSE,
+keep_names_rev <- function(x, address = "address",
                            full_results = FALSE,
                            colstokeep = address) {
   names(x) <- gsub("address", address, names(x))
 
   out_cols <- colstokeep
-  if (return_coords) out_cols <- c(out_cols, "lat", "lon")
   if (full_results) out_cols <- c(out_cols, "lat", "lon", names(x))
 
   out_cols <- unique(out_cols)

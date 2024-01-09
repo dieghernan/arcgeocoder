@@ -257,8 +257,6 @@ arc_reverse_geo_single <- function(lat_cap,
   # Keep names
   result_out <- keep_names_rev(result,
     address = address,
-    # Return coords here always FALSE, check that in the top-level query
-    return_coords = FALSE,
     full_results = full_results
   )
 
