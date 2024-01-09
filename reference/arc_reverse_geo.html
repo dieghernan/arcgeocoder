@@ -27,6 +27,12 @@ function returns the tibble associated with the query."><meta property="og:image
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/featuretypes.html">Reverse geocoding and feature types</a>
+  </div>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
@@ -60,27 +66,31 @@ function returns the <a href="https://CRAN.R-project.org/package=tibble" class="
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">arc_reverse_geo</span><span class="op">(</span></span>
-<span>  <span class="va">lat</span>,</span>
-<span>  <span class="va">long</span>,</span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">y</span>,</span>
 <span>  address <span class="op">=</span> <span class="st">"address"</span>,</span>
 <span>  full_results <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  return_coords <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  outsr <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  langcode <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  featuretypes <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  locationtype <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>lat</dt>
-<dd><p>latitude values in numeric format. Must be in the range
-<code>[-90, 90]</code>.</p></dd>
-
-
-<dt>long</dt>
+    <dl><dt>x</dt>
 <dd><p>longitude values in numeric format. Must be in the range
 <code>[-180, 180]</code>.</p></dd>
+
+
+<dt>y</dt>
+<dd><p>latitude values in numeric format. Must be in the range
+<code>[-90, 90]</code>.</p></dd>
 
 
 <dt>address</dt>
@@ -106,21 +116,79 @@ returned.</p></dd>
 the progress of the function.</p></dd>
 
 
+<dt>outsr</dt>
+<dd><p>The spatial reference of the x,y coordinates returned by a
+geocode request. By default is <code>NULL</code> (i.e. the parameter won't be used in
+the query). See <strong>Details</strong>.</p></dd>
+
+
+<dt>langcode</dt>
+<dd><p>Sets the language in which reverse-geocoded addresses are
+returned.</p></dd>
+
+
+<dt>featuretypes</dt>
+<dd><p>This parameter limits the possible match types returned.
+By default is <code>NULL</code> (i.e. the parameter won't be used in the query).
+See <strong>Details</strong>.</p></dd>
+
+
+<dt>locationtype</dt>
+<dd><p>Specifies whether the output geometry of
+<code>featuretypes = "PointAddress"</code> or <code>featuretypes = "Subaddress"</code> matches
+should be the rooftop point or street entrance location. Valid values are
+<code>NULL</code> (i.e. not using the parameter in the query), <code>rooftop</code> and <code>street</code>.</p></dd>
+
+
 <dt>custom_query</dt>
 <dd><p>API-specific parameters to be used, passed as a named
-list (i.e. <code>list(featureTypes = "POI")</code>). See <strong>Details</strong>.</p></dd>
+list.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A <a href="https://CRAN.R-project.org/package=tibble" class="external-link"><span class="pkg">tibble</span></a> with the results.</p>
+<p>A <a href="https://CRAN.R-project.org/package=tibble" class="external-link"><span class="pkg">tibble</span></a> with the corresponding results. The <code>x,y</code> values
+returned by the API would be named <code>lon,lat</code>. Note that these coordinates
+correspond to the geocoded feature, and may be different of the <code>x,y</code> values
+provided as inputs.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>See <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link">https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm</a>
-for additional parameters to be passed to <code>custom_query</code>.</p>
+    <p>More info and valid values in the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link">ArcGIS REST docs</a></p><div class="section">
+<h3 id="outsr"><code>outsr</code><a class="anchor" aria-label="anchor" href="#outsr"></a></h3>
+
+
+<p>The spatial reference can be specified as either a well-known ID (WKID). If
+not specified, the spatial reference of the output locations is the same as
+that of the service ( WGS84, i.e. WKID = 4326)).</p>
+</div>
+
+<div class="section">
+<h3 id="featuretypes"><code>featuretypes</code><a class="anchor" aria-label="anchor" href="#featuretypes"></a></h3>
+
+
+<p>See <code><a href="../articles/featuretypes.html">vignette("featuretypes", package = "arcgeocoder")</a></code> for a detailed
+explanation of this parameter.</p>
+<p>This parameter may be used for filtering the type of feature to be returned
+when geocoding. Possible values are:</p><ul><li><p><code>"StreetInt"</code></p></li>
+<li><p><code>"DistanceMarker"</code></p></li>
+<li><p><code>"StreetAddress"</code></p></li>
+<li><p><code>"StreetName"</code></p></li>
+<li><p><code>"POI"</code></p></li>
+<li><p><code>"Subaddress"</code></p></li>
+<li><p><code>"PointAddress"</code></p></li>
+<li><p><code>"Postal"</code></p></li>
+<li><p><code>"Locality"</code></p></li>
+</ul><p>It is also possible to use several values separated by comma
+(<code>featuretypes="PointAddress,StreetAddress"</code>).</p>
+</div>
+
+    </div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p><a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link">ArcGIS REST <code>reverseGeocode</code></a></p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -131,35 +199,57 @@ for additional parameters to be passed to <code>custom_query</code>.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">arc_reverse_geo</span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">40.75728</span>, long <span class="op">=</span> <span class="op">-</span><span class="fl">73.98586</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">arc_reverse_geo</span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">73.98586</span>, y <span class="op">=</span> <span class="fl">40.75728</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   address                               lat   lon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> W 44th St, New York, NY, 10036, USA  40.8 -<span style="color: #BB0000;">74.0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       x     y address                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> -<span style="color: #BB0000;">74.0</span>  40.8 W 44th St, New York, NY, 10036, USA</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Several coordinates</span></span></span>
-<span class="r-in"><span><span class="fu">arc_reverse_geo</span><span class="op">(</span>lat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40.75728</span>, <span class="fl">55.95335</span><span class="op">)</span>, long <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">73.98586</span>, <span class="op">-</span><span class="fl">3.188375</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">arc_reverse_geo</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">73.98586</span>, <span class="op">-</span><span class="fl">3.188375</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40.75728</span>, <span class="fl">55.95335</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   address                                       lat    lon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> W 44th St, New York, NY, 10036, USA          40.8 -<span style="color: #BB0000;">74.0</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Old Town Chambers, Edinburgh, Scotland, GBR  56.0  -<span style="color: #BB0000;">3.19</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        x     y address                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> -<span style="color: #BB0000;">74.0</span>   40.8 W 44th St, New York, NY, 10036, USA        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  -<span style="color: #BB0000;">3.19</span>  56.0 Old Town Chambers, Edinburgh, Scotland, GBR</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># With options: zoom to country level</span></span></span>
+<span class="r-in"><span><span class="co"># With options: using some additional parameters</span></span></span>
 <span class="r-in"><span><span class="va">sev</span> <span class="op">&lt;-</span> <span class="fu">arc_reverse_geo</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  lat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40.75728</span>, <span class="fl">55.95335</span><span class="op">)</span>, long <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">73.98586</span>, <span class="op">-</span><span class="fl">3.188375</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>featureTypes <span class="op">=</span> <span class="st">"StreetInt,POI"</span>, langCode <span class="op">=</span> <span class="st">"FR"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">73.98586</span>, <span class="op">-</span><span class="fl">3.188375</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40.75728</span>, <span class="fl">55.95335</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="co"># Restrict to these feautures</span></span></span>
+<span class="r-in"><span>  featuretypes <span class="op">=</span> <span class="st">"POI,StreetInt"</span>,</span></span>
+<span class="r-in"><span>  <span class="co"># Result on this WKID</span></span></span>
+<span class="r-in"><span>  outsr <span class="op">=</span> <span class="fl">102100</span>,</span></span>
 <span class="r-in"><span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Parameters:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    - location=-73.98586,40.75728</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    - f=json</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    - outsr=102100</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    - featuretypes=POI,StreetInt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                          |==================================================| 100%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Parameters:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    - location=-3.188375,55.95335</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    - f=json</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    - outsr=102100</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>    - featuretypes=POI,StreetInt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">sev</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ x            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.985860, -3.188375</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ y            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.75728, 55.95335</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway, New York, NY, 10036, USA", "Old To…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ lat          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.75732, 55.95325</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ lon          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.98596, -3.18827</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ lat          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4976612, 7549115</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ lon          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -8236079.4, -354916.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Match_addr   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway, New York, New York, 10036", "Old T…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ LongLabel    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway, New York, NY, 10036, USA", "Old To…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ ShortLabel   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway", "Old Town Chambers"</span>
@@ -182,8 +272,8 @@ for additional parameters to be passed to <code>custom_query</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ PostalExt    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", ""</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ CntryName    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "United States", "United Kingdom"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ CountryCode  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "USA", "GBR"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ wkid         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4326, 4326</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ latestWkid   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4326, 4326</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ wkid         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 102100, 102100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ latestWkid   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3857, 3857</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
