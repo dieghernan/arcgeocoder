@@ -27,6 +27,7 @@ is_named <- function(x) {
   return(TRUE)
 }
 
+# Specific ----
 unnest_reverse <- function(x) {
   x_add <- x$address
   lngths <- vapply(x_add, length, FUN.VALUE = numeric(1))
@@ -89,6 +90,24 @@ keep_names_rev <- function(x, address = "address", return_coords = FALSE,
   out_cols <- colstokeep
   if (return_coords) out_cols <- c(out_cols, "lat", "lon")
   if (full_results) out_cols <- c(out_cols, "lat", "lon", names(x))
+
+  out_cols <- unique(out_cols)
+  out <- x[, out_cols]
+
+  return(out)
+}
+
+keep_names <- function(x, lat = "lat", lon = "lon",
+                       return_addresses = TRUE,
+                       full_results = TRUE,
+                       colstokeep = c("query", lat, lon)) {
+  names(x) <- gsub("^lon$", lon, names(x))
+  names(x) <- gsub("^lat$", lat, names(x))
+
+  out_cols <- colstokeep
+
+  if (return_addresses) out_cols <- c(out_cols, "address")
+  if (full_results) out_cols <- c(out_cols, names(x))
 
   out_cols <- unique(out_cols)
   out <- x[, out_cols]

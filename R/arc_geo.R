@@ -1,3 +1,47 @@
+arc_geo <- function(address, lat = "lat", long = "lon", limit = 1,
+                    full_results = FALSE, return_addresses = TRUE,
+                    verbose = FALSE, progressbar = TRUE,
+                    custom_query = list()) {
+  # Dedupe for query
+  init_key <- dplyr::tibble(query = address)
+  key <- unique(address)
+
+  # Set progress bar
+  ntot <- length(key)
+  # Set progress bar if n > 1
+  progressbar <- all(progressbar, ntot > 1)
+  if (progressbar) {
+    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
+  }
+  seql <- seq(1, ntot, 1)
+
+  all_res <- lapply(seql, function(x) {
+    ad <- key[x]
+    if (progressbar) {
+      setTxtProgressBar(pb, x)
+    }
+    arc_geo_single(
+      address = ad,
+      lat,
+      long,
+      limit,
+      full_results,
+      return_addresses,
+      verbose,
+      custom_query
+    )
+  })
+  if (progressbar) close(pb)
+
+  all_res <- dplyr::bind_rows(all_res)
+  all_res <- dplyr::left_join(init_key, all_res, by = "query")
+
+  all_res[all_res == ""] <- NA
+  return(all_res)
+}
+
+
+
 arc_geo_single <- function(address,
                            lat = "lat",
                            long = "lon",
@@ -57,14 +101,12 @@ arc_geo_single <- function(address,
   result_end <- dplyr::bind_cols(tbl_query, result_unn)
   result_end$lat <- as.double(result_unn$y)
   result_end$lon <- as.double(result_unn$x)
-  return(result_end)
 
-  # Keep names
-  result_out <- keep_names_rev(result,
-    address = address,
-    # Return coords here always FALSE, check that in the top-level query
-    return_coords = FALSE,
-    full_results = full_results
+  # Keep names in the right order
+
+  result_out <- keep_names(
+    result_end, lat, long, return_addresses,
+    full_results
   )
 
   return(result_out)
