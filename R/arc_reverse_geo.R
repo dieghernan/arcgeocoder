@@ -5,10 +5,10 @@
 #' between `[-90, 90]` and longitudes between `[-180, 180]`. This
 #' function returns the \CRANpkg{tibble} associated with the query.
 #'
-#' @param lat  latitude values in numeric format. Must be in the range
-#'   `[-90, 90]`.
-#' @param long  longitude values in numeric format. Must be in the range
+#' @param x longitude values in numeric format. Must be in the range
 #'   `[-180, 180]`.
+#' @param y  latitude values in numeric format. Must be in the range
+#'   `[-90, 90]`.
 #' @param address address column name in the output data (default  `"address"`).
 #' @param full_results returns all available data from the API service. If
 #'   `FALSE` (default) only latitude, longitude and address columns are
@@ -17,28 +17,80 @@
 #' @param verbose if `TRUE` then detailed logs are output to the console.
 #' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
 #'  the progress of the function.
+#' @param outsr The spatial reference of the x,y coordinates returned by a
+#'   geocode request. By default is `NULL` (i.e. the parameter won't be used in
+#'   the query). See **Details**.
+#' @param langcode Sets the language in which reverse-geocoded addresses are
+#'   returned.
+#' @param featuretypes This parameter limits the possible match types returned.
+#'   By default is `NULL` (i.e. the parameter won't be used in the query).
+#'   See **Details**.
+#' @param locationtype Specifies whether the output geometry of
+#' `featuretypes = "PointAddress"` or `featuretypes = "Subaddress"` matches
+#'   should be the rooftop point or street entrance location. Valid values are
+#'   `NULL` (i.e. not using the parameter in the query), `rooftop` and `street`.
 #' @param custom_query API-specific parameters to be used, passed as a named
-#'   list (i.e. `list(featureTypes = "POI")`). See **Details**.
+#'   list.
 #'
+#'
+#'
+#' @references
+#' [ArcGIS REST
+#' `reverseGeocode`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm)
 #'
 #' @details
-#' See <https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm>
-#' for additional parameters to be passed to `custom_query`.
 #'
-#' @return A \CRANpkg{tibble} with the results.
+#' More info and valid values in the [ArcGIS REST
+#' docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm)
+#'
+#' ## `outsr`
+#'
+#' The spatial reference can be specified as either a well-known ID (WKID). If
+#' not specified, the spatial reference of the output locations is the same as
+#' that of the service ( WGS84, i.e. WKID = 4326)).
+#'
+#' ## `featuretypes`
+#'
+#' See `vignette("featuretypes", package = "arcgeocoder")` for a detailed
+#' explanation of this parameter.
+#'
+#' This parameter may be used for filtering the type of feature to be returned
+#' when geocoding. Possible values are:
+#'
+#' -   `"StreetInt"`
+#' -   `"DistanceMarker"`
+#' -   `"StreetAddress"`
+#' -   `"StreetName"`
+#' -   `"POI"`
+#' -   `"Subaddress"`
+#' -   `"PointAddress"`
+#' -   `"Postal"`
+#' -   `"Locality"`
+#'
+#' It is also possible to use several values separated by comma
+#' (`featuretypes="PointAddress,StreetAddress"`).
+#'
+#' @return A \CRANpkg{tibble} with the corresponding results. The `x,y` values
+#' returned by the API would be named `lon,lat`. Note that these coordinates
+#' correspond to the geocoded feature, and may be different of the `x,y` values
+#' provided as inputs.
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
 #'
-#' arc_reverse_geo(lat = 40.75728, long = -73.98586)
+#' arc_reverse_geo(x = -73.98586, y = 40.75728)
 #'
 #' # Several coordinates
-#' arc_reverse_geo(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
+#' arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
 #'
-#' # With options: zoom to country level
+#' # With options: using some additional parameters
 #' sev <- arc_reverse_geo(
-#'   lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375),
-#'   custom_query = list(featureTypes = "StreetInt,POI", langCode = "FR"),
+#'   x = c(-73.98586, -3.188375),
+#'   y = c(40.75728, 55.95335),
+#'   # Restrict to these feautures
+#'   featuretypes = "POI,StreetInt",
+#'   # Result on this WKID
+#'   outsr = 102100,
 #'   verbose = TRUE, full_results = TRUE
 #' )
 #'
@@ -49,44 +101,41 @@
 #'
 #' @seealso [tidygeocoder::reverse_geo()]
 #'
-arc_reverse_geo <- function(lat,
-                            long,
-                            address = "address",
-                            full_results = FALSE,
-                            return_coords = TRUE,
-                            verbose = FALSE,
-                            progressbar = TRUE,
+arc_reverse_geo <- function(x, y, address = "address", full_results = FALSE,
+                            return_coords = TRUE, verbose = FALSE,
+                            progressbar = TRUE, outsr = NULL, langcode = NULL,
+                            featuretypes = NULL, locationtype = NULL,
                             custom_query = list()) {
   # Check inputs
-  if (!is.numeric(lat) || !is.numeric(long)) {
-    stop("lat and long must be numeric")
+  if (!is.numeric(x) || !is.numeric(y)) {
+    stop("x and y must be numeric")
   }
 
-  if (length(lat) != length(long)) {
-    stop("lat and long should have the same number of elements")
+  if (length(x) != length(y)) {
+    stop("x and y should have the same number of elements")
   }
+
 
   # Lat
-  lat_cap <- pmax(pmin(lat, 90), -90)
+  y_cap <- pmax(pmin(y, 90), -90)
 
-  if (!identical(lat_cap, lat)) {
+  if (!identical(y_cap, y)) {
     message("latitudes have been restricted to [-90, 90]")
   }
 
   # Lon
-  long_cap <- pmax(pmin(long, 180), -180)
+  x_cap <- pmax(pmin(x, 180), -180)
 
-  if (!all(long_cap == long)) {
+  if (!all(x_cap == x)) {
     message("longitudes have been restricted to [-180, 180]")
   }
 
-
   # Dedupe for query using data frame
-
   init_key <- dplyr::tibble(
-    lat_key_int = lat, long_key_int = long,
-    lat_cap_int = lat_cap, long_cap_int = long_cap
+    x_key_int = x, y_key_int = y,
+    y_cap_int = y_cap, x_cap_int = x_cap
   )
+
   key <- dplyr::distinct(init_key)
 
   # Set progress bar
@@ -100,17 +149,23 @@ arc_reverse_geo <- function(lat,
   seql <- seq(1, ntot, 1)
 
 
+  # Add additional parameters to the custom query
+
+  custom_query$outsr <- outsr
+  custom_query$langcode <- langcode
+  custom_query$featuretypes <- featuretypes
+  custom_query$locationtype <- locationtype
+
   all_res <- lapply(seql, function(x) {
     if (progressbar) {
       setTxtProgressBar(pb, x)
     }
     rw <- key[x, ]
     res_single <- arc_reverse_geo_single(
-      as.double(rw$lat_cap_int),
-      as.double(rw$long_cap_int),
+      as.double(rw$y_cap_int),
+      as.double(rw$x_cap_int),
       address,
       full_results,
-      return_coords,
       verbose,
       custom_query
     )
@@ -123,11 +178,19 @@ arc_reverse_geo <- function(lat,
 
   all_res <- dplyr::bind_rows(all_res)
   all_res <- dplyr::left_join(init_key[, c(1, 2)], all_res,
-    by = c("lat_key_int", "long_key_int")
+    by = c("x_key_int", "y_key_int")
   )
 
-  # Final clean
-  all_res <- all_res[, -c(1, 2)]
+  # # Final clean
+  nm <- names(all_res)
+  nm <- gsub("x_key_int", "x", nm)
+  nm <- gsub("y_key_int", "y", nm)
+  names(all_res) <- nm
+
+  if (isFALSE(return_coords)) {
+    all_res <- all_res[, !nm %in% c("x", "y")]
+  }
+
   return(all_res)
 }
 
@@ -135,7 +198,6 @@ arc_reverse_geo_single <- function(lat_cap,
                                    long_cap,
                                    address = "address",
                                    full_results = FALSE,
-                                   return_coords = TRUE,
                                    verbose = TRUE,
                                    custom_query = list()) {
   # Step 1: Download ----
@@ -174,9 +236,8 @@ arc_reverse_geo_single <- function(lat_cap,
   # Empty query
   if ("error" %in% names(result_init)) {
     message(
-      "No results for query lon=",
-      long_cap, ", lat=", lat_cap,
-      "\n", result_init$error$message, "\nDetails: ", result_init$error$details
+      "No results for location=", long_cap, ",", lat_cap, "\n",
+      result_init$error$message, "\nDetails: ", result_init$error$details
     )
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
@@ -190,10 +251,13 @@ arc_reverse_geo_single <- function(lat_cap,
   result$lat <- as.double(result$lat)
   result$lon <- as.double(result$lon)
 
+
+
   # Keep names
   result_out <- keep_names_rev(result,
     address = address,
-    return_coords = return_coords,
+    # Return coords here always FALSE, check that in the top-level query
+    return_coords = FALSE,
     full_results = full_results
   )
 

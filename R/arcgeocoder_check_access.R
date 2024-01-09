@@ -71,10 +71,19 @@ skip_if_api_server <- function() {
 #' @keywords internal
 #'
 arc_api_call <- function(url, destfile, quiet) {
+  if (!quiet) {
+    decomp <- unlist(strsplit(url, "?", fixed = TRUE))
+    params <- unlist(strsplit(decomp[2], "&"))
+    message(
+      "\nURL: ", decomp[1], "?\nParameters:\n",
+      paste0("   - ", params, collapse = "\n")
+    )
+  }
+
   # nocov start
   dwn_res <-
     tryCatch(
-      download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
+      download.file(url, destfile = destfile, quiet = TRUE, mode = "wb"),
       warning = function(e) {
         return(FALSE)
       },
@@ -86,12 +95,12 @@ arc_api_call <- function(url, destfile, quiet) {
 
   # nocov start
   if (isFALSE(dwn_res)) {
-    if (isFALSE(quiet)) message("Retrying query")
+    if (isFALSE(quiet)) message("\nRetrying query")
     Sys.sleep(1)
 
     dwn_res <-
       tryCatch(
-        download.file(url, destfile = destfile, quiet = quiet, mode = "wb"),
+        download.file(url, destfile = destfile, quiet = TRUE, mode = "wb"),
         warning = function(e) {
           return(FALSE)
         },

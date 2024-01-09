@@ -76,8 +76,8 @@ empty_tbl_rev <- function(x, address) {
 
   names(x) <- c(init_nm, address)
 
-  # Reorder
-  x <- x[, c(address, init_nm)]
+  # Reorder and get only address
+  x <- x[, address]
 
   x
 }

@@ -5,22 +5,26 @@
 \title{Reverse Geocoding using the ArcGIS REST API}
 \usage{
 arc_reverse_geo(
-  lat,
-  long,
+  x,
+  y,
   address = "address",
   full_results = FALSE,
   return_coords = TRUE,
   verbose = FALSE,
   progressbar = TRUE,
+  outsr = NULL,
+  langcode = NULL,
+  featuretypes = NULL,
+  locationtype = NULL,
   custom_query = list()
 )
 }
 \arguments{
-\item{lat}{latitude values in numeric format. Must be in the range
-\verb{[-90, 90]}.}
-
-\item{long}{longitude values in numeric format. Must be in the range
+\item{x}{longitude values in numeric format. Must be in the range
 \verb{[-180, 180]}.}
+
+\item{y}{latitude values in numeric format. Must be in the range
+\verb{[-90, 90]}.}
 
 \item{address}{address column name in the output data (default  \code{"address"}).}
 
@@ -35,11 +39,30 @@ returned.}
 \item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
 the progress of the function.}
 
+\item{outsr}{The spatial reference of the x,y coordinates returned by a
+geocode request. By default is \code{NULL} (i.e. the parameter won't be used in
+the query). See \strong{Details}.}
+
+\item{langcode}{Sets the language in which reverse-geocoded addresses are
+returned.}
+
+\item{featuretypes}{This parameter limits the possible match types returned.
+By default is \code{NULL} (i.e. the parameter won't be used in the query).
+See \strong{Details}.}
+
+\item{locationtype}{Specifies whether the output geometry of
+\code{featuretypes = "PointAddress"} or \code{featuretypes = "Subaddress"} matches
+should be the rooftop point or street entrance location. Valid values are
+\code{NULL} (i.e. not using the parameter in the query), \code{rooftop} and \code{street}.}
+
 \item{custom_query}{API-specific parameters to be used, passed as a named
-list (i.e. \code{list(featureTypes = "POI")}). See \strong{Details}.}
+list.}
 }
 \value{
-A \CRANpkg{tibble} with the results.
+A \CRANpkg{tibble} with the corresponding results. The \verb{x,y} values
+returned by the API would be named \verb{lon,lat}. Note that these coordinates
+correspond to the geocoded feature, and may be different of the \verb{x,y} values
+provided as inputs.
 }
 \description{
 Generates an address from a latitude and longitude. Latitudes must be
@@ -47,28 +70,63 @@ between \verb{[-90, 90]} and longitudes between \verb{[-180, 180]}. This
 function returns the \CRANpkg{tibble} associated with the query.
 }
 \details{
-See \url{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}
-for additional parameters to be passed to \code{custom_query}.
+More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST docs}
+\subsection{\code{outsr}}{
+
+The spatial reference can be specified as either a well-known ID (WKID). If
+not specified, the spatial reference of the output locations is the same as
+that of the service ( WGS84, i.e. WKID = 4326)).
+}
+
+\subsection{\code{featuretypes}}{
+
+See \code{vignette("featuretypes", package = "arcgeocoder")} for a detailed
+explanation of this parameter.
+
+This parameter may be used for filtering the type of feature to be returned
+when geocoding. Possible values are:
+\itemize{
+\item \code{"StreetInt"}
+\item \code{"DistanceMarker"}
+\item \code{"StreetAddress"}
+\item \code{"StreetName"}
+\item \code{"POI"}
+\item \code{"Subaddress"}
+\item \code{"PointAddress"}
+\item \code{"Postal"}
+\item \code{"Locality"}
+}
+
+It is also possible to use several values separated by comma
+(\code{featuretypes="PointAddress,StreetAddress"}).
+}
 }
 \examples{
 \dontshow{if (arcgeocoder_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 
-arc_reverse_geo(lat = 40.75728, long = -73.98586)
+arc_reverse_geo(x = -73.98586, y = 40.75728)
 
 # Several coordinates
-arc_reverse_geo(lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375))
+arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
 
-# With options: zoom to country level
+# With options: using some additional parameters
 sev <- arc_reverse_geo(
-  lat = c(40.75728, 55.95335), long = c(-73.98586, -3.188375),
-  custom_query = list(featureTypes = "StreetInt,POI", langCode = "FR"),
+  x = c(-73.98586, -3.188375),
+  y = c(40.75728, 55.95335),
+  # Restrict to these feautures
+  featuretypes = "POI,StreetInt",
+  # Result on this WKID
+  outsr = 102100,
   verbose = TRUE, full_results = TRUE
 )
 
 dplyr::glimpse(sev)
 }
 \dontshow{\}) # examplesIf}
+}
+\references{
+\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST \code{reverseGeocode}}
 }
 \seealso{
 \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}

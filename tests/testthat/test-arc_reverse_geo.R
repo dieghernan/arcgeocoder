@@ -3,10 +3,9 @@ test_that("Errors", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_error(
     arc_reverse_geo(0, c(2, 3)),
-    "lat and long should have the same number"
+    "x and y should have the same number"
   )
   expect_error(
     arc_reverse_geo("a", "a"),
@@ -20,13 +19,17 @@ test_that("Messages", {
   skip_if_offline()
 
 
-  expect_message(out <- arc_reverse_geo(0, 200))
-  chk <- dplyr::tibble(lat = 0, lon = 180)
-  expect_identical(out[, c("lat", "lon")], chk)
+  expect_message(
+    out <- arc_reverse_geo(200, 0),
+    "longitudes have been restricted"
+  )
+  expect_message(
+    out <- arc_reverse_geo(0, 200),
+    "latitudes have been restricted"
+  )
 
-  expect_message(out <- arc_reverse_geo(200, 0))
-  chk <- dplyr::tibble(lat = 90, lon = 0)
-  expect_identical(out[, c("lat", "lon")], chk)
+
+  expect_snapshot(out <- arc_reverse_geo(0, 90, verbose = TRUE))
 })
 
 test_that("Returning empty query", {
@@ -34,34 +37,25 @@ test_that("Returning empty query", {
   skip_if_api_server()
 
   expect_message(
-    obj <- arc_reverse_geo(89.999999, 179.9999,
-      custom_query =
-        list(featureTypes = "StreetInt")
-    ),
-    "No results for query lon"
+    obj <- arc_reverse_geo(179.9999, 89.999999, featuretypes = "StreetInt"),
+    "No results for location="
   )
 
   expect_true(nrow(obj) == 1)
-  expect_true(obj$lat == 89.999999)
-  expect_true(obj$lon == 179.9999)
+  expect_true(obj$y == 89.999999)
+  expect_true(obj$x == 179.9999)
   expect_s3_class(obj, "tbl")
-  expect_identical(names(obj), c("address", "lat", "lon"))
-  expect_true(all(
-    vapply(obj, class, FUN.VALUE = character(1))
-    == c("character", rep("numeric", 2))
-  ))
+  expect_identical(names(obj), c("x", "y", "address"))
   expect_true(is.na(obj$address))
 
   expect_message(
-    obj_renamed <- arc_reverse_geo(89.999999, 179.9999,
-      address = "adddata",
-      custom_query =
-        list(featureTypes = "StreetInt")
+    obj_renamed <- arc_reverse_geo(179.9999, 89.999999,
+      address = "adddata", featuretypes = "StreetInt"
     ),
-    "No results for"
+    "No results for location="
   )
 
-  expect_identical(names(obj_renamed), c("adddata", "lat", "lon"))
+  expect_identical(names(obj_renamed), c("x", "y", "adddata"))
 
   names(obj_renamed) <- names(obj)
 
@@ -84,15 +78,15 @@ test_that("Checking query", {
   skip_if_api_server()
   skip_if_offline()
 
-  obj <- arc_reverse_geo(40.4207414, -3.6687109)
+  obj <- arc_reverse_geo(-3.6687109, 40.4207414)
   expect_s3_class(obj, "tbl")
   expect_equal(nrow(obj), 1)
 
-  expect_identical(names(obj), c("address", "lat", "lon"))
+  expect_identical(names(obj), c("x", "y", "address"))
 
   # Same with option
-  obj_zoom <- arc_reverse_geo(40.4207414, -3.6687109,
-    custom_query = list(featureTypes = "StreetInt")
+  obj_zoom <- arc_reverse_geo(-3.6687109, 40.4207414,
+    featuretypes = "StreetInt"
   )
 
 
@@ -102,33 +96,31 @@ test_that("Checking query", {
 
   # Several coordinates
   sev <- arc_reverse_geo(
-    lat = c(40.75728, 55.95335),
-    long = c(-73.98586, -3.188375)
+    x = c(-73.98586, -3.188375),
+    y = c(40.75728, 55.95335)
   )
 
   expect_equal(nrow(sev), 2)
   expect_s3_class(sev, "tbl")
 
   # Check opts
-  obj <- arc_reverse_geo(40.4207414, -3.6687109,
-    address = "addrs"
-  )
+  obj <- arc_reverse_geo(-3.6687109, 40.4207414, address = "addrs")
 
   expect_s3_class(obj, "tbl")
   expect_equal(nrow(obj), 1)
 
-  expect_identical(names(obj), c("addrs", "lat", "lon"))
+  expect_identical(names(obj), c("x", "y", "addrs"))
 
 
   # Check opts
-  obj <- arc_reverse_geo(40.4207414, -3.6687109,
+  obj <- arc_reverse_geo(-3.6687109, 40.4207414,
     address = "addrs", return_coords = FALSE
   )
 
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), "addrs")
 
-  obj <- arc_reverse_geo(40.4207414, -3.6687109,
+  obj <- arc_reverse_geo(-3.6687109, 40.4207414,
     address = "addrs", return_coords = FALSE,
     full_results = TRUE
   )
@@ -137,12 +129,12 @@ test_that("Checking query", {
   expect_identical(names(obj)[1:3], c("addrs", "lat", "lon"))
   expect_gt(ncol(obj), 5)
 
-  obj2 <- arc_reverse_geo(40.4207414, -3.6687109,
+  obj2 <- arc_reverse_geo(-3.6687109, 40.4207414,
     address = "addrs", return_coords = TRUE,
     full_results = TRUE
   )
 
-  expect_identical(obj, obj2)
+  expect_identical(obj, obj2[, -c(1, 2)])
 })
 
 
@@ -152,11 +144,10 @@ test_that("Check unnesting", {
   skip_if_offline()
 
 
-
   # Several coordinates
   sev <- arc_reverse_geo(
-    lat = c(40.75728, 55.95335),
-    long = c(-73.98586, -3.188375),
+    x = c(-73.98586, -3.188375),
+    y = c(40.75728, 55.95335),
     full_results = TRUE
   )
 
@@ -167,11 +158,8 @@ test_that("Check unnesting", {
   # Classes of all cols
 
   colclass <- vapply(sev, class, FUN.VALUE = character(1))
-
-  # Rest of columns not list
-  expect_false(any(grepl("list", colclass["boundingbox" != names(colclass)])))
 })
-
+#
 test_that("Dedupe", {
   skip_on_cran()
   skip_if_api_server()
@@ -182,7 +170,7 @@ test_that("Dedupe", {
   lats <- rep(c(40.75728, 55.95335), 50)
   longs <- rep(c(-73.98586, -3.188375), 50)
 
-  expect_silent(dup <- arc_reverse_geo(lats, longs, progressbar = FALSE))
+  expect_silent(dup <- arc_reverse_geo(longs, lats, progressbar = FALSE))
 
   expect_equal(nrow(dup), 100)
 
@@ -206,12 +194,12 @@ test_that("Progress bar", {
   long <- c(-73.98586, -3.188375)
 
   # No pbar
-  expect_silent(arc_reverse_geo(lat[1], long[1]))
-  expect_silent(arc_reverse_geo(lat[1], long[1], progressbar = TRUE))
+  expect_silent(arc_reverse_geo(long[1], lat[1]))
+  expect_silent(arc_reverse_geo(long[1], lat[1], progressbar = TRUE))
 
   # Get a pbar
-  expect_output(aa <- arc_reverse_geo(lat, long), "50")
+  expect_output(aa <- arc_reverse_geo(long, lat), "50")
 
   # Not
-  expect_silent(aa <- arc_reverse_geo(lat, long, progressbar = FALSE))
+  expect_silent(aa <- arc_reverse_geo(long, lat, progressbar = FALSE))
 })

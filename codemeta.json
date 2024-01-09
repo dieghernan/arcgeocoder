@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.2 (2023-10-31 ucrt)",
+  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
   "author": [
     {
       "@type": "Person",
@@ -43,6 +43,30 @@
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "testthat",
@@ -106,7 +130,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "arcgis", "address", "reverse-geocoding", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "gis"],
-  "fileSize": "114.471KB",
+  "fileSize": "126.87KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -122,6 +146,7 @@
       "url": "https://dieghernan.github.io/arcgeocoder/"
     }
   ],
+  "releaseNotes": "https://github.com/dieghernan/arcgeocoder/blob/master/NEWS.md",
   "readme": "https://github.com/dieghernan/arcgeocoder/blob/main/README.md",
   "contIntegration": ["https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/dieghernan/arcgeocoder"],
   "developmentStatus": "https://www.repostatus.org/#wip"

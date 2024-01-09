@@ -17,8 +17,12 @@ Imports:
     dplyr (>= 1.0.0),
     jsonlite (>= 1.7.0)
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0),
     tidygeocoder
+VignetteBuilder: 
+    knitr
 Config/Needs/website: dieghernan/gitdevr
 Config/testthat/edition: 3
 Encoding: UTF-8
