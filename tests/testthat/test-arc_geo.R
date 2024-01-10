@@ -33,6 +33,19 @@ test_that("Returning empty query", {
   expect_identical(obj, obj_renamed)
 })
 
+test_that("Messages", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
+
+
+  expect_snapshot(
+    out <- arc_geo("Madrid", limit = 200)
+  )
+
+
+  expect_snapshot(out <- arc_geo("Madrid", verbose = TRUE))
+})
 
 test_that("Data format", {
   skip_on_cran()
@@ -40,7 +53,6 @@ test_that("Data format", {
   skip_if_offline()
 
   obj <- arc_geo("Madrid")
-
   expect_s3_class(obj, "tbl")
 })
 
@@ -60,13 +72,30 @@ test_that("Checking query", {
   )
   expect_identical(names(obj), c("query", "at", "ong"))
 
-  obj <- arc_geo("Madrid",
+  obj1 <- arc_geo("Madrid",
     long = "ong", lat = "at",
     full_results = FALSE,
     return_addresses = TRUE
   )
+  nobj1 <- ncol(obj1)
+  obj2 <- arc_geo("Madrid",
+    long = "ong", lat = "at",
+    full_results = TRUE,
+    return_addresses = TRUE
+  )
+  nobj2 <- ncol(obj2)
+  expect_gt(nobj2, nobj1)
 
-  expect_identical(names(obj), c("query", "at", "ong", "address"))
+  # Try with outfields
+  obj3 <- arc_geo("Madrid",
+    long = "ong", lat = "at",
+    full_results = FALSE,
+    return_addresses = TRUE,
+    custom_query = list(outFields = "PlaceName")
+  )
+
+  expect_equal(ncol(obj3) - nobj1, 1)
+  expect_equal(setdiff(names(obj3), names(obj1)), "PlaceName")
 
   obj <- arc_geo("Madrid",
     long = "ong", lat = "at",
@@ -77,14 +106,12 @@ test_that("Checking query", {
   expect_identical(names(obj)[1:4], c("query", "at", "ong", "address"))
   expect_gt(ncol(obj), 4)
 
-  # Boosting with coords
-  esp <- arc_geo("Spain", full_results = TRUE)
-  locboost <- paste0(esp$lon, ",", esp$lat)
+  # Boosting with parameters
 
   query <- arc_geo("Burger King",
     limit = 10,
     full_results = TRUE,
-    custom_query = list(location = locboost)
+    sourcecountry = "ES"
   )
   expect_gt(nrow(query), 4)
 
@@ -102,10 +129,12 @@ test_that("Checking query", {
   # Select with other outsr
   query3 <- arc_geo("Burger King",
     limit = 10,
-    custom_query = list(outSR = 102100)
+    full_results = TRUE,
+    outsr = 102100
   )
 
   expect_false(any(query3$lon == query2$lon))
+  expect_true(all(query2$LongLabel == query3$LongLabel))
 })
 
 

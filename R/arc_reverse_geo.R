@@ -151,10 +151,10 @@ arc_reverse_geo <- function(x, y, address = "address", full_results = FALSE,
 
   # Add additional parameters to the custom query
 
-  custom_query$outsr <- outsr
-  custom_query$langcode <- langcode
-  custom_query$featuretypes <- featuretypes
-  custom_query$locationtype <- locationtype
+  custom_query$outSR <- outsr
+  custom_query$langCode <- langcode
+  custom_query$featureTypes <- featuretypes
+  custom_query$locationType <- locationtype
 
   all_res <- lapply(seql, function(x) {
     if (progressbar) {
