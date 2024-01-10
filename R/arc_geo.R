@@ -32,7 +32,7 @@
 #'
 #' @details
 #' More info and valid values in the [ArcGIS REST
-#' docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm)
+#' docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
 #'
 #' ## `outsr`
 #'

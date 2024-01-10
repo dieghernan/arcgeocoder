@@ -66,7 +66,7 @@ Geocodes addresses given as character values. This
 function returns the \CRANpkg{tibble} associated with the query.
 }
 \details{
-More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST docs}
+More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}
 \subsection{\code{outsr}}{
 
 The spatial reference can be specified as either a well-known ID (WKID). If
