@@ -192,3 +192,36 @@ test_that("Progress bar", {
   # Not
   expect_silent(aa <- arc_geo(c("Madrid", "Barcelona"), progressbar = FALSE))
 })
+
+test_that("Use categories multi", {
+  skip_on_cran()
+  skip_if_api_server()
+  skip_if_offline()
+
+
+  expect_snapshot(
+    out <- arc_geo_multi(
+      address = "Atocha", city = "Madrid", countrycode = "ESP",
+      category = "POI",
+      custom_query = list(
+        outFields = "LongLabel,Type",
+        location = "-117.92712,33.81563"
+      ),
+      verbose = TRUE
+    )
+  )
+
+  expect_snapshot(
+    out2 <- arc_geo_multi(
+      address = "Atocha", city = "Madrid", countrycode = "ESP",
+      category = "Address",
+      custom_query = list(
+        outFields = "LongLabel,Type",
+        location = "-117.92712,33.81563"
+      ),
+      verbose = TRUE
+    )
+  )
+
+  expect_false(identical(out$Type, out2$Type))
+})
