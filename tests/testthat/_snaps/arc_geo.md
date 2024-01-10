@@ -1,0 +1,19 @@
+# Messages
+
+    Code
+      out <- arc_geo("Madrid", limit = 200)
+    Message
+      ArcGIS REST API provides 50 results as a maximum.  Your query may be incomplete
+
+---
+
+    Code
+      out <- arc_geo("Madrid", verbose = TRUE)
+    Message
+      
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
+      Parameters:
+         - SingleLine=Madrid
+         - f=json
+         - maxLocations=1
+
