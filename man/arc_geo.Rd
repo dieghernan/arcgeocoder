@@ -16,6 +16,7 @@ arc_geo(
   outsr = NULL,
   langcode = NULL,
   sourcecountry = NULL,
+  category = NULL,
   custom_query = list()
 )
 }
@@ -55,15 +56,23 @@ or countries. Acceptable values include the three-character country code.
 You can specify multiple country codes to limit results to more than one
 country.}
 
+\item{category}{A place or address type that can be used to filter results.
+See \link{arc_categories} for details.}
+
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list.}
 }
 \value{
-A \CRANpkg{tibble} with the results.
+A \CRANpkg{tibble} with the results. See the details of the output
+in \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}
 }
 \description{
 Geocodes addresses given as character values. This
 function returns the \CRANpkg{tibble} associated with the query.
+
+This function uses the \code{SingleLine} approach detailed in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{API docs}.
+For multifield queries (i.e. using specific address parameters) use
+\code{\link[=arc_geo_multi]{arc_geo_multi()}} function.
 }
 \details{
 More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}
@@ -103,5 +112,9 @@ with_params_usa[, c("lat", "lon", "LongLabel")]
 }
 \seealso{
 \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
+
+Geocoding operations: 
+\code{\link{arc_geo_multi}()},
+\code{\link{arc_reverse_geo}()}
 }
 \concept{geocoding}

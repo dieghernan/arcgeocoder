@@ -63,6 +63,8 @@ A \CRANpkg{tibble} with the corresponding results. The \verb{x,y} values
 returned by the API would be named \verb{lon,lat}. Note that these coordinates
 correspond to the geocoded feature, and may be different of the \verb{x,y} values
 provided as inputs.
+
+See the details of the output in \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}
 }
 \description{
 Generates an address from a latitude and longitude. Latitudes must be
@@ -130,4 +132,9 @@ dplyr::glimpse(sev)
 }
 \seealso{
 \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}
+
+Geocoding operations: 
+\code{\link{arc_geo_multi}()},
+\code{\link{arc_geo}()}
 }
+\concept{geocoding}

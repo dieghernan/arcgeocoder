@@ -4,6 +4,11 @@
 #' Geocodes addresses given as character values. This
 #' function returns the \CRANpkg{tibble} associated with the query.
 #'
+#' This function uses the `SingleLine` approach detailed in the [API
+#' docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
+#' For multifield queries (i.e. using specific address parameters) use
+#' [arc_geo_multi()] function.
+#'
 #' @param address character with single line address
 #'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
 #'   (`c("Madrid", "Barcelona")`).
@@ -20,6 +25,8 @@
 #'   or countries. Acceptable values include the three-character country code.
 #'   You can specify multiple country codes to limit results to more than one
 #'   country.
+#' @param category A place or address type that can be used to filter results.
+#'   See [arc_categories] for details.
 #'
 #' @inheritParams arc_reverse_geo
 #'
@@ -28,7 +35,9 @@
 #' [ArcGIS REST
 #' `findAddressCandidates`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
 #'
-#' @return A \CRANpkg{tibble} with the results.
+#' @return A \CRANpkg{tibble} with the results. See the details of the output
+#' in [ArcGIS REST API Service
+#' output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm)
 #'
 #' @details
 #' More info and valid values in the [ArcGIS REST
@@ -70,10 +79,10 @@ arc_geo <- function(address, lat = "lat", long = "lon", limit = 1,
                     full_results = FALSE, return_addresses = TRUE,
                     verbose = FALSE, progressbar = TRUE,
                     outsr = NULL, langcode = NULL, sourcecountry = NULL,
-                    custom_query = list()) {
+                    category = NULL, custom_query = list()) {
   if (limit > 50) {
     message(paste(
-      "ArcGIS REST API provides 50 results as a maximum. ",
+      "\nArcGIS REST API provides 50 results as a maximum. ",
       "Your query may be incomplete"
     ))
     limit <- min(50, limit)
@@ -101,6 +110,8 @@ arc_geo <- function(address, lat = "lat", long = "lon", limit = 1,
   custom_query$sourceCountry <- sourcecountry
   custom_query$outSR <- outsr
   custom_query$langCode <- langcode
+  custom_query$category <- category
+
 
 
   all_res <- lapply(seql, function(x) {
@@ -135,7 +146,11 @@ arc_geo_single <- function(address, lat = "lat", long = "lon", limit = 1,
   )
 
   # Compose url
-  if (singleline) ad_q <- paste0("SingleLine=", address)
+  if (singleline) {
+    ad_q <- paste0("SingleLine=", address)
+  } else {
+    ad_q <- address
+  }
 
   url <- paste0(api, ad_q, "&f=json&maxLocations=", limit)
 
@@ -153,7 +168,7 @@ arc_geo_single <- function(address, lat = "lat", long = "lon", limit = 1,
 
   # nocov start
   if (isFALSE(res)) {
-    message(url, " not reachable.")
+    message("\n", url, " not reachable.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
@@ -163,7 +178,7 @@ arc_geo_single <- function(address, lat = "lat", long = "lon", limit = 1,
 
   # Empty query
   if (length(result_init$candidates) == 0) {
-    message("No results for query ", address)
+    message("\nNo results for query ", address)
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }

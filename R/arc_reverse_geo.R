@@ -75,6 +75,9 @@
 #' correspond to the geocoded feature, and may be different of the `x,y` values
 #' provided as inputs.
 #'
+#' See the details of the output in [ArcGIS REST API Service
+#' output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm)
+#'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
 #'
@@ -99,6 +102,7 @@
 #'
 #' @export
 #'
+#' @family geocoding
 #' @seealso [tidygeocoder::reverse_geo()]
 #'
 arc_reverse_geo <- function(x, y, address = "address", full_results = FALSE,
@@ -120,14 +124,14 @@ arc_reverse_geo <- function(x, y, address = "address", full_results = FALSE,
   y_cap <- pmax(pmin(y, 90), -90)
 
   if (!identical(y_cap, y)) {
-    message("latitudes have been restricted to [-90, 90]")
+    message("\nlatitudes have been restricted to [-90, 90]")
   }
 
   # Lon
   x_cap <- pmax(pmin(x, 180), -180)
 
   if (!all(x_cap == x)) {
-    message("longitudes have been restricted to [-180, 180]")
+    message("\nlongitudes have been restricted to [-180, 180]")
   }
 
   # Dedupe for query using data frame
@@ -226,7 +230,7 @@ arc_reverse_geo_single <- function(lat_cap,
 
   # nocov start
   if (isFALSE(res)) {
-    message(url, " not reachable.")
+    message("\n", url, " not reachable.")
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
@@ -237,6 +241,7 @@ arc_reverse_geo_single <- function(lat_cap,
   # Empty query
   if ("error" %in% names(result_init)) {
     message(
+      "\n",
       "No results for location=", long_cap, ",", lat_cap, "\n",
       result_init$error$message, "\nDetails: ", result_init$error$details
     )

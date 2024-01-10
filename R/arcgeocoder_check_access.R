@@ -74,14 +74,15 @@ arc_api_call <- function(url, destfile, quiet) {
   if (!quiet) {
     decomp <- unlist(strsplit(url, "?", fixed = TRUE))
     params <- unlist(strsplit(decomp[2], "&"))
+    url <- URLencode(url)
     message(
-      "\nURL: ", decomp[1], "?\nParameters:\n",
-      paste0("   - ", params, collapse = "\n")
+      "\nEntry point: ", decomp[1], "?\nParameters:\n",
+      paste0("   - ", params, collapse = "\n"),
+      "\nurl: ", url
     )
   }
 
   url <- URLencode(url)
-
   # nocov start
   dwn_res <-
     tryCatch(
