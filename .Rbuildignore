@@ -20,3 +20,4 @@
 ^\.github$
 ^data-raw$
 ^vignettes/featuretypes\.Rmd\.orig$
+^docs$

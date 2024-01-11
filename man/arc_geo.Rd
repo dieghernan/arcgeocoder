@@ -57,7 +57,8 @@ You can specify multiple country codes to limit results to more than one
 country.}
 
 \item{category}{A place or address type that can be used to filter results.
-See \link{arc_categories} for details.}
+Several values can be used as well as a comma-separated string (i.e.
+\verb{"Cinema,Museum}). See \link{arc_categories} for details.}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list.}
@@ -114,6 +115,7 @@ with_params_usa[, c("lat", "lon", "LongLabel")]
 \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
 
 Geocoding operations: 
+\code{\link{arc_geo_categories}()},
 \code{\link{arc_geo_multi}()},
 \code{\link{arc_reverse_geo}()}
 }

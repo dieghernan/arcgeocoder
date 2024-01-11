@@ -76,7 +76,7 @@
 #'
 #' sea_2 <- arc_geo("sea",
 #'   custom_query = list(outFields = "LongLabel,Type"),
-#'   limit = 2, category = "Restaurant"
+#'   limit = 2, category = "Food"
 #' )
 #'
 #' dplyr::glimpse(sea_2)

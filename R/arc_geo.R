@@ -26,7 +26,8 @@
 #'   You can specify multiple country codes to limit results to more than one
 #'   country.
 #' @param category A place or address type that can be used to filter results.
-#'   See [arc_categories] for details.
+#'   Several values can be used as well as a comma-separated string (i.e.
+#'   `"Cinema,Museum`). See [arc_categories] for details.
 #'
 #' @inheritParams arc_reverse_geo
 #'
