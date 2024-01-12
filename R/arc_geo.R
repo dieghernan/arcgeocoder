@@ -76,6 +76,7 @@
 #'
 #' @seealso [tidygeocoder::geo()]
 #' @family geocoding
+#'
 arc_geo <- function(address, lat = "lat", long = "lon", limit = 1,
                     full_results = FALSE, return_addresses = TRUE,
                     verbose = FALSE, progressbar = TRUE,

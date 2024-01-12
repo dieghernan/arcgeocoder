@@ -176,8 +176,13 @@ points(ex3$lon, ex3$lat)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering}
-}
-\concept{geocoding
+\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering}.
 
-\link{arc_categories}}
+\link{arc_categories}
+
+Geocoding operations: 
+\code{\link{arc_geo_multi}()},
+\code{\link{arc_geo}()},
+\code{\link{arc_reverse_geo}()}
+}
+\concept{geocoding}

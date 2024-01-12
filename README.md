@@ -183,7 +183,7 @@ ggplot(eiffel_tower, aes(x, y)) +
   )
 ```
 
-<img src="vignettes/eiffel-1.png" width="100%" />
+<img src="man/figures/README-eiffel-1.png" width="100%" />
 
 ### **arcgeocoder** and **r-spatial**
 
@@ -231,7 +231,7 @@ ggplot(food_eiffel_sf) +
   coord_sf(crs = 3035)
 ```
 
-<img src="vignettes/eiffel_sf-1.png" width="100%" />
+<img src="man/figures/README-eiffel_sf-1.png" width="100%" />
 
 See additional articles showing how **arcgeocoder** can be use in
 combination with **leaflet** to create [dynamic
@@ -254,7 +254,7 @@ A BibTeX entry for LaTeX users is
       title = {{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.0.0.9000},
+      version = {0.0.1.9000},
       doi = {10.5281/zenodo.10495365},
       url = {https://dieghernan.github.io/arcgeocoder/},
       abstract = {Lite interface for geocoding and reverse geocoding with the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.},

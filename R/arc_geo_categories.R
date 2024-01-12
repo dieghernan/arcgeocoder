@@ -34,11 +34,13 @@
 #'
 #' @seealso
 #' [ArcGIS REST Category
-#' filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm)
+#' filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
+#'
+#' [arc_categories]
 #'
 #' @family geocoding
 #'
-#' [arc_categories]
+#'
 #'
 #' @return A \CRANpkg{tibble} with the results. See the details of the output
 #' in [ArcGIS REST API Service
