@@ -180,23 +180,10 @@ ggplot(eiffel_tower, aes(x, y)) +
 
 ### **arcgeocoder** and **r-spatial**
 
-It is straightforward to convert the results of **arcgeocoder** to an **sf**
-object (geospatial format):
-
-```{r eiffel_sf, fig.cap="Example: Converting points to sf objects"}
-library(sf)
-
-food_eiffel_sf <- st_as_sf(food_eiffel,
-  coords = c("lon", "lat"),
-  # The CRS of the resulting coords is here
-  crs = eiffel_tower$wkid
-)
-
-food_eiffel_sf
-
-ggplot(food_eiffel_sf) +
-  geom_sf(aes(color = Type)) +
-  coord_sf(crs = 3035)
-```
+See additional articles showing how **arcgeocoder** can be use in combination 
+with **leaflet** to create [dynamic
+maps](https://dieghernan.github.io/arcgeocoder/articles/ex_leaflet.html) and
+with **sf** and **terra** to create [static
+maps](https://dieghernan.github.io/arcgeocoder/articles/ex_static.html).
 
 ## References

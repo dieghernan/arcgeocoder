@@ -1,0 +1,17 @@
+---
+title: "Example: arcgeocoder and static maps"
+subtitle: "Combine arcgeocoder with sf and terra"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  message = FALSE,
+  dpi = 300,
+  tidy = "styler",
+  dev = "ragg_png",
+  out.width = "100%"
+)
+```

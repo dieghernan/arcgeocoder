@@ -1,6 +1,6 @@
 ---
 title: "Example: arcgeocoder and leaflet maps"
-subtitle: "Minimal example showing how to combine arcgeocoder and leaflet maps"
+subtitle: "Combine arcgeocoder and leaflet maps"
 resource_files:
    - vignettes/articles/eiffel-tower.png
    - vignettes/articles/eiffel-coffee-cup.png
@@ -37,14 +37,22 @@ eiffel_tower <- arc_geo_multi("Eiffel Tower",
   city = "Paris", countrycode = "FR",
   category = "POI"
 )
-eiffel_icon <- makeIcon("eiffel-tower.png",
-                    iconWidth = 50, iconHeight = 50,
-                    iconAnchorX = 25, iconAnchorY = 25)
+eiffel_icon <- makeIcon(
+  iconUrl = "https://dieghernan.github.io/arcgeocoder/articles/eiffel-tower.png",
+  iconWidth = 50, iconHeight = 50,
+  iconAnchorX = 25, iconAnchorY = 25
+)
 
 # Leaflet map
-lm <- leaflet(elementId = "EiffelTower", width = "100%", height = "60vh",
-              options = leafletOptions(minZoom = 14)) %>%
-  addProviderTiles(provider = "CartoDB.Positron") %>%
+lm <- leaflet(
+  elementId = "EiffelTower", width = "100%", height = "60vh",
+  options = leafletOptions(minZoom = 12)
+) %>%
+  addProviderTiles(
+    provider = "CartoDB.Positron",
+    group = "CartoDB.Positron"
+  ) %>%
+  addTiles(group = "OSM") %>%
   addMarkers(data = eiffel_tower, ~lon, ~lat, icon = eiffel_icon)
 
 
@@ -57,12 +65,17 @@ cf <- arc_geo_categories("Coffee Shop",
 # Label for PopUp
 cf$labelpop <- paste0("<strong>", cf$PlaceName, "</strong><br>", cf$StAddr)
 
-coffee_icon <- makeIcon("coffee-cup.png",
-                    iconWidth = 20, iconHeight = 20,
-                    iconAnchorX = 10, iconAnchorY = 10)
+coffee_icon <- makeIcon(
+  iconUrl = "https://dieghernan.github.io/arcgeocoder/articles/coffee-cup.png",
+  iconWidth = 20, iconHeight = 20,
+  iconAnchorX = 10, iconAnchorY = 10
+)
 
 lm <- lm %>%
-  addMarkers(data = cf, ~lon, ~lat, popup = ~labelpop, icon = coffee_icon)
+  addMarkers(
+    data = cf, ~lon, ~lat, popup = ~labelpop, icon = coffee_icon,
+    group = "Coffee Shops"
+  )
 
 # Step 3: Bakeries nearby
 bk <- arc_geo_categories("Bakery",
@@ -73,12 +86,27 @@ bk <- arc_geo_categories("Bakery",
 # Label for PopUp
 bk$labelpop <- paste0("<strong>", bk$PlaceName, "</strong><br>", bk$StAddr)
 
-bk_icon <- makeIcon("croissant.png",
-                    iconWidth = 20, iconHeight = 20,
-                    iconAnchorX = 10, iconAnchorY = 10)
+bk_icon <- makeIcon(
+  iconUrl = "https://dieghernan.github.io/arcgeocoder/articles/croissant.png",
+  iconWidth = 20, iconHeight = 20,
+  iconAnchorX = 10, iconAnchorY = 10
+)
 
 lm <- lm %>%
-  addMarkers(data = bk, ~lon, ~lat, popup = ~labelpop, icon = bk_icon)
+  addMarkers(
+    data = bk, ~lon, ~lat, popup = ~labelpop, icon = bk_icon,
+    group = "Bakeries"
+  )
+
+# Add layer control
+
+lm <- lm %>%
+  addLayersControl(
+    baseGroups = c("CartoDB.Positron", "OSM"),
+    overlayGroups = c("Coffee Shops", "Bakeries"),
+    position = "topleft",
+    options = layersControlOptions(collapsed = FALSE)
+  )
 
 lm
 ```

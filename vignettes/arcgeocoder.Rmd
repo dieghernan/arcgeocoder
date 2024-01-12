@@ -193,51 +193,10 @@ ggplot(eiffel_tower, aes(x, y)) +
 
 ### **arcgeocoder** and **r-spatial**
 
-It is straightforward to convert the results of **arcgeocoder** to an **sf**
-object (geospatial format):
-
-
-```r
-library(sf)
-
-food_eiffel_sf <- st_as_sf(food_eiffel,
-  coords = c("lon", "lat"),
-  # The CRS of the resulting coords is here
-  crs = eiffel_tower$wkid
-)
-
-food_eiffel_sf
-#> Simple feature collection with 50 features and 75 fields
-#> Geometry type: POINT
-#> Dimension:     XY
-#> Bounding box:  xmin: 2.29211 ymin: 48.85416 xmax: 2.30085 ymax: 48.86252
-#> Geodetic CRS:  WGS 84
-#> # A tibble: 50 × 76
-#>    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax address       score     x     y
-#>  * <chr>      <dbl> <dbl> <lgl>       <lgl>       <lgl>       <lgl>       <chr>         <int> <dbl> <dbl>
-#>  1 Food        2.29  48.9 NA          NA          NA          NA          Le Jules Ver…   100  2.30  48.9
-#>  2 Food        2.29  48.9 NA          NA          NA          NA          58 Tour Eiff…   100  2.29  48.9
-#>  3 Food        2.29  48.9 NA          NA          NA          NA          Le Bailli de…   100  2.29  48.9
-#>  4 Food        2.29  48.9 NA          NA          NA          NA          Le Bailli de…   100  2.29  48.9
-#>  5 Food        2.29  48.9 NA          NA          NA          NA          Castel Café     100  2.29  48.9
-#>  6 Food        2.29  48.9 NA          NA          NA          NA          Le Castel Ca…   100  2.29  48.9
-#>  7 Food        2.29  48.9 NA          NA          NA          NA          Ribe            100  2.29  48.9
-#>  8 Food        2.29  48.9 NA          NA          NA          NA          Chez Ribe       100  2.29  48.9
-#>  9 Food        2.29  48.9 NA          NA          NA          NA          Bistrot de L…   100  2.30  48.9
-#> 10 Food        2.29  48.9 NA          NA          NA          NA          Bistrot de L…   100  2.30  48.9
-#> # ℹ 40 more rows
-#> # ℹ 65 more variables: Loc_name <chr>, Status <chr>, Score <int>, Match_addr <chr>, LongLabel <chr>,
-#> #   ShortLabel <chr>, Addr_type <chr>, Type <chr>, PlaceName <chr>, Place_addr <chr>, Phone <chr>,
-#> #   URL <chr>, Rank <int>, AddBldg <chr>, AddNum <chr>, AddNumFrom <chr>, AddNumTo <chr>,
-#> #   AddRange <chr>, Side <chr>, StPreDir <chr>, StPreType <chr>, StName <chr>, StType <chr>,
-#> #   StDir <chr>, BldgType <chr>, BldgName <chr>, LevelType <chr>, LevelName <chr>, UnitType <chr>,
-#> #   UnitName <chr>, SubAddr <chr>, StAddr <chr>, Block <chr>, Sector <chr>, Nbrhd <chr>, …
-
-ggplot(food_eiffel_sf) +
-  geom_sf(aes(color = Type)) +
-  coord_sf(crs = 3035)
-```
-
-![Example: Converting points to sf objects](./eiffel_sf-1.png)
+See additional articles showing how **arcgeocoder** can be use in combination 
+with **leaflet** to create [dynamic
+maps](https://dieghernan.github.io/arcgeocoder/articles/ex_leaflet.html) and
+with **sf** and **terra** to create [static
+maps](https://dieghernan.github.io/arcgeocoder/articles/ex_static.html).
 
 ## References
