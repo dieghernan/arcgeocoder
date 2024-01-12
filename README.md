@@ -9,9 +9,9 @@
 [![codecov](https://codecov.io/gh/dieghernan/arcgeocoder/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/arcgeocoder)
 [![r-universe](https://dieghernan.r-universe.dev/badges/arcgeocoder)](https://dieghernan.r-universe.dev/arcgeocoder)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/arcgeocoder/badge)](https://www.codefactor.io/repository/github/dieghernan/arcgeocoder)
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.10495365-blue)](https://doi.org/10.5281/zenodo.10495365)
 
 <!-- badges: end -->
@@ -257,7 +257,7 @@ A BibTeX entry for LaTeX users is
       version = {0.0.1.9000},
       doi = {10.5281/zenodo.10495365},
       url = {https://dieghernan.github.io/arcgeocoder/},
-      abstract = {Lite interface for geocoding and reverse geocoding with the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.},
+      abstract = {Lite interface for finding locations of addresses or businesses around the world using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address.},
     }
 
 ## References
