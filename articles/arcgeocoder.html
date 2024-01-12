@@ -41,7 +41,7 @@
       <img src="../apple-touch-icon-180x180.png" alt="arcgeocoder logo" height="34" class="d-inline-block me-1">
       arcgeocoder</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,6 +59,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/leaflet.html">Example: arcgeocoder and leaflet maps</a>
     <a class="dropdown-item" href="../articles/featuretypes.html">Reverse geocoding and feature types</a>
   </div>
 </li>
@@ -349,9 +350,9 @@ France.</p>
 <span><span class="va">eiffel_tower</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">lon</span>, <span class="va">lat</span>, <span class="va">LongLabel</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 3</span></span>
-<span><span class="co">#&gt;     lon   lat LongLabel                                                            </span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                                                                </span></span>
-<span><span class="co">#&gt; 1  2.29  48.9 Tour Eiffel, 5 Avenue Anatole France, 75007, 7e Arrondissement, Pari…</span></span>
+<span><span class="co">#&gt;     lon   lat LongLabel                                                                                </span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                                                                                    </span></span>
+<span><span class="co">#&gt; 1  2.29  48.9 Tour Eiffel, 5 Avenue Anatole France, 75007, 7e Arrondissement, Paris, Île-de-France, FRA</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># Use lon,lat to boots the search and using category = Food</span></span>
@@ -400,25 +401,25 @@ France.</p>
 <span><span class="co">#&gt; Bounding box:  xmin: 2.29211 ymin: 48.85416 xmax: 2.30085 ymax: 48.86252</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; # A tibble: 50 × 76</span></span>
-<span><span class="co">#&gt;    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax address  </span></span>
-<span><span class="co">#&gt;  * &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;       &lt;lgl&gt;       &lt;lgl&gt;       &lt;lgl&gt;       &lt;chr&gt;    </span></span>
-<span><span class="co">#&gt;  1 Food        2.29  48.9 NA          NA          NA          NA          Le Jules…</span></span>
-<span><span class="co">#&gt;  2 Food        2.29  48.9 NA          NA          NA          NA          58 Tour …</span></span>
-<span><span class="co">#&gt;  3 Food        2.29  48.9 NA          NA          NA          NA          Le Baill…</span></span>
-<span><span class="co">#&gt;  4 Food        2.29  48.9 NA          NA          NA          NA          Le Baill…</span></span>
-<span><span class="co">#&gt;  5 Food        2.29  48.9 NA          NA          NA          NA          Castel C…</span></span>
-<span><span class="co">#&gt;  6 Food        2.29  48.9 NA          NA          NA          NA          Le Caste…</span></span>
-<span><span class="co">#&gt;  7 Food        2.29  48.9 NA          NA          NA          NA          Ribe     </span></span>
-<span><span class="co">#&gt;  8 Food        2.29  48.9 NA          NA          NA          NA          Chez Ribe</span></span>
-<span><span class="co">#&gt;  9 Food        2.29  48.9 NA          NA          NA          NA          Bistrot …</span></span>
-<span><span class="co">#&gt; 10 Food        2.29  48.9 NA          NA          NA          NA          Bistrot …</span></span>
+<span><span class="co">#&gt;    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax address       score     x     y</span></span>
+<span><span class="co">#&gt;  * &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;       &lt;lgl&gt;       &lt;lgl&gt;       &lt;lgl&gt;       &lt;chr&gt;         &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 Food        2.29  48.9 NA          NA          NA          NA          Le Jules Ver…   100  2.30  48.9</span></span>
+<span><span class="co">#&gt;  2 Food        2.29  48.9 NA          NA          NA          NA          58 Tour Eiff…   100  2.29  48.9</span></span>
+<span><span class="co">#&gt;  3 Food        2.29  48.9 NA          NA          NA          NA          Le Bailli de…   100  2.29  48.9</span></span>
+<span><span class="co">#&gt;  4 Food        2.29  48.9 NA          NA          NA          NA          Le Bailli de…   100  2.29  48.9</span></span>
+<span><span class="co">#&gt;  5 Food        2.29  48.9 NA          NA          NA          NA          Castel Café     100  2.29  48.9</span></span>
+<span><span class="co">#&gt;  6 Food        2.29  48.9 NA          NA          NA          NA          Le Castel Ca…   100  2.29  48.9</span></span>
+<span><span class="co">#&gt;  7 Food        2.29  48.9 NA          NA          NA          NA          Ribe            100  2.29  48.9</span></span>
+<span><span class="co">#&gt;  8 Food        2.29  48.9 NA          NA          NA          NA          Chez Ribe       100  2.29  48.9</span></span>
+<span><span class="co">#&gt;  9 Food        2.29  48.9 NA          NA          NA          NA          Bistrot de L…   100  2.30  48.9</span></span>
+<span><span class="co">#&gt; 10 Food        2.29  48.9 NA          NA          NA          NA          Bistrot de L…   100  2.30  48.9</span></span>
 <span><span class="co">#&gt; # ℹ 40 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 68 more variables: score &lt;int&gt;, x &lt;dbl&gt;, y &lt;dbl&gt;, Loc_name &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   Status &lt;chr&gt;, Score &lt;int&gt;, Match_addr &lt;chr&gt;, LongLabel &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   ShortLabel &lt;chr&gt;, Addr_type &lt;chr&gt;, Type &lt;chr&gt;, PlaceName &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   Place_addr &lt;chr&gt;, Phone &lt;chr&gt;, URL &lt;chr&gt;, Rank &lt;int&gt;, AddBldg &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   AddNum &lt;chr&gt;, AddNumFrom &lt;chr&gt;, AddNumTo &lt;chr&gt;, AddRange &lt;chr&gt;, Side &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   StPreDir &lt;chr&gt;, StPreType &lt;chr&gt;, StName &lt;chr&gt;, StType &lt;chr&gt;, StDir &lt;chr&gt;, …</span></span>
+<span><span class="co">#&gt; # ℹ 65 more variables: Loc_name &lt;chr&gt;, Status &lt;chr&gt;, Score &lt;int&gt;, Match_addr &lt;chr&gt;, LongLabel &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   ShortLabel &lt;chr&gt;, Addr_type &lt;chr&gt;, Type &lt;chr&gt;, PlaceName &lt;chr&gt;, Place_addr &lt;chr&gt;, Phone &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   URL &lt;chr&gt;, Rank &lt;int&gt;, AddBldg &lt;chr&gt;, AddNum &lt;chr&gt;, AddNumFrom &lt;chr&gt;, AddNumTo &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   AddRange &lt;chr&gt;, Side &lt;chr&gt;, StPreDir &lt;chr&gt;, StPreType &lt;chr&gt;, StName &lt;chr&gt;, StType &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   StDir &lt;chr&gt;, BldgType &lt;chr&gt;, BldgName &lt;chr&gt;, LevelType &lt;chr&gt;, LevelName &lt;chr&gt;, UnitType &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   UnitName &lt;chr&gt;, SubAddr &lt;chr&gt;, StAddr &lt;chr&gt;, Block &lt;chr&gt;, Sector &lt;chr&gt;, Nbrhd &lt;chr&gt;, …</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">food_eiffel_sf</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
