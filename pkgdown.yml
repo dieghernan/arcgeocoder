@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   arcgeocoder: arcgeocoder.html
   featuretypes: featuretypes.html
-last_built: 2024-01-12T09:18Z
+last_built: 2024-01-12T09:19Z
 urls:
   reference: https://dieghernan.github.io/arcgeocoder/reference
   article: https://dieghernan.github.io/arcgeocoder/articles
