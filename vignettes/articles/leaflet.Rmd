@@ -1,0 +1,78 @@
+---
+title: "Example: arcgeocoder and leaflet maps"
+subtitle: "Minimal example showing how to combine arcgeocoder and leaflet maps"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  message = FALSE,
+  dpi = 300,
+  tidy = "styler",
+  dev = "ragg_png",
+  out.width = "100%"
+)
+```
+
+The following example shows how it is possible to create a nice [leaflet
+map](https://rstudio.github.io/leaflet/) with data retrieved with
+**arcgeocoder**:
+
+```{r example}
+# Coffee Shops and Bakeries around the Eiffel Tower
+
+library(arcgeocoder)
+library(leaflet)
+library(dplyr)
+
+# Step 1: Eiffel Tower
+
+eiffel_tower <- arc_geo_multi("Eiffel Tower",
+  city = "Paris", countrycode = "FR",
+  category = "POI"
+)
+
+# Leaflet map
+
+lm <- leaflet(elementId = "EiffelTower", width = "100%", height = "60vh") %>%
+  addProviderTiles(provider = "CartoDB.Positron") %>%
+  addMarkers(data = eiffel_tower, ~lon, ~lat)
+
+
+# Step 2: Coffee Shops nearby
+cf <- arc_geo_categories("Coffee Shop",
+  x = eiffel_tower$lon, y = eiffel_tower$lat,
+  limit = 50, full_results = TRUE
+)
+
+# Label for PopUp
+cf$labelpop <- paste0("<strong>", cf$PlaceName, "</strong><br>", cf$StAddr)
+
+lm <- lm %>%
+  addMarkers(data = cf, ~lon, ~lat, popup = ~labelpop)
+
+# Step 3: Bakeries nearby
+bk <- arc_geo_categories("Bakery",
+  x = eiffel_tower$lon, y = eiffel_tower$lat,
+  limit = 50, full_results = TRUE
+)
+
+# Label for PopUp
+bk$labelpop <- paste0("<strong>", bk$PlaceName, "</strong><br>", bk$StAddr)
+
+lm <- lm %>%
+  addMarkers(data = bk, ~lon, ~lat, popup = ~labelpop)
+
+lm
+```
+
+### Attributions
+
+-   [Eiffel tower icons created by Freepik -
+    Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
+-   [Mug icons created by Freepik -
+    Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
+-   [Croissant icons created by Freepik -
+    Flaticon](https://www.flaticon.com/free-icons/croissant "croissant icons")

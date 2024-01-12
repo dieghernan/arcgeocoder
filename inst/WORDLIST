@@ -4,6 +4,9 @@ Belanger
 CMD
 Cambon
 CodeFactor
+DOI
+Flaticon
+Freepik
 Geocode
 Geocodes
 Geocoding
@@ -37,6 +40,7 @@ latestWkid
 lon
 multifield
 nominatimlite
+pkgdown
 tibble
 tidygeocoder
 viewbox

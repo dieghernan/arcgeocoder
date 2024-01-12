@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   fig.path = "./",
   comment = "#>",
-  dpi = 300,
+  dpi = 120,
   dev = "ragg_png",
   tidy = "styler",
   warning = FALSE,
