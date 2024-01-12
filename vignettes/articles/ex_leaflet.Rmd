@@ -1,10 +1,6 @@
 ---
 title: "Example: arcgeocoder and leaflet maps"
 subtitle: "Combine arcgeocoder and leaflet maps"
-resource_files:
-   - vignettes/articles/eiffel-tower.png
-   - vignettes/articles/eiffel-coffee-cup.png
-   - vignettes/articles/eiffel-croissant.png
 ---
 
 ```{r, include = FALSE}
@@ -38,7 +34,7 @@ eiffel_tower <- arc_geo_multi("Eiffel Tower",
   category = "POI"
 )
 eiffel_icon <- makeIcon(
-  iconUrl = "https://dieghernan.github.io/arcgeocoder/articles/eiffel-tower.png",
+  iconUrl = system.file("ext/eiffel-tower.png", package = "arcgeocoder"),
   iconWidth = 50, iconHeight = 50,
   iconAnchorX = 25, iconAnchorY = 25
 )
@@ -66,7 +62,7 @@ cf <- arc_geo_categories("Coffee Shop",
 cf$labelpop <- paste0("<strong>", cf$PlaceName, "</strong><br>", cf$StAddr)
 
 coffee_icon <- makeIcon(
-  iconUrl = "https://dieghernan.github.io/arcgeocoder/articles/coffee-cup.png",
+  iconUrl = system.file("ext/coffee-cup.png", package = "arcgeocoder"),
   iconWidth = 20, iconHeight = 20,
   iconAnchorX = 10, iconAnchorY = 10
 )
@@ -87,7 +83,7 @@ bk <- arc_geo_categories("Bakery",
 bk$labelpop <- paste0("<strong>", bk$PlaceName, "</strong><br>", bk$StAddr)
 
 bk_icon <- makeIcon(
-  iconUrl = "https://dieghernan.github.io/arcgeocoder/articles/croissant.png",
+  iconUrl = system.file("ext/croissant.png", package = "arcgeocoder"),
   iconWidth = 20, iconHeight = 20,
   iconAnchorX = 10, iconAnchorY = 10
 )

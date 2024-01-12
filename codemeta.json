@@ -130,7 +130,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "arcgis", "address", "reverse-geocoding", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "gis"],
-  "fileSize": "342.403KB",
+  "fileSize": "401.084KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
