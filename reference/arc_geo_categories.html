@@ -36,7 +36,7 @@ values) in order to boost the geocoding process. See Examples."><meta property="
       <img src="../apple-touch-icon-180x180.png" alt="arcgeocoder logo" height="34" class="d-inline-block me-1">
       arcgeocoder</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,10 @@ values) in order to boost the geocoding process. See Examples."><meta property="
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/arcgeocoder.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
@@ -102,9 +105,7 @@ values) in order to boost the geocoding process. See <strong>Examples</strong>.<
 <span>  long <span class="op">=</span> <span class="st">"lon"</span>,</span>
 <span>  limit <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  full_results <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  return_addresses <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -159,17 +160,8 @@ If <code>FALSE</code> (default) only the default values of the API would be retu
 See also <code>return_addresses</code>.</p></dd>
 
 
-<dt>return_addresses</dt>
-<dd><p>return input addresses with results if <code>TRUE</code>.</p></dd>
-
-
 <dt>verbose</dt>
 <dd><p>if <code>TRUE</code> then detailed logs are output to the console.</p></dd>
-
-
-<dt>progressbar</dt>
-<dd><p>Logical. If <code>TRUE</code> displays a progress bar to indicate
-the progress of the function.</p></dd>
 
 
 <dt>custom_query</dt>
@@ -210,15 +202,11 @@ in <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-s
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Bounding boxes can be located using different online tools, as
 <a href="https://boundingbox.klokantech.com/" class="external-link">Bounding Box Tool</a>.</p>
-<p>For a full list of valid amenities see <a href="arc_categories.html">arc_categories</a>.</p>
+<p>For a full list of valid categories see <a href="arc_categories.html">arc_categories</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">ArcGIS REST Category filtering</a></p>
-<p>Geocoding operations: 
-<code><a href="arc_geo_multi.html">arc_geo_multi</a>()</code>,
-<code><a href="arc_geo.html">arc_geo</a>()</code>,
-<code><a href="arc_reverse_geo.html">arc_reverse_geo</a>()</code></p></div>
+    <div class="dont-index"><p><a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">ArcGIS REST Category filtering</a></p></div>
     </div>
 
     <div class="section level2">
