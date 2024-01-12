@@ -5,7 +5,7 @@ title <- gsub("'", "", meta$Title, fixed = TRUE)
 title <- gsub("ArcGIS", "{ArcGIS}", title, fixed = TRUE)
 title <- gsub("API", "{API}", title, fixed = TRUE)
 title <- gsub("REST", "{REST}", title, fixed = TRUE)
-
+doi <- "10.5281/zenodo.10495365"
 
 bibentry(
   "Manual",
@@ -15,6 +15,7 @@ bibentry(
   year = year,
   key = "R-arcgeocoder",
   version = meta$Version,
+  doi = doi,
   url = unlist(strsplit(meta$URL, ","))[1],
   abstract = abs
 )

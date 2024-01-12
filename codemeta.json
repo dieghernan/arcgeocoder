@@ -130,7 +130,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "arcgis", "address", "reverse-geocoding", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "gis"],
-  "fileSize": "708.745KB",
+  "fileSize": "709.476KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -143,7 +143,10 @@
         }
       ],
       "name": "{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service",
-      "url": "https://dieghernan.github.io/arcgeocoder/"
+      "identifier": "10.5281/zenodo.10495365",
+      "url": "https://dieghernan.github.io/arcgeocoder/",
+      "@id": "https://doi.org/10.5281/zenodo.10495365",
+      "sameAs": "https://doi.org/10.5281/zenodo.10495365"
     }
   ],
   "releaseNotes": "https://github.com/dieghernan/arcgeocoder/blob/master/NEWS.md",

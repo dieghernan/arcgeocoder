@@ -9,6 +9,7 @@ type: software
 license: MIT
 title: 'arcgeocoder: Geocoding with the ''ArcGIS'' REST API Service'
 version: 0.0.1
+doi: 10.5281/zenodo.10495365
 abstract: Lite interface for geocoding and reverse geocoding with the 'ArcGIS' REST
   API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
 authors:
@@ -26,6 +27,7 @@ preferred-citation:
     orcid: https://orcid.org/0000-0001-8457-4658
   year: '2024'
   version: 0.0.1
+  doi: 10.5281/zenodo.10495365
   url: https://dieghernan.github.io/arcgeocoder/
   abstract: Lite interface for geocoding and reverse geocoding with the ArcGIS REST
     API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.

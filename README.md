@@ -12,6 +12,7 @@
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.10495365-blue)](https://doi.org/10.5281/zenodo.10495365)
 
 <!-- badges: end -->
 
@@ -237,6 +238,7 @@ ggplot(food_eiffel_sf) +
 <p>
 Hernangómez D (2024). <em>arcgeocoder: Geocoding with the ArcGIS REST
 API Service</em>.
+<a href="https://doi.org/10.5281/zenodo.10495365">doi:10.5281/zenodo.10495365</a>,
 <a href="https://dieghernan.github.io/arcgeocoder/">https://dieghernan.github.io/arcgeocoder/</a>.
 </p>
 
@@ -247,6 +249,7 @@ A BibTeX entry for LaTeX users is
       author = {Diego Hernangómez},
       year = {2024},
       version = {0.0.1},
+      doi = {10.5281/zenodo.10495365},
       url = {https://dieghernan.github.io/arcgeocoder/},
       abstract = {Lite interface for geocoding and reverse geocoding with the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.},
     }
