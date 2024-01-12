@@ -16,7 +16,7 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 <!-- badges: end -->
 
 The goal of **arcgeocoder** is to provide a light interface for
-geocoding addresses and reverse geocoding location trhough the [ArcGIS
+geocoding addresses and reverse geocoding location trough the [ArcGIS
 REST API Geocoding
 Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
 
@@ -246,7 +246,7 @@ A BibTeX entry for LaTeX users is
       title = {{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.0.0.9000},
+      version = {0.0.1},
       url = {https://dieghernan.github.io/arcgeocoder/},
       abstract = {Lite interface for geocoding and reverse geocoding with the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.},
     }

@@ -1,3 +1,3 @@
-# arcgeocoder (development version)
+# arcgeocoder 0.0.1
 
-* In-development.
+* Initial release.

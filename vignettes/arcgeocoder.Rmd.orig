@@ -26,7 +26,7 @@ library(arcgeocoder)
 ```
 
 The goal of **arcgeocoder** is to provide a light interface for geocoding
-addresses and reverse geocoding location trhough the [ArcGIS REST API Geocoding
+addresses and reverse geocoding location trough the [ArcGIS REST API Geocoding
 Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
 
 Full site with examples and vignettes on
