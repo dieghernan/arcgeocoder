@@ -33,8 +33,14 @@ eiffel_tower <- arc_geo_multi("Eiffel Tower",
   city = "Paris", countrycode = "FR",
   category = "POI"
 )
+
+# Base url for icons
+icon_url <- paste0(
+  "https://raw.githubusercontent.com/dieghernan/arcgeocoder/",
+  "main/vignettes/articles/"
+)
 eiffel_icon <- makeIcon(
-  iconUrl = system.file("ext/eiffel-tower.png", package = "arcgeocoder"),
+  iconUrl = paste0(icon_url, "eiffel-tower.png"),
   iconWidth = 50, iconHeight = 50,
   iconAnchorX = 25, iconAnchorY = 25
 )
@@ -62,7 +68,7 @@ cf <- arc_geo_categories("Coffee Shop",
 cf$labelpop <- paste0("<strong>", cf$PlaceName, "</strong><br>", cf$StAddr)
 
 coffee_icon <- makeIcon(
-  iconUrl = system.file("ext/coffee-cup.png", package = "arcgeocoder"),
+  iconUrl = paste0(icon_url, "coffee-cup.png"),
   iconWidth = 20, iconHeight = 20,
   iconAnchorX = 10, iconAnchorY = 10
 )
@@ -83,7 +89,7 @@ bk <- arc_geo_categories("Bakery",
 bk$labelpop <- paste0("<strong>", bk$PlaceName, "</strong><br>", bk$StAddr)
 
 bk_icon <- makeIcon(
-  iconUrl = system.file("ext/croissant.png", package = "arcgeocoder"),
+  iconUrl = paste0(icon_url, "croissant.png"),
   iconWidth = 20, iconHeight = 20,
   iconAnchorX = 10, iconAnchorY = 10
 )

@@ -1,6 +1,6 @@
 Package: arcgeocoder
 Title: Geocoding with the 'ArcGIS' REST API Service
-Version: 0.0.1.9000
+Version: 0.0.0.9000
 Authors@R: 
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
@@ -23,14 +23,13 @@ Suggests:
     tidygeocoder
 VignetteBuilder: 
     knitr
-Config/Needs/website: 
-    dieghernan/gitdevr,ggplot2,sf,lwgeom,leaflet,terra,tidyterra,maptiles,mapSpain
+Config/Needs/website: dieghernan/gitdevr
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0
 X-schema.org-applicationCategory: cartography
 X-schema.org-keywords: r, geocoding, arcgis, address, reverse-geocoding,
     rstats, r-package, api-wrapper

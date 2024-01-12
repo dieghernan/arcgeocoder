@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
   message = FALSE,
   dev = "ragg_png",
   tidy = "styler",
-  fig.path = "man/figures/README-",
+  fig.path = "vignettes/",
   dpi = 120,
   out.width = "100%"
 )
