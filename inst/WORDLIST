@@ -41,6 +41,7 @@ lon
 multifield
 nominatimlite
 pkgdown
+terra
 tibble
 tidygeocoder
 viewbox
