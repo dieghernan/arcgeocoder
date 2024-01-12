@@ -1,38 +1,29 @@
 ---
-output: github_document
-bibliography: inst/REFERENCES.bib
+title: "Get started wit arcgeocoder"
+output: rmarkdown::html_vignette
+desc: >
+  Quick examples showing what arcgeocoder can do for you.
+vignette: >
+  %\VignetteIndexEntry{Get started wit arcgeocoder}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: REFERENCES.bib
 link-citations: true
 ---
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  fig.path = "./",
   comment = "#>",
-  warning = FALSE,
-  message = FALSE,
+  dpi = 300,
   dev = "ragg_png",
   tidy = "styler",
-  fig.path = "man/figures/README-",
-  dpi = 300,
-  out.width = "100%"
+  warning = FALSE,
+  message = FALSE
 )
+library(arcgeocoder)
 ```
-
-# arcgeocoder <a href="https://dieghernan.github.io/arcgeocoder/"><img src="man/figures/logo.png" alt="arcgeocoder website" align="right" height="139"/></a>
-
-<!-- badges: start -->
-
-[![R-CMD-check](https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yaml)
-[![codecov](https://codecov.io/gh/dieghernan/arcgeocoder/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/arcgeocoder)
-[![r-universe](https://dieghernan.r-universe.dev/badges/arcgeocoder)](https://dieghernan.r-universe.dev/arcgeocoder)
-[![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/arcgeocoder/badge)](https://www.codefactor.io/repository/github/dieghernan/arcgeocoder)
-[![Project Status: WIP -- Initial development is in progress, but there has not
-yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-
-<!-- badges: end -->
 
 The goal of **arcgeocoder** is to provide a light interface for geocoding
 addresses and reverse geocoding location trhough the [ArcGIS REST API Geocoding
@@ -148,7 +139,7 @@ See more information in the documentation of the data base `arc_categories`.
 In the following example we would look for POIs related with food (i.e.
 Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.
 
-```{r eiffel}
+```{r eiffel, fig.cap="Example: Food places near the Eiffel Tower"}
 library(ggplot2) # For plotting
 
 # Step 1: Locate Eiffel Tower, using multifield query
@@ -192,7 +183,7 @@ ggplot(eiffel_tower, aes(x, y)) +
 It is straightforward to convert the results of **arcgeocoder** to an **sf**
 object (geospatial format):
 
-```{r eiffel_sf}
+```{r eiffel_sf, fig.cap="Example: Converting points to sf objects"}
 library(sf)
 
 food_eiffel_sf <- st_as_sf(food_eiffel,
@@ -206,18 +197,6 @@ food_eiffel_sf
 ggplot(food_eiffel_sf) +
   geom_sf(aes(color = Type)) +
   coord_sf(crs = 3035)
-```
-
-## Citation
-
-```{r echo=FALSE, results='asis'}
-print(citation("arcgeocoder"), style = "html")
-```
-
-A BibTeX entry for LaTeX users is
-
-```{r echo=FALSE, comment=""}
-toBibtex(citation("arcgeocoder"))
 ```
 
 ## References

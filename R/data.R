@@ -3,8 +3,8 @@
 #' @description
 #'
 #' Database of available categories that can be used for filtering
-#' results provided by [arc_geo()] and [arc_geo_multi()] in \CRANpkg{tibble}
-#' format.
+#' results provided by [arc_geo()], [arc_geo_multi()] and
+#' [arc_geo_categories()] in \CRANpkg{tibble} format.
 #'
 #' @note Data extracted on **10 January 2023**.
 #'
@@ -54,7 +54,7 @@
 #'
 #' @family datasets
 #'
-#' @seealso [arc_geo()], [arc_geo_multi()]
+#' @seealso [arc_geo_categories()], [arc_geo()], [arc_geo_multi()]
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{

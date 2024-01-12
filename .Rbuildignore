@@ -21,3 +21,4 @@
 ^data-raw$
 ^vignettes/featuretypes\.Rmd\.orig$
 ^docs$
+^vignettes/arcgeocoder\.Rmd\.orig$

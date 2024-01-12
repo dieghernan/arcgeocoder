@@ -14,9 +14,7 @@ arc_geo_categories(
   long = "lon",
   limit = 1,
   full_results = FALSE,
-  return_addresses = TRUE,
   verbose = FALSE,
-  progressbar = TRUE,
   custom_query = list(),
   ...
 )
@@ -51,12 +49,7 @@ is a shorthand of \verb{outFields=*}. See \strong{References}.
 If \code{FALSE} (default) only the default values of the API would be returned.
 See also \code{return_addresses}.}
 
-\item{return_addresses}{return input addresses with results if \code{TRUE}.}
-
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
-
-\item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
-the progress of the function.}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list.}
@@ -101,7 +94,7 @@ values) in order to boost the geocoding process. See \strong{Examples}.
 Bounding boxes can be located using different online tools, as
 \href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
 
-For a full list of valid amenities see \link{arc_categories}.
+For a full list of valid categories see \link{arc_categories}.
 }
 \examples{
 \dontshow{if (arcgeocoder_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
@@ -184,10 +177,7 @@ points(ex3$lon, ex3$lat)
 }
 \seealso{
 \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering}
-
-Geocoding operations: 
-\code{\link{arc_geo_multi}()},
-\code{\link{arc_geo}()},
-\code{\link{arc_reverse_geo}()}
 }
-\concept{geocoding}
+\concept{geocoding
+
+\link{arc_categories}}

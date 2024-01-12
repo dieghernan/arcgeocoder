@@ -1,38 +1,17 @@
 ---
-output: github_document
-bibliography: inst/REFERENCES.bib
+title: "Get started wit arcgeocoder"
+output: rmarkdown::html_vignette
+desc: >
+  Quick examples showing what arcgeocoder can do for you.
+vignette: >
+  %\VignetteIndexEntry{Get started wit arcgeocoder}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: REFERENCES.bib
 link-citations: true
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  warning = FALSE,
-  message = FALSE,
-  dev = "ragg_png",
-  tidy = "styler",
-  fig.path = "man/figures/README-",
-  dpi = 300,
-  out.width = "100%"
-)
-```
-
-# arcgeocoder <a href="https://dieghernan.github.io/arcgeocoder/"><img src="man/figures/logo.png" alt="arcgeocoder website" align="right" height="139"/></a>
-
-<!-- badges: start -->
-
-[![R-CMD-check](https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yaml)
-[![codecov](https://codecov.io/gh/dieghernan/arcgeocoder/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/arcgeocoder)
-[![r-universe](https://dieghernan.r-universe.dev/badges/arcgeocoder)](https://dieghernan.r-universe.dev/arcgeocoder)
-[![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/arcgeocoder/badge)](https://www.codefactor.io/repository/github/dieghernan/arcgeocoder)
-[![Project Status: WIP -- Initial development is in progress, but there has not
-yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-
-<!-- badges: end -->
 
 The goal of **arcgeocoder** is to provide a light interface for geocoding
 addresses and reverse geocoding location trhough the [ArcGIS REST API Geocoding
@@ -72,14 +51,16 @@ that presents similar features:
 
 You can install the developing version of **arcgeocoder** with:
 
-```{r, eval=FALSE}
+
+```r
 devtools::install_github("dieghernan/arcgeocoder")
 ```
 
 Alternatively, you can install **arcgeocoder** using the
 [r-universe](https://dieghernan.r-universe.dev/arcgeocoder):
 
-```{r, eval=FALSE}
+
+```r
 # Install arcgeocoder in R:
 install.packages("arcgeocoder",
   repos = c(
@@ -98,7 +79,8 @@ install.packages("arcgeocoder",
 In this first example we will geocode a few addresses using the `arc_geo()`
 function:
 
-```{r example}
+
+```r
 library(arcgeocoder)
 library(dplyr)
 
@@ -112,15 +94,22 @@ some_addresses <- tribble(
 
 # geocode the addresses
 lat_longs <- arc_geo(some_addresses$addr, lat = "latitude", long = "longitude")
+#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
 Only a few fields are returned from the geocoder service in this example, but
 `full_results = TRUE` can be used to return all of the data from the geocoder
 service.
 
-```{r echo=FALSE}
-knitr::kable(lat_longs)
-```
+
+
+|query                                      | latitude|  longitude|address                                                           | score|          x|        y|       xmin|     ymin|       xmax|     ymax| wkid| latestWkid|
+|:------------------------------------------|--------:|----------:|:-----------------------------------------------------------------|-----:|----------:|--------:|----------:|--------:|----------:|--------:|----:|----------:|
+|1600 Pennsylvania Ave NW, Washington, DC   | 38.89768|  -77.03655|1600 Pennsylvania Ave NW, Washington, District of Columbia, 20500 |   100|  -77.03655| 38.89768|  -77.03755| 38.89668|  -77.03555| 38.89868| 4326|       4326|
+|600 Montgomery St, San Francisco, CA 94111 | 37.79517| -122.40278|600 Montgomery St, San Francisco, California, 94111               |   100| -122.40278| 37.79517| -122.40378| 37.79417| -122.40178| 37.79617| 4326|       4326|
+|233 S Wacker Dr, Chicago, IL 60606         | 41.87877|  -87.63580|233 S Wacker Dr, Chicago, Illinois, 60606                         |   100|  -87.63580| 41.87877|  -87.63680| 41.87777|  -87.63480| 41.87977| 4326|       4326|
+
+
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
 we can use the `arc_reverse_geo()` function. The arguments are similar to the
@@ -128,17 +117,25 @@ we can use the `arc_reverse_geo()` function. The arguments are similar to the
 `y` arguments. The dataset used here is from the geocoder query above. The
 single line address is returned in a column named by the `address`.
 
-```{r}
+
+```r
 reverse <- arc_reverse_geo(
   x = lat_longs$longitude,
   y = lat_longs$latitude,
   address = "address_found"
 )
+#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
-```{r, echo = FALSE}
-knitr::kable(reverse)
-```
+
+
+|          x|        y|address_found                                                          |
+|----------:|--------:|:----------------------------------------------------------------------|
+|  -77.03655| 38.89768|White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA      |
+| -122.40278| 37.79517|Transamerica Pyramid, 600 Montgomery St, San Francisco, CA, 94111, USA |
+|  -87.63580| 41.87877|Willis Tower, 233 S Wacker Dr, Chicago, IL, 60606, USA                 |
+
+
 
 It is possible also to search for specific locations within or near a reference
 are or location using [category
@@ -148,7 +145,8 @@ See more information in the documentation of the data base `arc_categories`.
 In the following example we would look for POIs related with food (i.e.
 Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.
 
-```{r eiffel}
+
+```r
 library(ggplot2) # For plotting
 
 # Step 1: Locate Eiffel Tower, using multifield query
@@ -164,6 +162,10 @@ eiffel_tower <- arc_geo_multi(
 # Display results
 eiffel_tower %>%
   select(lon, lat, LongLabel)
+#> # A tibble: 1 × 3
+#>     lon   lat LongLabel                                                           
+#>   <dbl> <dbl> <chr>                                                               
+#> 1  2.29  48.9 Tour Eiffel, 5 Avenue Anatole France, 75007, 7e Arrondissement, Par…
 
 
 # Use lon,lat to boots the search and using category = Food
@@ -187,12 +189,15 @@ ggplot(eiffel_tower, aes(x, y)) +
   )
 ```
 
+![Example: Food places near the Eiffel Tower](./eiffel-1.png)
+
 ### **arcgeocoder** and **r-spatial**
 
 It is straightforward to convert the results of **arcgeocoder** to an **sf**
 object (geospatial format):
 
-```{r eiffel_sf}
+
+```r
 library(sf)
 
 food_eiffel_sf <- st_as_sf(food_eiffel,
@@ -202,22 +207,37 @@ food_eiffel_sf <- st_as_sf(food_eiffel,
 )
 
 food_eiffel_sf
+#> Simple feature collection with 50 features and 75 fields
+#> Geometry type: POINT
+#> Dimension:     XY
+#> Bounding box:  xmin: 2.29211 ymin: 48.85416 xmax: 2.30085 ymax: 48.86252
+#> Geodetic CRS:  WGS 84
+#> # A tibble: 50 × 76
+#>    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax address 
+#>  * <chr>      <dbl> <dbl> <lgl>       <lgl>       <lgl>       <lgl>       <chr>   
+#>  1 Food        2.29  48.9 NA          NA          NA          NA          Le Jule…
+#>  2 Food        2.29  48.9 NA          NA          NA          NA          58 Tour…
+#>  3 Food        2.29  48.9 NA          NA          NA          NA          Le Bail…
+#>  4 Food        2.29  48.9 NA          NA          NA          NA          Le Bail…
+#>  5 Food        2.29  48.9 NA          NA          NA          NA          Castel …
+#>  6 Food        2.29  48.9 NA          NA          NA          NA          Le Cast…
+#>  7 Food        2.29  48.9 NA          NA          NA          NA          Ribe    
+#>  8 Food        2.29  48.9 NA          NA          NA          NA          Chez Ri…
+#>  9 Food        2.29  48.9 NA          NA          NA          NA          Bistrot…
+#> 10 Food        2.29  48.9 NA          NA          NA          NA          Bistrot…
+#> # ℹ 40 more rows
+#> # ℹ 68 more variables: score <int>, x <dbl>, y <dbl>, Loc_name <chr>,
+#> #   Status <chr>, Score <int>, Match_addr <chr>, LongLabel <chr>,
+#> #   ShortLabel <chr>, Addr_type <chr>, Type <chr>, PlaceName <chr>,
+#> #   Place_addr <chr>, Phone <chr>, URL <chr>, Rank <int>, AddBldg <chr>,
+#> #   AddNum <chr>, AddNumFrom <chr>, AddNumTo <chr>, AddRange <chr>, Side <chr>,
+#> #   StPreDir <chr>, StPreType <chr>, StName <chr>, StType <chr>, StDir <chr>, …
 
 ggplot(food_eiffel_sf) +
   geom_sf(aes(color = Type)) +
   coord_sf(crs = 3035)
 ```
 
-## Citation
-
-```{r echo=FALSE, results='asis'}
-print(citation("arcgeocoder"), style = "html")
-```
-
-A BibTeX entry for LaTeX users is
-
-```{r echo=FALSE, comment=""}
-toBibtex(citation("arcgeocoder"))
-```
+![Example: Converting points to sf objects](./eiffel_sf-1.png)
 
 ## References

@@ -14,6 +14,13 @@ test_that("Errors", {
   expect_error(
     arc_geo_categories("Food", 0, 0, address = "Error")
   )
+
+  expect_error(
+    arc_geo_categories("Food", 0, 0, progressbar = TRUE)
+  )
+  expect_error(
+    arc_geo_categories("Food", 0, 0, return_addresses = TRUE)
+  )
 })
 
 test_that("Messages", {
@@ -140,4 +147,31 @@ test_that("Test with all params", {
 
   expect_true("bbbb" %in% names(out))
   expect_true("aaaa" %in% names(out))
+  expect_true("LongLabel" %in% names(out))
+  expect_false("query" %in% names(out))
+  expect_false(any(grepl("Country", names(out))))
+
+  # Full results
+  out2 <- arc_geo_categories("POI,Address",
+    x = -3.7242, y = 40.39094,
+    name = "Bar",
+    limit = 20,
+    lon = "aaaa",
+    lat = "bbbb",
+    bbox = c(-3.8, 40.3, -3.65, 40.5),
+    full_results = TRUE,
+    sourcecountry = "ES",
+    outsr = 102100,
+    langcode = "ES",
+    custom_query = list(
+      outFields = "LongLabel"
+    )
+  )
+
+  expect_true("bbbb" %in% names(out2))
+  expect_true("aaaa" %in% names(out2))
+  expect_true("LongLabel" %in% names(out2))
+  expect_false("query" %in% names(out))
+  expect_true(any(grepl("Country", names(out2))))
+  expect_gt(ncol(out2), ncol(out))
 })

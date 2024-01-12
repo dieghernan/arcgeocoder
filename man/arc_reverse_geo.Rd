@@ -134,7 +134,6 @@ dplyr::glimpse(sev)
 \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}
 
 Geocoding operations: 
-\code{\link{arc_geo_categories}()},
 \code{\link{arc_geo_multi}()},
 \code{\link{arc_geo}()}
 }

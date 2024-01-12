@@ -20,8 +20,8 @@ fields:
 }
 \description{
 Database of available categories that can be used for filtering
-results provided by \code{\link[=arc_geo]{arc_geo()}} and \code{\link[=arc_geo_multi]{arc_geo_multi()}} in \CRANpkg{tibble}
-format.
+results provided by \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}} and
+\code{\link[=arc_geo_categories]{arc_geo_categories()}} in \CRANpkg{tibble} format.
 }
 \details{
 See \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering}
@@ -86,6 +86,6 @@ dplyr::glimpse(sea_3)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}}
+\code{\link[=arc_geo_categories]{arc_geo_categories()}}, \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}}
 }
 \concept{datasets}

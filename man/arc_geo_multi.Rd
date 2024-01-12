@@ -163,7 +163,6 @@ simple3[, c("lat", "lon", "LongLabel")]
 \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
 
 Geocoding operations: 
-\code{\link{arc_geo_categories}()},
 \code{\link{arc_geo}()},
 \code{\link{arc_reverse_geo}()}
 }

@@ -18,7 +18,7 @@
 #'
 #' @inheritParams arc_geo
 #' @inheritParams arc_reverse_geo
-#' @inheritDotParams arc_geo -address
+#' @inheritDotParams arc_geo -address -return_addresses -progressbar
 #' @param bbox A numeric vector of latitude and longitude
 #'   `c(minX, minY, maxX, maxY)` that restrict the search area.
 #'   See **Details**.
@@ -30,13 +30,15 @@
 #' Bounding boxes can be located using different online tools, as
 #' [Bounding Box Tool](https://boundingbox.klokantech.com/).
 #'
-#' For a full list of valid amenities see [arc_categories].
+#' For a full list of valid categories see [arc_categories].
 #'
 #' @seealso
 #' [ArcGIS REST Category
 #' filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm)
 #'
 #' @family geocoding
+#'
+#' [arc_categories]
 #'
 #' @return A \CRANpkg{tibble} with the results. See the details of the output
 #' in [ArcGIS REST API Service
@@ -122,8 +124,7 @@
 arc_geo_categories <- function(category, x = NULL, y = NULL, bbox = NULL,
                                name = NULL, lat = "lat", long = "lon",
                                limit = 1, full_results = FALSE,
-                               return_addresses = TRUE, verbose = FALSE,
-                               progressbar = TRUE, custom_query = list(), ...) {
+                               verbose = FALSE, custom_query = list(), ...) {
   # Prepare location
   locs <- validate_location(x, y)
 
@@ -159,8 +160,8 @@ arc_geo_categories <- function(category, x = NULL, y = NULL, bbox = NULL,
     category = category, address = name,
     lat = lat, long = long, limit = limit,
     full_results = full_results,
-    return_addresses = return_addresses,
-    verbose = verbose, progressbar = progressbar,
+    return_addresses = TRUE,
+    verbose = verbose, progressbar = FALSE,
     custom_query = custom_query, ...
   )
 

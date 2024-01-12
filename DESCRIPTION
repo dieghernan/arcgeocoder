@@ -23,7 +23,7 @@ Suggests:
     tidygeocoder
 VignetteBuilder: 
     knitr
-Config/Needs/website: dieghernan/gitdevr
+Config/Needs/website: dieghernan/gitdevr,ggplot2,sf, lwgeom
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
