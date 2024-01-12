@@ -139,7 +139,7 @@ See more information in the documentation of the data base `arc_categories`.
 In the following example we would look for POIs related with food (i.e.
 Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.
 
-```{r eiffel, fig.cap="Example: Food places near the Eiffel Tower"}
+```{r eiffel, fig.cap="Example: Food places near the Eiffel Tower",eval=TRUE}
 library(ggplot2) # For plotting
 
 # Step 1: Locate Eiffel Tower, using multifield query
@@ -178,9 +178,11 @@ ggplot(eiffel_tower, aes(x, y)) +
   )
 ```
 
+
+
 ### **arcgeocoder** and **r-spatial**
 
-See additional articles showing how **arcgeocoder** can be use in combination 
+See additional articles showing how **arcgeocoder** can be use in combination
 with **leaflet** to create [dynamic
 maps](https://dieghernan.github.io/arcgeocoder/articles/ex_leaflet.html) and
 with **sf** and **terra** to create [static
