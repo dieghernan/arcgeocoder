@@ -44,12 +44,7 @@
 #' More info and valid values in the [ArcGIS REST
 #' docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
 #'
-#' ## `outsr`
-#'
-#' The spatial reference can be specified as either a well-known ID (WKID). If
-#' not specified, the spatial reference of the output locations is the same as
-#' that of the service ( WGS84, i.e. WKID = 4326)).
-#'
+#' @inheritSection arc_reverse_geo `outsr`
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{

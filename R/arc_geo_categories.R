@@ -32,6 +32,8 @@
 #'
 #' For a full list of valid categories see [arc_categories].
 #'
+#' @inheritSection arc_reverse_geo `outsr`
+#'
 #' @seealso
 #' [ArcGIS REST Category
 #' filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).

@@ -41,7 +41,7 @@ the progress of the function.}
 
 \item{outsr}{The spatial reference of the \verb{x,y} coordinates returned by a
 geocode request. By default is \code{NULL} (i.e. the parameter won't be used in
-the query). See \strong{Details}.}
+the query). See \strong{Details} and \link{arc_spatial_references}.}
 
 \item{langcode}{Sets the language in which reverse-geocoded addresses are
 returned.}
@@ -73,15 +73,16 @@ function returns the \CRANpkg{tibble} associated with the query.
 }
 \details{
 More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST docs}
-\subsection{\code{outsr}}{
-
+}
+\section{\code{outsr}}{
 The spatial reference can be specified as either a well-known ID (WKID). If
 not specified, the spatial reference of the output locations is the same as
 that of the service ( WGS84, i.e. WKID = 4326)).
+
+See \link{arc_spatial_references} for values and examples.
 }
 
-\subsection{\code{featuretypes}}{
-
+\section{\code{featuretypes}}{
 See \code{vignette("featuretypes", package = "arcgeocoder")} for a detailed
 explanation of this parameter.
 
@@ -102,7 +103,7 @@ when geocoding. Possible values are:
 It is also possible to use several values separated by comma
 (\code{featuretypes="PointAddress,StreetAddress"}).
 }
-}
+
 \examples{
 \dontshow{if (arcgeocoder_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{

@@ -91,3 +91,73 @@
 #' dplyr::glimpse(sea_3)
 #' }
 NULL
+
+#' ESRI (ArcGIS) Spatial Reference data base
+#'
+#' @description
+#'
+#' Database of available spatial references (CRS) in \CRANpkg{tibble} format.
+#'
+#' @note Data extracted on **14 January 2023**.
+#'
+#'
+#' @source
+#' [ESRI Projection Engine
+#' factory](https://github.com/Esri/projection-engine-db-doc)
+#'
+#' @encoding UTF-8
+#'
+#' @name arc_spatial_references
+#'
+#' @docType data
+#'
+#' @format A \CRANpkg{tibble} with
+#' `r prettyNum(nrow(arcgeocoder::arc_spatial_references), big.mark=",")` rows
+#' and fields:
+#' \describe{
+#'   \item{projtype}{Projection type (`"ProjectedCoordinateSystems",
+#'   "GeographicCoordinateSystems","VerticalCoordinateSystems"`)}
+#'   \item{wkid}{Well-Known ID}
+#'   \item{latestWkid}{Most recent `wkid`, in case that `wkid` is deprecated}
+#'   \item{authority}{`wkid` authority (Esri or EPSG)}
+#'   \item{deprecated}{Logical indicating if `wkid` is deprecated}
+#'   \item{description}{Human-readable description of the `wkid`}
+#'   \item{areaname}{Use area of the `wkid`}
+#'   \item{wkt}{Representation of `wkid` in Well-Known Text (WKT). Useful when
+#'   working with \CRANpkg{sf} or \CRANpkg{terra}}
+#' }
+#' @details
+#'
+#' This data base is useful when using the `outsr` parameter of the functions.
+#'
+#' Some projections ids have changed over time, for example Web Mercator is
+#' `wkid  = 102100` is deprecated and currently is `wkid = 3857`. However, both
+#' values would work, and they would return similar results.
+#'
+#' @family datasets
+#'
+#' @seealso [arc_geo_categories()], [arc_geo()], [arc_geo_multi()],
+#' [arc_reverse_geo()].
+#'
+#' @examplesIf arcgeocoder_check_access()
+#' \donttest{
+#' # Get all possible values
+#' data("arc_spatial_references")
+#' arc_spatial_references
+#'
+#' # Request with deprecated Web Mercator
+#' library(dplyr)
+#' wkid <- arc_spatial_references %>%
+#'   filter(latestWkid == 3857 & deprecated == TRUE) %>%
+#'   slice(1)
+#'
+#' glimpse(wkid)
+#'
+#' add <- arc_geo("London, United Kingdom", outsr = wkid$wkid)
+#'
+#' # Note values lat, lon and wkid. latestwkid give the current valid wkid
+#' add %>%
+#'   select(lat, lon, wkid, latestWkid) %>%
+#'   glimpse()
+#' }
+NULL

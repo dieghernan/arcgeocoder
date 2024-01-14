@@ -87,5 +87,8 @@ dplyr::glimpse(sea_3)
 }
 \seealso{
 \code{\link[=arc_geo_categories]{arc_geo_categories()}}, \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}}
+
+Other datasets: 
+\code{\link{arc_spatial_references}}
 }
 \concept{datasets}

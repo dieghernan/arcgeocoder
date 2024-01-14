@@ -29,13 +29,8 @@
 #' More info and valid values in the [ArcGIS REST
 #' docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
 #'
-#' ## `outsr`
 #'
-#' The spatial reference can be specified as either a well-known ID (WKID). If
-#' not specified, the spatial reference of the output locations is the same as
-#' that of the service ( WGS84, i.e. WKID = 4326)).
-#'
-#' ## Address components
+#' # Address components
 #'
 #' This function allows to perform structured queries by different components of
 #' an address. The following list provides a brief description of each
@@ -68,6 +63,9 @@
 #'    **increases geocoding speed**. Acceptable values include the full country
 #'    name in English or the official language of the country, the two-character
 #'    country code, or the three-character country code.
+#'
+#' @inheritSection arc_reverse_geo `outsr`
+#'
 #' @export
 #'
 #' @seealso [tidygeocoder::geo()]

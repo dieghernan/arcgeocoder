@@ -55,7 +55,7 @@ the progress of the function.}
 
 \item{outsr}{The spatial reference of the \verb{x,y} coordinates returned by a
 geocode request. By default is \code{NULL} (i.e. the parameter won't be used in
-the query). See \strong{Details}.}
+the query). See \strong{Details} and \link{arc_spatial_references}.}
 
 \item{langcode}{Sets the language in which reverse-geocoded addresses are
 returned.}
@@ -82,15 +82,8 @@ For geocoding using a single text string use \code{\link[=arc_geo]{arc_geo()}} f
 }
 \details{
 More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}
-\subsection{\code{outsr}}{
-
-The spatial reference can be specified as either a well-known ID (WKID). If
-not specified, the spatial reference of the output locations is the same as
-that of the service ( WGS84, i.e. WKID = 4326)).
 }
-
-\subsection{Address components}{
-
+\section{Address components}{
 This function allows to perform structured queries by different components of
 an address. The following list provides a brief description of each
 parameter:
@@ -124,7 +117,15 @@ name in English or the official language of the country, the two-character
 country code, or the three-character country code.
 }
 }
+
+\section{\code{outsr}}{
+The spatial reference can be specified as either a well-known ID (WKID). If
+not specified, the spatial reference of the output locations is the same as
+that of the service ( WGS84, i.e. WKID = 4326)).
+
+See \link{arc_spatial_references} for values and examples.
 }
+
 \examples{
 \dontshow{if (arcgeocoder_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{

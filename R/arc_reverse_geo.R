@@ -19,7 +19,7 @@
 #'  the progress of the function.
 #' @param outsr The spatial reference of the `x,y` coordinates returned by a
 #'   geocode request. By default is `NULL` (i.e. the parameter won't be used in
-#'   the query). See **Details**.
+#'   the query). See **Details** and [arc_spatial_references].
 #' @param langcode Sets the language in which reverse-geocoded addresses are
 #'   returned.
 #' @param featuretypes This parameter limits the possible match types returned.
@@ -43,13 +43,15 @@
 #' More info and valid values in the [ArcGIS REST
 #' docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm)
 #'
-#' ## `outsr`
+#' # `outsr`
 #'
 #' The spatial reference can be specified as either a well-known ID (WKID). If
 #' not specified, the spatial reference of the output locations is the same as
 #' that of the service ( WGS84, i.e. WKID = 4326)).
 #'
-#' ## `featuretypes`
+#' See [arc_spatial_references] for values and examples.
+#'
+#' # `featuretypes`
 #'
 #' See `vignette("featuretypes", package = "arcgeocoder")` for a detailed
 #' explanation of this parameter.
