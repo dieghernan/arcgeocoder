@@ -124,7 +124,7 @@ the progress of the function.</p></dd>
 <dt>outsr</dt>
 <dd><p>The spatial reference of the <code>x,y</code> coordinates returned by a
 geocode request. By default is <code>NULL</code> (i.e. the parameter won't be used in
-the query). See <strong>Details</strong>.</p></dd>
+the query). See <strong>Details</strong> and <a href="arc_spatial_references.html">arc_spatial_references</a>.</p></dd>
 
 
 <dt>langcode</dt>
@@ -166,20 +166,18 @@ provided as inputs.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>More info and valid values in the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link">ArcGIS REST docs</a></p><div class="section">
-<h3 id="outsr"><code>outsr</code><a class="anchor" aria-label="anchor" href="#outsr"></a></h3>
-
-
-<p>The spatial reference can be specified as either a well-known ID (WKID). If
+    <p>More info and valid values in the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link">ArcGIS REST docs</a></p>
+    </div>
+    <div class="section level2">
+    <h2 id="outsr"><code>outsr</code><a class="anchor" aria-label="anchor" href="#outsr"></a></h2>
+    <p>The spatial reference can be specified as either a well-known ID (WKID). If
 not specified, the spatial reference of the output locations is the same as
 that of the service ( WGS84, i.e. WKID = 4326)).</p>
-</div>
-
-<div class="section">
-<h3 id="featuretypes"><code>featuretypes</code><a class="anchor" aria-label="anchor" href="#featuretypes"></a></h3>
-
-
-<p>See <code><a href="../articles/featuretypes.html">vignette("featuretypes", package = "arcgeocoder")</a></code> for a detailed
+<p>See <a href="arc_spatial_references.html">arc_spatial_references</a> for values and examples.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="featuretypes"><code>featuretypes</code><a class="anchor" aria-label="anchor" href="#featuretypes"></a></h2>
+    <p>See <code><a href="../articles/featuretypes.html">vignette("featuretypes", package = "arcgeocoder")</a></code> for a detailed
 explanation of this parameter.</p>
 <p>This parameter may be used for filtering the type of feature to be returned
 when geocoding. Possible values are:</p><ul><li><p><code>"StreetInt"</code></p></li>
@@ -193,8 +191,6 @@ when geocoding. Possible values are:</p><ul><li><p><code>"StreetInt"</code></p><
 <li><p><code>"Locality"</code></p></li>
 </ul><p>It is also possible to use several values separated by comma
 (<code>featuretypes="PointAddress,StreetAddress"</code>).</p>
-</div>
-
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

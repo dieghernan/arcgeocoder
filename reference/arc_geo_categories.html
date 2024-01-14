@@ -181,7 +181,7 @@ country.</p></dd>
     <dt><code>outsr</code></dt>
 <dd><p>The spatial reference of the <code>x,y</code> coordinates returned by a
 geocode request. By default is <code>NULL</code> (i.e. the parameter won't be used in
-the query). See <strong>Details</strong>.</p></dd>
+the query). See <strong>Details</strong> and <a href="arc_spatial_references.html">arc_spatial_references</a>.</p></dd>
 
     <dt><code>langcode</code></dt>
 <dd><p>Sets the language in which reverse-geocoded addresses are
@@ -205,6 +205,13 @@ in <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-s
     <p>Bounding boxes can be located using different online tools, as
 <a href="https://boundingbox.klokantech.com/" class="external-link">Bounding Box Tool</a>.</p>
 <p>For a full list of valid categories see <a href="arc_categories.html">arc_categories</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="outsr"><code>outsr</code><a class="anchor" aria-label="anchor" href="#outsr"></a></h2>
+    <p>The spatial reference can be specified as either a well-known ID (WKID). If
+not specified, the spatial reference of the output locations is the same as
+that of the service ( WGS84, i.e. WKID = 4326)).</p>
+<p>See <a href="arc_spatial_references.html">arc_spatial_references</a> for values and examples.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
