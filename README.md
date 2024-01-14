@@ -54,6 +54,12 @@ There are other packages much more complete and mature than
 
 ## Installation
 
+Install **arcgeocoder** from **CRAN** (when approved) with:
+
+``` r
+install.packages("arcgeocoder")
+```
+
 You can install the developing version of **arcgeocoder** with:
 
 ``` r
@@ -254,7 +260,7 @@ A BibTeX entry for LaTeX users is
       title = {{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.0.1.9000},
+      version = {0.1.0},
       doi = {10.5281/zenodo.10495365},
       url = {https://dieghernan.github.io/arcgeocoder/},
       abstract = {Lite interface for finding locations of addresses or businesses around the world using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address.},

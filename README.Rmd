@@ -71,6 +71,12 @@ that presents similar features:
 
 ## Installation
 
+Install **arcgeocoder** from **CRAN** (when approved) with:
+
+```{r, eval=FALSE}
+install.packages("arcgeocoder")
+```
+
 You can install the developing version of **arcgeocoder** with:
 
 ```{r, eval=FALSE}

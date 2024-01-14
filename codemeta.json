@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/dieghernan/arcgeocoder",
   "issueTracker": "https://github.com/dieghernan/arcgeocoder/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.1.9000",
+  "version": "0.1.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -130,7 +130,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "arcgis", "address", "reverse-geocoding", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "gis"],
-  "fileSize": "514.056KB",
+  "fileSize": "556.962KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
