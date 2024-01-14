@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Example 1: sf objects
+## Example 1: sf objects
 
 The following example shows how it is possible to create a nice static map with
 data retrieved with **arcgeocoder** and converting it to an **sf** object:
