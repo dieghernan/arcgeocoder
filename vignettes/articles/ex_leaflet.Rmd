@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Example
+
 The following example shows how it is possible to create a nice [leaflet
 map](https://rstudio.github.io/leaflet/) with data retrieved with
 **arcgeocoder**:
@@ -113,7 +115,7 @@ lm <- lm %>%
 lm
 ```
 
-### Attributions
+## Attributions
 
 -   [Eiffel tower icons created by Freepik -
     Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")

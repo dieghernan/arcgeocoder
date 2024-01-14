@@ -41,12 +41,14 @@ geocoding
 geospatial
 latestWkid
 lon
+maptiles
 multifield
 nominatimlite
 pkgdown
 terra
 tibble
 tidygeocoder
+tidyterra
 viewbox
 wkid
 xmax
