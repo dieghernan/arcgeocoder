@@ -24,6 +24,11 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/arcgeocoder)](https://CRAN.R-project.org/package=arcgeocoder)
+[![CRAN
+results](https://badges.cranchecks.info/worst/arcgeocoder.svg)](https://cran.r-project.org/web/checks/check_results_arcgeocoder.html)
+[![Downloads](https://cranlogs.r-pkg.org/badges/arcgeocoder)](https://CRAN.R-project.org/package=arcgeocoder)
 [![R-CMD-check](https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/arcgeocoder/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/arcgeocoder)
 [![r-universe](https://dieghernan.r-universe.dev/badges/arcgeocoder)](https://dieghernan.r-universe.dev/arcgeocoder)
@@ -32,6 +37,7 @@ knitr::opts_chunk$set(
 is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.10495365-blue)](https://doi.org/10.5281/zenodo.10495365)
+[![status](https://tinyverse.netlify.com/badge/arcgeocoder)](https://CRAN.R-project.org/package=arcgeocoder)
 
 <!-- badges: end -->
 
@@ -57,7 +63,7 @@ the need for an API key.
 
 ## Recommended packages
 
-There are other packages much more complete and mature than `nominatimlite`,
+There are other packages much more complete and mature than **arcgeocoder**,
 that presents similar features:
 
 -   [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
@@ -71,7 +77,8 @@ that presents similar features:
 
 ## Installation
 
-Install **arcgeocoder** from **CRAN** (when approved) with:
+Install **arcgeocoder** from
+[**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
 
 ```{r, eval=FALSE}
 install.packages("arcgeocoder")
