@@ -96,3 +96,17 @@ ggplot() +
   coord_sf(crs = 3857) +
   labs(caption = "(c) OpenStreetMap contributors, (c) CARTO")
 ```
+
+## Session info
+
+<details>
+  <summary>Details</summary>
+  
+```{r session, echo=FALSE}
+if (!require("sessioninfo")) {
+  install.packages("sessioninfo")
+}
+sessioninfo::session_info()
+```
+</details>
+
