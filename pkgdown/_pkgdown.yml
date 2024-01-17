@@ -3,6 +3,8 @@ url: 'https://dieghernan.github.io/arcgeocoder'
 template:
   bootstrap: 5
   package: gitdevr
+  params:
+    ganalytics: G-BMYBJTKBY0
   opengraph:
     twitter:
       creator: "@dhernangomez"
