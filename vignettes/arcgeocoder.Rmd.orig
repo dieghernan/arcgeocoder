@@ -61,6 +61,13 @@ that presents similar features:
 
 ## Installation
 
+Install **arcgeocoder** from
+[**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
+
+```{r, eval=FALSE}
+install.packages("arcgeocoder")
+```
+
 You can install the developing version of **arcgeocoder** with:
 
 ```{r, eval=FALSE}
@@ -79,6 +86,7 @@ install.packages("arcgeocoder",
   )
 )
 ```
+```
 
 ## Usage
 
@@ -87,7 +95,8 @@ install.packages("arcgeocoder",
 *Note: examples adapted from **tidygeocoder** package*
 
 In this first example we will geocode a few addresses using the `arc_geo()`
-function:
+function. Note that **arcgeocoder** works straight away, and you don't need to
+provide any API key to start geocoding!
 
 ```{r example}
 library(arcgeocoder)

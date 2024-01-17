@@ -33,7 +33,7 @@ results](https://badges.cranchecks.info/worst/arcgeocoder.svg)](https://cran.r-p
 [![codecov](https://codecov.io/gh/dieghernan/arcgeocoder/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/arcgeocoder)
 [![r-universe](https://dieghernan.r-universe.dev/badges/arcgeocoder)](https://dieghernan.r-universe.dev/arcgeocoder)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/arcgeocoder/badge)](https://www.codefactor.io/repository/github/dieghernan/arcgeocoder)
-[![Project Status: Active – The project has reached a stable, usable state and
+[![Project Status: Active -- The project has reached a stable, usable state and
 is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.10495365-blue)](https://doi.org/10.5281/zenodo.10495365)
@@ -58,8 +58,8 @@ as `curl` . In some situations, `curl` may not be available or accessible, so
 
 The interface of **apigeocoder** is built with the aim of easing the access to
 all the features provided by the API. The API endpoints used by **arcgeocoder**
-are `findAddressCandidates` and `reverseGeocode`, which can be accessed without
-the need for an API key.
+are `findAddressCandidates` and `reverseGeocode`, which can be accessed
+[**without**]{.underline} the need for an [**API key**]{.underline}.
 
 ## Recommended packages
 
@@ -110,7 +110,8 @@ install.packages("arcgeocoder",
 *Note: examples adapted from **tidygeocoder** package*
 
 In this first example we will geocode a few addresses using the `arc_geo()`
-function:
+function. Note that **arcgeocoder** works straight away, and you don't need to
+provide any API key to start geocoding!
 
 ```{r example}
 library(arcgeocoder)

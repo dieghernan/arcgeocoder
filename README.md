@@ -42,7 +42,8 @@ overcome this limitation.
 The interface of **apigeocoder** is built with the aim of easing the
 access to all the features provided by the API. The API endpoints used
 by **arcgeocoder** are `findAddressCandidates` and `reverseGeocode`,
-which can be accessed without the need for an API key.
+which can be accessed <u>**without**</u> the need for an <u>**API
+key**</u>.
 
 ## Recommended packages
 
@@ -93,7 +94,8 @@ install.packages("arcgeocoder",
 *Note: examples adapted from **tidygeocoder** package*
 
 In this first example we will geocode a few addresses using the
-`arc_geo()` function:
+`arc_geo()` function. Note that **arcgeocoder** works straight away, and
+you don’t need to provide any API key to start geocoding!
 
 ``` r
 library(arcgeocoder)
@@ -267,10 +269,10 @@ A BibTeX entry for LaTeX users is
       title = {{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.1.0},
+      version = {0.1.0.9000},
       doi = {10.5281/zenodo.10495365},
       url = {https://dieghernan.github.io/arcgeocoder/},
-      abstract = {Lite interface for finding locations of addresses or businesses around the world using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address.},
+      abstract = {Lite interface for finding locations of addresses or businesses around the world using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address. No API key required.},
     }
 
 ## References

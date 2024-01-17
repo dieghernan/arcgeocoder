@@ -14,7 +14,7 @@
         "familyName": "Hernangómez",
         "givenName": "Diego"
       },
-      "description": "Lite interface for finding locations of addresses or businesses around the world using the 'ArcGIS' REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address.",
+      "description": "Lite interface for finding locations of addresses or businesses around the world using the 'ArcGIS' REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address. No API key required.",
       "license": "https://spdx.org/licenses/MIT",
       "name": "arcgeocoder: Geocoding with the 'ArcGIS' REST API Service",
       "programmingLanguage": {
@@ -22,8 +22,14 @@
         "name": "R",
         "url": "https://r-project.org"
       },
-      "runtimePlatform": "R version 4.3.2 (2023-10-31 ucrt)",
-      "version": "0.1.0"
+      "provider": {
+        "id": "https://cran.r-project.org",
+        "type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "runtimePlatform": "R version 4.3.2 (2023-10-31)",
+      "version": "0.1.0.9000"
     },
     {
       "id": "https://doi.org/10.5281/zenodo.10495365",

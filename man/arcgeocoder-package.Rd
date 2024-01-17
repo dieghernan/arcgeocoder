@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Lite interface for finding locations of addresses or businesses around the world using the 'ArcGIS' REST API service \url{https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm}. Address text can be converted to location candidates and a location can be converted into an address.
+Lite interface for finding locations of addresses or businesses around the world using the 'ArcGIS' REST API service \url{https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm}. Address text can be converted to location candidates and a location can be converted into an address. No API key required.
 }
 \seealso{
 Useful links:
