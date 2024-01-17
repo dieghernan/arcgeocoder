@@ -41,7 +41,7 @@
       <img src="apple-touch-icon-180x180.png" alt="arcgeocoder logo" height="34" class="d-inline-block me-1">
       arcgeocoder</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,7 +101,7 @@
 <h2 id="why-arcgeocoder">Why <strong>arcgeocoder</strong>?<a class="anchor" aria-label="anchor" href="#why-arcgeocoder"></a>
 </h2>
 <p><strong>arcgeocoder</strong> is a package that provides a lightweight interface for geocoding and reverse geocoding with the ArcGIS REST API service. The goal of <strong>arcgeocoder</strong> is to access the ArcGIS REST API with fewer dependencies, such as <code>curl</code> . In some situations, <code>curl</code> may not be available or accessible, so <strong>arcgeocoder</strong> uses base functions to overcome this limitation.</p>
-<p>The interface of <strong>apigeocoder</strong> is built with the aim of easing the access to all the features provided by the API. The API endpoints used by <strong>arcgeocoder</strong> are <code>findAddressCandidates</code> and <code>reverseGeocode</code>, which can be accessed without the need for an API key.</p>
+<p>The interface of <strong>apigeocoder</strong> is built with the aim of easing the access to all the features provided by the API. The API endpoints used by <strong>arcgeocoder</strong> are <code>findAddressCandidates</code> and <code>reverseGeocode</code>, which can be accessed <u><strong>without</strong></u> the need for an <u><strong>API key</strong></u>.</p>
 </div>
 <div class="section level2">
 <h2 id="recommended-packages">Recommended packages<a class="anchor" aria-label="anchor" href="#recommended-packages"></a>
@@ -140,7 +140,7 @@
 <h3 id="geocoding-and-reverse-geocoding">Geocoding and reverse geocoding<a class="anchor" aria-label="anchor" href="#geocoding-and-reverse-geocoding"></a>
 </h3>
 <p><em>Note: examples adapted from <strong>tidygeocoder</strong> package</em></p>
-<p>In this first example we will geocode a few addresses using the <code><a href="reference/arc_geo.html">arc_geo()</a></code> function:</p>
+<p>In this first example we will geocode a few addresses using the <code><a href="reference/arc_geo.html">arc_geo()</a></code> function. Note that <strong>arcgeocoder</strong> works straight away, and you don’t need to provide any API key to start geocoding!</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/arcgeocoder/">arcgeocoder</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
@@ -378,10 +378,10 @@ Hernangómez D (2024). <em>arcgeocoder: Geocoding with the ArcGIS REST API Servi
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">=</span> {{arcgeocoder}<span class="sc">:</span> Geocoding with the {ArcGIS} {REST} {API} Service},</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2024</span>},</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="fl">1.0</span>},</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="dv">1</span>.<span class="fl">0.9000</span>},</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.10495365</span>},</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>arcgeocoder<span class="sc">/</span>},</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  abstract <span class="ot">=</span> {Lite interface <span class="cf">for</span> finding locations of addresses or businesses around the world using the ArcGIS REST API service <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>developers.arcgis.com<span class="sc">/</span>rest<span class="sc">/</span>geocode<span class="sc">/</span>api<span class="sc">-</span>reference<span class="sc">/</span>overview<span class="sc">-</span>world<span class="sc">-</span>geocoding<span class="sc">-</span>service.htm<span class="sc">&gt;</span>. Address text can be converted to location candidates and a location can be converted into an address.},</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  abstract <span class="ot">=</span> {Lite interface <span class="cf">for</span> finding locations of addresses or businesses around the world using the ArcGIS REST API service <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>developers.arcgis.com<span class="sc">/</span>rest<span class="sc">/</span>geocode<span class="sc">/</span>api<span class="sc">-</span>reference<span class="sc">/</span>overview<span class="sc">-</span>world<span class="sc">-</span>geocoding<span class="sc">-</span>service.htm<span class="sc">&gt;</span>. Address text can be converted to location candidates and a location can be converted into an address. No API key required.},</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level2">

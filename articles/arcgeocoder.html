@@ -41,7 +41,7 @@
       <img src="../apple-touch-icon-180x180.png" alt="arcgeocoder logo" height="34" class="d-inline-block me-1">
       arcgeocoder</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -143,13 +143,17 @@ API</a> service.</li>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
+<p>Install <strong>arcgeocoder</strong> from <a href="https://CRAN.R-project.org/package=arcgeocoder" class="external-link"><strong>CRAN</strong></a>
+with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"arcgeocoder"</span><span class="op">)</span></span></code></pre></div>
 <p>You can install the developing version of
 <strong>arcgeocoder</strong> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"dieghernan/arcgeocoder"</span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, you can install <strong>arcgeocoder</strong> using the
 <a href="https://dieghernan.r-universe.dev/arcgeocoder" class="external-link">r-universe</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Install arcgeocoder in R:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"arcgeocoder"</span>,</span>
 <span>  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
@@ -157,39 +161,41 @@ API</a> service.</li>
 <span>    <span class="st">"https://cloud.r-project.org"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
-</h2>
-<div class="section level3">
-<h3 id="geocoding-and-reverse-geocoding">Geocoding and reverse geocoding<a class="anchor" aria-label="anchor" href="#geocoding-and-reverse-geocoding"></a>
-</h3>
-<p><em>Note: examples adapted from <strong>tidygeocoder</strong>
-package</em></p>
-<p>In this first example we will geocode a few addresses using the
-<code><a href="../reference/arc_geo.html">arc_geo()</a></code> function:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgeocoder)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a dataframe with addresses</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>some_addresses <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>name,                  <span class="sc">~</span>addr,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"White House"</span>,          <span class="st">"1600 Pennsylvania Ave NW, Washington, DC"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Transamerica Pyramid"</span>, <span class="st">"600 Montgomery St, San Francisco, CA 94111"</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Willis Tower"</span>,         <span class="st">"233 S Wacker Dr, Chicago, IL 60606"</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># geocode the addresses</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>lat_longs <span class="ot">&lt;-</span> <span class="fu">arc_geo</span>(some_addresses<span class="sc">$</span>addr, <span class="at">lat =</span> <span class="st">"latitude"</span>, <span class="at">long =</span> <span class="st">"longitude"</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                        </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                  <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                        </span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================</span>                                 <span class="er">|</span>  <span class="dv">33</span>%</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                        </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================================</span>                 <span class="er">|</span>  <span class="dv">67</span>%</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                        </span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================================================|</span> <span class="dv">100</span>%</span></code></pre></div>
+<pre><code>
+## Usage
+
+### Geocoding and reverse geocoding
+
+*Note: examples adapted from **tidygeocoder** package*
+
+In this first example we will geocode a few addresses using the `arc_geo()`
+function. Note that **arcgeocoder** works straight away, and you don't need to
+provide any API key to start geocoding!
+
+
+```r
+library(arcgeocoder)
+library(dplyr)
+
+# create a dataframe with addresses
+some_addresses &lt;- tribble(
+  ~name,                  ~addr,
+  "White House",          "1600 Pennsylvania Ave NW, Washington, DC",
+  "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
+  "Willis Tower",         "233 S Wacker Dr, Chicago, IL 60606"
+)
+
+# geocode the addresses
+lat_longs &lt;- arc_geo(some_addresses$addr, lat = "latitude", long = "longitude")
+#&gt; 
+  |                                                        
+  |                                                  |   0%
+  |                                                        
+  |=================                                 |  33%
+  |                                                        
+  |=================================                 |  67%
+  |                                                        
+  |==================================================| 100%</code></pre>
 <p>Only a few fields are returned from the geocoder service in this
 example, but <code>full_results = TRUE</code> can be used to return all
 of the data from the geocoder service.</p>
@@ -281,20 +287,20 @@ now we specify the input data columns with the <code>x</code> and
 <code>y</code> arguments. The dataset used here is from the geocoder
 query above. The single line address is returned in a column named by
 the <code>address</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>reverse <span class="ot">&lt;-</span> <span class="fu">arc_reverse_geo</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> lat_longs<span class="sc">$</span>longitude,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> lat_longs<span class="sc">$</span>latitude,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">address =</span> <span class="st">"address_found"</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                        </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                  <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                        </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================</span>                                 <span class="er">|</span>  <span class="dv">33</span>%</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                        </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================================</span>                 <span class="er">|</span>  <span class="dv">67</span>%</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                        </span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================================================|</span> <span class="dv">100</span>%</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>reverse <span class="ot">&lt;-</span> <span class="fu">arc_reverse_geo</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> lat_longs<span class="sc">$</span>longitude,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> lat_longs<span class="sc">$</span>latitude,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">address =</span> <span class="st">"address_found"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                        </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                  <span class="er">|</span>   <span class="dv">0</span>%</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                        </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================</span>                                 <span class="er">|</span>  <span class="dv">33</span>%</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                        </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================================</span>                 <span class="er">|</span>  <span class="dv">67</span>%</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                        </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================================================|</span> <span class="dv">100</span>%</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="12%">
@@ -334,7 +340,7 @@ base <code>arc_categories</code>.</p>
 <p>In the following example we would look for POIs related with food
 (i.e. Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in
 France.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># For plotting</span></span>
 <span></span>
 <span><span class="co"># Step 1: Locate Eiffel Tower, using multifield query</span></span>
@@ -377,7 +383,6 @@ France.</p>
 <span>  <span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <img src="eiffel-1.png" alt=""><p class="caption">Example: Food places near the Eiffel Tower</p>
-</div>
 </div>
 <div class="section level3">
 <h3 id="arcgeocoder-and-r-spatial">
