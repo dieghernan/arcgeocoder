@@ -26,3 +26,4 @@ cran-comments.md
 .github/pkg.lock
 inst/doc
 docs
+Rplots.pdf

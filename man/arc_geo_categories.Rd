@@ -189,8 +189,8 @@ points(ex3$lon, ex3$lat)
 \link{arc_categories}
 
 Geocoding operations: 
-\code{\link{arc_geo_multi}()},
 \code{\link{arc_geo}()},
+\code{\link{arc_geo_multi}()},
 \code{\link{arc_reverse_geo}()}
 }
 \concept{geocoding}
