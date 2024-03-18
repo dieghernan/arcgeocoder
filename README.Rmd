@@ -53,8 +53,8 @@ Full site with examples and vignettes on
 **arcgeocoder** is a package that provides a lightweight interface for geocoding
 and reverse geocoding with the ArcGIS REST API service. The goal of
 **arcgeocoder** is to access the ArcGIS REST API with fewer dependencies, such
-as `curl` . In some situations, `curl` may not be available or accessible, so
-**arcgeocoder** uses base functions to overcome this limitation.
+as **curl**. In some situations, **curl** may not be available or accessible, 
+so **arcgeocoder** uses base functions to overcome this limitation.
 
 The interface of **apigeocoder** is built with the aim of easing the access to
 all the features provided by the API. The API endpoints used by **arcgeocoder**
