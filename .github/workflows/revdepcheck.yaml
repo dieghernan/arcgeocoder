@@ -32,6 +32,11 @@ jobs:
           cache-version: revdep
           extra-packages: |
             local::.
+            any::usethis
+            any::BiocManager
+            any::BiocVersion
+            any::devtools
+            any::remotes
             r-lib/revdepcheck
           needs: check
 
