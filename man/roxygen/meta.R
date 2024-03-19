@@ -1,5 +1,5 @@
 list(
   rd_family_title = list(
-    geocoding = "Geocoding operations: "
+    geocoding = "Other functions for geocoding: "
   )
 )

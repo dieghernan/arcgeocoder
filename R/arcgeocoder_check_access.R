@@ -4,7 +4,7 @@
 #'
 #' @description
 #' Check if **R** has access to resources at ArcGIS REST API
-#' <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
+#' <`r arcurl("over")`>.
 #'
 #' @return a logical.
 #'

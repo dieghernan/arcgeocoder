@@ -29,10 +29,11 @@ arc_geo_multi(
 )
 }
 \arguments{
-\item{address, address2, address3, neighborhood, city, subregion, region, postal, postalext, countrycode}{Address components (See \strong{Details}). At least one field should be
-different than \code{NA} or \code{NULL}. A vector of values can be provided for each
-parameter for multiple geocoding. When using vectors on different
-parameters, their lengths should be the same.}
+\item{address, address2, address3, neighborhood, city, subregion}{Address
+components  (See \strong{Details}).}
+
+\item{region, postal, postalext, countrycode}{More address components, see
+(See \strong{Details}).}
 
 \item{lat}{latitude column name in the output data (default  \code{"lat"}).}
 
@@ -42,9 +43,9 @@ parameters, their lengths should be the same.}
 that each query returns a maximum of 50 results.}
 
 \item{full_results}{returns all available data from the API service. This
-is a shorthand of \verb{outFields=*}. See \strong{References}.
-If \code{FALSE} (default) only the default values of the API would be returned.
-See also \code{return_addresses}.}
+is a shorthand of \verb{outFields=*}. See \strong{References}. If \code{FALSE} (default)
+only the default values of the API would be returned. See also
+\code{return_addresses} argument.}
 
 \item{return_addresses}{return input addresses with results if \code{TRUE}.}
 
@@ -61,15 +62,14 @@ the query). See \strong{Details} and \link{arc_spatial_references}.}
 returned.}
 
 \item{category}{A place or address type that can be used to filter results.
-Several values can be used as well as a comma-separated string (i.e.
-\verb{"Cinema,Museum}). See \link{arc_categories} for details.}
+Several values can be used as well as a vector (i.e.
+\code{c("Cinema", "Museum")}). See \link{arc_categories} for details.}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list.}
 }
 \value{
-A \CRANpkg{tibble} with the results. See the details of the output
-in \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
+A \code{\link[tibble:tibble]{tibble}} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
 
 The resulting output would include also the input parameters (columns with
 prefix \code{q_}) for better tracking the results.
@@ -81,12 +81,17 @@ the \CRANpkg{tibble} associated with the query.
 For geocoding using a single text string use \code{\link[=arc_geo]{arc_geo()}} function.
 }
 \details{
-More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}
+More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}.
 }
 \section{Address components}{
 This function allows to perform structured queries by different components of
-an address. The following list provides a brief description of each
-parameter:
+an address. At least one field should be different than \code{NA} or \code{NULL}.
+
+A vector of values can be provided for each parameter for multiple geocoding.
+When using vectors on different parameters, their lengths should be the
+same.
+
+The following list provides a brief description of each parameter:
 \itemize{
 \item \code{address}: A string that represents the first line of a street address. In
 most cases it will be the \strong{street name and house number} input, but it
@@ -130,30 +135,38 @@ See \link{arc_spatial_references} for values and examples.
 \dontshow{if (arcgeocoder_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 simple <- arc_geo_multi(
-  address = "Plaza Mayor", limit = 3,
-  custom_query = list(outFields = "LongLabel")
+  address = "Plaza Mayor", limit = 10,
+  custom_query = list(outFields = c("LongLabel", "CntryName", "Region"))
 )
 
-simple[, c("lat", "lon", "LongLabel")]
+library(dplyr)
+
+simple \%>\%
+  select(lat, lon, CntryName, Region, LongLabel) \%>\%
+  slice_head(n = 10)
 
 # Restrict search to Spain
 simple2 <- arc_geo_multi(
   address = "Plaza Mayor", countrycode = "ESP",
-  limit = 3,
-  custom_query = list(outFields = "LongLabel")
+  limit = 10,
+  custom_query = list(outFields = c("LongLabel", "CntryName", "Region"))
 )
 
-simple2[, c("lat", "lon", "LongLabel")]
+simple2 \%>\%
+  select(lat, lon, CntryName, Region, LongLabel) \%>\%
+  slice_head(n = 10)
 
 # Restrict to a region
 simple3 <- arc_geo_multi(
   address = "Plaza Mayor", region = "Segovia",
   countrycode = "ESP",
-  limit = 3,
-  custom_query = list(outFields = "LongLabel")
+  limit = 10,
+  custom_query = list(outFields = c("LongLabel", "CntryName", "Region"))
 )
 
-simple3[, c("lat", "lon", "LongLabel")]
+simple3 \%>\%
+  select(lat, lon, CntryName, Region, LongLabel) \%>\%
+  slice_head(n = 10)
 }
 \dontshow{\}) # examplesIf}
 }
@@ -163,7 +176,7 @@ simple3[, c("lat", "lon", "LongLabel")]
 \seealso{
 \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
 
-Geocoding operations: 
+Other functions for geocoding: 
 \code{\link{arc_geo}()},
 \code{\link{arc_geo_categories}()},
 \code{\link{arc_reverse_geo}()}

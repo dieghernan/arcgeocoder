@@ -4,6 +4,10 @@ add_custom_query <- function(custom_query = list(), url) {
     return(url)
   }
 
+  # Collapse
+  custom_query <- lapply(custom_query, paste0, collapse = ",")
+
+
   opts <- paste0(names(custom_query), "=", custom_query, collapse = "&")
 
   end_url <- paste0(url, "&", opts)
@@ -137,4 +141,20 @@ empty_tbl <- function(x, lat, lon) {
   names(x) <- c(init_nm, lat, lon)
 
   x
+}
+
+# Helper for url in docs
+arcurl <- function(x) {
+  base <- "https://developers.arcgis.com/rest/geocode/api-reference"
+
+  entry <- switch(x,
+    "filt" = "geocoding-category-filtering.htm",
+    "out" = "geocoding-service-output.htm",
+    "cand" = "geocoding-find-address-candidates.htm",
+    "rev" = "geocoding-reverse-geocode.htm",
+    "over" = "overview-world-geocoding-service.htm",
+    NULL
+  )
+
+  paste0(c(base, entry), collapse = "/")
 }

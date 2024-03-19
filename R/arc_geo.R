@@ -1,13 +1,12 @@
 #' Geocoding using the ArcGIS REST API
 #'
 #' @description
-#' Geocodes addresses given as character values. This
-#' function returns the \CRANpkg{tibble} associated with the query.
+#' Geocodes addresses given as character values. This function returns the
+#' [`tibble`][tibble::tibble] object associated with the query.
 #'
-#' This function uses the `SingleLine` approach detailed in the [API
-#' docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
-#' For multifield queries (i.e. using specific address parameters) use
-#' [arc_geo_multi()] function.
+#' This function uses the `SingleLine` approach detailed in the
+#' [ArcGIS REST docs](`r arcurl("cand")`). For multi-field queries (i.e.
+#' using specific address parameters) use [arc_geo_multi()] function.
 #'
 #' @param address character with single line address
 #'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
@@ -17,32 +16,31 @@
 #' @param limit	maximum number of results to return per input address. Note
 #'   that each query returns a maximum of 50 results.
 #' @param full_results returns all available data from the API service. This
-#'   is a shorthand of `outFields=*`. See **References**.
-#'    If `FALSE` (default) only the default values of the API would be returned.
-#'    See also `return_addresses`.
+#'   is a shorthand of `outFields=*`. See **References**. If `FALSE` (default)
+#'   only the default values of the API would be returned. See also
+#'   `return_addresses` argument.
 #' @param return_addresses return input addresses with results if `TRUE`.
 #' @param sourcecountry Limits the candidates returned to the specified country
 #'   or countries. Acceptable values include the three-character country code.
 #'   You can specify multiple country codes to limit results to more than one
 #'   country.
 #' @param category A place or address type that can be used to filter results.
-#'   Several values can be used as well as a comma-separated string (i.e.
-#'   `"Cinema,Museum`). See [arc_categories] for details.
+#'   Several values can be used as well as a vector (i.e.
+#'   `c("Cinema", "Museum")`). See [arc_categories] for details.
 #'
 #' @inheritParams arc_reverse_geo
 #'
 #'
 #' @references
-#' [ArcGIS REST
-#' `findAddressCandidates`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
+#' [ArcGIS REST `findAddressCandidates`](`r arcurl("cand")`).
 #'
-#' @return A \CRANpkg{tibble} with the results. See the details of the output
-#' in [ArcGIS REST API Service
-#' output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm)
+#' @return
+#'
+#' ```{r child = "man/chunks/out1.Rmd"}
+#' ```
 #'
 #' @details
-#' More info and valid values in the [ArcGIS REST
-#' docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
+#' More info and valid values in the [ArcGIS REST docs](`r arcurl("cand")`).
 #'
 #' @inheritSection arc_reverse_geo `outsr`
 #'
@@ -50,22 +48,24 @@
 #' \donttest{
 #' arc_geo("Madrid, Spain")
 #'
+#' library(dplyr)
+#'
 #' # Several addresses with additional output fields
 #' with_params <- arc_geo(c("Madrid", "Barcelona"),
-#'   full_results = TRUE,
-#'   custom_query = list(outFields = "LongLabel")
+#'   custom_query = list(outFields = c("LongLabel", "CntryName"))
 #' )
 #'
-#' with_params[, c("lat", "lon", "LongLabel")]
+#' with_params %>%
+#'   select(lat, lon, CntryName, LongLabel)
 #'
 #' # With options: restrict search to USA
 #' with_params_usa <- arc_geo(c("Madrid", "Barcelona"),
-#'   full_results = TRUE,
 #'   sourcecountry = "USA",
-#'   custom_query = list(outFields = "LongLabel")
+#'   custom_query = list(outFields = c("LongLabel", "CntryName"))
 #' )
 #'
-#' with_params_usa[, c("lat", "lon", "LongLabel")]
+#' with_params_usa %>%
+#'   select(lat, lon, CntryName, LongLabel)
 #' }
 #' @export
 #'

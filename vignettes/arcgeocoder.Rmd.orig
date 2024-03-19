@@ -37,8 +37,8 @@ Full site with examples and vignettes on
 **arcgeocoder** is a package that provides a lightweight interface for geocoding
 and reverse geocoding with the ArcGIS REST API service. The goal of
 **arcgeocoder** is to access the ArcGIS REST API with fewer dependencies, such
-as `curl` . In some situations, `curl` may not be available or accessible, so
-**arcgeocoder** uses base functions to overcome this limitation.
+as **curl** . In some situations, **curl** may not be available or accessible,
+so **arcgeocoder** uses base functions to overcome this limitation.
 
 The interface of **apigeocoder** is built with the aim of easing the access to
 all the features provided by the API. The API endpoints used by **arcgeocoder**
@@ -58,35 +58,6 @@ that presents similar features:
     [@R-nominatimlite]. Similar to **arcgeocoder** but using data from
     OpenStreetMaps trough the [Nominatim
     API](https://nominatim.org/release-docs/latest/) service.
-
-## Installation
-
-Install **arcgeocoder** from
-[**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
-
-```{r, eval=FALSE}
-install.packages("arcgeocoder")
-```
-
-You can install the developing version of **arcgeocoder** with:
-
-```{r, eval=FALSE}
-devtools::install_github("dieghernan/arcgeocoder")
-```
-
-Alternatively, you can install **arcgeocoder** using the
-[r-universe](https://dieghernan.r-universe.dev/arcgeocoder):
-
-```{r, eval=FALSE}
-# Install arcgeocoder in R:
-install.packages("arcgeocoder",
-  repos = c(
-    "https://dieghernan.r-universe.dev",
-    "https://cloud.r-project.org"
-  )
-)
-```
-```
 
 ## Usage
 
@@ -186,7 +157,6 @@ ggplot(eiffel_tower, aes(x, y)) +
     caption = "Data from ArcGIS REST API services"
   )
 ```
-
 
 ### **arcgeocoder** and **r-spatial**
 

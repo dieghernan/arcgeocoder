@@ -71,7 +71,7 @@ install.packages("arcgeocoder")
 You can install the developing version of **arcgeocoder** with:
 
 ``` r
-devtools::install_github("dieghernan/arcgeocoder")
+remotes::install_github("dieghernan/arcgeocoder")
 ```
 
 Alternatively, you can install **arcgeocoder** using the
@@ -184,7 +184,7 @@ food_eiffel <- arc_geo_categories("Food",
   limit = 50, full_results = TRUE
 )
 
-# Plot  by Food Type
+# Plot by Food Type
 ggplot(eiffel_tower, aes(x, y)) +
   geom_point(shape = 17, color = "red", size = 4) +
   geom_point(data = food_eiffel, aes(x, y, color = Type)) +
@@ -277,8 +277,7 @@ A BibTeX entry for LaTeX users is
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-R-tidygeocoder" class="csl-entry">
 

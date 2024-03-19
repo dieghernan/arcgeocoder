@@ -2,16 +2,15 @@
 #'
 #' @description
 #'
-#' Database of available categories that can be used for filtering
-#' results provided by [arc_geo()], [arc_geo_multi()] and
-#' [arc_geo_categories()] in \CRANpkg{tibble} format.
+#' Database of available categories that can be used for filtering results
+#' provided by [arc_geo()], [arc_geo_multi()] and [arc_geo_categories()] in
+#' [`tibble`][tibble::tibble] format.
 #'
 #' @note Data extracted on **10 January 2023**.
 #'
 #'
 #' @source
-#' [ArcGIS REST Category
-#' filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm)
+#' [ArcGIS REST Category filtering](`r arcurl("filt")`).
 #'
 #' @encoding UTF-8
 #'
@@ -19,7 +18,8 @@
 #'
 #' @docType data
 #'
-#' @format A \CRANpkg{tibble} with
+#' @format
+#' A [`tibble`][tibble::tibble] with
 #' `r prettyNum(nrow(arcgeocoder::arc_categories), big.mark=",")` rows and
 #' fields:
 #' \describe{
@@ -29,9 +29,8 @@
 #' }
 #' @details
 #'
-#' See [ArcGIS REST Category
-#' filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm)
-#' for details and examples.
+#' See [ArcGIS REST Category filtering](`r arcurl("filt")`) for details and
+#' examples.
 #'
 #' The geocoding service allows users to search for and geocode many types of
 #' addresses and places around the world. This simplifies the application
@@ -65,7 +64,7 @@
 #' # Using categories
 #'
 #' sea_1 <- arc_geo("sea",
-#'   custom_query = list(outFields = "LongLabel,Type"),
+#'   custom_query = list(outFields = c("LongLabel", "Type")),
 #'   limit = 2
 #' )
 #'
@@ -75,17 +74,17 @@
 #' # An airport, but if we use categories...
 #'
 #' sea_2 <- arc_geo("sea",
-#'   custom_query = list(outFields = "LongLabel,Type"),
+#'   custom_query = list(outFields = c("LongLabel", "Type")),
 #'   limit = 2, category = "Food"
 #' )
 #'
 #' dplyr::glimpse(sea_2)
 #'
-#' # We can use a list of categories separated by comma
+#' # We can use a list of categories
 #' sea_3 <- arc_geo("sea",
-#'   custom_query = list(outFields = "LongLabel,Type"),
+#'   custom_query = list(outFields = c("LongLabel", "Type")),
 #'   sourcecountry = "UK", limit = 5,
-#'   category = "Amusement Park,Aquarium"
+#'   category = c("Amusement Park", "Aquarium")
 #' )
 #'
 #' dplyr::glimpse(sea_3)

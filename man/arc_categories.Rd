@@ -6,7 +6,7 @@
 \alias{arc_categories}
 \title{ArcGIS REST API category data base}
 \format{
-A \CRANpkg{tibble} with
+A \code{\link[tibble:tibble]{tibble}} with
 376 rows and
 fields:
 \describe{
@@ -16,16 +16,16 @@ fields:
 }
 }
 \source{
-\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering}
+\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering}.
 }
 \description{
-Database of available categories that can be used for filtering
-results provided by \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}} and
-\code{\link[=arc_geo_categories]{arc_geo_categories()}} in \CRANpkg{tibble} format.
+Database of available categories that can be used for filtering results
+provided by \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}} and \code{\link[=arc_geo_categories]{arc_geo_categories()}} in
+\code{\link[tibble:tibble]{tibble}} format.
 }
 \details{
-See \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering}
-for details and examples.
+See \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering} for details and
+examples.
 
 The geocoding service allows users to search for and geocode many types of
 addresses and places around the world. This simplifies the application
@@ -58,7 +58,7 @@ arc_categories
 # Using categories
 
 sea_1 <- arc_geo("sea",
-  custom_query = list(outFields = "LongLabel,Type"),
+  custom_query = list(outFields = c("LongLabel", "Type")),
   limit = 2
 )
 
@@ -68,17 +68,17 @@ dplyr::glimpse(sea_1)
 # An airport, but if we use categories...
 
 sea_2 <- arc_geo("sea",
-  custom_query = list(outFields = "LongLabel,Type"),
+  custom_query = list(outFields = c("LongLabel", "Type")),
   limit = 2, category = "Food"
 )
 
 dplyr::glimpse(sea_2)
 
-# We can use a list of categories separated by comma
+# We can use a list of categories
 sea_3 <- arc_geo("sea",
-  custom_query = list(outFields = "LongLabel,Type"),
+  custom_query = list(outFields = c("LongLabel", "Type")),
   sourcecountry = "UK", limit = 5,
-  category = "Amusement Park,Aquarium"
+  category = c("Amusement Park", "Aquarium")
 )
 
 dplyr::glimpse(sea_3)
