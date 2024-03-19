@@ -95,7 +95,8 @@ NULL
 #'
 #' @description
 #'
-#' Database of available spatial references (CRS) in \CRANpkg{tibble} format.
+#' Database of available spatial references (CRS) in [`tibble`][tibble::tibble]
+#' format.
 #'
 #' @note Data extracted on **14 January 2023**.
 #'
@@ -110,7 +111,7 @@ NULL
 #'
 #' @docType data
 #'
-#' @format A \CRANpkg{tibble} with
+#' @format A [`tibble`][tibble::tibble] with
 #' `r prettyNum(nrow(arcgeocoder::arc_spatial_references), big.mark=",")` rows
 #' and fields:
 #' \describe{
@@ -135,13 +136,13 @@ NULL
 #'
 #' @family datasets
 #'
-#' @seealso [arc_geo_categories()], [arc_geo()], [arc_geo_multi()],
-#' [arc_reverse_geo()].
+#' @seealso
+#' [sf::st_crs()]
+#'
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
-#' # Get all possible values
-#' data("arc_spatial_references")
+#' # Get all possible valuesdata("arc_spatial_references")
 #' arc_spatial_references
 #'
 #' # Request with deprecated Web Mercator
@@ -158,5 +159,15 @@ NULL
 #' add %>%
 #'   select(lat, lon, wkid, latestWkid) %>%
 #'   glimpse()
+#'
+#' # See with sf
+#'
+#' try(sf::st_crs(wkid$wkid))
+#'
+#' # But
+#' try(sf::st_crs(wkid$latestWkid))
+#'
+#' # or
+#' try(sf::st_crs(wkid$wkt))
 #' }
 NULL

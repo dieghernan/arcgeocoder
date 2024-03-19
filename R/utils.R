@@ -18,13 +18,9 @@ add_custom_query <- function(custom_query = list(), url) {
 is_named <- function(x) {
   nm <- names(x)
 
-  if (is.null(nm)) {
-    return(FALSE)
-  }
-  if (any(is.na(nm))) {
-    return(FALSE)
-  }
-  if (any(nm == "")) {
+  test_names <- c(is.null(nm), is.na(nm), nm == "")
+
+  if (any(test_names)) {
     return(FALSE)
   }
 

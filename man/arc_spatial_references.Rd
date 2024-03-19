@@ -6,7 +6,7 @@
 \alias{arc_spatial_references}
 \title{ESRI (ArcGIS) Spatial Reference data base}
 \format{
-A \CRANpkg{tibble} with
+A \code{\link[tibble:tibble]{tibble}} with
 9,364 rows
 and fields:
 \describe{
@@ -25,7 +25,8 @@ working with \CRANpkg{sf} or \CRANpkg{terra}}
 \href{https://github.com/Esri/projection-engine-db-doc}{ESRI Projection Engine factory}
 }
 \description{
-Database of available spatial references (CRS) in \CRANpkg{tibble} format.
+Database of available spatial references (CRS) in \code{\link[tibble:tibble]{tibble}}
+format.
 }
 \details{
 This data base is useful when using the \code{outsr} parameter of the functions.
@@ -40,8 +41,7 @@ Data extracted on \strong{14 January 2023}.
 \examples{
 \dontshow{if (arcgeocoder_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
-# Get all possible values
-data("arc_spatial_references")
+# Get all possible valuesdata("arc_spatial_references")
 arc_spatial_references
 
 # Request with deprecated Web Mercator
@@ -58,12 +58,21 @@ add <- arc_geo("London, United Kingdom", outsr = wkid$wkid)
 add \%>\%
   select(lat, lon, wkid, latestWkid) \%>\%
   glimpse()
+
+# See with sf
+
+try(sf::st_crs(wkid$wkid))
+
+# But
+try(sf::st_crs(wkid$latestWkid))
+
+# or
+try(sf::st_crs(wkid$wkt))
 }
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=arc_geo_categories]{arc_geo_categories()}}, \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}},
-\code{\link[=arc_reverse_geo]{arc_reverse_geo()}}.
+\code{\link[sf:st_crs]{sf::st_crs()}}
 
 Other datasets: 
 \code{\link{arc_categories}}

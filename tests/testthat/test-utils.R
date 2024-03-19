@@ -9,3 +9,27 @@ test_that("urls", {
   s <- arcurl("cand")
   expect_true(is.character(s))
 })
+
+
+test_that("names", {
+  l <- list(a = "f", b = "a")
+  expect_true(is_named(l))
+
+  l <- list(a = "f", NULL)
+  expect_false(is_named(l))
+
+  l <- list(a = "f", NA)
+  expect_false(is_named(l))
+
+  l <- list(a = "f", "b")
+  expect_false(is_named(l))
+
+  l <- list("b")
+  expect_false(is_named(l))
+
+  l <- list(NULL)
+  expect_false(is_named(l))
+
+  l <- list(NA)
+  expect_false(is_named(l))
+})
