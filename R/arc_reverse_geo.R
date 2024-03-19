@@ -2,13 +2,14 @@
 #'
 #' @description
 #' Generates an address from a latitude and longitude. Latitudes must be
-#' between `[-90, 90]` and longitudes between `[-180, 180]`. This
-#' function returns the \CRANpkg{tibble} associated with the query.
+#' in the range \eqn{\left[-90, 90 \right]} and longitudes in the range
+#' \eqn{\left[-180, 180 \right]}. This function returns the
+#' [`tibble`][tibble::tibble] associated with the query.
 #'
 #' @param x longitude values in numeric format. Must be in the range
-#'   `[-180, 180]`.
+#'   \eqn{\left[-180, 180 \right]}.
 #' @param y  latitude values in numeric format. Must be in the range
-#'   `[-90, 90]`.
+#'   \eqn{\left[-90, 90 \right]}.
 #' @param address address column name in the output data (default  `"address"`).
 #' @param full_results returns all available data from the API service. If
 #'   `FALSE` (default) only latitude, longitude and address columns are
@@ -35,13 +36,11 @@
 #'
 #'
 #' @references
-#' [ArcGIS REST
-#' `reverseGeocode`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm)
+#' [ArcGIS REST `reverseGeocode`](`r arcurl("rev")`).
 #'
 #' @details
 #'
-#' More info and valid values in the [ArcGIS REST
-#' docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm)
+#' More info and valid values in the [ArcGIS REST docs](`r arcurl("rev")`).
 #'
 #' # `outsr`
 #'
@@ -69,16 +68,17 @@
 #' -   `"Postal"`
 #' -   `"Locality"`
 #'
-#' It is also possible to use several values separated by comma
-#' (`featuretypes="PointAddress,StreetAddress"`).
+#' It is also possible to use several values as a vector
+#' (`featuretypes = c("PointAddress", "StreetAddress")`).
 #'
-#' @return A \CRANpkg{tibble} with the corresponding results. The `x,y` values
+#' @return
+#' A [`tibble`][tibble::tibble] with the corresponding results. The `x,y` values
 #' returned by the API would be named `lon,lat`. Note that these coordinates
 #' correspond to the geocoded feature, and may be different of the `x,y` values
 #' provided as inputs.
 #'
-#' See the details of the output in [ArcGIS REST API Service
-#' output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm)
+#' See the details of the output in
+#' [ArcGIS REST API Service output](`r arcurl("out")`).
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{

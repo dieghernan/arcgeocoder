@@ -25,8 +25,8 @@ Full site with examples and vignettes on
 **arcgeocoder** is a package that provides a lightweight interface for geocoding
 and reverse geocoding with the ArcGIS REST API service. The goal of
 **arcgeocoder** is to access the ArcGIS REST API with fewer dependencies, such
-as `curl` . In some situations, `curl` may not be available or accessible, so
-**arcgeocoder** uses base functions to overcome this limitation.
+as **curl** . In some situations, **curl** may not be available or accessible,
+so **arcgeocoder** uses base functions to overcome this limitation.
 
 The interface of **apigeocoder** is built with the aim of easing the access to
 all the features provided by the API. The API endpoints used by **arcgeocoder**
@@ -46,38 +46,6 @@ that presents similar features:
     [@R-nominatimlite]. Similar to **arcgeocoder** but using data from
     OpenStreetMaps trough the [Nominatim
     API](https://nominatim.org/release-docs/latest/) service.
-
-## Installation
-
-Install **arcgeocoder** from
-[**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
-
-
-```r
-install.packages("arcgeocoder")
-```
-
-You can install the developing version of **arcgeocoder** with:
-
-
-```r
-devtools::install_github("dieghernan/arcgeocoder")
-```
-
-Alternatively, you can install **arcgeocoder** using the
-[r-universe](https://dieghernan.r-universe.dev/arcgeocoder):
-
-
-```r
-# Install arcgeocoder in R:
-install.packages("arcgeocoder",
-  repos = c(
-    "https://dieghernan.r-universe.dev",
-    "https://cloud.r-project.org"
-  )
-)
-```
-```
 
 ## Usage
 
@@ -173,9 +141,9 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower %>%
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                         
-#>   <dbl> <dbl> <chr>                                                             
-#> 1  2.29  48.9 Tour Eiffel, 5 Avenue Anatole France, 75007, 7e Arrondissement, P…
+#>     lon   lat LongLabel                                                                                
+#>   <dbl> <dbl> <chr>                                                                                    
+#> 1  2.29  48.9 Tour Eiffel, 5 Avenue Anatole France, 75007, 7e Arrondissement, Paris, Île-de-France, FRA
 
 
 # Use lon,lat to boots the search and using category = Food
@@ -200,7 +168,6 @@ ggplot(eiffel_tower, aes(x, y)) +
 ```
 
 ![Example: Food places near the Eiffel Tower](./eiffel-1.png)
-
 
 ### **arcgeocoder** and **r-spatial**
 

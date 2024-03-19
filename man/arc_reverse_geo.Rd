@@ -21,10 +21,10 @@ arc_reverse_geo(
 }
 \arguments{
 \item{x}{longitude values in numeric format. Must be in the range
-\verb{[-180, 180]}.}
+\eqn{\left[-180, 180 \right]}.}
 
 \item{y}{latitude values in numeric format. Must be in the range
-\verb{[-90, 90]}.}
+\eqn{\left[-90, 90 \right]}.}
 
 \item{address}{address column name in the output data (default  \code{"address"}).}
 
@@ -59,20 +59,22 @@ should be the rooftop point or street entrance location. Valid values are
 list.}
 }
 \value{
-A \CRANpkg{tibble} with the corresponding results. The \verb{x,y} values
+A \code{\link[tibble:tibble]{tibble}} with the corresponding results. The \verb{x,y} values
 returned by the API would be named \verb{lon,lat}. Note that these coordinates
 correspond to the geocoded feature, and may be different of the \verb{x,y} values
 provided as inputs.
 
-See the details of the output in \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}
+See the details of the output in
+\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
 }
 \description{
 Generates an address from a latitude and longitude. Latitudes must be
-between \verb{[-90, 90]} and longitudes between \verb{[-180, 180]}. This
-function returns the \CRANpkg{tibble} associated with the query.
+in the range \eqn{\left[-90, 90 \right]} and longitudes in the range
+\eqn{\left[-180, 180 \right]}. This function returns the
+\code{\link[tibble:tibble]{tibble}} associated with the query.
 }
 \details{
-More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST docs}
+More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST docs}.
 }
 \section{\code{outsr}}{
 The spatial reference can be specified as either a well-known ID (WKID). If
@@ -100,8 +102,8 @@ when geocoding. Possible values are:
 \item \code{"Locality"}
 }
 
-It is also possible to use several values separated by comma
-(\code{featuretypes="PointAddress,StreetAddress"}).
+It is also possible to use several values as a vector
+(\code{featuretypes = c("PointAddress", "StreetAddress")}).
 }
 
 \examples{
@@ -129,12 +131,12 @@ dplyr::glimpse(sev)
 \dontshow{\}) # examplesIf}
 }
 \references{
-\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST \code{reverseGeocode}}
+\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST \code{reverseGeocode}}.
 }
 \seealso{
 \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}
 
-Geocoding operations: 
+Other functions for geocoding: 
 \code{\link{arc_geo}()},
 \code{\link{arc_geo_categories}()},
 \code{\link{arc_geo_multi}()}

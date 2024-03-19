@@ -28,7 +28,7 @@ the *Search Tolerance* column.
 :::
 
 | Feature type                                                 | Search tolerance | Comments                                                                                                                                                  |
-|---------------------|---------------------|--------------------------------------|
+|------------------|------------------|--------------------------------------------|
 | `StreetInt`                                                  | 10 meters        | Intersections are only returned when `featuretypes = "StreetInt"` is included in the request.                                                             |
 | `StreetAddress` (near), `DistanceMarker`, or `StreetName`    | 3 meters         | Candidates of type `StreetName` are only returned if `featureTypes = "streetName"` is included in the request.                                            |
 | `POI` centroid                                               | 25 meters        | A business or landmark that can be represented by a point.                                                                                                |
@@ -73,7 +73,7 @@ arc_reverse_geo(..., featuretypes = "PointAddress")
 
 
 ```r
-arc_reverse_geo(..., featuretypes = "PointAddress,StreetAddress")
+arc_reverse_geo(..., featuretypes = c("PointAddress", "StreetAddress"))
 ```
 
 ## Examples
@@ -84,6 +84,7 @@ understanding.
 
 ```r
 library(arcgeocoder)
+library(dplyr)
 ```
 
 ### Example 1: Match to `POI` centroid returned
@@ -104,7 +105,9 @@ api_poi <- arc_reverse_geo(
   langcode = "EN", full_results = TRUE, verbose = TRUE
 )
 
-knitr::kable(api_poi[, c("x", "y", "address", "lon", "lat", "Addr_type")])
+api_poi %>%
+  select(x, y, address, lon, lat, Addr_type) %>%
+  knitr::kable()
 ```
 
 
@@ -128,7 +131,9 @@ api_address <- arc_reverse_geo(
   langcode = "EN", full_results = TRUE, verbose = TRUE
 )
 
-knitr::kable(api_address[, c("x", "y", "address", "lon", "lat", "Addr_type")])
+api_address %>%
+  select(x, y, address, lon, lat, Addr_type) %>%
+  knitr::kable()
 ```
 
 
@@ -149,7 +154,9 @@ api_local <- arc_reverse_geo(
   langcode = "EN", full_results = TRUE, verbose = TRUE
 )
 
-knitr::kable(api_local[, c("x", "y", "address", "lon", "lat", "Addr_type")])
+api_local %>%
+  select(x, y, address, lon, lat, Addr_type) %>%
+  knitr::kable()
 ```
 
 
@@ -169,11 +176,13 @@ When multiple values are included in the API call, the hierarchy explained in
 ```r
 api_multiple <- arc_reverse_geo(
   x = example_x, y = example_y,
-  featuretypes = "Locality,StreetInt,StreetAddress",
+  featuretypes = c("Locality", "StreetInt", "StreetAddress"),
   langcode = "EN", full_results = TRUE, verbose = TRUE
 )
 
-knitr::kable(api_multiple[, c("x", "y", "address", "lon", "lat", "Addr_type")])
+api_multiple %>%
+  select(x, y, address, lon, lat, Addr_type) %>%
+  knitr::kable()
 ```
 
 
@@ -199,26 +208,28 @@ When it is not possible to return results, `arc_reverse_geo()` returns an empty
 
 npole <- arc_reverse_geo(x = 0, y = 90, langcode = "EN", full_results = TRUE)
 
-knitr::kable(npole[, c("x", "y", "address", "Addr_type")])
+npole %>%
+  select(x, y, address, lon, lat, Addr_type) %>%
+  knitr::kable()
 ```
 
 
 
-|  x|  y|address    |Addr_type |
-|--:|--:|:----------|:---------|
-|  0| 90|North Pole |Locality  |
+|  x|  y|address    | lon| lat|Addr_type |
+|--:|--:|:----------|---:|---:|:---------|
+|  0| 90|North Pole |   0|  90|Locality  |
 
 
 
 ```r
-
 # But no StreetAddress
 npole2 <- arc_reverse_geo(
   x = 0, y = 90, langcode = "EN", full_results = TRUE,
   featuretypes = "StreetAddress"
 )
 
-knitr::kable(npole2)
+npole2 %>%
+  knitr::kable()
 ```
 
 

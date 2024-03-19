@@ -1,6 +1,8 @@
 # arcgeocoder (development version)
 
--   Fix typos in documentation
+-   Fix typos in documentation.
+-   Now a vector can be used on each named element of `custom_query`.
+-   Add **ggplot2** and **sf** to Suggests.
 
 # arcgeocoder 0.1.0
 

@@ -33,9 +33,9 @@ arc_geo(
 that each query returns a maximum of 50 results.}
 
 \item{full_results}{returns all available data from the API service. This
-is a shorthand of \verb{outFields=*}. See \strong{References}.
-If \code{FALSE} (default) only the default values of the API would be returned.
-See also \code{return_addresses}.}
+is a shorthand of \verb{outFields=*}. See \strong{References}. If \code{FALSE} (default)
+only the default values of the API would be returned. See also
+\code{return_addresses} argument.}
 
 \item{return_addresses}{return input addresses with results if \code{TRUE}.}
 
@@ -57,26 +57,25 @@ You can specify multiple country codes to limit results to more than one
 country.}
 
 \item{category}{A place or address type that can be used to filter results.
-Several values can be used as well as a comma-separated string (i.e.
-\verb{"Cinema,Museum}). See \link{arc_categories} for details.}
+Several values can be used as well as a vector (i.e.
+\code{c("Cinema", "Museum")}). See \link{arc_categories} for details.}
 
 \item{custom_query}{API-specific parameters to be used, passed as a named
 list.}
 }
 \value{
-A \CRANpkg{tibble} with the results. See the details of the output
-in \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}
+A \code{\link[tibble:tibble]{tibble}} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
 }
 \description{
-Geocodes addresses given as character values. This
-function returns the \CRANpkg{tibble} associated with the query.
+Geocodes addresses given as character values. This function returns the
+\code{\link[tibble:tibble]{tibble}} object associated with the query.
 
-This function uses the \code{SingleLine} approach detailed in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{API docs}.
-For multifield queries (i.e. using specific address parameters) use
-\code{\link[=arc_geo_multi]{arc_geo_multi()}} function.
+This function uses the \code{SingleLine} approach detailed in the
+\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}. For multi-field queries (i.e.
+using specific address parameters) use \code{\link[=arc_geo_multi]{arc_geo_multi()}} function.
 }
 \details{
-More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}
+More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}.
 }
 \section{\code{outsr}}{
 The spatial reference can be specified as either a well-known ID (WKID). If
@@ -91,32 +90,34 @@ See \link{arc_spatial_references} for values and examples.
 \donttest{
 arc_geo("Madrid, Spain")
 
+library(dplyr)
+
 # Several addresses with additional output fields
 with_params <- arc_geo(c("Madrid", "Barcelona"),
-  full_results = TRUE,
-  custom_query = list(outFields = "LongLabel")
+  custom_query = list(outFields = c("LongLabel", "CntryName"))
 )
 
-with_params[, c("lat", "lon", "LongLabel")]
+with_params \%>\%
+  select(lat, lon, CntryName, LongLabel)
 
 # With options: restrict search to USA
 with_params_usa <- arc_geo(c("Madrid", "Barcelona"),
-  full_results = TRUE,
   sourcecountry = "USA",
-  custom_query = list(outFields = "LongLabel")
+  custom_query = list(outFields = c("LongLabel", "CntryName"))
 )
 
-with_params_usa[, c("lat", "lon", "LongLabel")]
+with_params_usa \%>\%
+  select(lat, lon, CntryName, LongLabel)
 }
 \dontshow{\}) # examplesIf}
 }
 \references{
-\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST \code{findAddressCandidates}}
+\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST \code{findAddressCandidates}}.
 }
 \seealso{
 \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
 
-Geocoding operations: 
+Other functions for geocoding: 
 \code{\link{arc_geo_categories}()},
 \code{\link{arc_geo_multi}()},
 \code{\link{arc_reverse_geo}()}

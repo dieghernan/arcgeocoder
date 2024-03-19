@@ -7,34 +7,36 @@
 #' For geocoding using a single text string use [arc_geo()] function.
 #'
 #'
-#' @param address,address2,address3,neighborhood,city,subregion,region,postal,postalext,countrycode
-#'   Address components (See **Details**). At least one field should be
-#'   different than `NA` or `NULL`. A vector of values can be provided for each
-#'   parameter for multiple geocoding. When using vectors on different
-#'   parameters, their lengths should be the same.
+#' @param address,address2,address3,neighborhood,city,subregion Address
+#'   components  (See **Details**).
+#' @param region,postal,postalext,countrycode More address components, see
+#'    (See **Details**).
 #' @inheritParams arc_geo
 #'
 #' @references
-#' [ArcGIS REST
-#' `findAddressCandidates`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
+#' [ArcGIS REST `findAddressCandidates`](`r arcurl("cand")`)
 #'
-#' @return A \CRANpkg{tibble} with the results. See the details of the output
-#' in [ArcGIS REST API Service
-#' output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
+#' @return
+#' ```{r child = "man/chunks/out1.Rmd"}
+#' ```
 #'
 #' The resulting output would include also the input parameters (columns with
 #' prefix `q_`) for better tracking the results.
 #'
 #' @details
-#' More info and valid values in the [ArcGIS REST
-#' docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
+#' More info and valid values in the [ArcGIS REST docs](`r arcurl("cand")`).
 #'
 #'
 #' # Address components
 #'
 #' This function allows to perform structured queries by different components of
-#' an address. The following list provides a brief description of each
-#' parameter:
+#' an address. At least one field should be different than `NA` or `NULL`.
+#'
+#' A vector of values can be provided for each parameter for multiple geocoding.
+#' When using vectors on different parameters, their lengths should be the
+#' same.
+#'
+#' The following list provides a brief description of each parameter:
 #'
 #' - `address`: A string that represents the first line of a street address. In
 #'    most cases it will be the **street name and house number** input, but it
@@ -74,30 +76,38 @@
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
 #' simple <- arc_geo_multi(
-#'   address = "Plaza Mayor", limit = 3,
-#'   custom_query = list(outFields = "LongLabel")
+#'   address = "Plaza Mayor", limit = 10,
+#'   custom_query = list(outFields = c("LongLabel", "CntryName", "Region"))
 #' )
 #'
-#' simple[, c("lat", "lon", "LongLabel")]
+#' library(dplyr)
+#'
+#' simple %>%
+#'   select(lat, lon, CntryName, Region, LongLabel) %>%
+#'   slice_head(n = 10)
 #'
 #' # Restrict search to Spain
 #' simple2 <- arc_geo_multi(
 #'   address = "Plaza Mayor", countrycode = "ESP",
-#'   limit = 3,
-#'   custom_query = list(outFields = "LongLabel")
+#'   limit = 10,
+#'   custom_query = list(outFields = c("LongLabel", "CntryName", "Region"))
 #' )
 #'
-#' simple2[, c("lat", "lon", "LongLabel")]
+#' simple2 %>%
+#'   select(lat, lon, CntryName, Region, LongLabel) %>%
+#'   slice_head(n = 10)
 #'
 #' # Restrict to a region
 #' simple3 <- arc_geo_multi(
 #'   address = "Plaza Mayor", region = "Segovia",
 #'   countrycode = "ESP",
-#'   limit = 3,
-#'   custom_query = list(outFields = "LongLabel")
+#'   limit = 10,
+#'   custom_query = list(outFields = c("LongLabel", "CntryName", "Region"))
 #' )
 #'
-#' simple3[, c("lat", "lon", "LongLabel")]
+#' simple3 %>%
+#'   select(lat, lon, CntryName, Region, LongLabel) %>%
+#'   slice_head(n = 10)
 #' }
 arc_geo_multi <- function(address = NULL, address2 = NULL, address3 = NULL,
                           neighborhood = NULL, city = NULL, subregion = NULL,

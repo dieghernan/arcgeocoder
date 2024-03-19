@@ -34,7 +34,7 @@ mc <- arc_geo_multi("McDonalds",
   city = "Barcelona",
   region = "Catalonia", countrycode = "ES",
   category = "Food", limit = 50,
-  custom_query = list(outFields = "LongLabel,Type,StAdd")
+  custom_query = list(outFields = c("LongLabel", "Type,StAdd"))
 )
 
 # To sf
@@ -60,7 +60,7 @@ mc2_sf <- arc_geo_multi("McDonalds",
   region = "Catalonia", countrycode = "ES",
   category = "Food", limit = 50,
   custom_query = list(
-    outFields = "LongLabel,Type,StAdd",
+    outFields = c("LongLabel", "Type", "StAdd"),
     searchExtent = bbox
   )
 ) %>%
@@ -84,10 +84,7 @@ library(tidyterra)
 # Usually use crs 3857 for getting tiles
 bcn_3857 <- st_transform(bcn, 3857)
 
-osm_tiles <- get_tiles(bcn_3857,
-  provider = "CartoDB.Positron",
-  crop = TRUE
-)
+osm_tiles <- get_tiles(bcn_3857, provider = "CartoDB.Positron", crop = TRUE)
 
 ggplot() +
   geom_spatraster_rgb(data = osm_tiles, maxcell = Inf) +
@@ -100,13 +97,14 @@ ggplot() +
 ## Session info
 
 <details>
-  <summary>Details</summary>
-  
+
+<summary>Details</summary>
+
 ```{r session, echo=FALSE}
 if (!require("sessioninfo")) {
   install.packages("sessioninfo")
 }
 sessioninfo::session_info()
 ```
-</details>
 
+</details>
