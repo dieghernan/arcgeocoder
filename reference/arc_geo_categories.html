@@ -5,7 +5,7 @@ of arc_geo().
 See arc_categories for a detailed explanation and available values.
 Note that for obtaining results it is needed:
 Either to provide a pair of coordinates (x,y parameters) that would be
-used as a reference for geocoding,
+used as a reference for geocoding.
 Or a viewbox (aka bounding box) on the bbox parameter defining an
 desired extent of the results.
 
@@ -17,7 +17,7 @@ of arc_geo().
 See arc_categories for a detailed explanation and available values.
 Note that for obtaining results it is needed:
 Either to provide a pair of coordinates (x,y parameters) that would be
-used as a reference for geocoding,
+used as a reference for geocoding.
 Or a viewbox (aka bounding box) on the bbox parameter defining an
 desired extent of the results.
 
@@ -94,7 +94,7 @@ of categories) near or within a given location or area. This is a wrapper
 of <code><a href="arc_geo.html">arc_geo()</a></code>.</p>
 <p>See <a href="arc_categories.html">arc_categories</a> for a detailed explanation and available values.</p>
 <p><strong>Note that</strong> for obtaining results it is needed:</p><ul><li><p>Either to provide a pair of coordinates (<code>x,y</code> parameters) that would be
-used as a reference for geocoding,</p></li>
+used as a reference for geocoding.</p></li>
 <li><p>Or a viewbox (aka bounding box) on the <code>bbox</code> parameter defining an
 desired extent of the results.</p></li>
 </ul><p>It is possible to combine the two approaches (i.e. providing <code>x,y,bbox</code>
@@ -123,18 +123,18 @@ values) in order to boost the geocoding process. See <strong>Examples</strong>.<
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>category</dt>
 <dd><p>A place or address type that can be used to filter results.
-Several values can be used as well as a comma-separated string (i.e.
-<code>"Cinema,Museum</code>). See <a href="arc_categories.html">arc_categories</a> for details.</p></dd>
+Several values can be used as well as a vector (i.e.
+<code>c("Cinema", "Museum")</code>). See <a href="arc_categories.html">arc_categories</a> for details.</p></dd>
 
 
 <dt>x</dt>
 <dd><p>longitude values in numeric format. Must be in the range
-<code>[-180, 180]</code>.</p></dd>
+\(\left[-180, 180 \right]\).</p></dd>
 
 
 <dt>y</dt>
 <dd><p>latitude values in numeric format. Must be in the range
-<code>[-90, 90]</code>.</p></dd>
+\(\left[-90, 90 \right]\).</p></dd>
 
 
 <dt>bbox</dt>
@@ -163,9 +163,9 @@ that each query returns a maximum of 50 results.</p></dd>
 
 <dt>full_results</dt>
 <dd><p>returns all available data from the API service. This
-is a shorthand of <code>outFields=*</code>. See <strong>References</strong>.
-If <code>FALSE</code> (default) only the default values of the API would be returned.
-See also <code>return_addresses</code>.</p></dd>
+is a shorthand of <code>outFields=*</code>. See <strong>References</strong>. If <code>FALSE</code> (default)
+only the default values of the API would be returned. See also
+<code>return_addresses</code> argument.</p></dd>
 
 
 <dt>verbose</dt>
@@ -201,10 +201,7 @@ returned.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A <a href="https://CRAN.R-project.org/package=tibble" class="external-link"><span class="pkg">tibble</span></a> with the results. See the details of the output
-in <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API Service output</a></p>
-
-
+<p>A <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></code> object with the results. See the details of the output in  <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API Service output</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -223,7 +220,7 @@ that of the service ( WGS84, i.e. WKID = 4326)).</p>
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">ArcGIS REST Category filtering</a>.</p>
 <p><a href="arc_categories.html">arc_categories</a></p>
-<p>Geocoding operations: 
+<p>Other functions for geocoding: 
 <code><a href="arc_geo.html">arc_geo</a>()</code>,
 <code><a href="arc_geo_multi.html">arc_geo_multi</a>()</code>,
 <code><a href="arc_reverse_geo.html">arc_reverse_geo</a>()</code></p></div>
@@ -237,6 +234,21 @@ that of the service ( WGS84, i.e. WKID = 4326)).</p>
 <span class="r-in"><span><span class="co"># Get Carabanchel</span></span></span>
 <span class="r-in"><span><span class="va">carab</span> <span class="op">&lt;-</span> <span class="fu"><a href="arc_geo.html">arc_geo</a></span><span class="op">(</span><span class="st">"Carabanchel, Madrid, Spain"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># CRS</span></span></span>
+<span class="r-in"><span><span class="va">carab_crs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">carab</span><span class="op">$</span><span class="va">latestWkid</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">base_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">carab</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">lon</span>, <span class="va">lat</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">5</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_rect</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">xmin</span>, xmax <span class="op">=</span> <span class="va">xmax</span>, ymin <span class="op">=</span> <span class="va">ymin</span>, ymax <span class="op">=</span> <span class="va">ymax</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    fill <span class="op">=</span> <span class="cn">NA</span>,</span></span>
+<span class="r-in"><span>    color <span class="op">=</span> <span class="st">"blue"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="va">carab_crs</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Ex1: Search near Carabanchel (not restricted)</span></span></span>
 <span class="r-in"><span><span class="va">ex1</span> <span class="op">&lt;-</span> <span class="fu">arc_geo_categories</span><span class="op">(</span><span class="st">"Gas Station"</span>,</span></span>
 <span class="r-in"><span>  <span class="co"># Location</span></span></span>
@@ -244,24 +256,25 @@ that of the service ( WGS84, i.e. WKID = 4326)).</p>
 <span class="r-in"><span>  limit <span class="op">=</span> <span class="fl">50</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">carab</span><span class="op">$</span><span class="va">lon</span>, <span class="va">carab</span><span class="op">$</span><span class="va">lat</span>,</span></span>
-<span class="r-in"><span>  col <span class="op">=</span> <span class="st">"red"</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">3</span>,</span></span>
-<span class="r-in"><span>  xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3.8</span>, <span class="op">-</span><span class="fl">3.65</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40.3</span>, <span class="fl">40.5</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  xlab <span class="op">=</span> <span class="st">"long"</span>, ylab <span class="op">=</span> <span class="st">"lat"</span>, main <span class="op">=</span> <span class="st">"Example 1: Search near"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># BBox of Carabanchel</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/rect.html" class="external-link">rect</a></span><span class="op">(</span><span class="va">carab</span><span class="op">$</span><span class="va">xmin</span>, <span class="va">carab</span><span class="op">$</span><span class="va">ymin</span>, <span class="va">carab</span><span class="op">$</span><span class="va">xmax</span>, <span class="va">carab</span><span class="op">$</span><span class="va">ymax</span>,</span></span>
-<span class="r-in"><span>  border <span class="op">=</span> <span class="st">"blue"</span>,</span></span>
-<span class="r-in"><span>  col <span class="op">=</span> <span class="cn">NULL</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># Points may be far away</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">ex1</span><span class="op">$</span><span class="va">lon</span>, <span class="va">ex1</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Reduce number of labels to most common ones</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">labs</span> <span class="op">&lt;-</span> <span class="va">ex1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">ShortLabel</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">7</span>, order_by <span class="op">=</span> <span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">ShortLabel</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">base_map</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ex1</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">lon</span>, <span class="va">lat</span>, color <span class="op">=</span> <span class="va">ShortLabel</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html" class="external-link">scale_color_discrete</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="va">labs</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    title <span class="op">=</span> <span class="st">"Example 1"</span>,</span></span>
+<span class="r-in"><span>    subtitle <span class="op">=</span> <span class="st">"Search near (points may be far away)"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-plt img"><img src="arc_geo_categories-1.png" alt="" width="2188" height="1352"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example 2: Include part of the name, different results</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ex2</span> <span class="op">&lt;-</span> <span class="fu">arc_geo_categories</span><span class="op">(</span><span class="st">"Gas Station"</span>,</span></span>
 <span class="r-in"><span>  <span class="co"># Name</span></span></span>
 <span class="r-in"><span>  name <span class="op">=</span> <span class="st">"Repsol"</span>,</span></span>
@@ -270,43 +283,27 @@ that of the service ( WGS84, i.e. WKID = 4326)).</p>
 <span class="r-in"><span>  limit <span class="op">=</span> <span class="fl">50</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">carab</span><span class="op">$</span><span class="va">lon</span>, <span class="va">carab</span><span class="op">$</span><span class="va">lat</span>,</span></span>
-<span class="r-in"><span>  col <span class="op">=</span> <span class="st">"red"</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">3</span>,</span></span>
-<span class="r-in"><span>  xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3.8</span>, <span class="op">-</span><span class="fl">3.65</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40.3</span>, <span class="fl">40.5</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  xlab <span class="op">=</span> <span class="st">"long"</span>, ylab <span class="op">=</span> <span class="st">"lat"</span>, main <span class="op">=</span> <span class="st">"Example 2: Search near with name"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># BBox of Carabanchel</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/rect.html" class="external-link">rect</a></span><span class="op">(</span><span class="va">carab</span><span class="op">$</span><span class="va">xmin</span>, <span class="va">carab</span><span class="op">$</span><span class="va">ymin</span>, <span class="va">carab</span><span class="op">$</span><span class="va">xmax</span>, <span class="va">carab</span><span class="op">$</span><span class="va">ymax</span>,</span></span>
-<span class="r-in"><span>  border <span class="op">=</span> <span class="st">"blue"</span>,</span></span>
-<span class="r-in"><span>  col <span class="op">=</span> <span class="cn">NULL</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># Points may be far away</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">ex2</span><span class="op">$</span><span class="va">lon</span>, <span class="va">ex2</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">base_map</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ex2</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">lon</span>, <span class="va">lat</span>, color <span class="op">=</span> <span class="va">ShortLabel</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    title <span class="op">=</span> <span class="st">"Example 2"</span>,</span></span>
+<span class="r-in"><span>    subtitle <span class="op">=</span> <span class="st">"Search near with name"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-plt img"><img src="arc_geo_categories-2.png" alt="" width="2188" height="1352"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example 3: Near within a extent</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ex3</span> <span class="op">&lt;-</span> <span class="fu">arc_geo_categories</span><span class="op">(</span><span class="st">"Gas Station"</span>,</span></span>
 <span class="r-in"><span>  name <span class="op">=</span> <span class="st">"Repsol"</span>,</span></span>
 <span class="r-in"><span>  bbox <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">carab</span><span class="op">$</span><span class="va">xmin</span>, <span class="va">carab</span><span class="op">$</span><span class="va">ymin</span>, <span class="va">carab</span><span class="op">$</span><span class="va">xmax</span>, <span class="va">carab</span><span class="op">$</span><span class="va">ymax</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  limit <span class="op">=</span> <span class="fl">50</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">carab</span><span class="op">$</span><span class="va">lon</span>, <span class="va">carab</span><span class="op">$</span><span class="va">lat</span>,</span></span>
-<span class="r-in"><span>  col <span class="op">=</span> <span class="st">"red"</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">3</span>,</span></span>
-<span class="r-in"><span>  xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3.8</span>, <span class="op">-</span><span class="fl">3.65</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40.3</span>, <span class="fl">40.5</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  xlab <span class="op">=</span> <span class="st">"long"</span>, ylab <span class="op">=</span> <span class="st">"lat"</span>,</span></span>
-<span class="r-in"><span>  main <span class="op">=</span> <span class="st">"Example 3: Search near with name and bbox"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># BBox of Carabanchel</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/rect.html" class="external-link">rect</a></span><span class="op">(</span><span class="va">carab</span><span class="op">$</span><span class="va">xmin</span>, <span class="va">carab</span><span class="op">$</span><span class="va">ymin</span>, <span class="va">carab</span><span class="op">$</span><span class="va">xmax</span>, <span class="va">carab</span><span class="op">$</span><span class="va">ymax</span>,</span></span>
-<span class="r-in"><span>  border <span class="op">=</span> <span class="st">"blue"</span>,</span></span>
-<span class="r-in"><span>  col <span class="op">=</span> <span class="cn">NULL</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># Points may be far away</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">ex3</span><span class="op">$</span><span class="va">lon</span>, <span class="va">ex3</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">base_map</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ex3</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">lon</span>, <span class="va">lat</span>, color <span class="op">=</span> <span class="va">ShortLabel</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    title <span class="op">=</span> <span class="st">"Example 3"</span>,</span></span>
+<span class="r-in"><span>    subtitle <span class="op">=</span> <span class="st">"Search near with name and bbox"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-plt img"><img src="arc_geo_categories-3.png" alt="" width="2188" height="1352"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>

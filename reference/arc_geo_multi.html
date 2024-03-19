@@ -103,11 +103,14 @@ the <a href="https://CRAN.R-project.org/package=tibble" class="external-link"><s
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>address, address2, address3, neighborhood, city, subregion, region, postal, postalext, countrycode</dt>
-<dd><p>Address components (See <strong>Details</strong>). At least one field should be
-different than <code>NA</code> or <code>NULL</code>. A vector of values can be provided for each
-parameter for multiple geocoding. When using vectors on different
-parameters, their lengths should be the same.</p></dd>
+    <dl><dt>address, address2, address3, neighborhood, city, subregion</dt>
+<dd><p>Address
+components  (See <strong>Details</strong>).</p></dd>
+
+
+<dt>region, postal, postalext, countrycode</dt>
+<dd><p>More address components, see
+(See <strong>Details</strong>).</p></dd>
 
 
 <dt>lat</dt>
@@ -125,9 +128,9 @@ that each query returns a maximum of 50 results.</p></dd>
 
 <dt>full_results</dt>
 <dd><p>returns all available data from the API service. This
-is a shorthand of <code>outFields=*</code>. See <strong>References</strong>.
-If <code>FALSE</code> (default) only the default values of the API would be returned.
-See also <code>return_addresses</code>.</p></dd>
+is a shorthand of <code>outFields=*</code>. See <strong>References</strong>. If <code>FALSE</code> (default)
+only the default values of the API would be returned. See also
+<code>return_addresses</code> argument.</p></dd>
 
 
 <dt>return_addresses</dt>
@@ -156,8 +159,8 @@ returned.</p></dd>
 
 <dt>category</dt>
 <dd><p>A place or address type that can be used to filter results.
-Several values can be used as well as a comma-separated string (i.e.
-<code>"Cinema,Museum</code>). See <a href="arc_categories.html">arc_categories</a> for details.</p></dd>
+Several values can be used as well as a vector (i.e.
+<code>c("Cinema", "Museum")</code>). See <a href="arc_categories.html">arc_categories</a> for details.</p></dd>
 
 
 <dt>custom_query</dt>
@@ -169,8 +172,7 @@ list.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A <a href="https://CRAN.R-project.org/package=tibble" class="external-link"><span class="pkg">tibble</span></a> with the results. See the details of the output
-in <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API Service output</a>.</p>
+<p>A <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></code> object with the results. See the details of the output in  <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API Service output</a>.</p>
 
 
 <p>The resulting output would include also the input parameters (columns with
@@ -178,13 +180,16 @@ prefix <code>q_</code>) for better tracking the results.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>More info and valid values in the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm" class="external-link">ArcGIS REST docs</a></p>
+    <p>More info and valid values in the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm" class="external-link">ArcGIS REST docs</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="address-components">Address components<a class="anchor" aria-label="anchor" href="#address-components"></a></h2>
     <p>This function allows to perform structured queries by different components of
-an address. The following list provides a brief description of each
-parameter:</p><ul><li><p><code>address</code>: A string that represents the first line of a street address. In
+an address. At least one field should be different than <code>NA</code> or <code>NULL</code>.</p>
+<p>A vector of values can be provided for each parameter for multiple geocoding.
+When using vectors on different parameters, their lengths should be the
+same.</p>
+<p>The following list provides a brief description of each parameter:</p><ul><li><p><code>address</code>: A string that represents the first line of a street address. In
 most cases it will be the <strong>street name and house number</strong> input, but it
 can also be used to input building name or place-name.</p></li>
 <li><p><code>address2</code>: A string that represents the second line of a street address.
@@ -226,7 +231,7 @@ that of the service ( WGS84, i.e. WKID = 4326)).</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="https://jessecambon.github.io/tidygeocoder/reference/geo.html" class="external-link">tidygeocoder::geo()</a></code></p>
-<p>Geocoding operations: 
+<p>Other functions for geocoding: 
 <code><a href="arc_geo.html">arc_geo</a>()</code>,
 <code><a href="arc_geo_categories.html">arc_geo_categories</a>()</code>,
 <code><a href="arc_reverse_geo.html">arc_reverse_geo</a>()</code></p></div>
@@ -236,48 +241,77 @@ that of the service ( WGS84, i.e. WKID = 4326)).</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="va">simple</span> <span class="op">&lt;-</span> <span class="fu">arc_geo_multi</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  address <span class="op">=</span> <span class="st">"Plaza Mayor"</span>, limit <span class="op">=</span> <span class="fl">3</span>,</span></span>
-<span class="r-in"><span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>outFields <span class="op">=</span> <span class="st">"LongLabel"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  address <span class="op">=</span> <span class="st">"Plaza Mayor"</span>, limit <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>outFields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LongLabel"</span>, <span class="st">"CntryName"</span>, <span class="st">"Region"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">simple</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lat"</span>, <span class="st">"lon"</span>, <span class="st">"LongLabel"</span><span class="op">)</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     lat     lon LongLabel                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  41.7   -<span style="color: #BB0000;">4.73</span> Plaza Mayor, Valladolid, Castilla y León, ESP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  39.5   -<span style="color: #BB0000;">6.37</span> Plaza Mayor, Cáceres, Extremadura, ESP       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  21.2 -<span style="color: #BB0000;">102.</span>   Plaza Mayor, León, Guanajuato, MEX           </span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">simple</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">lat</span>, <span class="va">lon</span>, <span class="va">CntryName</span>, <span class="va">Region</span>, <span class="va">LongLabel</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      lat     lon CntryName     Region              LongLabel                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 41.7    -<span style="color: #BB0000;">4.73</span> España        Castilla y León     Plaza Mayor, Valladolid, Cas…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 39.5    -<span style="color: #BB0000;">6.37</span> España        Extremadura         Plaza Mayor, Cáceres, Extrem…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 21.2  -<span style="color: #BB0000;">102.</span>   México        Guanajuato          Plaza Mayor, León, Guanajuat…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  6.24  -<span style="color: #BB0000;">75.6</span>  Colombia      Antioquia           Plaza Mayor, Carrera 57 41, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 41.3    -<span style="color: #BB0000;">4.91</span> España        Castilla y León     Plaza Mayor, 47400, Medina d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 41.5    -<span style="color: #BB0000;">5.00</span> España        Castilla y León     Plaza Mayor, 47100, Tordesil…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 38.9    -<span style="color: #BB0000;">3.71</span> España        Castilla-La Mancha  Plaza Mayor, 13270, Almagro,…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 40.4    -<span style="color: #BB0000;">3.71</span> España        Comunidad de Madrid Plaza Mayor, 28012, Sol, Mad…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 39.5    -<span style="color: #BB0000;">6.37</span> España        Extremadura         Plaza Mayor, 10003, Plaza Ma…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 33.9   -<span style="color: #BB0000;">84.1</span>  United States Georgia             Plaza Mayor, 960 Pleasant Hi…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Restrict search to Spain</span></span></span>
 <span class="r-in"><span><span class="va">simple2</span> <span class="op">&lt;-</span> <span class="fu">arc_geo_multi</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  address <span class="op">=</span> <span class="st">"Plaza Mayor"</span>, countrycode <span class="op">=</span> <span class="st">"ESP"</span>,</span></span>
-<span class="r-in"><span>  limit <span class="op">=</span> <span class="fl">3</span>,</span></span>
-<span class="r-in"><span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>outFields <span class="op">=</span> <span class="st">"LongLabel"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  limit <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>outFields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LongLabel"</span>, <span class="st">"CntryName"</span>, <span class="st">"Region"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">simple2</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lat"</span>, <span class="st">"lon"</span>, <span class="st">"LongLabel"</span><span class="op">)</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     lat   lon LongLabel                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  41.7 -<span style="color: #BB0000;">4.73</span> Plaza Mayor, Valladolid, Castilla y León, ESP                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  39.5 -<span style="color: #BB0000;">6.37</span> Plaza Mayor, Cáceres, Extremadura, ESP                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  41.3 -<span style="color: #BB0000;">4.91</span> Plaza Mayor, 47400, Medina del Campo, Valladolid, Castilla y León…</span>
+<span class="r-in"><span><span class="va">simple2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">lat</span>, <span class="va">lon</span>, <span class="va">CntryName</span>, <span class="va">Region</span>, <span class="va">LongLabel</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      lat   lon CntryName Region              LongLabel                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  41.7 -<span style="color: #BB0000;">4.73</span> España    Castilla y León     Plaza Mayor, Valladolid, Castilla …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  39.5 -<span style="color: #BB0000;">6.37</span> España    Extremadura         Plaza Mayor, Cáceres, Extremadura,…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  41.3 -<span style="color: #BB0000;">4.91</span> España    Castilla y León     Plaza Mayor, 47400, Medina del Cam…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  41.5 -<span style="color: #BB0000;">5.00</span> España    Castilla y León     Plaza Mayor, 47100, Tordesillas, V…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  38.9 -<span style="color: #BB0000;">3.71</span> España    Castilla-La Mancha  Plaza Mayor, 13270, Almagro, Ciuda…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  40.4 -<span style="color: #BB0000;">3.71</span> España    Comunidad de Madrid Plaza Mayor, 28012, Sol, Madrid, C…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  39.5 -<span style="color: #BB0000;">6.37</span> España    Extremadura         Plaza Mayor, 10003, Plaza Mayor, C…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  37.2 -<span style="color: #BB0000;">3.60</span> España    Andalucía           Plaza Mayor, Calle Reyes Católicos…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  36.7 -<span style="color: #BB0000;">4.48</span> España    Andalucía           Plaza Mayor, Calle Boccacio 3, 291…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  43.4 -<span style="color: #BB0000;">4.11</span> España    Cantabria           Plaza Mayor, Plaza Mayor 12, 39330…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Restrict to a region</span></span></span>
 <span class="r-in"><span><span class="va">simple3</span> <span class="op">&lt;-</span> <span class="fu">arc_geo_multi</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  address <span class="op">=</span> <span class="st">"Plaza Mayor"</span>, region <span class="op">=</span> <span class="st">"Segovia"</span>,</span></span>
 <span class="r-in"><span>  countrycode <span class="op">=</span> <span class="st">"ESP"</span>,</span></span>
-<span class="r-in"><span>  limit <span class="op">=</span> <span class="fl">3</span>,</span></span>
-<span class="r-in"><span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>outFields <span class="op">=</span> <span class="st">"LongLabel"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  limit <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>outFields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LongLabel"</span>, <span class="st">"CntryName"</span>, <span class="st">"Region"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">simple3</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lat"</span>, <span class="st">"lon"</span>, <span class="st">"LongLabel"</span><span class="op">)</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     lat   lon LongLabel                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  41.0 -<span style="color: #BB0000;">4.12</span> Plaza Mayor, 40001, Distrito 1 Seccion 2, Segovia, Castilla y Leó…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  41.0 -<span style="color: #BB0000;">4.12</span> Plaza Mayor, Calle del Cronista Lecea 2, 40001, Distrito 1 Seccio…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  40.9 -<span style="color: #BB0000;">4.27</span> Plaza Mayor, 40141, Abades, Segovia, Castilla y León, ESP         </span>
+<span class="r-in"><span><span class="va">simple3</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">lat</span>, <span class="va">lon</span>, <span class="va">CntryName</span>, <span class="va">Region</span>, <span class="va">LongLabel</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      lat   lon CntryName Region          LongLabel                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  41.0 -<span style="color: #BB0000;">4.12</span> España    Castilla y León Plaza Mayor, 40001, Distrito 1 Seccion…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  41.0 -<span style="color: #BB0000;">4.12</span> España    Castilla y León Plaza Mayor, Calle del Cronista Lecea …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  40.9 -<span style="color: #BB0000;">4.27</span> España    Castilla y León Plaza Mayor, 40141, Abades, Segovia, C…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  41.4 -<span style="color: #BB0000;">4.11</span> España    Castilla y León Plaza Mayor, 40354, Adrados, Segovia, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  41.4 -<span style="color: #BB0000;">4.11</span> España    Castilla y León Plaza Mayor, 40354, Adrados, Segovia, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  41.2 -<span style="color: #BB0000;">4.17</span> España    Castilla y León Plaza Mayor, 40292, Aldea Real, Segovi…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  41.5 -<span style="color: #BB0000;">3.47</span> España    Castilla y León Plaza Mayor, 40555, Aldealengua de San…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  41.5 -<span style="color: #BB0000;">3.78</span> España    Castilla y León Plaza Mayor, 40532, Aldeanueva de la S…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  41.5 -<span style="color: #BB0000;">3.78</span> España    Castilla y León Plaza Mayor, 40533, Aldehorno, Segovia…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  41.5 -<span style="color: #BB0000;">3.78</span> España    Castilla y León Plaza Mayor, 40533, Aldehorno, Segovia…</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

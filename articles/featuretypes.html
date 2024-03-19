@@ -128,9 +128,9 @@ the tolerance specified in the <em>Search Tolerance</em> column.</p>
 <code>reverseGeocode</code>
 </caption>
 <colgroup>
-<col width="26%">
-<col width="26%">
-<col width="47%">
+<col width="22%">
+<col width="22%">
+<col width="55%">
 </colgroup>
 <thead><tr class="header">
 <th>Feature type</th>
@@ -234,7 +234,7 @@ separated by a comma, with no spaces after the comma.</p>
 <h3 id="multiple-featuretypes-value">multiple <code>featuretypes</code> value<a class="anchor" aria-label="anchor" href="#multiple-featuretypes-value"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span><span class="va">...</span>, featuretypes <span class="op">=</span> <span class="st">"PointAddress,StreetAddress"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span><span class="va">...</span>, featuretypes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PointAddress"</span>, <span class="st">"StreetAddress"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -243,7 +243,8 @@ separated by a comma, with no spaces after the comma.</p>
 <p>In the following examples, we would provide different examples for
 better understanding.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/arcgeocoder/">arcgeocoder</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/arcgeocoder/">arcgeocoder</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="example-1-match-to-poi-centroid-returned">Example 1: Match to <code>POI</code> centroid returned<a class="anchor" aria-label="anchor" href="#example-1-match-to-poi-centroid-returned"></a>
 </h3>
@@ -263,7 +264,9 @@ indicates the type of feature.</p>
 <span>  langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">api_poi</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"address"</span>, <span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"Addr_type"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">api_poi</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="8%">
@@ -304,7 +307,9 @@ indicates the type of feature.</p>
 <span>  langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">api_address</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"address"</span>, <span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"Addr_type"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">api_address</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="9%">
@@ -342,7 +347,9 @@ indicates the type of feature.</p>
 <span>  langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">api_local</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"address"</span>, <span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"Addr_type"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">api_local</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="12%">
@@ -379,11 +386,13 @@ be applied on the requested <code>featuretypes</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">api_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">example_x</span>, y <span class="op">=</span> <span class="va">example_y</span>,</span>
-<span>  featuretypes <span class="op">=</span> <span class="st">"Locality,StreetInt,StreetAddress"</span>,</span>
+<span>  featuretypes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Locality"</span>, <span class="st">"StreetInt"</span>, <span class="st">"StreetAddress"</span><span class="op">)</span>,</span>
 <span>  langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">api_multiple</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"address"</span>, <span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"Addr_type"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">api_multiple</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="9%">
@@ -426,30 +435,36 @@ when reverse geocoding the North Pole the API would return a
 <span></span>
 <span><span class="va">npole</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">90</span>, langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">npole</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"address"</span>, <span class="st">"Addr_type"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">npole</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">x</th>
 <th align="right">y</th>
 <th align="left">address</th>
+<th align="right">lon</th>
+<th align="right">lat</th>
 <th align="left">Addr_type</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="right">0</td>
 <td align="right">90</td>
 <td align="left">North Pole</td>
+<td align="right">0</td>
+<td align="right">90</td>
 <td align="left">Locality</td>
 </tr></tbody>
 </table>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># But no StreetAddress</span></span>
+<code class="sourceCode R"><span><span class="co"># But no StreetAddress</span></span>
 <span><span class="va">npole2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">90</span>, langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  featuretypes <span class="op">=</span> <span class="st">"StreetAddress"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">npole2</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">npole2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">x</th>
