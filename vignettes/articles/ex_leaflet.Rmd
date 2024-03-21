@@ -28,7 +28,6 @@ This widget is browsable and filterable thanks to **crosstalk** and
 ```{r example}
 # Coffee Shops and Bakeries around the Eiffel Tower
 
-# Coffee Shops and Bakeries around the Eiffel Tower
 
 library(arcgeocoder)
 library(leaflet)
