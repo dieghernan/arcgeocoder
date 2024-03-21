@@ -3,7 +3,7 @@
 #' @description
 #' This function is useful for extracting places with a given category (or list
 #' of categories) near or within a given location or area. This is a wrapper
-#' of [arc_geo()].
+#' of [arc_geo()], but it is vectorized over `category`.
 #'
 #' See [arc_categories] for a detailed explanation and available values.
 #'
@@ -16,6 +16,10 @@
 #'  It is possible to combine the two approaches (i.e. providing `x,y,bbox`
 #'  values) in order to boost the geocoding process. See **Examples**.
 #'
+#' @param category A place or address type that can be used to filter results.
+#'   Several values can be used as well as a vector (i.e.
+#'   `c("Cinema", "Museum")`), performing one call for each value. See
+#'   **Details**.
 #' @inheritParams arc_geo
 #' @inheritParams arc_reverse_geo
 #' @inheritDotParams arc_geo -address -return_addresses -progressbar
@@ -31,6 +35,14 @@
 #' [Bounding Box Tool](https://boundingbox.klokantech.com/).
 #'
 #' For a full list of valid categories see [arc_categories].
+#'
+#' This function is vectorized over `category`, that means that it would perform
+#' one independent call to [arc_geo()] for each `category` value.
+#'
+#' `arc_geo_categories()` also understands a single string of categories
+#' separated by commas (`"Cinema,Museum"`), that would be internally treated as
+#' `c("Cinema", "Museum")`.
+#'
 #'
 #' @inheritSection arc_reverse_geo `outsr`
 #'
@@ -138,8 +150,11 @@ arc_geo_categories <- function(category, x = NULL, y = NULL, bbox = NULL,
   }
 
   # Ready for preparing query
+  # Vectorize categories
+  cats <- unlist(strsplit(paste0(category, collapse = ","), ","))
+
   base_tbl <- dplyr::tibble(
-    q_category = category,
+    q_category = cats,
     q_x = locs[1],
     q_y = locs[2],
     q_bbox_xmin = bbox[1],
@@ -158,21 +173,29 @@ arc_geo_categories <- function(category, x = NULL, y = NULL, bbox = NULL,
   }
 
   if (is.null(name)) name <- ""
-  api_res <- arc_geo(
-    category = category, address = name,
-    lat = lat, long = long, limit = limit,
-    full_results = full_results,
-    return_addresses = TRUE,
-    verbose = verbose, progressbar = FALSE,
-    custom_query = custom_query, ...
-  )
 
-  end <- dplyr::bind_cols(base_tbl, api_res)
+  # Vectorize call over categories
+  ncalls <- seq_len(nrow(base_tbl))
+  api_res <- lapply(ncalls, function(x) {
+    bs <- base_tbl[x, ]
+    qry <- arc_geo(
+      category = bs$q_category, address = name,
+      lat = lat, long = long, limit = limit,
+      full_results = full_results,
+      return_addresses = TRUE,
+      verbose = verbose, progressbar = FALSE,
+      custom_query = custom_query, ...
+    )
+    if (all(is.na(qry[, c(2, 3)]))) message("(category: ", bs$q_category, ")")
+    end <- dplyr::bind_cols(bs, qry)
 
-  # Remove fields
-  end <- end[, setdiff(names(end), "query")]
+    # Remove fields
+    end <- end[, setdiff(names(end), "query")]
 
-  return(end)
+    return(end)
+  })
+
+  dplyr::bind_rows(api_res)
 }
 
 

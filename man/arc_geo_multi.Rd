@@ -2,7 +2,7 @@
 % Please edit documentation in R/arc_geo_multi.R
 \name{arc_geo_multi}
 \alias{arc_geo_multi}
-\title{Geocoding using the ArcGIS REST API with multifield query}
+\title{Geocoding using the ArcGIS REST API with multi-field query}
 \usage{
 arc_geo_multi(
   address = NULL,
@@ -76,7 +76,7 @@ prefix \code{q_}) for better tracking the results.
 }
 \description{
 Geocodes addresses given specific address components.This function returns
-the \CRANpkg{tibble} associated with the query.
+the \code{\link[tibble:tibble]{tibble}} associated with the query.
 
 For geocoding using a single text string use \code{\link[=arc_geo]{arc_geo()}} function.
 }

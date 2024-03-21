@@ -1,8 +1,8 @@
-#' Geocoding using the ArcGIS REST API with multifield query
+#' Geocoding using the ArcGIS REST API with multi-field query
 #'
 #' @description
 #' Geocodes addresses given specific address components.This function returns
-#' the \CRANpkg{tibble} associated with the query.
+#' the [`tibble`][tibble::tibble] associated with the query.
 #'
 #' For geocoding using a single text string use [arc_geo()] function.
 #'

@@ -22,7 +22,8 @@ arc_geo_categories(
 \arguments{
 \item{category}{A place or address type that can be used to filter results.
 Several values can be used as well as a vector (i.e.
-\code{c("Cinema", "Museum")}). See \link{arc_categories} for details.}
+\code{c("Cinema", "Museum")}), performing one call for each value. See
+\strong{Details}.}
 
 \item{x}{longitude values in numeric format. Must be in the range
 \eqn{\left[-180, 180 \right]}.}
@@ -74,7 +75,7 @@ A \code{\link[tibble:tibble]{tibble}} object with the results. See the details o
 \description{
 This function is useful for extracting places with a given category (or list
 of categories) near or within a given location or area. This is a wrapper
-of \code{\link[=arc_geo]{arc_geo()}}.
+of \code{\link[=arc_geo]{arc_geo()}}, but it is vectorized over \code{category}.
 
 See \link{arc_categories} for a detailed explanation and available values.
 
@@ -94,6 +95,13 @@ Bounding boxes can be located using different online tools, as
 \href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
 
 For a full list of valid categories see \link{arc_categories}.
+
+This function is vectorized over \code{category}, that means that it would perform
+one independent call to \code{\link[=arc_geo]{arc_geo()}} for each \code{category} value.
+
+\code{arc_geo_categories()} also understands a single string of categories
+separated by commas (\code{"Cinema,Museum"}), that would be internally treated as
+\code{c("Cinema", "Museum")}.
 }
 \section{\code{outsr}}{
 The spatial reference can be specified as either a well-known ID (WKID). If

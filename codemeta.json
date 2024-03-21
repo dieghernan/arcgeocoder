@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/dieghernan/arcgeocoder",
   "issueTracker": "https://github.com/dieghernan/arcgeocoder/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.0.9000",
+  "version": "0.2.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.3 (2024-02-29)",
+  "runtimePlatform": "R version 4.3.3 (2024-02-29 ucrt)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -172,7 +172,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "arcgis", "address", "reverse-geocoding", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "gis", "cran-r"],
-  "fileSize": "413.071KB",
+  "fileSize": "419.502KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

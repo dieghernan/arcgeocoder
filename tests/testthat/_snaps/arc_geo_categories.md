@@ -141,6 +141,23 @@
          - sourceCountry=ES
          - outSR=102100
          - langCode=ES
-         - category=POI,Address
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=Bar&f=json&maxLocations=20&outFields=LongLabel&location=-3.7242,40.39094&searchExtent=-3.8,40.3,-3.65,40.5&sourceCountry=ES&outSR=102100&langCode=ES&category=POI,Address
+         - category=POI
+      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=Bar&f=json&maxLocations=20&outFields=LongLabel&location=-3.7242,40.39094&searchExtent=-3.8,40.3,-3.65,40.5&sourceCountry=ES&outSR=102100&langCode=ES&category=POI
+      
+      Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
+      Parameters:
+         - SingleLine=Bar
+         - f=json
+         - maxLocations=20
+         - outFields=LongLabel
+         - location=-3.7242,40.39094
+         - searchExtent=-3.8,40.3,-3.65,40.5
+         - sourceCountry=ES
+         - outSR=102100
+         - langCode=ES
+         - category=Address
+      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=Bar&f=json&maxLocations=20&outFields=LongLabel&location=-3.7242,40.39094&searchExtent=-3.8,40.3,-3.65,40.5&sourceCountry=ES&outSR=102100&langCode=ES&category=Address
+      
+      No results for query Bar
+      (category: Address)
 

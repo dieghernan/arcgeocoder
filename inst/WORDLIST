@@ -31,8 +31,10 @@ WKT
 al
 api
 apigeocoder
+browsable
 centroid
 codecov
+crosstalk
 et
 geocode
 geocoded
@@ -43,13 +45,14 @@ ggplot
 latestWkid
 lon
 maptiles
-multifield
 nominatimlite
 pkgdown
+reactable
 terra
 tibble
 tidygeocoder
 tidyterra
+vectorized
 viewbox
 wkid
 xmax

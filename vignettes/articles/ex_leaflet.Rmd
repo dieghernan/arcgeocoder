@@ -20,14 +20,21 @@ knitr::opts_chunk$set(
 
 The following example shows how it is possible to create a nice [leaflet
 map](https://rstudio.github.io/leaflet/) with data retrieved with
-**arcgeocoder**:
+**arcgeocoder**.
+
+This widget is browsable and filterable thanks to **crosstalk** and
+**reactable**:
 
 ```{r example}
+# Coffee Shops and Bakeries around the Eiffel Tower
+
 # Coffee Shops and Bakeries around the Eiffel Tower
 
 library(arcgeocoder)
 library(leaflet)
 library(dplyr)
+library(reactable)
+library(crosstalk)
 
 # Step 1: Eiffel Tower
 
@@ -47,72 +54,107 @@ eiffel_icon <- makeIcon(
   iconAnchorX = 25, iconAnchorY = 25
 )
 
-# Leaflet map
-lm <- leaflet(
+
+# Step 2: Coffee Shops and Bakeries nearby
+cf_bk <- arc_geo_categories(
+  category = c("Coffee Shop", "Bakery"),
+  x = eiffel_tower$lon, y = eiffel_tower$lat,
+  limit = 50,
+  full_results = TRUE
+)
+
+# Labels and icons
+labs <- paste0("<strong>", cf_bk$PlaceName, "</strong><br>", cf_bk$StAddr)
+
+# Assign icons
+leaf_icons <- icons(
+  ifelse(cf_bk$Type == "Coffee Shop",
+    paste0(icon_url, "coffee-cup.png"),
+    paste0(icon_url, "croissant.png")
+  ),
+  iconWidth = 20, iconHeight = 20,
+  iconAnchorX = 10, iconAnchorY = 10
+)
+
+# Step 3: Crosstalk object
+cf_bk_data <- cf_bk %>%
+  select(Place = ShortLabel, Type, Address = Place_addr, City, URL, Phone) %>%
+  SharedData$new(group = "Food")
+
+
+# Step 4: Leaflet map with crosstalk
+# Init leaflet map
+lmend <- leaflet(
+  data = cf_bk_data,
   elementId = "EiffelTower", width = "100%", height = "60vh",
   options = leafletOptions(minZoom = 12)
 ) %>%
+  setView(eiffel_tower$lon, eiffel_tower$lat, zoom = 16) %>%
   addProviderTiles(
     provider = "CartoDB.Positron",
     group = "CartoDB.Positron"
   ) %>%
   addTiles(group = "OSM") %>%
-  addMarkers(data = eiffel_tower, ~lon, ~lat, icon = eiffel_icon)
-
-
-# Step 2: Coffee Shops nearby
-cf <- arc_geo_categories("Coffee Shop",
-  x = eiffel_tower$lon, y = eiffel_tower$lat,
-  limit = 50, full_results = TRUE
-)
-
-# Label for PopUp
-cf$labelpop <- paste0("<strong>", cf$PlaceName, "</strong><br>", cf$StAddr)
-
-coffee_icon <- makeIcon(
-  iconUrl = paste0(icon_url, "coffee-cup.png"),
-  iconWidth = 20, iconHeight = 20,
-  iconAnchorX = 10, iconAnchorY = 10
-)
-
-lm <- lm %>%
+  addMarkers(data = eiffel_tower, ~lon, ~lat, icon = eiffel_icon) %>%
   addMarkers(
-    data = cf, ~lon, ~lat, popup = ~labelpop, icon = coffee_icon,
-    group = "Coffee Shops"
-  )
-
-# Step 3: Bakeries nearby
-bk <- arc_geo_categories("Bakery",
-  x = eiffel_tower$lon, y = eiffel_tower$lat,
-  limit = 50, full_results = TRUE
-)
-
-# Label for PopUp
-bk$labelpop <- paste0("<strong>", bk$PlaceName, "</strong><br>", bk$StAddr)
-
-bk_icon <- makeIcon(
-  iconUrl = paste0(icon_url, "croissant.png"),
-  iconWidth = 20, iconHeight = 20,
-  iconAnchorX = 10, iconAnchorY = 10
-)
-
-lm <- lm %>%
-  addMarkers(
-    data = bk, ~lon, ~lat, popup = ~labelpop, icon = bk_icon,
-    group = "Bakeries"
-  )
-
-# Add layer control
-
-lm <- lm %>%
+    lat = cf_bk$lat, lng = cf_bk$lon, popup = labs, icon = leaf_icons
+  ) %>%
   addLayersControl(
     baseGroups = c("CartoDB.Positron", "OSM"),
-    overlayGroups = c("Coffee Shops", "Bakeries"),
     position = "topleft",
     options = layersControlOptions(collapsed = FALSE)
   )
 
-lm
+
+# Step 5: Reactable for filtering
+tb <- reactable(cf_bk_data,
+  selection = "multiple",
+  onClick = "select",
+  rowStyle = list(cursor = "pointer"),
+  filterable = TRUE,
+  searchable = TRUE,
+  showPageSizeOptions = TRUE,
+  striped = TRUE,
+  defaultColDef = colDef(vAlign = "center", minWidth = 150),
+  paginationType = "jump",
+  elementId = "coffees",
+  columns = list(
+    Place = colDef(
+      sticky = "left", rowHeader = TRUE, name = "",
+      cell = function(value) {
+        htmltools::strong(value)
+      }
+    ),
+    URL = colDef(cell = function(value) {
+      # Render as a link
+      if (is.null(value) | is.na(value)) {
+        return("")
+      }
+      htmltools::a(href = value, target = "_blank", as.character(value))
+    }),
+    Phone = colDef(cell = function(value) {
+      # Render as a link
+      if (is.null(value) | is.na(value)) {
+        return("")
+      }
+      clearphone <- gsub("-", "", value)
+      clearphone <- gsub(" ", "", clearphone)
+      htmltools::a(
+        href = paste0("tel:", clearphone), target = "_blank",
+        as.character(value)
+      )
+    })
+  )
+)
+```
+
+## Widget
+
+```{r widget}
+# Last step: Display all
+htmltools::browsable(
+  htmltools::tagList(lmend, tb)
+)
 ```
 
 ## Attributions

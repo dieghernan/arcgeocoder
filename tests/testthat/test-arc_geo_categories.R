@@ -152,10 +152,9 @@ test_that("Test with all params", {
   expect_false(any(grepl("Country", names(out))))
 
   # Full results
-  out2 <- arc_geo_categories("POI,Address",
+  out2 <- arc_geo_categories("POI,Bakery",
     x = -3.7242, y = 40.39094,
-    name = "Bar",
-    limit = 20,
+    limit = 2,
     lon = "aaaa",
     lat = "bbbb",
     bbox = c(-3.8, 40.3, -3.65, 40.5),
@@ -174,4 +173,6 @@ test_that("Test with all params", {
   expect_false("query" %in% names(out))
   expect_true(any(grepl("Country", names(out2))))
   expect_gt(ncol(out2), ncol(out))
+  # Vectorized
+  expect_gt(nrow(out2), 2)
 })

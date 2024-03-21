@@ -1,5 +1,6 @@
-# arcgeocoder (development version)
+# arcgeocoder 0.2.0
 
+-   `arc_geo_categories()` is now vectorized on `category` argument.
 -   Fix typos in documentation.
 -   Now a vector can be used on each named element of `custom_query`.
 -   Add **ggplot2** and **sf** to Suggests.
