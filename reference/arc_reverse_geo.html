@@ -21,7 +21,7 @@ tibble associated with the query."><meta property="og:image" content="https://di
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">
-      <img src="../favicon-32x32.png" alt="arcgeocoder logo" height="34" width="34" class="d-inline-block me-1">
+      <img src="../apple-touch-icon-180x180.png" alt="arcgeocoder logo" height="34" width="34" class="d-inline-block me-1">
       arcgeocoder</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
@@ -219,18 +219,18 @@ when geocoding. Possible values are:</p><ul><li><p><code>"StreetInt"</code></p><
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">arc_reverse_geo</span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">73.98586</span>, y <span class="op">=</span> <span class="fl">40.75728</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       x     y address                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> -<span style="color: #BB0000;">74.0</span>  40.8 W 44th St, New York, NY, 10036, USA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       x     y address                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> -<span style="color: #BB0000;">74.0</span>  40.8 178-198 W 44th St, New York, NY, 10036, USA</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Several coordinates</span></span></span>
 <span class="r-in"><span><span class="fu">arc_reverse_geo</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">73.98586</span>, <span class="op">-</span><span class="fl">3.188375</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40.75728</span>, <span class="fl">55.95335</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        x     y address                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> -<span style="color: #BB0000;">74.0</span>   40.8 W 44th St, New York, NY, 10036, USA        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  -<span style="color: #BB0000;">3.19</span>  56.0 Old Town Chambers, Edinburgh, Scotland, GBR</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        x     y address                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> -<span style="color: #BB0000;">74.0</span>   40.8 178-198 W 44th St, New York, NY, 10036, USA                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  -<span style="color: #BB0000;">3.19</span>  56.0 Rabbie's, 6 Waterloo Place, Canongate, Edinburgh, Midlothian, Sc…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># With options: using some additional parameters</span></span></span>
 <span class="r-in"><span><span class="va">sev</span> <span class="op">&lt;-</span> <span class="fu">arc_reverse_geo</span><span class="op">(</span></span></span>
@@ -264,34 +264,38 @@ when geocoding. Possible values are:</p><ul><li><p><code>"StreetInt"</code></p><
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">sev</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 33</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ x            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.985860, -3.188375</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ y            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.75728, 55.95335</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ address      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway, New York, NY, 10036, USA", "Old To…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ lat          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4976612, 7549115</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ lon          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -8236079.4, -354916.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ Match_addr   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway, New York, New York, 10036", "Old T…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ LongLabel    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway, New York, NY, 10036, USA", "Old To…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ ShortLabel   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway", "Old Town Chambers"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ address      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway, New York, NY, 10036, USA", "Rabbie…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ lat          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4976603, 7549144</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ lon          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -8236060.8, -354928.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ Match_addr   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway, New York, New York, 10036", "Rabbi…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ LongLabel    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway, New York, NY, 10036, USA", "Rabbie…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ ShortLabel   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway", "Rabbie's"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Addr_type    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "StreetInt", "POI"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ Type         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Hotel"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ PlaceName    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Old Town Chambers"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ AddNum       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ Address      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway", NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ Type         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Restaurant"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ PlaceName    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Rabbie's"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ AddNum       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ Address      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway", "6 Waterloo Place"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Block        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Sector       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ Neighborhood <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Theater District-Times Square", NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ Neighborhood <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Midtown", "Canongate"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ District     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manhattan", NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ City         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "New York", NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ MetroArea    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "New York City Metro", NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ Subregion    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "New York County", "Edinburgh"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ City         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "New York", "Edinburgh"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ MetroArea    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Edinburgh"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ Subregion    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "New York County", "Midlothian"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Region       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "New York", "Scotland"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ RegionAbbr   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NY", NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ RegionAbbr   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NY", "SCT"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Territory    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ Postal       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10036", NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ PostalExt    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ Postal       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10036", "EH1 3EG"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ PostalExt    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4011", NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ CntryName    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "United States", "United Kingdom"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ CountryCode  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "USA", "GBR"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ X            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.985793, -3.188378</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ Y            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.75726, 55.95340</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ InputX       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.985860, -3.188375</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ InputY       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.75728, 55.95335</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ wkid         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 102100, 102100</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ latestWkid   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3857, 3857</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>

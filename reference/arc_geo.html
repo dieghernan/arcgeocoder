@@ -23,7 +23,7 @@ using specific address parameters) use arc_geo_multi() function."><meta property
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">
-      <img src="../favicon-32x32.png" alt="arcgeocoder logo" height="34" width="34" class="d-inline-block me-1">
+      <img src="../apple-touch-icon-180x180.png" alt="arcgeocoder logo" height="34" width="34" class="d-inline-block me-1">
       arcgeocoder</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
@@ -206,7 +206,7 @@ that of the service ( WGS84, i.e. WKID = 4326)).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 13</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query        lat   lon address score     x     y  xmin  ymin  xmax  ymax  wkid</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Madrid, S…  40.4 -<span style="color: #BB0000;">3.69</span> Madrid…   100 -<span style="color: #BB0000;">3.69</span>  40.4 -<span style="color: #BB0000;">3.87</span>  40.2 -<span style="color: #BB0000;">3.52</span>  40.6  <span style="text-decoration: underline;">4</span>326</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Madrid, S…  40.4 -<span style="color: #BB0000;">3.70</span> Madrid…   100 -<span style="color: #BB0000;">3.70</span>  40.4 -<span style="color: #BB0000;">3.88</span>  40.2 -<span style="color: #BB0000;">3.52</span>  40.6  <span style="text-decoration: underline;">4</span>326</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: latestWkid &lt;int&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
@@ -230,7 +230,7 @@ that of the service ( WGS84, i.e. WKID = 4326)).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     lat   lon CntryName LongLabel                       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  40.4 -<span style="color: #BB0000;">3.69</span> España    Madrid, Comunidad de Madrid, ESP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  40.4 -<span style="color: #BB0000;">3.70</span> España    Madrid, Comunidad de Madrid, ESP</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  41.4  2.17 España    Barcelona, Cataluña, ESP        </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># With options: restrict search to USA</span></span></span>
@@ -245,8 +245,8 @@ that of the service ( WGS84, i.e. WKID = 4326)).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     lat   lon CntryName     LongLabel         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  41.9 -<span style="color: #BB0000;">93.8</span> United States Madrid, IA, USA   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  35.6 -<span style="color: #BB0000;">94.4</span> United States Barcelona, AR, USA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  31.0 -<span style="color: #BB0000;">85.4</span> United States Madrid, AL, USA   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  35.6 -<span style="color: #BB0000;">94.5</span> United States Barcelona, AR, USA</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
