@@ -24,3 +24,4 @@
 ^vignettes/arcgeocoder\.Rmd\.orig$
 ^vignettes/articles$
 ^Rplots\.pdf$
+^codecov\.yml$
