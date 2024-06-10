@@ -128,9 +128,9 @@ the tolerance specified in the <em>Search Tolerance</em> column.</p>
 <code>reverseGeocode</code>
 </caption>
 <colgroup>
-<col width="22%">
-<col width="22%">
-<col width="55%">
+<col width="26%">
+<col width="7%">
+<col width="65%">
 </colgroup>
 <thead><tr class="header">
 <th>Feature type</th>
@@ -256,8 +256,8 @@ because it has a higher priority (see <a href="#table1"><strong>Table
 1</strong></a>). Note that the output field <code>Addr_type</code>
 indicates the type of feature.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">example_x</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">117.205525</span></span>
-<span><span class="va">example_y</span> <span class="op">&lt;-</span> <span class="fl">34.038232</span></span>
+<code class="sourceCode R"><span><span class="va">example_x</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">117.203741</span></span>
+<span><span class="va">example_y</span> <span class="op">&lt;-</span> <span class="fl">40.95029</span></span>
 <span></span>
 <span><span class="va">api_poi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">example_x</span>, y <span class="op">=</span> <span class="va">example_y</span>,</span>
@@ -269,12 +269,12 @@ indicates the type of feature.</p>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="8%">
-<col width="7%">
-<col width="58%">
-<col width="8%">
-<col width="7%">
-<col width="8%">
+<col width="13%">
+<col width="12%">
+<col width="34%">
+<col width="13%">
+<col width="12%">
+<col width="13%">
 </colgroup>
 <thead><tr class="header">
 <th align="right">x</th>
@@ -285,39 +285,19 @@ indicates the type of feature.</p>
 <th align="left">Addr_type</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="right">-117.2055</td>
-<td align="right">34.03823</td>
-<td align="left">InlandPsych, 255 Terracina Blvd, Ste 204, Redlands, CA,
-92373, USA</td>
-<td align="right">-117.2055</td>
-<td align="right">34.03823</td>
-<td align="left">POI</td>
+<td align="right">-117.2037</td>
+<td align="right">40.95029</td>
+<td align="left">89414, Golconda, NV, USA</td>
+<td align="right">-117.2037</td>
+<td align="right">40.95029</td>
+<td align="left">Postal</td>
 </tr></tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="example-2-match-to-streetaddress-match-returned">Example 2: Match to <code>StreetAddress</code> match returned<a class="anchor" aria-label="anchor" href="#example-2-match-to-streetaddress-match-returned"></a>
+<h3 id="example-2-locality-match-returned">Example 2: <code>Locality</code> match returned<a class="anchor" aria-label="anchor" href="#example-2-locality-match-returned"></a>
 </h3>
-<p>We specify here the type of feature we want to get using
-<code>featuretypes = "StreetAddress"</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">api_address</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="va">example_x</span>, y <span class="op">=</span> <span class="va">example_y</span>,</span>
-<span>  featuretypes <span class="op">=</span> <span class="st">"StreetAddress"</span>,</span>
-<span>  langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">api_address</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in `select()`:</span></span>
-<span><span class="co">#&gt; ! Can't select columns that don't exist.</span></span>
-<span><span class="co">#&gt; ✖ Column `lon` doesn't exist.</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="example-3-locality-match-returned">Example 3: <code>Locality</code> match returned<a class="anchor" aria-label="anchor" href="#example-3-locality-match-returned"></a>
-</h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">api_local</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">example_x</span>, y <span class="op">=</span> <span class="va">example_y</span>,</span>
 <span>  featuretypes <span class="op">=</span> <span class="st">"Locality"</span>,</span>
@@ -329,12 +309,12 @@ indicates the type of feature.</p>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
+<col width="13%">
 <col width="12%">
-<col width="10%">
-<col width="41%">
+<col width="34%">
+<col width="13%">
 <col width="12%">
-<col width="10%">
-<col width="12%">
+<col width="13%">
 </colgroup>
 <thead><tr class="header">
 <th align="right">x</th>
@@ -345,22 +325,22 @@ indicates the type of feature.</p>
 <th align="left">Addr_type</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="right">-117.2055</td>
-<td align="right">34.03823</td>
-<td align="left">South Redlands, Redlands, CA, USA</td>
-<td align="right">-117.2055</td>
-<td align="right">34.03823</td>
+<td align="right">-117.2037</td>
+<td align="right">40.95029</td>
+<td align="left">Humboldt County, NV, USA</td>
+<td align="right">-117.2037</td>
+<td align="right">40.95029</td>
 <td align="left">Locality</td>
 </tr></tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="example-4-multiple-values">Example 4: multiple values<a class="anchor" aria-label="anchor" href="#example-4-multiple-values"></a>
+<h3 id="example-3-multiple-values">Example 3: multiple values<a class="anchor" aria-label="anchor" href="#example-3-multiple-values"></a>
 </h3>
 <p>When multiple values are included in the API call, the hierarchy
 explained in <a href="#table1"><strong>Table 1</strong></a> would still
 be applied on the requested <code>featuretypes</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">api_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">example_x</span>, y <span class="op">=</span> <span class="va">example_y</span>,</span>
 <span>  featuretypes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Locality"</span>, <span class="st">"StreetInt"</span>, <span class="st">"StreetAddress"</span><span class="op">)</span>,</span>
@@ -372,12 +352,12 @@ be applied on the requested <code>featuretypes</code>.</p>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
+<col width="13%">
 <col width="12%">
-<col width="10%">
-<col width="41%">
+<col width="34%">
+<col width="13%">
 <col width="12%">
-<col width="10%">
-<col width="12%">
+<col width="13%">
 </colgroup>
 <thead><tr class="header">
 <th align="right">x</th>
@@ -388,17 +368,17 @@ be applied on the requested <code>featuretypes</code>.</p>
 <th align="left">Addr_type</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="right">-117.2055</td>
-<td align="right">34.03823</td>
-<td align="left">South Redlands, Redlands, CA, USA</td>
-<td align="right">-117.2055</td>
-<td align="right">34.03823</td>
+<td align="right">-117.2037</td>
+<td align="right">40.95029</td>
+<td align="left">Humboldt County, NV, USA</td>
+<td align="right">-117.2037</td>
+<td align="right">40.95029</td>
 <td align="left">Locality</td>
 </tr></tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="example-5-no-results-for-specific-featuretypes">Example 5: No results for specific <code>featuretypes</code><a class="anchor" aria-label="anchor" href="#example-5-no-results-for-specific-featuretypes"></a>
+<h3 id="example-4-no-results-for-specific-featuretypes">Example 4: No results for specific <code>featuretypes</code><a class="anchor" aria-label="anchor" href="#example-4-no-results-for-specific-featuretypes"></a>
 </h3>
 <p>In the following example we present a case where only certain
 <code>featuretypes</code> are near the requested location. In this case,
@@ -407,7 +387,7 @@ when reverse geocoding the North Pole the API would return a
 <p>When it is not possible to return results,
 <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code> returns an empty
 <strong>tibble</strong>.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># North Pole</span></span>
 <span></span>
 <span><span class="va">npole</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">90</span>, langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -433,7 +413,7 @@ when reverse geocoding the North Pole the API would return a
 <td align="left">POI</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># But no StreetAddress</span></span>
 <span><span class="va">npole2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">90</span>, langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span>,</span>
