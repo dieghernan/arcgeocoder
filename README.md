@@ -140,11 +140,11 @@ reverse <- arc_reverse_geo(
 #>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
-|          x |        y | address_found                                                          |
-|-----------:|---------:|:-----------------------------------------------------------------------|
-|  -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA      |
-| -122.40278 | 37.79517 | Transamerica Pyramid, 600 Montgomery St, San Francisco, CA, 94111, USA |
-|  -87.63580 | 41.87877 | Willis Tower, 233 S Wacker Dr, Chicago, IL, 60606, USA                 |
+|          x |        y | address_found                                                                |
+|-----------:|---------:|:-----------------------------------------------------------------------------|
+|  -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA            |
+| -122.40278 | 37.79517 | Mbia Insurance Corporation, 600 Montgomery St, San Francisco, CA, 94111, USA |
+|  -87.63580 | 41.87877 | Market Creations, 233 S Wacker Dr, \#2, Chicago, IL, 60606, USA              |
 
 It is possible also to search for specific locations within or near a
 reference are or location using [category
@@ -174,7 +174,10 @@ eiffel_tower %>%
 #> # A tibble: 1 × 3
 #>     lon   lat LongLabel                                                         
 #>   <dbl> <dbl> <chr>                                                             
-#> 1  2.29  48.9 Tour Eiffel, 5 Avenue Anatole France, 75007, 7e Arrondissement, P…
+#> 1  2.29  48.9 Tour Eiffel, Quai Branly, 75007, 7ème Arrondissement, Paris, Île-…
+```
+
+``` r
 
 
 # Use lon,lat to boots the search and using category = Food
@@ -218,7 +221,7 @@ food_eiffel_sf
 #> Simple feature collection with 50 features and 75 fields
 #> Geometry type: POINT
 #> Dimension:     XY
-#> Bounding box:  xmin: 2.29211 ymin: 48.85416 xmax: 2.30085 ymax: 48.86252
+#> Bounding box:  xmin: 2.289018 ymin: 48.85508 xmax: 2.300347 ymax: 48.86257
 #> Geodetic CRS:  WGS 84
 #> # A tibble: 50 × 76
 #>    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax
@@ -240,6 +243,9 @@ food_eiffel_sf
 #> #   PlaceName <chr>, Place_addr <chr>, Phone <chr>, URL <chr>, Rank <int>,
 #> #   AddBldg <chr>, AddNum <chr>, AddNumFrom <chr>, AddNumTo <chr>,
 #> #   AddRange <chr>, Side <chr>, StPreDir <chr>, StPreType <chr>, …
+```
+
+``` r
 
 ggplot(food_eiffel_sf) +
   geom_sf(aes(color = Type)) +
