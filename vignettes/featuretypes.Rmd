@@ -28,7 +28,7 @@ the *Search Tolerance* column.
 :::
 
 | Feature type                                                 | Search tolerance | Comments                                                                                                                                                  |
-|------------------|------------------|--------------------------------------------|
+|--------------------------------------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `StreetInt`                                                  | 10 meters        | Intersections are only returned when `featuretypes = "StreetInt"` is included in the request.                                                             |
 | `StreetAddress` (near), `DistanceMarker`, or `StreetName`    | 3 meters         | Candidates of type `StreetName` are only returned if `featureTypes = "streetName"` is included in the request.                                            |
 | `POI` centroid                                               | 25 meters        | A business or landmark that can be represented by a point.                                                                                                |
@@ -97,8 +97,8 @@ field `Addr_type` indicates the type of feature.
 
 
 ``` r
-example_x <- -117.205525
-example_y <- 34.038232
+example_x <- -117.203741
+example_y <- 40.95029
 
 api_poi <- arc_reverse_geo(
   x = example_x, y = example_y,
@@ -112,34 +112,13 @@ api_poi %>%
 
 
 
-|         x|        y|address                                                            |       lon|      lat|Addr_type |
-|---------:|--------:|:------------------------------------------------------------------|---------:|--------:|:---------|
-| -117.2055| 34.03823|InlandPsych, 255 Terracina Blvd, Ste 204, Redlands, CA, 92373, USA | -117.2055| 34.03823|POI       |
+|         x|        y|address                  |       lon|      lat|Addr_type |
+|---------:|--------:|:------------------------|---------:|--------:|:---------|
+| -117.2037| 40.95029|89414, Golconda, NV, USA | -117.2037| 40.95029|Postal    |
 
 
 
-### Example 2: Match to `StreetAddress` match returned
-
-We specify here the type of feature we want to get using
-`featuretypes = "StreetAddress"`.
-
-
-``` r
-api_address <- arc_reverse_geo(
-  x = example_x, y = example_y,
-  featuretypes = "StreetAddress",
-  langcode = "EN", full_results = TRUE, verbose = TRUE
-)
-
-api_address %>%
-  select(x, y, address, lon, lat, Addr_type) %>%
-  knitr::kable()
-#> Error in `select()`:
-#> ! Can't select columns that don't exist.
-#> ✖ Column `lon` doesn't exist.
-```
-
-### Example 3: `Locality` match returned
+### Example 2: `Locality` match returned
 
 
 ``` r
@@ -156,13 +135,13 @@ api_local %>%
 
 
 
-|         x|        y|address                           |       lon|      lat|Addr_type |
-|---------:|--------:|:---------------------------------|---------:|--------:|:---------|
-| -117.2055| 34.03823|South Redlands, Redlands, CA, USA | -117.2055| 34.03823|Locality  |
+|         x|        y|address                  |       lon|      lat|Addr_type |
+|---------:|--------:|:------------------------|---------:|--------:|:---------|
+| -117.2037| 40.95029|Humboldt County, NV, USA | -117.2037| 40.95029|Locality  |
 
 
 
-### Example 4: multiple values
+### Example 3: multiple values
 
 When multiple values are included in the API call, the hierarchy explained in
 [**Table 1**](#table1) would still be applied on the requested `featuretypes`.
@@ -182,13 +161,13 @@ api_multiple %>%
 
 
 
-|         x|        y|address                           |       lon|      lat|Addr_type |
-|---------:|--------:|:---------------------------------|---------:|--------:|:---------|
-| -117.2055| 34.03823|South Redlands, Redlands, CA, USA | -117.2055| 34.03823|Locality  |
+|         x|        y|address                  |       lon|      lat|Addr_type |
+|---------:|--------:|:------------------------|---------:|--------:|:---------|
+| -117.2037| 40.95029|Humboldt County, NV, USA | -117.2037| 40.95029|Locality  |
 
 
 
-### Example 5: No results for specific `featuretypes`
+### Example 4: No results for specific `featuretypes`
 
 In the following example we present a case where only certain `featuretypes` are
 near the requested location. In this case, when reverse geocoding the North Pole
