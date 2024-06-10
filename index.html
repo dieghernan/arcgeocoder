@@ -256,7 +256,7 @@
 <colgroup>
 <col width="12%">
 <col width="10%">
-<col width="76%">
+<col width="78%">
 </colgroup>
 <thead><tr class="header">
 <th align="right">x</th>
@@ -272,12 +272,12 @@
 <tr class="even">
 <td align="right">-122.40278</td>
 <td align="right">37.79517</td>
-<td align="left">Transamerica Pyramid, 600 Montgomery St, San Francisco, CA, 94111, USA</td>
+<td align="left">Mbia Insurance Corporation, 600 Montgomery St, San Francisco, CA, 94111, USA</td>
 </tr>
 <tr class="odd">
 <td align="right">-87.63580</td>
 <td align="right">41.87877</td>
-<td align="left">Willis Tower, 233 S Wacker Dr, Chicago, IL, 60606, USA</td>
+<td align="left">Market Creations, 233 S Wacker Dr, #2, Chicago, IL, 60606, USA</td>
 </tr>
 </tbody>
 </table>
@@ -302,8 +302,9 @@
 <span><span class="co">#&gt; # A tibble: 1 × 3</span></span>
 <span><span class="co">#&gt;     lon   lat LongLabel                                                         </span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                                                             </span></span>
-<span><span class="co">#&gt; 1  2.29  48.9 Tour Eiffel, 5 Avenue Anatole France, 75007, 7e Arrondissement, P…</span></span>
-<span></span>
+<span><span class="co">#&gt; 1  2.29  48.9 Tour Eiffel, Quai Branly, 75007, 7ème Arrondissement, Paris, Île-…</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="co"># Use lon,lat to boots the search and using category = Food</span></span>
 <span><span class="va">food_eiffel</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/arc_geo_categories.html">arc_geo_categories</a></span><span class="op">(</span><span class="st">"Food"</span>,</span>
@@ -332,7 +333,7 @@
 <a class="anchor" aria-label="anchor" href="#arcgeocoder-and-r-spatial"></a>
 </h3>
 <p>It is straightforward to convert the results of <strong>arcgeocoder</strong> to an <strong>sf</strong> object (geospatial format):</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">food_eiffel_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">food_eiffel</span>,</span>
@@ -345,7 +346,7 @@
 <span><span class="co">#&gt; Simple feature collection with 50 features and 75 fields</span></span>
 <span><span class="co">#&gt; Geometry type: POINT</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: 2.29211 ymin: 48.85416 xmax: 2.30085 ymax: 48.86252</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: 2.289018 ymin: 48.85508 xmax: 2.300347 ymax: 48.86257</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; # A tibble: 50 × 76</span></span>
 <span><span class="co">#&gt;    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax</span></span>
@@ -366,8 +367,9 @@
 <span><span class="co">#&gt; #   LongLabel &lt;chr&gt;, ShortLabel &lt;chr&gt;, Addr_type &lt;chr&gt;, Type &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   PlaceName &lt;chr&gt;, Place_addr &lt;chr&gt;, Phone &lt;chr&gt;, URL &lt;chr&gt;, Rank &lt;int&gt;,</span></span>
 <span><span class="co">#&gt; #   AddBldg &lt;chr&gt;, AddNum &lt;chr&gt;, AddNumFrom &lt;chr&gt;, AddNumTo &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   AddRange &lt;chr&gt;, Side &lt;chr&gt;, StPreDir &lt;chr&gt;, StPreType &lt;chr&gt;, …</span></span>
-<span></span>
+<span><span class="co">#&gt; #   AddRange &lt;chr&gt;, Side &lt;chr&gt;, StPreDir &lt;chr&gt;, StPreType &lt;chr&gt;, …</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">food_eiffel_sf</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="fl">3035</span><span class="op">)</span></span></code></pre></div>
@@ -382,15 +384,15 @@
 Hernangómez D (2024). <em>arcgeocoder: Geocoding with the ArcGIS REST API Service</em>. <a href="https://doi.org/10.5281/zenodo.10495365" class="external-link">doi:10.5281/zenodo.10495365</a>, <a href="https://dieghernan.github.io/arcgeocoder/">https://dieghernan.github.io/arcgeocoder/</a>.
 </p>
 <p>A BibTeX entry for LaTeX users is</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>arcgeocoder,</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  title <span class="ot">=</span> {{arcgeocoder}<span class="sc">:</span> Geocoding with the {ArcGIS} {REST} {API} Service},</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2024</span>},</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="fl">2.0</span>},</span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.10495365</span>},</span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>arcgeocoder<span class="sc">/</span>},</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  abstract <span class="ot">=</span> {Lite interface <span class="cf">for</span> finding locations of addresses or businesses around the world using the ArcGIS REST API service <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>developers.arcgis.com<span class="sc">/</span>rest<span class="sc">/</span>geocode<span class="sc">/</span>api<span class="sc">-</span>reference<span class="sc">/</span>overview<span class="sc">-</span>world<span class="sc">-</span>geocoding<span class="sc">-</span>service.htm<span class="sc">&gt;</span>. Address text can be converted to location candidates and a location can be converted into an address. No API key required.},</span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>arcgeocoder,</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  title <span class="ot">=</span> {{arcgeocoder}<span class="sc">:</span> Geocoding with the {ArcGIS} {REST} {API} Service},</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2024</span>},</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="fl">2.0</span>},</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.10495365</span>},</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>arcgeocoder<span class="sc">/</span>},</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>  abstract <span class="ot">=</span> {Lite interface <span class="cf">for</span> finding locations of addresses or businesses around the world using the ArcGIS REST API service <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>developers.arcgis.com<span class="sc">/</span>rest<span class="sc">/</span>geocode<span class="sc">/</span>api<span class="sc">-</span>reference<span class="sc">/</span>overview<span class="sc">-</span>world<span class="sc">-</span>geocoding<span class="sc">-</span>service.htm<span class="sc">&gt;</span>. Address text can be converted to location candidates and a location can be converted into an address. No API key required.},</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>

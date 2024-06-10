@@ -309,33 +309,10 @@ indicates the type of feature.</p>
 <span></span>
 <span><span class="va">api_address</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="9%">
-<col width="8%">
-<col width="48%">
-<col width="9%">
-<col width="8%">
-<col width="13%">
-</colgroup>
-<thead><tr class="header">
-<th align="right">x</th>
-<th align="right">y</th>
-<th align="left">address</th>
-<th align="right">lon</th>
-<th align="right">lat</th>
-<th align="left">Addr_type</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td align="right">-117.2055</td>
-<td align="right">34.03823</td>
-<td align="left">251-255 Terracina Blvd, Redlands, CA, 92373, USA</td>
-<td align="right">-117.2057</td>
-<td align="right">34.03799</td>
-<td align="left">StreetAddress</td>
-</tr></tbody>
-</table>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in `select()`:</span></span>
+<span><span class="co">#&gt; ! Can't select columns that don't exist.</span></span>
+<span><span class="co">#&gt; ✖ Column `lon` doesn't exist.</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="example-3-locality-match-returned">Example 3: <code>Locality</code> match returned<a class="anchor" aria-label="anchor" href="#example-3-locality-match-returned"></a>
@@ -395,12 +372,12 @@ be applied on the requested <code>featuretypes</code>.</p>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="9%">
-<col width="8%">
-<col width="48%">
-<col width="9%">
-<col width="8%">
-<col width="13%">
+<col width="12%">
+<col width="10%">
+<col width="41%">
+<col width="12%">
+<col width="10%">
+<col width="12%">
 </colgroup>
 <thead><tr class="header">
 <th align="right">x</th>
@@ -413,10 +390,10 @@ be applied on the requested <code>featuretypes</code>.</p>
 <tbody><tr class="odd">
 <td align="right">-117.2055</td>
 <td align="right">34.03823</td>
-<td align="left">251-255 Terracina Blvd, Redlands, CA, 92373, USA</td>
-<td align="right">-117.2057</td>
-<td align="right">34.03799</td>
-<td align="left">StreetAddress</td>
+<td align="left">South Redlands, Redlands, CA, USA</td>
+<td align="right">-117.2055</td>
+<td align="right">34.03823</td>
+<td align="left">Locality</td>
 </tr></tbody>
 </table>
 </div>
@@ -450,10 +427,10 @@ when reverse geocoding the North Pole the API would return a
 <tbody><tr class="odd">
 <td align="right">0</td>
 <td align="right">90</td>
-<td align="left">North Pole</td>
+<td align="left">Ozero Shybyndy</td>
 <td align="right">0</td>
 <td align="right">90</td>
-<td align="left">Locality</td>
+<td align="left">POI</td>
 </tr></tbody>
 </table>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
