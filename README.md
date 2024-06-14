@@ -17,7 +17,7 @@ results](https://badges.cranchecks.info/worst/arcgeocoder.svg)](https://cran.r-p
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.10495365-blue)](https://doi.org/10.5281/zenodo.10495365)
+[![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.arcgeocoder-blue)](https://doi.org/10.32614/CRAN.package.arcgeocoder)
 [![status](https://tinyverse.netlify.com/badge/arcgeocoder)](https://CRAN.R-project.org/package=arcgeocoder)
 
 <!-- badges: end -->
@@ -265,7 +265,7 @@ maps](https://dieghernan.github.io/arcgeocoder/articles/ex_static.html).
 <p>
 Hernangómez D (2024). <em>arcgeocoder: Geocoding with the ArcGIS REST
 API Service</em>.
-<a href="https://doi.org/10.5281/zenodo.10495365">doi:10.5281/zenodo.10495365</a>,
+<a href="https://doi.org/10.32614/CRAN.package.arcgeocoder">doi:10.32614/CRAN.package.arcgeocoder</a>,
 <a href="https://dieghernan.github.io/arcgeocoder/">https://dieghernan.github.io/arcgeocoder/</a>.
 </p>
 
@@ -273,10 +273,10 @@ A BibTeX entry for LaTeX users is
 
     @Manual{R-arcgeocoder,
       title = {{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service},
+      doi = {10.32614/CRAN.package.arcgeocoder},
       author = {Diego Hernangómez},
       year = {2024},
       version = {0.2.0},
-      doi = {10.5281/zenodo.10495365},
       url = {https://dieghernan.github.io/arcgeocoder/},
       abstract = {Lite interface for finding locations of addresses or businesses around the world using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address. No API key required.},
     }
