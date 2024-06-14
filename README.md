@@ -17,7 +17,7 @@ results](https://badges.cranchecks.info/worst/arcgeocoder.svg)](https://cran.r-p
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.10495365-blue)](https://doi.org/10.5281/zenodo.10495365)
+[![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.arcgeocoder-blue)](https://doi.org/10.32614/CRAN.package.arcgeocoder)
 [![status](https://tinyverse.netlify.app/status/arcgeocoder)](https://CRAN.R-project.org/package=arcgeocoder)
 
 <!-- badges: end -->
