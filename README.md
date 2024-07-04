@@ -174,7 +174,7 @@ eiffel_tower %>%
 #> # A tibble: 1 × 3
 #>     lon   lat LongLabel                                                         
 #>   <dbl> <dbl> <chr>                                                             
-#> 1  2.29  48.9 Tour Eiffel, Quai Branly, 75007, 7ème Arrondissement, Paris, Île-…
+#> 1  2.29  48.9 Tour Eiffel, Avenue Gustave Eiffel, 75007, 7e Arrondissement, Par…
 ```
 
 ``` r
@@ -221,7 +221,7 @@ food_eiffel_sf
 #> Simple feature collection with 50 features and 75 fields
 #> Geometry type: POINT
 #> Dimension:     XY
-#> Bounding box:  xmin: 2.289018 ymin: 48.85508 xmax: 2.300347 ymax: 48.86257
+#> Bounding box:  xmin: 2.289018 ymin: 48.85511 xmax: 2.299797 ymax: 48.86257
 #> Geodetic CRS:  WGS 84
 #> # A tibble: 50 × 76
 #>    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax
