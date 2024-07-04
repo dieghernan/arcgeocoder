@@ -230,7 +230,7 @@ when geocoding. Possible values are:</p><ul><li><p><code>"StreetInt"</code></p><
 <span class="r-out co"><span class="r-pr">#&gt;</span>        x     y address                                                          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> -<span style="color: #BB0000;">74.0</span>   40.8 178-198 W 44th St, New York, NY, 10036, USA                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  -<span style="color: #BB0000;">3.19</span>  56.0 Rabbie's, 6 Waterloo Place, Canongate, Edinburgh, Midlothian, Sc…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  -<span style="color: #BB0000;">3.19</span>  56.0 Rabbie's Cafe, 6 Waterloo Place, Canongate, Edinburgh, Midlothia…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># With options: using some additional parameters</span></span></span>
 <span class="r-in"><span><span class="va">sev</span> <span class="op">&lt;-</span> <span class="fu">arc_reverse_geo</span><span class="op">(</span></span></span>
@@ -268,14 +268,14 @@ when geocoding. Possible values are:</p><ul><li><p><code>"StreetInt"</code></p><
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ x            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.985860, -3.188375</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ y            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.75728, 55.95335</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway, New York, NY, 10036, USA", "Rabbie…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ lat          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4976603, 7549144</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ lon          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -8236060.8, -354928.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ lat          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4976603, 7549142</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ lon          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -8236060.8, -354906.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Match_addr   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway, New York, New York, 10036", "Rabbi…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ LongLabel    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway, New York, NY, 10036, USA", "Rabbie…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ ShortLabel   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway", "Rabbie's"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ ShortLabel   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway", "Rabbie's Cafe"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Addr_type    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "StreetInt", "POI"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ Type         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Restaurant"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ PlaceName    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Rabbie's"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ Type         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "British Isles Food"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ PlaceName    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Rabbie's Cafe"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ AddNum       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "6"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Address      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 44th St &amp; Broadway", "6 Waterloo Place"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ Block        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA</span>
@@ -292,8 +292,8 @@ when geocoding. Possible values are:</p><ul><li><p><code>"StreetInt"</code></p><
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ PostalExt    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4011", NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ CntryName    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "United States", "United Kingdom"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ CountryCode  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "USA", "GBR"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ X            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.985793, -3.188378</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ Y            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.75726, 55.95340</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ X            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.985793, -3.188182</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ Y            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.75726, 55.95339</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ InputX       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.985860, -3.188375</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ InputY       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.75728, 55.95335</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ wkid         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 102100, 102100</span>
