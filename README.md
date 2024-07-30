@@ -144,7 +144,7 @@ reverse <- arc_reverse_geo(
 |-----------:|---------:|:-----------------------------------------------------------------------------|
 |  -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA            |
 | -122.40278 | 37.79517 | Mbia Insurance Corporation, 600 Montgomery St, San Francisco, CA, 94111, USA |
-|  -87.63580 | 41.87877 | Market Creations, 233 S Wacker Dr, \#2, Chicago, IL, 60606, USA              |
+|  -87.63580 | 41.87877 | Dr. Mary Kim DDS, 233 S Wacker Dr, Lowr Level, Chicago, IL, 60606, USA       |
 
 It is possible also to search for specific locations within or near a
 reference are or location using [category
@@ -175,9 +175,6 @@ eiffel_tower %>%
 #>     lon   lat LongLabel                                                         
 #>   <dbl> <dbl> <chr>                                                             
 #> 1  2.29  48.9 Tour Eiffel, Avenue Gustave Eiffel, 75007, 7e Arrondissement, Par…
-```
-
-``` r
 
 
 # Use lon,lat to boots the search and using category = Food
@@ -243,9 +240,6 @@ food_eiffel_sf
 #> #   PlaceName <chr>, Place_addr <chr>, Phone <chr>, URL <chr>, Rank <int>,
 #> #   AddBldg <chr>, AddNum <chr>, AddNumFrom <chr>, AddNumTo <chr>,
 #> #   AddRange <chr>, Side <chr>, StPreDir <chr>, StPreType <chr>, …
-```
-
-``` r
 
 ggplot(food_eiffel_sf) +
   geom_sf(aes(color = Type)) +
