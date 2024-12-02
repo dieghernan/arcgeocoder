@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 The following example shows how it is possible to create a nice static map with
 data retrieved with **arcgeocoder** and converting it to an **sf** object:
 
-```{r, sf}
+```{r, sf, fig.alt=c("A map showing the location of McDonald's restaurants around Barcelona, Spain", "A map showing the location of McDonald's restaurants in Barcelona, Spain")}
 library(arcgeocoder)
 library(dplyr)
 library(sf) # spatial objects
@@ -77,7 +77,7 @@ ggplot(bcn) +
 We can add static map tiles thanks to **maptiles** package and tidyterra for
 plotting. The tiles themselves are represented here as **terra** objects:
 
-```{r terra}
+```{r terra, fig.alt="A map showing the location of McDonald's restaurants in Barcelona, Spain, over an image provided by Carto DB"}
 library(maptiles)
 library(tidyterra)
 

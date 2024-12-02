@@ -198,7 +198,14 @@ ggplot(eiffel_tower, aes(x, y)) +
   )
 ```
 
-<img src="man/figures/README-eiffel-1.png" width="100%" />
+<div class="figure">
+
+<img src="man/figures/README-eiffel-1.png" alt="Example: Food places near the Eiffel Tower" width="100%" />
+<p class="caption">
+Example: Food places near the Eiffel Tower
+</p>
+
+</div>
 
 ### **arcgeocoder** and **r-spatial**
 
@@ -246,7 +253,14 @@ ggplot(food_eiffel_sf) +
   coord_sf(crs = 3035)
 ```
 
-<img src="man/figures/README-eiffel_sf-1.png" width="100%" />
+<div class="figure">
+
+<img src="man/figures/README-eiffel_sf-1.png" alt="Example: Food places near the Eiffel Tower using the sf package." width="100%" />
+<p class="caption">
+Example: Food places near the Eiffel Tower using the sf package.
+</p>
+
+</div>
 
 See additional articles showing how **arcgeocoder** can be use in
 combination with **leaflet** to create [dynamic

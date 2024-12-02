@@ -59,6 +59,7 @@ keywords:
 - arcgis-api
 - cran-r
 - gis
+- cran
 references:
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
