@@ -167,18 +167,18 @@ false positive matches and potentially speeding up the search process.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ query      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "sea", "sea"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ lat        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.71804, 54.98194</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ lon        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.959926, -1.705278</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ lat        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.71816, 40.74846</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ lon        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.95995, -73.99177</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ address    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sea", "Sea"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ score      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 100, 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ x          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.959926, -1.705278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ y          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.71804, 54.98194</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ LongLabel  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sea, 114 N 6th St, Brooklyn, NY, 11249, USA", "Sea, Close,…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ Type       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Restaurant", "Brewpub"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ xmin       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.960926, -1.710278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ ymin       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.71704, 54.97694</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ xmax       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.958926, -1.700278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ ymax       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.71904, 54.98694</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ x          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.95995, -73.99177</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ y          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.71816, 40.74846</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ LongLabel  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sea, 114 N 6th St, Brooklyn, NY, 11249, USA", "Sea, 151 W …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ Type       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Restaurant", "Restaurant"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ xmin       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.96095, -73.99277</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ ymin       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.71716, 40.74746</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ xmax       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -73.95895, -73.99077</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ ymax       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40.71916, 40.74946</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ wkid       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4326, 4326</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ latestWkid <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4326, 4326</span>
 <span class="r-in"><span></span></span>
@@ -188,25 +188,15 @@ false positive matches and potentially speeding up the search process.</p>
 <span class="r-in"><span>  sourcecountry <span class="op">=</span> <span class="st">"UK"</span>, limit <span class="op">=</span> <span class="fl">5</span>,</span></span>
 <span class="r-in"><span>  category <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Amusement Park"</span>, <span class="st">"Aquarium"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> No results for query sea</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">sea_3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ query      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "sea"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ lat        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 51.12589</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ lon        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -4.23784</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ address    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sea View Slip N Slide"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ score      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 71.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ x          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -4.23784</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ y          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 51.12589</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ LongLabel  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sea View Slip N Slide, Down End, Croyde, Georgeham, Braunt…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ Type       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Amusement Park"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ xmin       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -4.24284</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ ymin       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 51.12089</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ xmax       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -4.232841</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ ymax       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 51.13089</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ wkid       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4326</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ latestWkid <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4326</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ query <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "sea"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ lat   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ lon   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
