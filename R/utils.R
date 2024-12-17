@@ -24,7 +24,7 @@ is_named <- function(x) {
     return(FALSE)
   }
 
-  return(TRUE)
+  TRUE
 }
 
 # Specific ----
@@ -51,7 +51,8 @@ unnest_reverse <- function(x) {
     bb <- dplyr::as_tibble(x_loc$spatialReference)
     endobj_loc <- dplyr::bind_cols(endobj_loc, bb)
   }
-  return(endobj_loc)
+
+  endobj_loc
 }
 
 
@@ -79,7 +80,7 @@ unnest_geo <- function(x) {
   }
 
 
-  return(endobj)
+  endobj
 }
 
 keep_names_rev <- function(x, address = "address",
@@ -93,7 +94,7 @@ keep_names_rev <- function(x, address = "address",
   out_cols <- unique(out_cols)
   out <- x[, out_cols]
 
-  return(out)
+  out
 }
 
 keep_names <- function(x, lat = "lat", lon = "lon",
@@ -112,7 +113,7 @@ keep_names <- function(x, lat = "lat", lon = "lon",
   out_cols <- unique(out_cols)
   out <- x[, out_cols]
 
-  return(out)
+  out
 }
 
 empty_tbl_rev <- function(x, address) {

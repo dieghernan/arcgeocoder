@@ -115,8 +115,8 @@ arc_api_call <- function(url, destfile, quiet) {
 
   if (isFALSE(dwn_res)) {
     return(FALSE)
-  } else {
-    return(TRUE)
   }
+  res <- TRUE
+  res
   # nocov end
 }

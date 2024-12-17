@@ -127,7 +127,7 @@ arc_geo <- function(address, lat = "lat", long = "lon", limit = 1,
   all_res <- dplyr::left_join(init_key, all_res, by = "query")
 
   all_res[all_res == ""] <- NA
-  return(all_res)
+  all_res
 }
 
 
@@ -195,5 +195,5 @@ arc_geo_single <- function(address, lat = "lat", long = "lon", limit = 1,
     return_addresses
   )
 
-  return(result_out)
+  result_out
 }
