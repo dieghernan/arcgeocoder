@@ -30,6 +30,7 @@ status](https://www.r-pkg.org/badges/version/arcgeocoder)](https://CRAN.R-projec
 results](https://badges.cranchecks.info/worst/arcgeocoder.svg)](https://cran.r-project.org/web/checks/check_results_arcgeocoder.html)
 [![Downloads](https://cranlogs.r-pkg.org/badges/arcgeocoder)](https://CRAN.R-project.org/package=arcgeocoder)
 [![R-CMD-check](https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yaml)
+[![R-hub](https://github.com/dieghernan/arcgeocoder/actions/workflows/rhub.yaml/badge.svg)](https://github.com/dieghernan/arcgeocoder/actions/workflows/rhub.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/arcgeocoder/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/arcgeocoder)
 [![r-universe](https://dieghernan.r-universe.dev/badges/arcgeocoder)](https://dieghernan.r-universe.dev/arcgeocoder)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/arcgeocoder/badge)](https://www.codefactor.io/repository/github/dieghernan/arcgeocoder)

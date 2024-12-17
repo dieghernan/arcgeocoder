@@ -35,10 +35,11 @@ arcgeocoder_check_access <- function() {
 
   # nocov start
   if (result_json$location$x == 0) {
-    return(TRUE)
+    res <- TRUE
   } else {
-    return(FALSE)
+    res <- FALSE
   }
+  res
   # nocov end
 }
 
@@ -51,7 +52,7 @@ skip_if_api_server <- function() {
   if (requireNamespace("testthat", quietly = TRUE)) {
     testthat::skip("ArcGIS REST API not reachable")
   }
-  return(invisible())
+  invisible()
   # nocov end
 }
 
@@ -88,10 +89,10 @@ arc_api_call <- function(url, destfile, quiet) {
     tryCatch(
       download.file(url, destfile = destfile, quiet = TRUE, mode = "wb"),
       warning = function(e) {
-        return(FALSE)
+        FALSE
       },
       error = function(e) {
-        return(FALSE)
+        FALSE
       }
     )
   # nocov end
@@ -105,10 +106,10 @@ arc_api_call <- function(url, destfile, quiet) {
       tryCatch(
         download.file(url, destfile = destfile, quiet = TRUE, mode = "wb"),
         warning = function(e) {
-          return(FALSE)
+          FALSE
         },
         error = function(e) {
-          return(FALSE)
+          FALSE
         }
       )
   }

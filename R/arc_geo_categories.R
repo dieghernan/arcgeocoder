@@ -192,7 +192,7 @@ arc_geo_categories <- function(category, x = NULL, y = NULL, bbox = NULL,
     # Remove fields
     end <- end[, setdiff(names(end), "query")]
 
-    return(end)
+    end
   })
 
   dplyr::bind_rows(api_res)
