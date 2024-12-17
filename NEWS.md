@@ -1,5 +1,7 @@
 # arcgeocoder 0.2.1
 
+-   Update documentation.
+
 # arcgeocoder 0.2.0
 
 -   `arc_geo_categories()` is now vectorized on `category` argument.
