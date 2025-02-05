@@ -292,6 +292,28 @@ A BibTeX entry for LaTeX users is
 
 ## References
 
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
+
+<div id="ref-R-tidygeocoder" class="csl-entry">
+
+Cambon, Jesse, Diego Hernangómez, Christopher Belanger, and Daniel
+Possenriede. 2021. “<span class="nocase">tidygeocoder</span>: An R
+Package for Geocoding.” *Journal of Open Source Software* 6 (65): 3544.
+<https://doi.org/10.21105/joss.03544>.
+
+</div>
+
+<div id="ref-R-nominatimlite" class="csl-entry">
+
+Hernangómez, Diego. 2024. *<span class="nocase">nominatimlite</span>:
+Interface with Nominatim API Service* (version 0.2.1).
+<https://doi.org/10.5281/zenodo.5113195>.
+
+</div>
+
+</div>
+
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -322,25 +344,3 @@ specification. Contributions of any kind are welcome!
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
-
-<div id="ref-R-tidygeocoder" class="csl-entry">
-
-Cambon, Jesse, Diego Hernangómez, Christopher Belanger, and Daniel
-Possenriede. 2021. “<span class="nocase">tidygeocoder</span>: An R
-Package for Geocoding.” *Journal of Open Source Software* 6 (65): 3544.
-<https://doi.org/10.21105/joss.03544>.
-
-</div>
-
-<div id="ref-R-nominatimlite" class="csl-entry">
-
-Hernangómez, Diego. 2024. *<span class="nocase">nominatimlite</span>:
-Interface with Nominatim API Service* (version 0.2.1).
-<https://doi.org/10.5281/zenodo.5113195>.
-
-</div>
-
-</div>
