@@ -322,7 +322,7 @@ Interface with Nominatim API Service* (version 0.2.1).
 
 All contributions to this project are gratefully acknowledged using the
 [`allcontributors` package](https://github.com/ropensci/allcontributors)
-following the [all-contributors](https://allcontributors.org)
+following the [allcontributors](https://allcontributors.org)
 specification. Contributions of any kind are welcome!
 
 <table>
@@ -332,12 +332,6 @@ specification. Contributions of any kind are welcome!
 <img src="https://avatars.githubusercontent.com/u/25656809?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/dieghernan/arcgeocoder/commits?author=dieghernan">dieghernan</a>
-</td>
-<td align="center">
-<a href="https://github.com/ImgBotApp">
-<img src="https://avatars.githubusercontent.com/u/31427850?v=4" width="100px;" alt=""/>
-</a><br>
-<a href="https://github.com/dieghernan/arcgeocoder/commits?author=ImgBotApp">ImgBotApp</a>
 </td>
 </tr>
 </table>
