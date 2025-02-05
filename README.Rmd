@@ -244,6 +244,9 @@ toBibtex(citation("arcgeocoder"))
 
 ## References
 
+::: {#refs}
+:::
+
 ## Contributors
 
 
