@@ -223,12 +223,12 @@ food_eiffel_sf <- st_as_sf(food_eiffel,
 )
 
 food_eiffel_sf
-#> Simple feature collection with 50 features and 77 fields
+#> Simple feature collection with 50 features and 79 fields
 #> Geometry type: POINT
 #> Dimension:     XY
-#> Bounding box:  xmin: 2.2899 ymin: 48.85514 xmax: 2.299974 ymax: 48.86265
+#> Bounding box:  xmin: 2.2899 ymin: 48.855 xmax: 2.300063 ymax: 48.86265
 #> Geodetic CRS:  WGS 84
-#> # A tibble: 50 × 78
+#> # A tibble: 50 × 80
 #>    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax
 #>  * <chr>      <dbl> <dbl> <lgl>       <lgl>       <lgl>       <lgl>      
 #>  1 Food        2.29  48.9 NA          NA          NA          NA         
@@ -242,8 +242,8 @@ food_eiffel_sf
 #>  9 Food        2.29  48.9 NA          NA          NA          NA         
 #> 10 Food        2.29  48.9 NA          NA          NA          NA         
 #> # ℹ 40 more rows
-#> # ℹ 71 more variables: address <chr>, score <int>, x <dbl>, y <dbl>,
-#> #   Loc_name <chr>, Status <chr>, Score <int>, Match_addr <chr>,
+#> # ℹ 73 more variables: address <chr>, score <int>, x <dbl>, y <dbl>,
+#> #   Loc_name <chr>, MatchID <chr>, Status <chr>, Score <int>, Match_addr <chr>,
 #> #   LongLabel <chr>, ShortLabel <chr>, Addr_type <chr>, Type <chr>,
 #> #   PlaceName <chr>, Place_addr <chr>, Phone <chr>, URL <chr>, Rank <int>,
 #> #   AddBldg <chr>, AddNum <chr>, AddNumFrom <chr>, AddNumTo <chr>,
