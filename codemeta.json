@@ -172,7 +172,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "arcgis", "address", "reverse-geocoding", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "cran-r", "gis", "cran"],
-  "fileSize": "425.923KB",
+  "fileSize": "425.988KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -191,7 +191,7 @@
       "sameAs": "https://doi.org/10.32614/CRAN.package.arcgeocoder"
     }
   ],
-  "releaseNotes": "https://github.com/dieghernan/arcgeocoder/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/dieghernan/arcgeocoder/blob/main/NEWS.md",
   "readme": "https://github.com/dieghernan/arcgeocoder/blob/main/README.md",
   "contIntegration": ["https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yaml", "https://github.com/dieghernan/arcgeocoder/actions/workflows/rhub.yaml", "https://app.codecov.io/gh/dieghernan/arcgeocoder"],
   "developmentStatus": "https://www.repostatus.org/#active"

@@ -121,9 +121,9 @@ from the geocoder service.
 
 | query                                      | latitude |  longitude | address                                                           | score |          x |        y |       xmin |     ymin |       xmax |     ymax | wkid | latestWkid |
 |:-------------------------------------------|---------:|-----------:|:------------------------------------------------------------------|------:|-----------:|---------:|-----------:|---------:|-----------:|---------:|-----:|-----------:|
-| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89768 |  -77.03655 | 1600 Pennsylvania Ave NW, Washington, District of Columbia, 20500 |   100 |  -77.03655 | 38.89768 |  -77.03755 | 38.89668 |  -77.03555 | 38.89868 | 4326 |       4326 |
-| 600 Montgomery St, San Francisco, CA 94111 | 37.79517 | -122.40278 | 600 Montgomery St, San Francisco, California, 94111               |   100 | -122.40278 | 37.79517 | -122.40378 | 37.79417 | -122.40178 | 37.79617 | 4326 |       4326 |
-| 233 S Wacker Dr, Chicago, IL 60606         | 41.87877 |  -87.63580 | 233 S Wacker Dr, Chicago, Illinois, 60606                         |   100 |  -87.63580 | 41.87877 |  -87.63680 | 41.87777 |  -87.63480 | 41.87977 | 4326 |       4326 |
+| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89768 |  -77.03655 | 1600 Pennsylvania Ave Nw, Washington, District of Columbia, 20500 |   100 |  -77.03655 | 38.89768 |  -77.03755 | 38.89668 |  -77.03555 | 38.89868 | 4326 |       4326 |
+| 600 Montgomery St, San Francisco, CA 94111 | 37.79516 | -122.40273 | 600 Montgomery St, San Francisco, California, 94111               |   100 | -122.40273 | 37.79516 | -122.40373 | 37.79416 | -122.40173 | 37.79616 | 4326 |       4326 |
+| 233 S Wacker Dr, Chicago, IL 60606         | 41.87867 |  -87.63587 | 233 South Wacker Drive, Chicago, Illinois, 60606                  |   100 |  -87.63587 | 41.87867 |  -87.63587 | 41.87867 |  -87.63587 | 41.87867 | 4326 |       4326 |
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the `arc_reverse_geo()` function. The arguments
@@ -141,11 +141,11 @@ reverse <- arc_reverse_geo(
 #>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
-|          x |        y | address_found                                                                |
-|-----------:|---------:|:-----------------------------------------------------------------------------|
-|  -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA            |
-| -122.40278 | 37.79517 | Mbia Insurance Corporation, 600 Montgomery St, San Francisco, CA, 94111, USA |
-|  -87.63580 | 41.87877 | Cdm Software Solutions, 233 S Wacker Dr, Ste 8400, Chicago, IL, 60606, USA   |
+|          x |        y | address_found                                                                        |
+|-----------:|---------:|:-------------------------------------------------------------------------------------|
+|  -77.03655 | 38.89768 | White House, 1600, Washington, DC, 20500, USA                                        |
+| -122.40273 | 37.79516 | Barg Coffin Lewis & Trapp, 600 Montgomery St, Ste 525, San Francisco, CA, 94111, USA |
+|  -87.63587 | 41.87867 | Five Iron Golf, 233 South Wacker Drive, Chicago, IL, 60606, USA                      |
 
 It is possible also to search for specific locations within or near a
 reference are or location using [category
@@ -243,7 +243,7 @@ food_eiffel_sf
 #> 10 Food        2.29  48.9 NA          NA          NA          NA         
 #> # ℹ 40 more rows
 #> # ℹ 73 more variables: address <chr>, score <int>, x <dbl>, y <dbl>,
-#> #   Loc_name <chr>, MatchID <chr>, Status <chr>, Score <int>, Match_addr <chr>,
+#> #   Loc_name <chr>, Status <chr>, Score <int>, Match_addr <chr>,
 #> #   LongLabel <chr>, ShortLabel <chr>, Addr_type <chr>, Type <chr>,
 #> #   PlaceName <chr>, Place_addr <chr>, Phone <chr>, URL <chr>, Rank <int>,
 #> #   AddBldg <chr>, AddNum <chr>, AddNumFrom <chr>, AddNumTo <chr>,
