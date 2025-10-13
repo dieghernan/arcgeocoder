@@ -107,7 +107,7 @@ It is also possible to use several values as a vector
 }
 
 \examples{
-\dontshow{if (arcgeocoder_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (arcgeocoder_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
 
 arc_reverse_geo(x = -73.98586, y = 40.75728)
@@ -136,7 +136,7 @@ dplyr::glimpse(sev)
 \seealso{
 \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}
 
-Other functions for geocoding: 
+Other functions for geocoding:
 \code{\link{arc_geo}()},
 \code{\link{arc_geo_categories}()},
 \code{\link{arc_geo_multi}()}

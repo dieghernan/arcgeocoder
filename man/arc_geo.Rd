@@ -86,7 +86,7 @@ See \link{arc_spatial_references} for values and examples.
 }
 
 \examples{
-\dontshow{if (arcgeocoder_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (arcgeocoder_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
 arc_geo("Madrid, Spain")
 
@@ -117,7 +117,7 @@ with_params_usa \%>\%
 \seealso{
 \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
 
-Other functions for geocoding: 
+Other functions for geocoding:
 \code{\link{arc_geo_categories}()},
 \code{\link{arc_geo_multi}()},
 \code{\link{arc_reverse_geo}()}

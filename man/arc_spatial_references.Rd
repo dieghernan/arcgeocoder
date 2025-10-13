@@ -39,7 +39,7 @@ values would work, and they would return similar results.
 Data extracted on \strong{14 January 2023}.
 }
 \examples{
-\dontshow{if (arcgeocoder_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (arcgeocoder_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
 # Get all possible valuesdata("arc_spatial_references")
 arc_spatial_references

@@ -49,7 +49,7 @@ The results shows a list of categories with three different hierarchy levels
 Data extracted on \strong{10 January 2023}.
 }
 \examples{
-\dontshow{if (arcgeocoder_check_access()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (arcgeocoder_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
 # Get all possible values
 data("arc_categories")
