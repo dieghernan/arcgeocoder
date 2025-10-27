@@ -27,7 +27,6 @@ st_bbox(mad)
 ## Section----
 
 
-
 df1 <- data.frame(
   label = "arc",
   lon = -3.544387,
@@ -54,7 +53,6 @@ map <- ggplot(mad) +
   geom_sf(fill = "#130d4e", col = "#130d4e", linewidth = 0.01) +
   geom_sf(data = r, col = "white", size = 0.0001) +
   theme_void()
-
 
 
 map

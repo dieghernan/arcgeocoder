@@ -57,12 +57,10 @@ test_that("Data format", {
 })
 
 
-
 test_that("Checking query", {
   skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
-
 
 
   obj <- arc_geo("Madrid",

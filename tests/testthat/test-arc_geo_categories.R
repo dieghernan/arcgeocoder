@@ -69,7 +69,6 @@ test_that("Messages bbox", {
   skip_if_offline()
 
 
-
   expect_snapshot(
     out <- arc_geo_categories("POI",
       x = -3.7242, y = 40.39094,
@@ -124,7 +123,6 @@ test_that("Test with all params", {
   skip_on_cran()
   skip_if_api_server()
   skip_if_offline()
-
 
 
   expect_snapshot(

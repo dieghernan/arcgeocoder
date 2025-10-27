@@ -225,7 +225,6 @@ arc_reverse_geo_single <- function(lat_cap,
   res <- arc_api_call(url, json, isFALSE(verbose))
 
 
-
   # Step 2: Read and parse results ----
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
@@ -252,13 +251,11 @@ arc_reverse_geo_single <- function(lat_cap,
   }
 
 
-
   # Unnest fields
   result <- unnest_reverse(result_init)
 
   result$lat <- as.double(result$lat)
   result$lon <- as.double(result$lon)
-
 
 
   # Keep names

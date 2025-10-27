@@ -110,7 +110,6 @@ arc_geo <- function(address, lat = "lat", long = "lon", limit = 1,
   custom_query$category <- category
 
 
-
   all_res <- lapply(seql, function(x) {
     ad <- key[x]
     if (progressbar) {
@@ -129,7 +128,6 @@ arc_geo <- function(address, lat = "lat", long = "lon", limit = 1,
   all_res[all_res == ""] <- NA
   all_res
 }
-
 
 
 arc_geo_single <- function(address, lat = "lat", long = "lon", limit = 1,
