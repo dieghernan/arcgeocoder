@@ -27,3 +27,5 @@
 ^codecov\.yml$
 ^_pkgdown\.yaml$
 ^_pkgdown\.yml$
+^[.]?air[.]toml$
+^\.vscode$
