@@ -11,7 +11,8 @@ entry <- paste0(
 )
 
 proj_url <- c(
-  "pe_list_projcs.json", "pe_list_geogcs.json",
+  "pe_list_projcs.json",
+  "pe_list_geogcs.json",
   "pe_list_vertcs.json"
 )
 
@@ -38,8 +39,14 @@ prev <- bind_rows(end)
 
 arc_spatial_references <- prev %>%
   select(
-    projtype, wkid, latestWkid, authority, deprecated,
-    description, areaname, wkt
+    projtype,
+    wkid,
+    latestWkid,
+    authority,
+    deprecated,
+    description,
+    areaname,
+    wkt
   )
 
 usethis::use_data(arc_spatial_references, overwrite = TRUE)

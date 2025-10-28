@@ -135,10 +135,20 @@
 #'     subtitle = "Search near with name and bbox"
 #'   )
 #' }
-arc_geo_categories <- function(category, x = NULL, y = NULL, bbox = NULL,
-                               name = NULL, lat = "lat", long = "lon",
-                               limit = 1, full_results = FALSE,
-                               verbose = FALSE, custom_query = list(), ...) {
+arc_geo_categories <- function(
+  category,
+  x = NULL,
+  y = NULL,
+  bbox = NULL,
+  name = NULL,
+  lat = "lat",
+  long = "lon",
+  limit = 1,
+  full_results = FALSE,
+  verbose = FALSE,
+  custom_query = list(),
+  ...
+) {
   # Prepare location
   locs <- validate_location(x, y)
 
@@ -163,7 +173,6 @@ arc_geo_categories <- function(category, x = NULL, y = NULL, bbox = NULL,
     q_bbox_ymax = bbox[4]
   )
 
-
   if (!any(is.na(locs))) {
     custom_query$location <- paste0(locs, collapse = ",")
   }
@@ -172,21 +181,30 @@ arc_geo_categories <- function(category, x = NULL, y = NULL, bbox = NULL,
     custom_query$searchExtent <- paste0(bbox, collapse = ",")
   }
 
-  if (is.null(name)) name <- ""
+  if (is.null(name)) {
+    name <- ""
+  }
 
   # Vectorize call over categories
   ncalls <- seq_len(nrow(base_tbl))
   api_res <- lapply(ncalls, function(x) {
     bs <- base_tbl[x, ]
     qry <- arc_geo(
-      category = bs$q_category, address = name,
-      lat = lat, long = long, limit = limit,
+      category = bs$q_category,
+      address = name,
+      lat = lat,
+      long = long,
+      limit = limit,
       full_results = full_results,
       return_addresses = TRUE,
-      verbose = verbose, progressbar = FALSE,
-      custom_query = custom_query, ...
+      verbose = verbose,
+      progressbar = FALSE,
+      custom_query = custom_query,
+      ...
     )
-    if (all(is.na(qry[, c(2, 3)]))) message("(category: ", bs$q_category, ")")
+    if (all(is.na(qry[, c(2, 3)]))) {
+      message("(category: ", bs$q_category, ")")
+    }
     end <- dplyr::bind_cols(bs, qry)
 
     # Remove fields
@@ -200,8 +218,12 @@ arc_geo_categories <- function(category, x = NULL, y = NULL, bbox = NULL,
 
 
 validate_location <- function(x = NULL, y = NULL) {
-  if (is.null(x)) x <- NA
-  if (is.null(y)) y <- NA
+  if (is.null(x)) {
+    x <- NA
+  }
+  if (is.null(y)) {
+    y <- NA
+  }
   # If both NAs then return NAs
   if (all(is.na(x), is.na(y))) {
     return(c(NA, NA))
@@ -221,7 +243,6 @@ validate_location <- function(x = NULL, y = NULL) {
   # Not vectorized
   x <- x[1]
   y <- y[1]
-
 
   # Lat
   y_cap <- pmax(pmin(y, 90), -90)
@@ -271,7 +292,6 @@ validate_bbox <- function(bbox = NULL) {
   if (!all(xs_cap == xs)) {
     message("\nbbox xmin,xmax have been restricted to [-180, 180]")
   }
-
 
   # Lat
   ys <- bbox[c(2, 4)]

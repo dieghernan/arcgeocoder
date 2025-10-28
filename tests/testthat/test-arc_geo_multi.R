@@ -19,7 +19,8 @@ test_that("Errors", {
   )
 
   expect_s3_class(
-    out <- arc_geo_multi(c(NA, "Plaza Mayor"),
+    out <- arc_geo_multi(
+      c(NA, "Plaza Mayor"),
       address2 = c("Guanajuato", NA),
       progressbar = FALSE
     ),
@@ -33,18 +34,18 @@ test_that("Messages", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_snapshot(
     out <- arc_geo_multi("Madrid", limit = 200)
   )
 
-
-  expect_snapshot(out <- arc_geo_multi(
-    address = "Calle Mayor",
-    city = "Madrid",
-    countrycode = "ESP",
-    verbose = TRUE
-  ))
+  expect_snapshot(
+    out <- arc_geo_multi(
+      address = "Calle Mayor",
+      city = "Madrid",
+      countrycode = "ESP",
+      verbose = TRUE
+    )
+  )
 })
 
 test_that("Data format", {
@@ -62,28 +63,39 @@ test_that("Checking query", {
   skip_if_api_server()
   skip_if_offline()
 
-
   obj <- arc_geo_multi(
     address = "Calle Mayor",
     city = "Madrid",
     countrycode = "ESP",
-    long = "ong", lat = "at",
+    long = "ong",
+    lat = "at",
     full_results = FALSE,
     return_addresses = FALSE
   )
-  expect_identical(names(obj), c(
-    "q_address", "q_city", "q_countrycode",
-    "query", "at", "ong"
-  ))
+  expect_identical(
+    names(obj),
+    c(
+      "q_address",
+      "q_city",
+      "q_countrycode",
+      "query",
+      "at",
+      "ong"
+    )
+  )
 
-  obj1 <- arc_geo_multi("Madrid",
-    long = "ong", lat = "at",
+  obj1 <- arc_geo_multi(
+    "Madrid",
+    long = "ong",
+    lat = "at",
     full_results = FALSE,
     return_addresses = TRUE
   )
   nobj1 <- ncol(obj1)
-  obj2 <- arc_geo_multi("Madrid",
-    long = "ong", lat = "at",
+  obj2 <- arc_geo_multi(
+    "Madrid",
+    long = "ong",
+    lat = "at",
     full_results = TRUE,
     return_addresses = TRUE
   )
@@ -91,8 +103,10 @@ test_that("Checking query", {
   expect_gt(nobj2, nobj1)
 
   # Try with outfields
-  obj3 <- arc_geo_multi("Madrid",
-    long = "ong", lat = "at",
+  obj3 <- arc_geo_multi(
+    "Madrid",
+    long = "ong",
+    lat = "at",
     full_results = FALSE,
     return_addresses = TRUE,
     custom_query = list(outFields = "PlaceName")
@@ -101,21 +115,30 @@ test_that("Checking query", {
   expect_equal(ncol(obj3) - nobj1, 1)
   expect_equal(setdiff(names(obj3), names(obj1)), "PlaceName")
 
-  obj <- arc_geo_multi("Madrid",
-    long = "ong", lat = "at",
+  obj <- arc_geo_multi(
+    "Madrid",
+    long = "ong",
+    lat = "at",
     full_results = TRUE,
     return_addresses = FALSE
   )
 
-  expect_identical(names(obj)[1:5], c(
-    "q_address", "query", "at", "ong",
-    "address"
-  ))
+  expect_identical(
+    names(obj)[1:5],
+    c(
+      "q_address",
+      "query",
+      "at",
+      "ong",
+      "address"
+    )
+  )
   expect_gt(ncol(obj), 4)
 
   # Boosting with parameters
 
-  query <- arc_geo_multi("Burger King",
+  query <- arc_geo_multi(
+    "Burger King",
     limit = 10,
     full_results = TRUE,
     countrycode = "ES"
@@ -126,15 +149,13 @@ test_that("Checking query", {
   expect_true(any(query$Country == "ESP"))
 
   # And different than
-  query2 <- arc_geo_multi("Burger King",
-    limit = 10,
-    full_results = TRUE
-  )
+  query2 <- arc_geo_multi("Burger King", limit = 10, full_results = TRUE)
 
   expect_false(any(query$lon == query2$lon))
 
   # Select with other outsr
-  query3 <- arc_geo_multi("Burger King",
+  query3 <- arc_geo_multi(
+    "Burger King",
     limit = 10,
     full_results = TRUE,
     outsr = 102100
@@ -152,7 +173,8 @@ test_that("Dedupe", {
 
   # Dupes
   expect_silent(
-    dup <- arc_geo_multi(rep(c("Pentagon", "Barcelona"), 50),
+    dup <- arc_geo_multi(
+      rep(c("Pentagon", "Barcelona"), 50),
       limit = 1,
       progressbar = FALSE,
       verbose = FALSE
@@ -160,19 +182,31 @@ test_that("Dedupe", {
   )
 
   expect_equal(nrow(dup), 100)
-  expect_equal(as.character(dup$query), rep(c(
-    "address=Pentagon",
-    "address=Barcelona"
-  ), 50))
+  expect_equal(
+    as.character(dup$query),
+    rep(
+      c(
+        "address=Pentagon",
+        "address=Barcelona"
+      ),
+      50
+    )
+  )
 
   # Check deduping
   dedup <- dplyr::distinct(dup)
 
   expect_equal(nrow(dedup), 2)
-  expect_equal(as.character(dedup$query), rep(c(
-    "address=Pentagon",
-    "address=Barcelona"
-  ), 1))
+  expect_equal(
+    as.character(dedup$query),
+    rep(
+      c(
+        "address=Pentagon",
+        "address=Barcelona"
+      ),
+      1
+    )
+  )
 })
 
 
@@ -196,10 +230,11 @@ test_that("Use categories multi", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_snapshot(
     out <- arc_geo_multi(
-      address = "Atocha", city = "Madrid", countrycode = "ESP",
+      address = "Atocha",
+      city = "Madrid",
+      countrycode = "ESP",
       category = "POI",
       custom_query = list(
         outFields = "LongLabel,Type",
@@ -211,7 +246,9 @@ test_that("Use categories multi", {
 
   expect_snapshot(
     out2 <- arc_geo_multi(
-      address = "Atocha", city = "Madrid", countrycode = "ESP",
+      address = "Atocha",
+      city = "Madrid",
+      countrycode = "ESP",
       category = "Address",
       custom_query = list(
         outFields = "LongLabel,Type",

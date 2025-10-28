@@ -28,7 +28,6 @@ test_that("Messages", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_message(
     out <- arc_geo_categories("POI", 200, 0),
     "longitudes have been restricted"
@@ -36,18 +35,19 @@ test_that("Messages", {
   expect_message(
     out <- arc_geo_categories(
       "Address,Postal,Coordinate System,POI",
-      0, 200
+      0,
+      200
     ),
     "latitudes have been restricted"
   )
-
 
   expect_snapshot(
     out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, verbose = TRUE)
   )
 
   expect_message(
-    out <- arc_geo_categories("POI",
+    out <- arc_geo_categories(
+      "POI",
       x = 3.7242,
       bbox = c(-3.8, 40.3, -3.65, 40.5)
     ),
@@ -55,7 +55,8 @@ test_that("Messages", {
   )
 
   expect_message(
-    out <- arc_geo_categories("POI",
+    out <- arc_geo_categories(
+      "POI",
       y = 3.7242,
       bbox = c(-3.8, 40.3, -3.65, 40.5)
     ),
@@ -68,51 +69,61 @@ test_that("Messages bbox", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_snapshot(
-    out <- arc_geo_categories("POI",
-      x = -3.7242, y = 40.39094,
+    out <- arc_geo_categories(
+      "POI",
+      x = -3.7242,
+      y = 40.39094,
       bbox = "uno",
       verbose = TRUE
     )
   )
 
-
   expect_snapshot(
-    out <- arc_geo_categories("POI",
-      x = -3.7242, y = 40.39094,
+    out <- arc_geo_categories(
+      "POI",
+      x = -3.7242,
+      y = 40.39094,
       bbox = c("uno", NA),
       verbose = TRUE
     )
   )
 
   expect_snapshot(
-    out <- arc_geo_categories("POI",
-      x = -3.7242, y = 40.39094,
+    out <- arc_geo_categories(
+      "POI",
+      x = -3.7242,
+      y = 40.39094,
       bbox = LETTERS[1:4],
       verbose = TRUE
     )
   )
 
   expect_snapshot(
-    out <- arc_geo_categories("POI",
-      x = -3.7242, y = 40.39094,
+    out <- arc_geo_categories(
+      "POI",
+      x = -3.7242,
+      y = 40.39094,
       bbox = c(-200, -89, 200, 89),
       verbose = TRUE
     )
   )
 
   expect_snapshot(
-    out <- arc_geo_categories("POI",
-      x = -3.7242, y = 40.39094,
+    out <- arc_geo_categories(
+      "POI",
+      x = -3.7242,
+      y = 40.39094,
       bbox = c(-200, -89, 200, 89),
       verbose = TRUE
     )
   )
 
   expect_snapshot(
-    out <- arc_geo_categories("POI",
-      x = -3.7242, y = 40.39094,
+    out <- arc_geo_categories(
+      "POI",
+      x = -3.7242,
+      y = 40.39094,
       bbox = c(-100, -95, 100, 95),
       verbose = TRUE
     )
@@ -124,10 +135,11 @@ test_that("Test with all params", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_snapshot(
-    out <- arc_geo_categories("POI,Address",
-      x = -3.7242, y = 40.39094,
+    out <- arc_geo_categories(
+      "POI,Address",
+      x = -3.7242,
+      y = 40.39094,
       name = "Bar",
       limit = 20,
       lon = "aaaa",
@@ -150,8 +162,10 @@ test_that("Test with all params", {
   expect_false(any(grepl("Country", names(out))))
 
   # Full results
-  out2 <- arc_geo_categories("POI,Bakery",
-    x = -3.7242, y = 40.39094,
+  out2 <- arc_geo_categories(
+    "POI,Bakery",
+    x = -3.7242,
+    y = 40.39094,
     limit = 2,
     lon = "aaaa",
     lat = "bbbb",

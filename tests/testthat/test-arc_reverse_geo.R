@@ -18,7 +18,6 @@ test_that("Messages", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_message(
     out <- arc_reverse_geo(200, 0),
     "longitudes have been restricted"
@@ -27,7 +26,6 @@ test_that("Messages", {
     out <- arc_reverse_geo(0, 200),
     "latitudes have been restricted"
   )
-
 
   expect_snapshot(out <- arc_reverse_geo(0, 90, verbose = TRUE))
 })
@@ -49,8 +47,11 @@ test_that("Returning empty query", {
   expect_true(is.na(obj$address))
 
   expect_message(
-    obj_renamed <- arc_reverse_geo(179.9999, 89.999999,
-      address = "adddata", featuretypes = "StreetInt"
+    obj_renamed <- arc_reverse_geo(
+      179.9999,
+      89.999999,
+      address = "adddata",
+      featuretypes = "StreetInt"
     ),
     "No results for location="
   )
@@ -68,7 +69,6 @@ test_that("Data format", {
   skip_if_api_server()
   skip_if_offline()
 
-
   obj <- arc_reverse_geo(0, 0)
   expect_s3_class(obj, "tbl")
 })
@@ -85,10 +85,11 @@ test_that("Checking query", {
   expect_identical(names(obj), c("x", "y", "address"))
 
   # Same with option
-  obj_zoom <- arc_reverse_geo(-3.6687109, 40.4207414,
+  obj_zoom <- arc_reverse_geo(
+    -3.6687109,
+    40.4207414,
     featuretypes = "StreetInt"
   )
-
 
   expect_s3_class(obj_zoom, "tbl")
   expect_equal(nrow(obj_zoom), 1)
@@ -111,17 +112,22 @@ test_that("Checking query", {
 
   expect_identical(names(obj), c("x", "y", "addrs"))
 
-
   # Check opts
-  obj <- arc_reverse_geo(-3.6687109, 40.4207414,
-    address = "addrs", return_coords = FALSE
+  obj <- arc_reverse_geo(
+    -3.6687109,
+    40.4207414,
+    address = "addrs",
+    return_coords = FALSE
   )
 
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), "addrs")
 
-  obj <- arc_reverse_geo(-3.6687109, 40.4207414,
-    address = "addrs", return_coords = FALSE,
+  obj <- arc_reverse_geo(
+    -3.6687109,
+    40.4207414,
+    address = "addrs",
+    return_coords = FALSE,
     full_results = TRUE
   )
 
@@ -129,8 +135,11 @@ test_that("Checking query", {
   expect_identical(names(obj)[1:3], c("addrs", "lat", "lon"))
   expect_gt(ncol(obj), 5)
 
-  obj2 <- arc_reverse_geo(-3.6687109, 40.4207414,
-    address = "addrs", return_coords = TRUE,
+  obj2 <- arc_reverse_geo(
+    -3.6687109,
+    40.4207414,
+    address = "addrs",
+    return_coords = TRUE,
     full_results = TRUE
   )
 
@@ -143,7 +152,6 @@ test_that("Check unnesting", {
   skip_if_api_server()
   skip_if_offline()
 
-
   # Several coordinates
   sev <- arc_reverse_geo(
     x = c(-73.98586, -3.188375),
@@ -153,7 +161,6 @@ test_that("Check unnesting", {
 
   expect_s3_class(sev, "tbl")
   expect_equal(nrow(sev), 2)
-
 
   # Classes of all cols
 

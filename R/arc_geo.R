@@ -72,11 +72,21 @@
 #' @seealso [tidygeocoder::geo()]
 #' @family geocoding
 #'
-arc_geo <- function(address, lat = "lat", long = "lon", limit = 1,
-                    full_results = FALSE, return_addresses = TRUE,
-                    verbose = FALSE, progressbar = TRUE,
-                    outsr = NULL, langcode = NULL, sourcecountry = NULL,
-                    category = NULL, custom_query = list()) {
+arc_geo <- function(
+  address,
+  lat = "lat",
+  long = "lon",
+  limit = 1,
+  full_results = FALSE,
+  return_addresses = TRUE,
+  verbose = FALSE,
+  progressbar = TRUE,
+  outsr = NULL,
+  langcode = NULL,
+  sourcecountry = NULL,
+  category = NULL,
+  custom_query = list()
+) {
   if (limit > 50) {
     message(paste(
       "\nArcGIS REST API provides 50 results as a maximum. ",
@@ -109,18 +119,26 @@ arc_geo <- function(address, lat = "lat", long = "lon", limit = 1,
   custom_query$langCode <- langcode
   custom_query$category <- category
 
-
   all_res <- lapply(seql, function(x) {
     ad <- key[x]
     if (progressbar) {
       setTxtProgressBar(pb, x)
     }
     arc_geo_single(
-      address = ad, lat, long, limit, full_results, return_addresses,
-      verbose, custom_query, singleline = TRUE
+      address = ad,
+      lat,
+      long,
+      limit,
+      full_results,
+      return_addresses,
+      verbose,
+      custom_query,
+      singleline = TRUE
     )
   })
-  if (progressbar) close(pb)
+  if (progressbar) {
+    close(pb)
+  }
 
   all_res <- dplyr::bind_rows(all_res)
   all_res <- dplyr::left_join(init_key, all_res, by = "query")
@@ -130,10 +148,17 @@ arc_geo <- function(address, lat = "lat", long = "lon", limit = 1,
 }
 
 
-arc_geo_single <- function(address, lat = "lat", long = "lon", limit = 1,
-                           full_results = TRUE, return_addresses = TRUE,
-                           verbose = TRUE, custom_query = list(),
-                           singleline = TRUE) {
+arc_geo_single <- function(
+  address,
+  lat = "lat",
+  long = "lon",
+  limit = 1,
+  full_results = TRUE,
+  return_addresses = TRUE,
+  verbose = TRUE,
+  custom_query = list(),
+  singleline = TRUE
+) {
   # Step 1: Download ----
   api <- paste0(
     "https://geocode.arcgis.com/arcgis/rest/",
@@ -149,17 +174,14 @@ arc_geo_single <- function(address, lat = "lat", long = "lon", limit = 1,
 
   url <- paste0(api, ad_q, "&f=json&maxLocations=", limit)
 
-
   url <- add_custom_query(custom_query, url)
 
   # Download to temp file
   json <- tempfile(fileext = ".json")
   res <- arc_api_call(url, json, isFALSE(verbose))
 
-
   # Step 2: Read and parse results ----
   tbl_query <- dplyr::tibble(query = address)
-
 
   # nocov start
   if (isFALSE(res)) {
@@ -189,7 +211,10 @@ arc_geo_single <- function(address, lat = "lat", long = "lon", limit = 1,
   # Keep names in the right order
 
   result_out <- keep_names(
-    result_end, lat, long, full_results,
+    result_end,
+    lat,
+    long,
+    full_results,
     return_addresses
   )
 

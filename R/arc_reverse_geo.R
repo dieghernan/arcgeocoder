@@ -107,11 +107,20 @@
 #' @family geocoding
 #' @seealso [tidygeocoder::reverse_geo()]
 #'
-arc_reverse_geo <- function(x, y, address = "address", full_results = FALSE,
-                            return_coords = TRUE, verbose = FALSE,
-                            progressbar = TRUE, outsr = NULL, langcode = NULL,
-                            featuretypes = NULL, locationtype = NULL,
-                            custom_query = list()) {
+arc_reverse_geo <- function(
+  x,
+  y,
+  address = "address",
+  full_results = FALSE,
+  return_coords = TRUE,
+  verbose = FALSE,
+  progressbar = TRUE,
+  outsr = NULL,
+  langcode = NULL,
+  featuretypes = NULL,
+  locationtype = NULL,
+  custom_query = list()
+) {
   # Check inputs
   if (!is.numeric(x) || !is.numeric(y)) {
     stop("x and y must be numeric")
@@ -120,7 +129,6 @@ arc_reverse_geo <- function(x, y, address = "address", full_results = FALSE,
   if (length(x) != length(y)) {
     stop("x and y should have the same number of elements")
   }
-
 
   # Lat
   y_cap <- pmax(pmin(y, 90), -90)
@@ -138,8 +146,10 @@ arc_reverse_geo <- function(x, y, address = "address", full_results = FALSE,
 
   # Dedupe for query using data frame
   init_key <- dplyr::tibble(
-    x_key_int = x, y_key_int = y,
-    y_cap_int = y_cap, x_cap_int = x_cap
+    x_key_int = x,
+    y_key_int = y,
+    y_cap_int = y_cap,
+    x_cap_int = x_cap
   )
 
   key <- dplyr::distinct(init_key)
@@ -153,7 +163,6 @@ arc_reverse_geo <- function(x, y, address = "address", full_results = FALSE,
   }
 
   seql <- seq(1, ntot, 1)
-
 
   # Add additional parameters to the custom query
 
@@ -180,10 +189,14 @@ arc_reverse_geo <- function(x, y, address = "address", full_results = FALSE,
 
     res_single
   })
-  if (progressbar) close(pb)
+  if (progressbar) {
+    close(pb)
+  }
 
   all_res <- dplyr::bind_rows(all_res)
-  all_res <- dplyr::left_join(init_key[, c(1, 2)], all_res,
+  all_res <- dplyr::left_join(
+    init_key[, c(1, 2)],
+    all_res,
     by = c("x_key_int", "y_key_int")
   )
 
@@ -201,12 +214,14 @@ arc_reverse_geo <- function(x, y, address = "address", full_results = FALSE,
   return(all_res)
 }
 
-arc_reverse_geo_single <- function(lat_cap,
-                                   long_cap,
-                                   address = "address",
-                                   full_results = FALSE,
-                                   verbose = TRUE,
-                                   custom_query = list()) {
+arc_reverse_geo_single <- function(
+  lat_cap,
+  long_cap,
+  address = "address",
+  full_results = FALSE,
+  verbose = TRUE,
+  custom_query = list()
+) {
   # Step 1: Download ----
   api <- paste0(
     "https://geocode.arcgis.com/arcgis/rest/",
@@ -216,7 +231,6 @@ arc_reverse_geo_single <- function(lat_cap,
   # Compose url
   url <- paste0(api, "location=", long_cap, ",", lat_cap, "&f=json")
 
-
   # Add options
   url <- add_custom_query(custom_query, url)
 
@@ -224,10 +238,8 @@ arc_reverse_geo_single <- function(lat_cap,
   json <- tempfile(fileext = ".json")
   res <- arc_api_call(url, json, isFALSE(verbose))
 
-
   # Step 2: Read and parse results ----
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
-
 
   # nocov start
   if (isFALSE(res)) {
@@ -243,13 +255,18 @@ arc_reverse_geo_single <- function(lat_cap,
   if ("error" %in% names(result_init)) {
     message(
       "\n",
-      "No results for location=", long_cap, ",", lat_cap, "\n",
-      result_init$error$message, "\nDetails: ", result_init$error$details
+      "No results for location=",
+      long_cap,
+      ",",
+      lat_cap,
+      "\n",
+      result_init$error$message,
+      "\nDetails: ",
+      result_init$error$details
     )
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
-
 
   # Unnest fields
   result <- unnest_reverse(result_init)
@@ -257,9 +274,9 @@ arc_reverse_geo_single <- function(lat_cap,
   result$lat <- as.double(result$lat)
   result$lon <- as.double(result$lon)
 
-
   # Keep names
-  result_out <- keep_names_rev(result,
+  result_out <- keep_names_rev(
+    result,
     address = address,
     full_results = full_results
   )

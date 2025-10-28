@@ -12,14 +12,15 @@ test_that("Returning empty query", {
   expect_s3_class(obj, "tbl")
   expect_identical(names(obj), c("query", "lat", "lon"))
   expect_true(all(
-    vapply(obj, class, FUN.VALUE = character(1))
-    == c("character", rep("numeric", 2))
+    vapply(obj, class, FUN.VALUE = character(1)) ==
+      c("character", rep("numeric", 2))
   ))
   expect_true(is.na(obj$lat))
   expect_true(is.na(obj$lon))
 
   expect_message(
-    obj_renamed <- arc_geo("alsksjdhfg 561bata lorem ipsum",
+    obj_renamed <- arc_geo(
+      "alsksjdhfg 561bata lorem ipsum",
       lat = "lata",
       long = "longa"
     ),
@@ -38,11 +39,9 @@ test_that("Messages", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_snapshot(
     out <- arc_geo("Madrid", limit = 200)
   )
-
 
   expect_snapshot(out <- arc_geo("Madrid", verbose = TRUE))
 })
@@ -62,22 +61,27 @@ test_that("Checking query", {
   skip_if_api_server()
   skip_if_offline()
 
-
-  obj <- arc_geo("Madrid",
-    long = "ong", lat = "at",
+  obj <- arc_geo(
+    "Madrid",
+    long = "ong",
+    lat = "at",
     full_results = FALSE,
     return_addresses = FALSE
   )
   expect_identical(names(obj), c("query", "at", "ong"))
 
-  obj1 <- arc_geo("Madrid",
-    long = "ong", lat = "at",
+  obj1 <- arc_geo(
+    "Madrid",
+    long = "ong",
+    lat = "at",
     full_results = FALSE,
     return_addresses = TRUE
   )
   nobj1 <- ncol(obj1)
-  obj2 <- arc_geo("Madrid",
-    long = "ong", lat = "at",
+  obj2 <- arc_geo(
+    "Madrid",
+    long = "ong",
+    lat = "at",
     full_results = TRUE,
     return_addresses = TRUE
   )
@@ -85,8 +89,10 @@ test_that("Checking query", {
   expect_gt(nobj2, nobj1)
 
   # Try with outfields
-  obj3 <- arc_geo("Madrid",
-    long = "ong", lat = "at",
+  obj3 <- arc_geo(
+    "Madrid",
+    long = "ong",
+    lat = "at",
     full_results = FALSE,
     return_addresses = TRUE,
     custom_query = list(outFields = "PlaceName")
@@ -95,8 +101,10 @@ test_that("Checking query", {
   expect_equal(ncol(obj3) - nobj1, 1)
   expect_equal(setdiff(names(obj3), names(obj1)), "PlaceName")
 
-  obj <- arc_geo("Madrid",
-    long = "ong", lat = "at",
+  obj <- arc_geo(
+    "Madrid",
+    long = "ong",
+    lat = "at",
     full_results = TRUE,
     return_addresses = FALSE
   )
@@ -106,7 +114,8 @@ test_that("Checking query", {
 
   # Boosting with parameters
 
-  query <- arc_geo("Burger King",
+  query <- arc_geo(
+    "Burger King",
     limit = 10,
     full_results = TRUE,
     sourcecountry = "ES"
@@ -117,15 +126,13 @@ test_that("Checking query", {
   expect_true(any(query$Country == "ESP"))
 
   # And different than
-  query2 <- arc_geo("Burger King",
-    limit = 10,
-    full_results = TRUE
-  )
+  query2 <- arc_geo("Burger King", limit = 10, full_results = TRUE)
 
   expect_false(any(query$lon == query2$lon))
 
   # Select with other outsr
-  query3 <- arc_geo("Burger King",
+  query3 <- arc_geo(
+    "Burger King",
     limit = 10,
     full_results = TRUE,
     outsr = 102100
@@ -143,7 +150,8 @@ test_that("Dedupe", {
 
   # Dupes
   expect_silent(
-    dup <- arc_geo(rep(c("Pentagon", "Barcelona"), 50),
+    dup <- arc_geo(
+      rep(c("Pentagon", "Barcelona"), 50),
       limit = 1,
       progressbar = FALSE,
       verbose = FALSE
@@ -181,9 +189,9 @@ test_that("Use categories single", {
   skip_if_api_server()
   skip_if_offline()
 
-
   expect_snapshot(
-    out <- arc_geo("",
+    out <- arc_geo(
+      "",
       category = "Gas Station",
       custom_query = list(
         outFields = "LongLabel,Type",
@@ -196,7 +204,8 @@ test_that("Use categories single", {
   expect_equal(out$Type, "Gas Station")
 
   expect_snapshot(
-    out2 <- arc_geo("",
+    out2 <- arc_geo(
+      "",
       category = "Restaurant",
       custom_query = list(
         outFields = "LongLabel,Type",

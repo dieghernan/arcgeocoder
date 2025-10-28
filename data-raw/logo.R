@@ -26,7 +26,6 @@ st_bbox(mad)
 
 ## Section----
 
-
 df1 <- data.frame(
   label = "arc",
   lon = -3.544387,
@@ -57,7 +56,8 @@ map <- ggplot(mad) +
 
 map
 
-sticker(map,
+sticker(
+  map,
   s_width = 2,
   s_height = 1.5,
   s_x = 1,

@@ -109,18 +109,41 @@
 #'   select(lat, lon, CntryName, Region, LongLabel) %>%
 #'   slice_head(n = 10)
 #' }
-arc_geo_multi <- function(address = NULL, address2 = NULL, address3 = NULL,
-                          neighborhood = NULL, city = NULL, subregion = NULL,
-                          region = NULL, postal = NULL, postalext = NULL,
-                          countrycode = NULL, lat = "lat", long = "lon",
-                          limit = 1, full_results = FALSE,
-                          return_addresses = TRUE, verbose = FALSE,
-                          progressbar = TRUE, outsr = NULL, langcode = NULL,
-                          category = NULL, custom_query = list()) {
+arc_geo_multi <- function(
+  address = NULL,
+  address2 = NULL,
+  address3 = NULL,
+  neighborhood = NULL,
+  city = NULL,
+  subregion = NULL,
+  region = NULL,
+  postal = NULL,
+  postalext = NULL,
+  countrycode = NULL,
+  lat = "lat",
+  long = "lon",
+  limit = 1,
+  full_results = FALSE,
+  return_addresses = TRUE,
+  verbose = FALSE,
+  progressbar = TRUE,
+  outsr = NULL,
+  langcode = NULL,
+  category = NULL,
+  custom_query = list()
+) {
   # Treat input multi
   init_df <- input_multi(
-    address, address2, address3, neighborhood, city,
-    subregion, region, postal, postalext, countrycode
+    address,
+    address2,
+    address3,
+    neighborhood,
+    city,
+    subregion,
+    region,
+    postal,
+    postalext,
+    countrycode
   )
 
   if (limit > 50) {
@@ -159,18 +182,26 @@ arc_geo_multi <- function(address = NULL, address2 = NULL, address3 = NULL,
   custom_query$langCode <- langcode
   custom_query$category <- category
 
-
   all_res <- lapply(seql, function(x) {
     ad <- key[x]
     if (progressbar) {
       setTxtProgressBar(pb, x)
     }
     arc_geo_single(
-      address = ad, lat, long, limit, full_results, return_addresses,
-      verbose, custom_query, singleline = FALSE
+      address = ad,
+      lat,
+      long,
+      limit,
+      full_results,
+      return_addresses,
+      verbose,
+      custom_query,
+      singleline = FALSE
     )
   })
-  if (progressbar) close(pb)
+  if (progressbar) {
+    close(pb)
+  }
 
   all_res <- dplyr::bind_rows(all_res)
   all_res <- dplyr::left_join(init_key, all_res, by = "query")
@@ -180,10 +211,18 @@ arc_geo_multi <- function(address = NULL, address2 = NULL, address3 = NULL,
 }
 
 # Helpef fun
-input_multi <- function(address = NULL, address2 = NULL, address3 = NULL,
-                        neighborhood = NULL, city = NULL, subregion = NULL,
-                        region = NULL, postal = NULL, postalext = NULL,
-                        countrycode = NULL) {
+input_multi <- function(
+  address = NULL,
+  address2 = NULL,
+  address3 = NULL,
+  neighborhood = NULL,
+  city = NULL,
+  subregion = NULL,
+  region = NULL,
+  postal = NULL,
+  postalext = NULL,
+  countrycode = NULL
+) {
   multi_list <- list(
     address = address,
     address2 = address2,
@@ -196,7 +235,6 @@ input_multi <- function(address = NULL, address2 = NULL, address3 = NULL,
     postalExt = postalext,
     countryCode = countrycode
   )
-
 
   getlen <- lengths(multi_list)
   nolens <- getlen[getlen != 0]
@@ -224,7 +262,6 @@ input_multi <- function(address = NULL, address2 = NULL, address3 = NULL,
 
     qq
   })
-
 
   names(the_df) <- paste0("q_", tolower(names(the_df)))
 
