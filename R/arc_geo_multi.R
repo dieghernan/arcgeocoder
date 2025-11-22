@@ -207,7 +207,7 @@ arc_geo_multi <- function(
   all_res <- dplyr::left_join(init_key, all_res, by = "query")
 
   all_res[all_res == ""] <- NA
-  return(all_res)
+  all_res
 }
 
 # Helpef fun

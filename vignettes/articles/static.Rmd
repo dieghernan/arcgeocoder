@@ -1,5 +1,5 @@
 ---
-title: "Example: arcgeocoder and static maps"
+title: "arcgeocoder and static maps"
 subtitle: "Combine arcgeocoder with sf and terra"
 ---
 

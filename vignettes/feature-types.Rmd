@@ -7,6 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+<!-- feature-types.Rmd is generated from feature-types.Rmd.orig. Please edit that file -->
 
 
 *Adapted from
@@ -27,16 +28,16 @@ the *Search Tolerance* column.
 ::: {#table1}
 :::
 
-| Feature type                                                 | Search tolerance | Comments                                                                                                                                                  |
-|--------------------------------------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `StreetInt`                                                  | 10 meters        | Intersections are only returned when `featuretypes = "StreetInt"` is included in the request.                                                             |
-| `StreetAddress` (near), `DistanceMarker`, or `StreetName`    | 3 meters         | Candidates of type `StreetName` are only returned if `featureTypes = "streetName"` is included in the request.                                            |
-| `POI` centroid                                               | 25 meters        | A business or landmark that can be represented by a point.                                                                                                |
-| `Subaddress`                                                 | 10 meters        | `Subaddress` candidates, which can be features such as apartments or floors in a building, maybe not being returned under certain conditions.             |
-| `PointAddress`                                               | 50 meters        | A `PointAddress` match is not returned if it is on the opposite side of the street as the input location, even if it is within 50 meters of the location. |
-| `StreetAddress` (distant), `DistanceMarker`, or `StreetName` | 100 meters       | Candidates of type `StreetName` are only returned if `featuretypes = "StreetName"` is included in the request.                                            |
-| `POI` area                                                   | within boundary  | A business or landmark that can be represented by an area, such as a large park or university. Not available in all countries.                            |
-| `Postal` or `Locality` area                                  | within boundary  | If the input location intersects multiple boundaries, the feature with the smallest area is returned.                                                     |
+| Feature type | Search tolerance | Comments |
+|----|----|----|
+| `StreetInt` | 10 meters | Intersections are only returned when `featuretypes = "StreetInt"` is included in the request. |
+| `StreetAddress` (near), `DistanceMarker`, or `StreetName` | 3 meters | Candidates of type `StreetName` are only returned if `featureTypes = "streetName"` is included in the request. |
+| `POI` centroid | 25 meters | A business or landmark that can be represented by a point. |
+| `Subaddress` | 10 meters | `Subaddress` candidates, which can be features such as apartments or floors in a building, maybe not being returned under certain conditions. |
+| `PointAddress` | 50 meters | A `PointAddress` match is not returned if it is on the opposite side of the street as the input location, even if it is within 50 meters of the location. |
+| `StreetAddress` (distant), `DistanceMarker`, or `StreetName` | 100 meters | Candidates of type `StreetName` are only returned if `featuretypes = "StreetName"` is included in the request. |
+| `POI` area | within boundary | A business or landmark that can be represented by an area, such as a large park or university. Not available in all countries. |
+| `Postal` or `Locality` area | within boundary | If the input location intersects multiple boundaries, the feature with the smallest area is returned. |
 
 : **Table 1**: Adapted from ArcGIS REST API `reverseGeocode`
 
@@ -64,13 +65,11 @@ with no spaces after the comma.
 
 ### single `featuretypes` value
 
-
 ``` r
 arc_reverse_geo(..., featuretypes = "PointAddress")
 ```
 
 ### multiple `featuretypes` value
-
 
 ``` r
 arc_reverse_geo(..., featuretypes = c("PointAddress", "StreetAddress"))
@@ -80,7 +79,6 @@ arc_reverse_geo(..., featuretypes = c("PointAddress", "StreetAddress"))
 
 In the following examples, we would provide different examples for better
 understanding.
-
 
 ``` r
 library(arcgeocoder)
@@ -94,7 +92,6 @@ This input location is within the search tolerance of both `POI` and
 `PointAddress` features, but a match to the `POI` centroid is returned because
 it has a higher priority (see [**Table 1**](#table1)). Note that the output
 field `Addr_type` indicates the type of feature.
-
 
 ``` r
 example_x <- -117.203741
@@ -110,16 +107,11 @@ api_poi %>%
   knitr::kable()
 ```
 
-
-
-|         x|        y|address                  |       lon|      lat|Addr_type |
-|---------:|--------:|:------------------------|---------:|--------:|:---------|
-| -117.2037| 40.95029|89414, Golconda, NV, USA | -117.2037| 40.95029|Postal    |
-
-
+|         x |        y | address                  |       lon |      lat | Addr_type |
+|----------:|---------:|:-------------------------|----------:|---------:|:----------|
+| -117.2037 | 40.95029 | 89414, Golconda, NV, USA | -117.2037 | 40.95029 | Postal    |
 
 ### Example 2: `Locality` match returned
-
 
 ``` r
 api_local <- arc_reverse_geo(
@@ -133,19 +125,14 @@ api_local %>%
   knitr::kable()
 ```
 
-
-
-|         x|        y|address                  |       lon|      lat|Addr_type |
-|---------:|--------:|:------------------------|---------:|--------:|:---------|
-| -117.2037| 40.95029|Humboldt County, NV, USA | -117.2037| 40.95029|Locality  |
-
-
+|         x |        y | address                  |       lon |      lat | Addr_type |
+|----------:|---------:|:-------------------------|----------:|---------:|:----------|
+| -117.2037 | 40.95029 | Humboldt County, NV, USA | -117.2037 | 40.95029 | Locality  |
 
 ### Example 3: multiple values
 
 When multiple values are included in the API call, the hierarchy explained in
 [**Table 1**](#table1) would still be applied on the requested `featuretypes`.
-
 
 ``` r
 api_multiple <- arc_reverse_geo(
@@ -159,13 +146,9 @@ api_multiple %>%
   knitr::kable()
 ```
 
-
-
-|         x|        y|address                  |       lon|      lat|Addr_type |
-|---------:|--------:|:------------------------|---------:|--------:|:---------|
-| -117.2037| 40.95029|Humboldt County, NV, USA | -117.2037| 40.95029|Locality  |
-
-
+|         x |        y | address                  |       lon |      lat | Addr_type |
+|----------:|---------:|:-------------------------|----------:|---------:|:----------|
+| -117.2037 | 40.95029 | Humboldt County, NV, USA | -117.2037 | 40.95029 | Locality  |
 
 ### Example 4: No results for specific `featuretypes`
 
@@ -175,7 +158,6 @@ the API would return a `Locality` but no `StreetAddress` is found.
 
 When it is not possible to return results, `arc_reverse_geo()` returns an empty
 **tibble**.
-
 
 ``` r
 # North Pole
@@ -187,13 +169,9 @@ npole %>%
   knitr::kable()
 ```
 
-
-
-|  x|  y|address        | lon| lat|Addr_type |
-|--:|--:|:--------------|---:|---:|:---------|
-|  0| 90|Ozero Shybyndy |   0|  90|POI       |
-
-
+|   x |   y | address        | lon | lat | Addr_type |
+|----:|----:|:---------------|----:|----:|:----------|
+|   0 |  90 | Ozero Shybyndy |   0 |  90 | POI       |
 
 ``` r
 # But no StreetAddress
@@ -206,13 +184,9 @@ npole2 %>%
   knitr::kable()
 ```
 
-
-
-|  x|  y|address |
-|--:|--:|:-------|
-|  0| 90|NA      |
-
-
+|   x |   y | address |
+|----:|----:|:--------|
+|   0 |  90 | NA      |
 
 ## Conclusion
 

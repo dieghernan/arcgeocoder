@@ -71,6 +71,7 @@ skip_if_api_server <- function() {
 #'
 #' @keywords internal
 #'
+#' @noRd
 arc_api_call <- function(url, destfile, quiet) {
   if (!quiet) {
     decomp <- unlist(strsplit(url, "?", fixed = TRUE))

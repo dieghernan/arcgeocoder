@@ -18,9 +18,5 @@ Check if \strong{R} has access to resources at ArcGIS REST API
 arcgeocoder_check_access()
 }
 }
-\seealso{
-Other api_management: 
-\code{\link{arc_api_call}()}
-}
 \concept{api_management}
 \keyword{internal}

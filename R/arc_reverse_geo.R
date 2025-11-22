@@ -211,7 +211,7 @@ arc_reverse_geo <- function(
   }
 
   all_res[all_res == ""] <- NA
-  return(all_res)
+  all_res
 }
 
 arc_reverse_geo_single <- function(
@@ -281,5 +281,5 @@ arc_reverse_geo_single <- function(
     full_results = full_results
   )
 
-  return(result_out)
+  result_out
 }

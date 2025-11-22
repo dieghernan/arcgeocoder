@@ -11,6 +11,8 @@ bibliography: REFERENCES.bib
 link-citations: true
 ---
 
+<!-- arcgeocoder.Rmd is generated from arcgeocoder.Rmd.orig. Please edit that file -->
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,

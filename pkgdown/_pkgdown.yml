@@ -38,3 +38,14 @@ reference:
   contents:
   - arcgeocoder-package
 
+articles:
+- title: Explore arcgeocoder
+  navbar: Explore arcgeocoder
+  contents:
+  - feature-types
+- title: Examples
+  navbar: Examples
+  contents:
+  - articles/static
+  - articles/leaflet
+

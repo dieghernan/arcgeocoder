@@ -19,7 +19,7 @@
 ^arcgeocoder.*\.tgz$
 ^\.github$
 ^data-raw$
-^vignettes/featuretypes\.Rmd\.orig$
+^vignettes/feature-types\.Rmd\.orig$
 ^docs$
 ^vignettes/arcgeocoder\.Rmd\.orig$
 ^vignettes/articles$

@@ -11,6 +11,8 @@ bibliography: REFERENCES.bib
 link-citations: true
 ---
 
+<!-- arcgeocoder.Rmd is generated from arcgeocoder.Rmd.orig. Please edit that file -->
+
 
 
 The goal of **arcgeocoder** is to provide a light interface for geocoding
@@ -141,9 +143,9 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower %>%
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                         
-#>   <dbl> <dbl> <chr>                                                             
-#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…
+#>     lon   lat LongLabel                                                                          
+#>   <dbl> <dbl> <chr>                                                                              
+#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-de-France…
 
 
 # Use lon,lat to boots the search and using category = Food

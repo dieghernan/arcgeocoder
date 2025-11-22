@@ -1,5 +1,5 @@
 ---
-title: "Example: arcgeocoder and leaflet maps"
+title: "arcgeocoder and leaflet maps"
 subtitle: "Combine arcgeocoder and leaflet maps"
 ---
 

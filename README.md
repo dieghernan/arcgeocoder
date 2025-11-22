@@ -119,11 +119,11 @@ Only a few fields are returned from the geocoder service in this
 example, but `full_results = TRUE` can be used to return all of the data
 from the geocoder service.
 
-| query                                      | latitude |  longitude | address                                                           | score |          x |        y |       xmin |     ymin |       xmax |     ymax | wkid | latestWkid |
-|:-------------------------------------------|---------:|-----------:|:------------------------------------------------------------------|------:|-----------:|---------:|-----------:|---------:|-----------:|---------:|-----:|-----------:|
-| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89768 |  -77.03655 | 1600 Pennsylvania Ave NW, Washington, District of Columbia, 20500 |   100 |  -77.03655 | 38.89768 |  -77.03755 | 38.89668 |  -77.03555 | 38.89868 | 4326 |       4326 |
-| 600 Montgomery St, San Francisco, CA 94111 | 37.79516 | -122.40273 | 600 Montgomery St, San Francisco, California, 94111               |   100 | -122.40273 | 37.79516 | -122.40373 | 37.79416 | -122.40173 | 37.79616 | 4326 |       4326 |
-| 233 S Wacker Dr, Chicago, IL 60606         | 41.87867 |  -87.63587 | 233 S Wacker Dr, Chicago, Illinois, 60606                         |   100 |  -87.63587 | 41.87867 |  -87.63687 | 41.87767 |  -87.63487 | 41.87967 | 4326 |       4326 |
+| query | latitude | longitude | address | score | x | y | xmin | ymin | xmax | ymax | wkid | latestWkid |
+|:---|---:|---:|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1600 Pennsylvania Ave NW, Washington, DC | 38.89768 | -77.03655 | 1600 Pennsylvania Ave NW, Washington, District of Columbia, 20500 | 100 | -77.03655 | 38.89768 | -77.03755 | 38.89668 | -77.03555 | 38.89868 | 4326 | 4326 |
+| 600 Montgomery St, San Francisco, CA 94111 | 37.79516 | -122.40273 | 600 Montgomery St, San Francisco, California, 94111 | 100 | -122.40273 | 37.79516 | -122.40373 | 37.79416 | -122.40173 | 37.79616 | 4326 | 4326 |
+| 233 S Wacker Dr, Chicago, IL 60606 | 41.87867 | -87.63587 | 233 S Wacker Dr, Chicago, Illinois, 60606 | 100 | -87.63587 | 41.87867 | -87.63687 | 41.87767 | -87.63487 | 41.87967 | 4326 | 4326 |
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the `arc_reverse_geo()` function. The arguments
@@ -141,11 +141,11 @@ reverse <- arc_reverse_geo(
 #>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
-|          x |        y | address_found                                                        |
-|-----------:|---------:|:---------------------------------------------------------------------|
-|  -77.03655 | 38.89768 | White House, 1600, Washington, DC, 20500, USA                        |
+| x | y | address_found |
+|---:|---:|:---|
+| -77.03655 | 38.89768 | White House, 1600, Washington, DC, 20500, USA |
 | -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery Street, San Francisco, CA, 94111, USA |
-|  -87.63587 | 41.87867 | Mri of Chicago, 233 South Wacker Drive, Chicago, IL, 60606, USA      |
+| -87.63587 | 41.87867 | Mri of Chicago, 233 South Wacker Drive, Chicago, IL, 60606, USA |
 
 It is possible also to search for specific locations within or near a
 reference are or location using [category
@@ -203,6 +203,7 @@ ggplot(eiffel_tower, aes(x, y)) +
 
 <img src="man/figures/README-eiffel-1.png" alt="Example: Food places near the Eiffel Tower" width="100%" />
 <p class="caption">
+
 Example: Food places near the Eiffel Tower
 </p>
 
@@ -258,6 +259,7 @@ ggplot(food_eiffel_sf) +
 
 <img src="man/figures/README-eiffel_sf-1.png" alt="Example: Food places near the Eiffel Tower using the sf package." width="100%" />
 <p class="caption">
+
 Example: Food places near the Eiffel Tower using the sf package.
 </p>
 
@@ -272,6 +274,7 @@ maps](https://dieghernan.github.io/arcgeocoder/articles/ex_static.html).
 ## Citation
 
 <p>
+
 Hernangómez D (2025). <em>arcgeocoder: Geocoding with the ArcGIS REST
 API Service</em>.
 <a href="https://doi.org/10.32614/CRAN.package.arcgeocoder">doi:10.32614/CRAN.package.arcgeocoder</a>,
@@ -313,28 +316,3 @@ Interface with Nominatim API Service* (version 0.2.1).
 </div>
 
 </div>
-
-## Contributors
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-
-All contributions to this project are gratefully acknowledged using the
-[`allcontributors` package](https://github.com/ropensci/allcontributors)
-following the [allcontributors](https://allcontributors.org)
-specification. Contributions of any kind are welcome!
-
-<table class="table allctb-table">
-<tr>
-<td align="center">
-<a href="https://github.com/dieghernan">
-<img src="https://avatars.githubusercontent.com/u/25656809?v=4" width="100px;" class="allctb-avatar" alt=""/>
-</a><br>
-<a href="https://github.com/dieghernan/arcgeocoder/commits?author=dieghernan">dieghernan</a>
-</td>
-</tr>
-</table>
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
