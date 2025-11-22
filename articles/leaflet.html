@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Example: arcgeocoder and leaflet maps • arcgeocoder</title>
+<title>arcgeocoder and leaflet maps • arcgeocoder</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -15,7 +15,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Example: arcgeocoder and leaflet maps">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="arcgeocoder and leaflet maps">
 <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-BMYBJTKBY0"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -51,9 +51,13 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/ex_leaflet.html">Example: arcgeocoder and leaflet maps</a></li>
-    <li><a class="dropdown-item" href="../articles/ex_static.html">Example: arcgeocoder and static maps</a></li>
-    <li><a class="dropdown-item" href="../articles/featuretypes.html">Reverse geocoding and feature types</a></li>
+<li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Explore arcgeocoder</h6></li>
+    <li><a class="dropdown-item" href="../articles/feature-types.html">Reverse geocoding and feature types</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Examples</h6></li>
+    <li><a class="dropdown-item" href="../articles/static.html">arcgeocoder and static maps</a></li>
+    <li><a class="dropdown-item" href="../articles/leaflet.html">arcgeocoder and leaflet maps</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -72,24 +76,24 @@
 
 
 
-<script src="ex_leaflet_files/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="ex_leaflet_files/leaflet-1.3.1/leaflet.css" rel="stylesheet">
-<script src="ex_leaflet_files/leaflet-1.3.1/leaflet.js"></script><link href="ex_leaflet_files/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
-<script src="ex_leaflet_files/proj4-2.6.2/proj4.min.js"></script><script src="ex_leaflet_files/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="ex_leaflet_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="ex_leaflet_files/leaflet-binding-2.2.3/leaflet.js"></script><link href="ex_leaflet_files/leaflet-easybutton-1.3.1/easy-button.css" rel="stylesheet">
-<script src="ex_leaflet_files/leaflet-easybutton-1.3.1/easy-button.js"></script><script src="ex_leaflet_files/leaflet-easybutton-1.3.1/EasyButton-binding.js"></script><link href="ex_leaflet_files/leaflet-locationfilter2-0.1.1/locationfilter.css" rel="stylesheet">
-<script src="ex_leaflet_files/leaflet-locationfilter2-0.1.1/locationfilter.js"></script><script src="ex_leaflet_files/leaflet-locationfilter2-0.1.1/locationfilter-bindings.js"></script><link href="ex_leaflet_files/ionicons-2.0.1/ionicons.min.css" rel="stylesheet">
-<link href="ex_leaflet_files/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
-<script src="ex_leaflet_files/crosstalk-1.2.2/js/crosstalk.min.js"></script><script src="ex_leaflet_files/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script><script src="ex_leaflet_files/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script><script src="ex_leaflet_files/core-js-2.5.3/shim.min.js"></script><script src="ex_leaflet_files/react-18.2.0/react.min.js"></script><script src="ex_leaflet_files/react-18.2.0/react-dom.min.js"></script><script src="ex_leaflet_files/reactwidget-2.0.0/react-tools.js"></script><link href="ex_leaflet_files/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-<link href="ex_leaflet_files/reactable-0.4.4/reactable.css" rel="stylesheet">
-<script src="ex_leaflet_files/reactable-binding-0.4.4/reactable.js"></script><div class="row">
+<script src="leaflet_files/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="leaflet_files/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="leaflet_files/leaflet-1.3.1/leaflet.js"></script><link href="leaflet_files/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="leaflet_files/proj4-2.6.2/proj4.min.js"></script><script src="leaflet_files/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="leaflet_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="leaflet_files/leaflet-binding-2.2.3/leaflet.js"></script><link href="leaflet_files/leaflet-easybutton-1.3.1/easy-button.css" rel="stylesheet">
+<script src="leaflet_files/leaflet-easybutton-1.3.1/easy-button.js"></script><script src="leaflet_files/leaflet-easybutton-1.3.1/EasyButton-binding.js"></script><link href="leaflet_files/leaflet-locationfilter2-0.1.1/locationfilter.css" rel="stylesheet">
+<script src="leaflet_files/leaflet-locationfilter2-0.1.1/locationfilter.js"></script><script src="leaflet_files/leaflet-locationfilter2-0.1.1/locationfilter-bindings.js"></script><link href="leaflet_files/ionicons-2.0.1/ionicons.min.css" rel="stylesheet">
+<link href="leaflet_files/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="leaflet_files/crosstalk-1.2.2/js/crosstalk.min.js"></script><script src="leaflet_files/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script><script src="leaflet_files/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script><script src="leaflet_files/core-js-2.5.3/shim.min.js"></script><script src="leaflet_files/react-18.2.0/react.min.js"></script><script src="leaflet_files/react-18.2.0/react-dom.min.js"></script><script src="leaflet_files/reactwidget-2.0.0/react-tools.js"></script><link href="leaflet_files/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<link href="leaflet_files/reactable-0.4.4/reactable.css" rel="stylesheet">
+<script src="leaflet_files/reactable-binding-0.4.4/reactable.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Example: arcgeocoder and leaflet maps</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>arcgeocoder and leaflet maps</h1>
             <h3 data-toc-skip class="subtitle">Combine arcgeocoder and
 leaflet maps</h3>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/dieghernan/arcgeocoder/blob/main/vignettes/articles/ex_leaflet.Rmd" class="external-link"><code>vignettes/articles/ex_leaflet.Rmd</code></a></small>
-      <div class="d-none name"><code>ex_leaflet.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/dieghernan/arcgeocoder/blob/main/vignettes/articles/leaflet.Rmd" class="external-link"><code>vignettes/articles/leaflet.Rmd</code></a></small>
+      <div class="d-none name"><code>leaflet.Rmd</code></div>
     </div>
 
     
@@ -252,7 +256,7 @@ Flaticon</a></li>
 Details
 </summary><pre><code><span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
-<span><span class="co">#&gt;  version  R version 4.5.1 (2025-06-13 ucrt)</span></span>
+<span><span class="co">#&gt;  version  R version 4.5.2 (2025-10-31 ucrt)</span></span>
 <span><span class="co">#&gt;  os       Windows Server 2022 x64 (build 26100)</span></span>
 <span><span class="co">#&gt;  system   x86_64, mingw32</span></span>
 <span><span class="co">#&gt;  ui       RTerm</span></span>
@@ -260,19 +264,19 @@ Details
 <span><span class="co">#&gt;  collate  English_United States.utf8</span></span>
 <span><span class="co">#&gt;  ctype    English_United States.utf8</span></span>
 <span><span class="co">#&gt;  tz       UTC</span></span>
-<span><span class="co">#&gt;  date     2025-10-28</span></span>
+<span><span class="co">#&gt;  date     2025-11-22</span></span>
 <span><span class="co">#&gt;  pandoc   3.1.11 @ C:/HOSTED~1/windows/pandoc/31F387~1.11/x64/PANDOC~1.11/ (via rmarkdown)</span></span>
 <span><span class="co">#&gt;  quarto   NA</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">package          </span> <span style="color: #555555; font-style: italic;">*</span> <span style="color: #555555; font-style: italic;">version</span> <span style="color: #555555; font-style: italic;">date (UTC)</span> <span style="color: #555555; font-style: italic;">lib</span> <span style="color: #555555; font-style: italic;">source</span></span></span>
-<span><span class="co">#&gt;  arcgeocoder       * 0.2.1   <span style="color: #555555;">2025-10-28</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">local</span></span></span>
+<span><span class="co">#&gt;  arcgeocoder       * 0.2.1   <span style="color: #555555;">2025-11-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">local</span></span></span>
 <span><span class="co">#&gt;  bslib               0.9.0   <span style="color: #555555;">2025-01-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  cachem              1.1.0   <span style="color: #555555;">2024-05-16</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  cli                 3.6.5   <span style="color: #555555;">2025-04-23</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  crosstalk         * 1.2.2   <span style="color: #555555;">2025-08-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  desc                1.4.3   <span style="color: #555555;">2023-12-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">#&gt;  digest              0.6.37  <span style="color: #555555;">2024-08-19</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  digest              0.6.39  <span style="color: #555555;">2025-11-19</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  dplyr             * 1.1.4   <span style="color: #555555;">2023-11-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  evaluate            1.0.5   <span style="color: #555555;">2025-08-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  fastmap             1.2.0   <span style="color: #555555;">2024-05-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
@@ -281,36 +285,29 @@ Details
 <span><span class="co">#&gt;  glue                1.8.0   <span style="color: #555555;">2024-09-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  htmltools           0.5.8.1 <span style="color: #555555;">2024-04-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  htmlwidgets         1.6.4   <span style="color: #555555;">2023-12-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">#&gt;  httpuv              1.6.16  <span style="color: #555555;">2025-04-16</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  jquerylib           0.1.4   <span style="color: #555555;">2021-04-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  jsonlite            2.0.0   <span style="color: #555555;">2025-03-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  knitr               1.50    <span style="color: #555555;">2025-03-16</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">#&gt;  later               1.4.4   <span style="color: #555555;">2025-08-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  leaflet           * 2.2.3   <span style="color: #555555;">2025-09-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  leaflet.providers   2.0.0   <span style="color: #555555;">2023-10-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  lifecycle           1.0.4   <span style="color: #555555;">2023-11-07</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  magrittr            2.0.4   <span style="color: #555555;">2025-09-12</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">#&gt;  mime                0.13    <span style="color: #555555;">2025-03-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">#&gt;  otel                0.2.0   <span style="color: #555555;">2025-08-29</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  pillar              1.11.1  <span style="color: #555555;">2025-09-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  pkgconfig           2.0.3   <span style="color: #555555;">2019-09-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">#&gt;  pkgdown             2.1.3   <span style="color: #555555;">2025-05-25</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">any (@2.1.3)</span></span></span>
-<span><span class="co">#&gt;  promises            1.4.0   <span style="color: #555555;">2025-10-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">#&gt;  purrr               1.1.0   <span style="color: #555555;">2025-07-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  pkgdown             2.2.0   <span style="color: #555555;">2025-11-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  purrr               1.2.0   <span style="color: #555555;">2025-11-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  R.cache             0.17.0  <span style="color: #555555;">2025-05-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  R.methodsS3         1.8.2   <span style="color: #555555;">2022-06-13</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  R.oo                1.27.1  <span style="color: #555555;">2025-05-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  R.utils             2.13.0  <span style="color: #555555;">2025-02-24</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  R6                  2.6.1   <span style="color: #555555;">2025-02-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  ragg                1.5.0   <span style="color: #555555;">2025-09-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">#&gt;  Rcpp                1.1.0   <span style="color: #555555;">2025-07-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  reactable         * 0.4.4   <span style="color: #555555;">2023-03-12</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  reactR              0.6.1   <span style="color: #555555;">2024-09-14</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  rlang               1.1.6   <span style="color: #555555;">2025-04-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  rmarkdown           2.30    <span style="color: #555555;">2025-09-28</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  sass                0.4.10  <span style="color: #555555;">2025-04-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  sessioninfo       * 1.2.3   <span style="color: #555555;">2025-02-05</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">any (@1.2.3)</span></span></span>
-<span><span class="co">#&gt;  shiny               1.11.1  <span style="color: #555555;">2025-07-03</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  styler              1.11.0  <span style="color: #555555;">2025-10-13</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  systemfonts         1.3.1   <span style="color: #555555;">2025-10-01</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  textshaping         1.0.4   <span style="color: #555555;">2025-10-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
@@ -318,8 +315,7 @@ Details
 <span><span class="co">#&gt;  tidyselect          1.2.1   <span style="color: #555555;">2024-03-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  vctrs               0.6.5   <span style="color: #555555;">2023-12-01</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  withr               3.0.2   <span style="color: #555555;">2024-10-28</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">#&gt;  xfun                0.53    <span style="color: #555555;">2025-08-19</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">#&gt;  xtable              1.8-4   <span style="color: #555555;">2019-04-21</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  xfun                0.54    <span style="color: #555555;">2025-10-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  yaml                2.3.10  <span style="color: #555555;">2024-07-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #555555;"> [1] D:/a/_temp/Library</span></span></span>
