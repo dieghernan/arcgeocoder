@@ -108,13 +108,13 @@ Details
     #>  collate  English_United States.utf8
     #>  ctype    English_United States.utf8
     #>  tz       UTC
-    #>  date     2025-11-22
+    #>  date     2026-01-02
     #>  pandoc   3.1.11 @ C:/HOSTED~1/windows/pandoc/31F387~1.11/x64/PANDOC~1.11/ (via rmarkdown)
     #>  quarto   NA
     #> 
     #> ─ Packages ───────────────────────────────────────────────────────────────────
     #>  package      * version date (UTC) lib source
-    #>  arcgeocoder  * 0.2.1   2025-11-22 [1] local
+    #>  arcgeocoder  * 0.2.1   2026-01-02 [1] local
     #>  bslib          0.9.0   2025-01-30 [1] RSPM
     #>  cachem         1.1.0   2024-05-16 [1] RSPM
     #>  class          7.3-23  2025-01-01 [3] CRAN (R 4.5.2)
@@ -126,7 +126,7 @@ Details
     #>  desc           1.4.3   2023-12-10 [1] RSPM
     #>  digest         0.6.39  2025-11-19 [1] RSPM
     #>  dplyr        * 1.1.4   2023-11-17 [1] RSPM
-    #>  e1071          1.7-16  2024-09-16 [1] RSPM
+    #>  e1071          1.7-17  2025-12-18 [1] RSPM
     #>  evaluate       1.0.5   2025-08-27 [1] RSPM
     #>  farver         2.1.2   2024-05-13 [1] RSPM
     #>  fastmap        1.2.0   2024-05-15 [1] RSPM
@@ -135,21 +135,21 @@ Details
     #>  ggplot2      * 4.0.1   2025-11-14 [1] RSPM
     #>  glue           1.8.0   2024-09-30 [1] RSPM
     #>  gtable         0.3.6   2024-10-25 [1] RSPM
-    #>  htmltools      0.5.8.1 2024-04-04 [1] RSPM
+    #>  htmltools      0.5.9   2025-12-04 [1] RSPM
     #>  htmlwidgets    1.6.4   2023-12-06 [1] RSPM
     #>  jquerylib      0.1.4   2021-04-26 [1] RSPM
     #>  jsonlite       2.0.0   2025-03-27 [1] RSPM
     #>  KernSmooth     2.23-26 2025-01-01 [3] CRAN (R 4.5.2)
-    #>  knitr          1.50    2025-03-16 [1] RSPM
+    #>  knitr          1.51    2025-12-20 [1] RSPM
     #>  lifecycle      1.0.4   2023-11-07 [1] RSPM
     #>  magrittr       2.0.4   2025-09-12 [1] RSPM
     #>  mapSpain     * 0.10.0  2024-12-15 [1] RSPM
-    #>  maptiles     * 0.10.0  2025-05-07 [1] RSPM
+    #>  maptiles     * 0.11.0  2025-12-12 [1] RSPM
     #>  pillar         1.11.1  2025-09-17 [1] RSPM
     #>  pkgconfig      2.0.3   2019-09-22 [1] RSPM
     #>  pkgdown        2.2.0   2025-11-06 [1] RSPM
     #>  png            0.1-8   2022-11-29 [1] RSPM
-    #>  proxy          0.4-27  2022-06-09 [1] RSPM
+    #>  proxy          0.4-29  2025-12-29 [1] RSPM
     #>  purrr          1.2.0   2025-11-04 [1] RSPM
     #>  R.cache        0.17.0  2025-05-02 [1] RSPM
     #>  R.methodsS3    1.8.2   2022-06-13 [1] RSPM
@@ -166,21 +166,20 @@ Details
     #>  sass           0.4.10  2025-04-11 [1] RSPM
     #>  scales         1.4.0   2025-04-24 [1] RSPM
     #>  sessioninfo  * 1.2.3   2025-02-05 [1] any (@1.2.3)
-    #>  sf           * 1.0-22  2025-11-10 [1] RSPM
-    #>  slippymath     0.3.1   2019-06-28 [1] RSPM
+    #>  sf           * 1.0-23  2025-11-28 [1] RSPM
     #>  styler         1.11.0  2025-10-13 [1] RSPM
     #>  systemfonts    1.3.1   2025-10-01 [1] RSPM
-    #>  terra          1.8-80  2025-11-05 [1] RSPM
+    #>  terra          1.8-86  2025-11-28 [1] RSPM
     #>  textshaping    1.0.4   2025-10-10 [1] RSPM
     #>  tibble         3.3.0   2025-06-08 [1] RSPM
-    #>  tidyr          1.3.1   2024-01-24 [1] RSPM
+    #>  tidyr          1.3.2   2025-12-19 [1] RSPM
     #>  tidyselect     1.2.1   2024-03-11 [1] RSPM
     #>  tidyterra    * 0.7.2   2025-04-14 [1] RSPM
     #>  units          1.0-0   2025-10-09 [1] RSPM
     #>  vctrs          0.6.5   2023-12-01 [1] RSPM
     #>  withr          3.0.2   2024-10-28 [1] RSPM
-    #>  xfun           0.54    2025-10-30 [1] RSPM
-    #>  yaml           2.3.10  2024-07-26 [1] RSPM
+    #>  xfun           0.55    2025-12-16 [1] RSPM
+    #>  yaml           2.3.12  2025-12-10 [1] RSPM
     #> 
     #>  [1] D:/a/_temp/Library
     #>  [2] C:/R/site-library

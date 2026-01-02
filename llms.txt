@@ -234,12 +234,6 @@ package.](reference/figures/README-eiffel_sf-1.png)
 
 Example: Food places near the Eiffel Tower using the sf package.
 
-See additional articles showing how **arcgeocoder** can be use in
-combination with **leaflet** to create [dynamic
-maps](https://dieghernan.github.io/arcgeocoder/articles/ex_leaflet.html)
-and with **sf** and **terra** to create [static
-maps](https://dieghernan.github.io/arcgeocoder/articles/ex_static.html).
-
 ## Citation
 
 Hernangómez D (2025). *arcgeocoder: Geocoding with the ArcGIS REST API

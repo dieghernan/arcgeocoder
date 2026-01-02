@@ -170,14 +170,6 @@ ggplot(eiffel_tower, aes(x, y)) +
 
 Example: Food places near the Eiffel Tower
 
-### **arcgeocoder** and **r-spatial**
-
-See additional articles showing how **arcgeocoder** can be use in
-combination with **leaflet** to create [dynamic
-maps](https://dieghernan.github.io/arcgeocoder/articles/ex_leaflet.html)
-and with **sf** and **terra** to create [static
-maps](https://dieghernan.github.io/arcgeocoder/articles/ex_static.html).
-
 ## References
 
 Cambon, Jesse, Diego Hernangómez, Christopher Belanger, and Daniel

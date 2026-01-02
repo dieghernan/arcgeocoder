@@ -163,13 +163,13 @@ Details
     #>  collate  English_United States.utf8
     #>  ctype    English_United States.utf8
     #>  tz       UTC
-    #>  date     2025-11-22
+    #>  date     2026-01-02
     #>  pandoc   3.1.11 @ C:/HOSTED~1/windows/pandoc/31F387~1.11/x64/PANDOC~1.11/ (via rmarkdown)
     #>  quarto   NA
     #> 
     #> ─ Packages ───────────────────────────────────────────────────────────────────
     #>  package           * version date (UTC) lib source
-    #>  arcgeocoder       * 0.2.1   2025-11-22 [1] local
+    #>  arcgeocoder       * 0.2.1   2026-01-02 [1] local
     #>  bslib               0.9.0   2025-01-30 [1] RSPM
     #>  cachem              1.1.0   2024-05-16 [1] RSPM
     #>  cli                 3.6.5   2025-04-23 [1] RSPM
@@ -182,11 +182,11 @@ Details
     #>  fs                  1.6.6   2025-04-12 [1] RSPM
     #>  generics            0.1.4   2025-05-09 [1] RSPM
     #>  glue                1.8.0   2024-09-30 [1] RSPM
-    #>  htmltools           0.5.8.1 2024-04-04 [1] RSPM
+    #>  htmltools           0.5.9   2025-12-04 [1] RSPM
     #>  htmlwidgets         1.6.4   2023-12-06 [1] RSPM
     #>  jquerylib           0.1.4   2021-04-26 [1] RSPM
     #>  jsonlite            2.0.0   2025-03-27 [1] RSPM
-    #>  knitr               1.50    2025-03-16 [1] RSPM
+    #>  knitr               1.51    2025-12-20 [1] RSPM
     #>  leaflet           * 2.2.3   2025-09-04 [1] RSPM
     #>  leaflet.providers   2.0.0   2023-10-17 [1] RSPM
     #>  lifecycle           1.0.4   2023-11-07 [1] RSPM
@@ -201,7 +201,7 @@ Details
     #>  R.utils             2.13.0  2025-02-24 [1] RSPM
     #>  R6                  2.6.1   2025-02-15 [1] RSPM
     #>  ragg                1.5.0   2025-09-02 [1] RSPM
-    #>  reactable         * 0.4.4   2023-03-12 [1] RSPM
+    #>  reactable         * 0.4.5   2025-12-01 [1] RSPM
     #>  reactR              0.6.1   2024-09-14 [1] RSPM
     #>  rlang               1.1.6   2025-04-11 [1] RSPM
     #>  rmarkdown           2.30    2025-09-28 [1] RSPM
@@ -214,8 +214,8 @@ Details
     #>  tidyselect          1.2.1   2024-03-11 [1] RSPM
     #>  vctrs               0.6.5   2023-12-01 [1] RSPM
     #>  withr               3.0.2   2024-10-28 [1] RSPM
-    #>  xfun                0.54    2025-10-30 [1] RSPM
-    #>  yaml                2.3.10  2024-07-26 [1] RSPM
+    #>  xfun                0.55    2025-12-16 [1] RSPM
+    #>  yaml                2.3.12  2025-12-10 [1] RSPM
     #> 
     #>  [1] D:/a/_temp/Library
     #>  [2] C:/R/site-library

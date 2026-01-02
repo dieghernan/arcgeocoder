@@ -115,9 +115,8 @@ for values and examples.
 
 ## `featuretypes`
 
-See
-[`vignette("featuretypes", package = "arcgeocoder")`](https://dieghernan.github.io/arcgeocoder/articles/featuretypes.html)
-for a detailed explanation of this parameter.
+See `vignette("featuretypes", package = "arcgeocoder")` for a detailed
+explanation of this parameter.
 
 This parameter may be used for filtering the type of feature to be
 returned when geocoding. Possible values are:
