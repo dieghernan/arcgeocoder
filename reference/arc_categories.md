@@ -131,18 +131,18 @@ dplyr::glimpse(sea_2)
 #> Rows: 2
 #> Columns: 15
 #> $ query      <chr> "sea", "sea"
-#> $ lat        <dbl> 40.71816, 40.74846
-#> $ lon        <dbl> -73.95995, -73.99177
+#> $ lat        <dbl> 40.71816, 48.84329
+#> $ lon        <dbl> -73.959946, -3.001996
 #> $ address    <chr> "Sea", "Sea"
 #> $ score      <int> 100, 100
-#> $ x          <dbl> -73.95995, -73.99177
-#> $ y          <dbl> 40.71816, 40.74846
-#> $ LongLabel  <chr> "Sea, 114 N 6th St, Brooklyn, NY, 11249, USA", "Sea, 151 W …
+#> $ x          <dbl> -73.959946, -3.001996
+#> $ y          <dbl> 40.71816, 48.84329
+#> $ LongLabel  <chr> "Sea, 114 N 6th St, Brooklyn, NY, 11249, USA", "Sea, Parc a…
 #> $ Type       <chr> "Restaurant", "Restaurant"
-#> $ xmin       <dbl> -73.96095, -73.99277
-#> $ ymin       <dbl> 40.71716, 40.74746
-#> $ xmax       <dbl> -73.95895, -73.99077
-#> $ ymax       <dbl> 40.71916, 40.74946
+#> $ xmin       <dbl> -73.960946, -3.006996
+#> $ ymin       <dbl> 40.71716, 48.83829
+#> $ xmax       <dbl> -73.958946, -2.996996
+#> $ ymax       <dbl> 40.71916, 48.84829
 #> $ wkid       <int> 4326, 4326
 #> $ latestWkid <int> 4326, 4326
 
