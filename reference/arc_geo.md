@@ -165,7 +165,7 @@ with_params <- arc_geo(c("Madrid", "Barcelona"),
 )
 #>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
 
-with_params %>%
+with_params |>
   select(lat, lon, CntryName, LongLabel)
 #> # A tibble: 2 × 4
 #>     lat   lon CntryName LongLabel                       
@@ -180,7 +180,7 @@ with_params_usa <- arc_geo(c("Madrid", "Barcelona"),
 )
 #>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
 
-with_params_usa %>%
+with_params_usa |>
   select(lat, lon, CntryName, LongLabel)
 #> # A tibble: 2 × 4
 #>     lat   lon CntryName     LongLabel         

@@ -60,8 +60,8 @@ leaf_icons <- icons(
 )
 
 # Step 3: Crosstalk object
-cf_bk_data <- cf_bk %>%
-  select(Place = ShortLabel, Type, Address = Place_addr, City, URL, Phone) %>%
+cf_bk_data <- cf_bk |>
+  select(Place = ShortLabel, Type, Address = Place_addr, City, URL, Phone) |>
   SharedData$new(group = "Food")
 
 
@@ -71,17 +71,17 @@ lmend <- leaflet(
   data = cf_bk_data,
   elementId = "EiffelTower", width = "100%", height = "60vh",
   options = leafletOptions(minZoom = 12)
-) %>%
-  setView(eiffel_tower$lon, eiffel_tower$lat, zoom = 16) %>%
+) |>
+  setView(eiffel_tower$lon, eiffel_tower$lat, zoom = 16) |>
   addProviderTiles(
     provider = "CartoDB.Positron",
     group = "CartoDB.Positron"
-  ) %>%
-  addTiles(group = "OSM") %>%
-  addMarkers(data = eiffel_tower, ~lon, ~lat, icon = eiffel_icon) %>%
+  ) |>
+  addTiles(group = "OSM") |>
+  addMarkers(data = eiffel_tower, ~lon, ~lat, icon = eiffel_icon) |>
   addMarkers(
     lat = cf_bk$lat, lng = cf_bk$lon, popup = labs, icon = leaf_icons
-  ) %>%
+  ) |>
   addLayersControl(
     baseGroups = c("CartoDB.Positron", "OSM"),
     position = "topleft",
@@ -168,54 +168,54 @@ Details
     #>  quarto   NA
     #> 
     #> ─ Packages ───────────────────────────────────────────────────────────────────
-    #>  package           * version date (UTC) lib source
-    #>  arcgeocoder       * 0.2.1   2026-01-13 [1] local
-    #>  bslib               0.9.0   2025-01-30 [1] RSPM
-    #>  cachem              1.1.0   2024-05-16 [1] RSPM
-    #>  cli                 3.6.5   2025-04-23 [1] RSPM
-    #>  crosstalk         * 1.2.2   2025-08-26 [1] RSPM
-    #>  desc                1.4.3   2023-12-10 [1] RSPM
-    #>  digest              0.6.39  2025-11-19 [1] RSPM
-    #>  dplyr             * 1.1.4   2023-11-17 [1] RSPM
-    #>  evaluate            1.0.5   2025-08-27 [1] RSPM
-    #>  fastmap             1.2.0   2024-05-15 [1] RSPM
-    #>  fs                  1.6.6   2025-04-12 [1] RSPM
-    #>  generics            0.1.4   2025-05-09 [1] RSPM
-    #>  glue                1.8.0   2024-09-30 [1] RSPM
-    #>  htmltools           0.5.9   2025-12-04 [1] RSPM
-    #>  htmlwidgets         1.6.4   2023-12-06 [1] RSPM
-    #>  jquerylib           0.1.4   2021-04-26 [1] RSPM
-    #>  jsonlite            2.0.0   2025-03-27 [1] RSPM
-    #>  knitr               1.51    2025-12-20 [1] RSPM
-    #>  leaflet           * 2.2.3   2025-09-04 [1] RSPM
-    #>  leaflet.providers   2.0.0   2023-10-17 [1] RSPM
-    #>  lifecycle           1.0.5   2026-01-08 [1] RSPM
-    #>  magrittr            2.0.4   2025-09-12 [1] RSPM
-    #>  pillar              1.11.1  2025-09-17 [1] RSPM
-    #>  pkgconfig           2.0.3   2019-09-22 [1] RSPM
-    #>  pkgdown             2.2.0   2025-11-06 [1] RSPM
-    #>  purrr               1.2.1   2026-01-09 [1] RSPM
-    #>  R.cache             0.17.0  2025-05-02 [1] RSPM
-    #>  R.methodsS3         1.8.2   2022-06-13 [1] RSPM
-    #>  R.oo                1.27.1  2025-05-02 [1] RSPM
-    #>  R.utils             2.13.0  2025-02-24 [1] RSPM
-    #>  R6                  2.6.1   2025-02-15 [1] RSPM
-    #>  ragg                1.5.0   2025-09-02 [1] RSPM
-    #>  reactable         * 0.4.5   2025-12-01 [1] RSPM
-    #>  reactR              0.6.1   2024-09-14 [1] RSPM
-    #>  rlang               1.1.7   2026-01-09 [1] RSPM
-    #>  rmarkdown           2.30    2025-09-28 [1] RSPM
-    #>  sass                0.4.10  2025-04-11 [1] RSPM
-    #>  sessioninfo       * 1.2.3   2025-02-05 [1] any (@1.2.3)
-    #>  styler              1.11.0  2025-10-13 [1] RSPM
-    #>  systemfonts         1.3.1   2025-10-01 [1] RSPM
-    #>  textshaping         1.0.4   2025-10-10 [1] RSPM
-    #>  tibble              3.3.1   2026-01-11 [1] RSPM
-    #>  tidyselect          1.2.1   2024-03-11 [1] RSPM
-    #>  vctrs               0.6.5   2023-12-01 [1] RSPM
-    #>  withr               3.0.2   2024-10-28 [1] RSPM
-    #>  xfun                0.55    2025-12-16 [1] RSPM
-    #>  yaml                2.3.12  2025-12-10 [1] RSPM
+    #>  package           * version    date (UTC) lib source
+    #>  arcgeocoder       * 0.2.1.9000 2026-01-13 [1] local
+    #>  bslib               0.9.0      2025-01-30 [1] RSPM
+    #>  cachem              1.1.0      2024-05-16 [1] RSPM
+    #>  cli                 3.6.5      2025-04-23 [1] RSPM
+    #>  crosstalk         * 1.2.2      2025-08-26 [1] RSPM
+    #>  desc                1.4.3      2023-12-10 [1] RSPM
+    #>  digest              0.6.39     2025-11-19 [1] RSPM
+    #>  dplyr             * 1.1.4      2023-11-17 [1] RSPM
+    #>  evaluate            1.0.5      2025-08-27 [1] RSPM
+    #>  fastmap             1.2.0      2024-05-15 [1] RSPM
+    #>  fs                  1.6.6      2025-04-12 [1] RSPM
+    #>  generics            0.1.4      2025-05-09 [1] RSPM
+    #>  glue                1.8.0      2024-09-30 [1] RSPM
+    #>  htmltools           0.5.9      2025-12-04 [1] RSPM
+    #>  htmlwidgets         1.6.4      2023-12-06 [1] RSPM
+    #>  jquerylib           0.1.4      2021-04-26 [1] RSPM
+    #>  jsonlite            2.0.0      2025-03-27 [1] RSPM
+    #>  knitr               1.51       2025-12-20 [1] RSPM
+    #>  leaflet           * 2.2.3      2025-09-04 [1] RSPM
+    #>  leaflet.providers   2.0.0      2023-10-17 [1] RSPM
+    #>  lifecycle           1.0.5      2026-01-08 [1] RSPM
+    #>  magrittr            2.0.4      2025-09-12 [1] RSPM
+    #>  pillar              1.11.1     2025-09-17 [1] RSPM
+    #>  pkgconfig           2.0.3      2019-09-22 [1] RSPM
+    #>  pkgdown             2.2.0      2025-11-06 [1] RSPM
+    #>  purrr               1.2.1      2026-01-09 [1] RSPM
+    #>  R.cache             0.17.0     2025-05-02 [1] RSPM
+    #>  R.methodsS3         1.8.2      2022-06-13 [1] RSPM
+    #>  R.oo                1.27.1     2025-05-02 [1] RSPM
+    #>  R.utils             2.13.0     2025-02-24 [1] RSPM
+    #>  R6                  2.6.1      2025-02-15 [1] RSPM
+    #>  ragg                1.5.0      2025-09-02 [1] RSPM
+    #>  reactable         * 0.4.5      2025-12-01 [1] RSPM
+    #>  reactR              0.6.1      2024-09-14 [1] RSPM
+    #>  rlang               1.1.7      2026-01-09 [1] RSPM
+    #>  rmarkdown           2.30       2025-09-28 [1] RSPM
+    #>  sass                0.4.10     2025-04-11 [1] RSPM
+    #>  sessioninfo       * 1.2.3      2025-02-05 [1] any (@1.2.3)
+    #>  styler              1.11.0     2025-10-13 [1] RSPM
+    #>  systemfonts         1.3.1      2025-10-01 [1] RSPM
+    #>  textshaping         1.0.4      2025-10-10 [1] RSPM
+    #>  tibble              3.3.1      2026-01-11 [1] RSPM
+    #>  tidyselect          1.2.1      2024-03-11 [1] RSPM
+    #>  vctrs               0.6.5      2023-12-01 [1] RSPM
+    #>  withr               3.0.2      2024-10-28 [1] RSPM
+    #>  xfun                0.55       2025-12-16 [1] RSPM
+    #>  yaml                2.3.12     2025-12-10 [1] RSPM
     #> 
     #>  [1] D:/a/_temp/Library
     #>  [2] C:/R/site-library

@@ -108,11 +108,11 @@ reverse <- arc_reverse_geo(
   |==================================================| 100%
 ```
 
-|          x |        y | address_found                                                        |
-|-----------:|---------:|:---------------------------------------------------------------------|
-|  -77.03655 | 38.89768 | White House, 1600, Washington, DC, 20500, USA                        |
-| -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery Street, San Francisco, CA, 94111, USA |
-|  -87.63587 | 41.87867 | Mri of Chicago, 233 South Wacker Drive, Chicago, IL, 60606, USA      |
+|          x |        y | address_found                                                     |
+|-----------:|---------:|:------------------------------------------------------------------|
+|  -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA |
+| -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA  |
+|  -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
 
 It is possible also to search for specific locations within or near a
 reference are or location using [category
@@ -137,12 +137,12 @@ eiffel_tower <- arc_geo_multi(
 )
 
 # Display results
-eiffel_tower %>%
+eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                         
-#>   <dbl> <dbl> <chr>                                                             
-#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…
+#>     lon   lat LongLabel                                                                              
+#>   <dbl> <dbl> <chr>                                                                                  
+#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-de-France, FRA
 
 
 # Use lon,lat to boots the search and using category = Food

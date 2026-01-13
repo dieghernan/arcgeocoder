@@ -48,7 +48,8 @@ install.packages("arcgeocoder")
 You can install the developing version of **arcgeocoder** with:
 
 ``` r
-remotes::install_github("dieghernan/arcgeocoder")
+# install.packages("pak")
+pak::pak("dieghernan/arcgeocoder")
 ```
 
 Alternatively, you can install **arcgeocoder** using the
@@ -120,11 +121,11 @@ reverse <- arc_reverse_geo(
 #>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
-|          x |        y | address_found                                                        |
-|-----------:|---------:|:---------------------------------------------------------------------|
-|  -77.03655 | 38.89768 | White House, 1600, Washington, DC, 20500, USA                        |
-| -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery Street, San Francisco, CA, 94111, USA |
-|  -87.63587 | 41.87867 | Mri of Chicago, 233 South Wacker Drive, Chicago, IL, 60606, USA      |
+|          x |        y | address_found                                                     |
+|-----------:|---------:|:------------------------------------------------------------------|
+|  -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA |
+| -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA  |
+|  -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
 
 It is possible also to search for specific locations within or near a
 reference are or location using [category
@@ -149,7 +150,7 @@ eiffel_tower <- arc_geo_multi(
 )
 
 # Display results
-eiffel_tower %>%
+eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
 #>     lon   lat LongLabel                                                         
@@ -249,7 +250,7 @@ A BibTeX entry for LaTeX users is
   doi = {10.32614/CRAN.package.arcgeocoder},
   author = {Diego Hernangómez},
   year = {2026},
-  version = {0.2.1},
+  version = {0.2.1.9000},
   url = {https://dieghernan.github.io/arcgeocoder/},
   abstract = {Lite interface for finding locations of addresses or businesses around the world using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address. No API key required.},
 }

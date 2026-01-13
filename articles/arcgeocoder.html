@@ -37,7 +37,7 @@
       <img src="../apple-touch-icon.png" alt="arcgeocoder logo" height="34" width="34" class="d-inline-block me-1">
       arcgeocoder</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -273,7 +273,7 @@ the <code>address</code>.</p>
 <colgroup>
 <col width="12%">
 <col width="10%">
-<col width="77%">
+<col width="76%">
 </colgroup>
 <thead><tr class="header">
 <th align="right">x</th>
@@ -284,18 +284,19 @@ the <code>address</code>.</p>
 <tr class="odd">
 <td align="right">-77.03655</td>
 <td align="right">38.89768</td>
-<td align="left">White House, 1600, Washington, DC, 20500, USA</td>
+<td align="left">White House, 1600 Pennsylvania Ave NW, Washington, DC,
+20500, USA</td>
 </tr>
 <tr class="even">
 <td align="right">-122.40273</td>
 <td align="right">37.79516</td>
-<td align="left">Chess Ventures, 600 Montgomery Street, San Francisco,
-CA, 94111, USA</td>
+<td align="left">Chess Ventures, 600 Montgomery St, San Francisco, CA,
+94111, USA</td>
 </tr>
 <tr class="odd">
 <td align="right">-87.63587</td>
 <td align="right">41.87867</td>
-<td align="left">Mri of Chicago, 233 South Wacker Drive, Chicago, IL,
+<td align="left">The Metropolitan, 233 South Wacker Drive, Chicago, IL,
 60606, USA</td>
 </tr>
 </tbody>
@@ -321,12 +322,12 @@ France.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Display results</span></span>
-<span><span class="va">eiffel_tower</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">eiffel_tower</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">lon</span>, <span class="va">lat</span>, <span class="va">LongLabel</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 3</span></span>
-<span><span class="co">#&gt;     lon   lat LongLabel                                                         </span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                                                             </span></span>
-<span><span class="co">#&gt; 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…</span></span>
+<span><span class="co">#&gt;     lon   lat LongLabel                                                                              </span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                                                                                  </span></span>
+<span><span class="co">#&gt; 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-de-France, FRA</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># Use lon,lat to boots the search and using category = Food</span></span>

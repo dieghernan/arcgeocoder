@@ -92,8 +92,8 @@ api_poi <- arc_reverse_geo(
   langcode = "EN", full_results = TRUE, verbose = TRUE
 )
 
-api_poi %>%
-  select(x, y, address, lon, lat, Addr_type) %>%
+api_poi |>
+  select(x, y, address, lon, lat, Addr_type) |>
   knitr::kable()
 ```
 
@@ -110,8 +110,8 @@ api_local <- arc_reverse_geo(
   langcode = "EN", full_results = TRUE, verbose = TRUE
 )
 
-api_local %>%
-  select(x, y, address, lon, lat, Addr_type) %>%
+api_local |>
+  select(x, y, address, lon, lat, Addr_type) |>
   knitr::kable()
 ```
 
@@ -132,8 +132,8 @@ api_multiple <- arc_reverse_geo(
   langcode = "EN", full_results = TRUE, verbose = TRUE
 )
 
-api_multiple %>%
-  select(x, y, address, lon, lat, Addr_type) %>%
+api_multiple |>
+  select(x, y, address, lon, lat, Addr_type) |>
   knitr::kable()
 ```
 
@@ -157,8 +157,8 @@ returns an empty **tibble**.
 
 npole <- arc_reverse_geo(x = 0, y = 90, langcode = "EN", full_results = TRUE)
 
-npole %>%
-  select(x, y, address, lon, lat, Addr_type) %>%
+npole |>
+  select(x, y, address, lon, lat, Addr_type) |>
   knitr::kable()
 ```
 
@@ -173,7 +173,7 @@ npole2 <- arc_reverse_geo(
   featuretypes = "StreetAddress"
 )
 
-npole2 %>%
+npole2 |>
   knitr::kable()
 ```
 

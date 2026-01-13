@@ -1,5 +1,9 @@
 # Changelog
 
+## arcgeocoder (development version)
+
+- Minimum **R** version now is `4.1`.
+
 ## arcgeocoder 0.2.1
 
 CRAN release: 2024-12-17
