@@ -1,4 +1,6 @@
 name: Clear all Github actions caches manually
+permissions: read-all
+
 on:
   workflow_dispatch:
   schedule:
