@@ -23,9 +23,9 @@ end <- lapply(proj_url, function(x) {
   df$projtype <- names(final)
   # ext <- df$extent
 
-  df_2 <- df %>%
-    select(-extent, -version) %>%
-    # bind_cols(ext) %>%
+  df_2 <- df |>
+    select(-extent, -version) |>
+    # bind_cols(ext) |>
     relocate(projtype, .before = 1)
 
   dep <- ifelse(df_2$deprecated == "no", FALSE, TRUE)
@@ -37,7 +37,7 @@ end <- lapply(proj_url, function(x) {
 prev <- bind_rows(end)
 # Relocate cols
 
-arc_spatial_references <- prev %>%
+arc_spatial_references <- prev |>
   select(
     projtype,
     wkid,

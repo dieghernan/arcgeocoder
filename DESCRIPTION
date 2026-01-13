@@ -1,6 +1,6 @@
 Package: arcgeocoder
 Title: Geocoding with the 'ArcGIS' REST API Service
-Version: 0.2.1
+Version: 0.2.1.9000
 Authors@R: 
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
@@ -14,7 +14,7 @@ URL: https://dieghernan.github.io/arcgeocoder/,
     https://github.com/dieghernan/arcgeocoder
 BugReports: https://github.com/dieghernan/arcgeocoder/issues
 Depends: 
-    R (>= 3.6.0)
+    R (>= 4.1)
 Imports: 
     dplyr (>= 1.0.0),
     jsonlite (>= 1.7.0)

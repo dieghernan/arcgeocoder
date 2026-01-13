@@ -22,7 +22,7 @@ topnames <- cats$name
 
 # Second level cats, no localized
 second_lev <- lapply(cats$categories, function(x) {
-  x[!grepl("local", names(x))]
+  x[!grepl("local", names(x), fixed = TRUE)]
 })
 
 # There are special cases here...

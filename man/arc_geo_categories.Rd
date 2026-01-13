@@ -145,9 +145,9 @@ ex1 <- arc_geo_categories("Gas Station",
 # Reduce number of labels to most common ones
 library(dplyr)
 
-labs <- ex1 \%>\%
-  count(ShortLabel) \%>\%
-  slice_max(n = 7, order_by = n) \%>\%
+labs <- ex1 |>
+  count(ShortLabel) |>
+  slice_max(n = 7, order_by = n) |>
   pull(ShortLabel)
 
 base_map +

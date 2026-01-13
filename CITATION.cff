@@ -8,7 +8,7 @@ message: 'To cite package "arcgeocoder" in publications use:'
 type: software
 license: MIT
 title: 'arcgeocoder: Geocoding with the ''ArcGIS'' REST API Service'
-version: 0.2.1
+version: 0.2.1.9000
 doi: 10.32614/CRAN.package.arcgeocoder
 identifiers:
 - type: doi
@@ -32,7 +32,7 @@ preferred-citation:
     orcid: https://orcid.org/0000-0001-8457-4658
   doi: 10.32614/CRAN.package.arcgeocoder
   year: '2026'
-  version: 0.2.1
+  version: 0.2.1.9000
   url: https://dieghernan.github.io/arcgeocoder/
   abstract: Lite interface for finding locations of addresses or businesses around
     the world using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
@@ -71,7 +71,7 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2026'
-  version: '>= 3.6.0'
+  version: '>= 4.1'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'

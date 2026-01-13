@@ -55,7 +55,7 @@
 #'   custom_query = list(outFields = c("LongLabel", "CntryName"))
 #' )
 #'
-#' with_params %>%
+#' with_params |>
 #'   select(lat, lon, CntryName, LongLabel)
 #'
 #' # With options: restrict search to USA
@@ -64,7 +64,7 @@
 #'   custom_query = list(outFields = c("LongLabel", "CntryName"))
 #' )
 #'
-#' with_params_usa %>%
+#' with_params_usa |>
 #'   select(lat, lon, CntryName, LongLabel)
 #' }
 #' @export

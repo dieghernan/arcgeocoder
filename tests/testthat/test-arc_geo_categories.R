@@ -159,7 +159,7 @@ test_that("Test with all params", {
   expect_true("aaaa" %in% names(out))
   expect_true("LongLabel" %in% names(out))
   expect_false("query" %in% names(out))
-  expect_false(any(grepl("Country", names(out))))
+  expect_false(any(grepl("Country", names(out), fixed = TRUE)))
 
   # Full results
   out2 <- arc_geo_categories(
@@ -183,7 +183,7 @@ test_that("Test with all params", {
   expect_true("aaaa" %in% names(out2))
   expect_true("LongLabel" %in% names(out2))
   expect_false("query" %in% names(out))
-  expect_true(any(grepl("Country", names(out2))))
+  expect_true(any(grepl("Country", names(out2), fixed = TRUE)))
   expect_gt(ncol(out2), ncol(out))
   # Vectorized
   expect_gt(nrow(out2), 2)

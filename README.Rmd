@@ -88,7 +88,8 @@ install.packages("arcgeocoder")
 You can install the developing version of **arcgeocoder** with:
 
 ```{r, eval=FALSE}
-remotes::install_github("dieghernan/arcgeocoder")
+# install.packages("pak")
+pak::pak("dieghernan/arcgeocoder")
 ```
 
 Alternatively, you can install **arcgeocoder** using the
@@ -178,7 +179,7 @@ eiffel_tower <- arc_geo_multi(
 )
 
 # Display results
-eiffel_tower %>%
+eiffel_tower |>
   select(lon, lat, LongLabel)
 
 
@@ -223,7 +224,6 @@ ggplot(food_eiffel_sf) +
   geom_sf(aes(color = Type)) +
   coord_sf(crs = 3035)
 ```
-
 
 ## Citation
 

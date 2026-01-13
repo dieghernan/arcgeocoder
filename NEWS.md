@@ -1,3 +1,7 @@
+# arcgeocoder (development version)
+
+-   Minimum **R** version now is `4.1`.
+
 # arcgeocoder 0.2.1
 
 -   Update documentation.

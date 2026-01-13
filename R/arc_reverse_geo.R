@@ -202,8 +202,8 @@ arc_reverse_geo <- function(
 
   # # Final clean
   nm <- names(all_res)
-  nm <- gsub("x_key_int", "x", nm)
-  nm <- gsub("y_key_int", "y", nm)
+  nm <- gsub("x_key_int", "x", nm, fixed = TRUE)
+  nm <- gsub("y_key_int", "y", nm, fixed = TRUE)
   names(all_res) <- nm
 
   if (isFALSE(return_coords)) {

@@ -92,9 +92,9 @@
 #' # Reduce number of labels to most common ones
 #' library(dplyr)
 #'
-#' labs <- ex1 %>%
-#'   count(ShortLabel) %>%
-#'   slice_max(n = 7, order_by = n) %>%
+#' labs <- ex1 |>
+#'   count(ShortLabel) |>
+#'   slice_max(n = 7, order_by = n) |>
 #'   pull(ShortLabel)
 #'
 #' base_map +
@@ -173,11 +173,11 @@ arc_geo_categories <- function(
     q_bbox_ymax = bbox[4]
   )
 
-  if (!any(is.na(locs))) {
+  if (!anyNA(locs)) {
     custom_query$location <- paste0(locs, collapse = ",")
   }
 
-  if (!any(is.na(bbox))) {
+  if (!anyNA(bbox)) {
     custom_query$searchExtent <- paste0(bbox, collapse = ",")
   }
 
@@ -230,7 +230,7 @@ validate_location <- function(x = NULL, y = NULL) {
   }
 
   # If any NA return NAs with message
-  if (any(is.na(x), is.na(y))) {
+  if (anyNA(c(x, y))) {
     message("Either x or y are missing. `location` parameter won't be used")
     return(c(NA, NA))
   }
@@ -267,7 +267,7 @@ validate_bbox <- function(bbox = NULL) {
   }
 
   # If any NA return NAs with message
-  if (any(is.na(bbox))) {
+  if (anyNA(bbox)) {
     message("`bbox` with NA values. `bbox` parameter won't be used")
     return(c(NA, NA, NA, NA))
   }

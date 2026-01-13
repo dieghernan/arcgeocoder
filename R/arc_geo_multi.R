@@ -82,8 +82,8 @@
 #'
 #' library(dplyr)
 #'
-#' simple %>%
-#'   select(lat, lon, CntryName, Region, LongLabel) %>%
+#' simple |>
+#'   select(lat, lon, CntryName, Region, LongLabel) |>
 #'   slice_head(n = 10)
 #'
 #' # Restrict search to Spain
@@ -93,8 +93,8 @@
 #'   custom_query = list(outFields = c("LongLabel", "CntryName", "Region"))
 #' )
 #'
-#' simple2 %>%
-#'   select(lat, lon, CntryName, Region, LongLabel) %>%
+#' simple2 |>
+#'   select(lat, lon, CntryName, Region, LongLabel) |>
 #'   slice_head(n = 10)
 #'
 #' # Restrict to a region
@@ -105,8 +105,8 @@
 #'   custom_query = list(outFields = c("LongLabel", "CntryName", "Region"))
 #' )
 #'
-#' simple3 %>%
-#'   select(lat, lon, CntryName, Region, LongLabel) %>%
+#' simple3 |>
+#'   select(lat, lon, CntryName, Region, LongLabel) |>
 #'   slice_head(n = 10)
 #' }
 arc_geo_multi <- function(

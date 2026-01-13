@@ -135,7 +135,7 @@ eiffel_tower <- arc_geo_multi(
 )
 
 # Display results
-eiffel_tower %>%
+eiffel_tower |>
   select(lon, lat, LongLabel)
 
 

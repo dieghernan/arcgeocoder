@@ -147,8 +147,8 @@ NULL
 #'
 #' # Request with deprecated Web Mercator
 #' library(dplyr)
-#' wkid <- arc_spatial_references %>%
-#'   filter(latestWkid == 3857 & deprecated == TRUE) %>%
+#' wkid <- arc_spatial_references |>
+#'   filter(latestWkid == 3857 & deprecated == TRUE) |>
 #'   slice(1)
 #'
 #' glimpse(wkid)
@@ -156,8 +156,8 @@ NULL
 #' add <- arc_geo("London, United Kingdom", outsr = wkid$wkid)
 #'
 #' # Note values lat, lon and wkid. latestwkid give the current valid wkid
-#' add %>%
-#'   select(lat, lon, wkid, latestWkid) %>%
+#' add |>
+#'   select(lat, lon, wkid, latestWkid) |>
 #'   glimpse()
 #'
 #' # See with sf

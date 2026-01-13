@@ -44,7 +44,7 @@ mc_sf <- st_as_sf(mc,
   crs = mc$latestWkid[1]
 )
 
-bcn <- esp_get_munic(munic = "Barcelona") %>%
+bcn <- esp_get_munic(munic = "Barcelona") |>
   st_transform(mc$latestWkid[1])
 
 ggplot(bcn) +
@@ -52,7 +52,7 @@ ggplot(bcn) +
   geom_sf(data = mc_sf, color = "red")
 
 # We can restrict the results to the bbox of BCN in the query
-bbox <- st_bbox(bcn) %>% paste0(collapse = ",")
+bbox <- st_bbox(bcn) |> paste0(collapse = ",")
 bbox
 
 mc2_sf <- arc_geo_multi("McDonalds",
@@ -63,7 +63,7 @@ mc2_sf <- arc_geo_multi("McDonalds",
     outFields = c("LongLabel", "Type", "StAdd"),
     searchExtent = bbox
   )
-) %>%
+) |>
   st_as_sf(coords = c("lon", "lat"), crs = mc$latestWkid[1])
 
 
