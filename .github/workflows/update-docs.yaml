@@ -2,8 +2,11 @@ on:
   workflow_dispatch:
 
 name: update-docs
-permissions:
-  contents: write
+permissions: write-all
+# This will cancel running jobs once a new run is triggered
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 jobs:
   update-docs:
@@ -19,7 +22,6 @@ jobs:
         with:
           use-public-rspm: true
 
-
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
@@ -28,31 +30,24 @@ jobs:
             any::rcmdcheck
             any::pkgdown
             dieghernan/pkgdev
-
           needs: website
 
       - name: Run jarl
         uses: etiennebacher/setup-jarl@v0.1.0
         continue-on-error: true
         with:
-          args: check . --fix
+          args: check . --fix --min-r-version 4.1.0
 
       - name: Install Air
         uses: posit-dev/setup-air@v1
 
-      - name: Format with Air
-        run: air format .
-
-      - name: Install Air
-        uses: posit-dev/setup-air@v1
-
-      - name: Format with Air
+      - name: Format package
         run: air format .
 
       - name: Update docs
         run: |
 
-          pkgdev::update_docs()
+          pkgdev::update_docs(opt_dir = c("man/figures", "img", "vignettes"))
 
         shell: Rscript {0}
 
@@ -70,5 +65,5 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE, run_dont_run = TRUE)'
+          Rscript -e 'pkgdown::deploy_to_branch(new_process = TRUE, run_dont_run = TRUE, lazy = TRUE)'
 
