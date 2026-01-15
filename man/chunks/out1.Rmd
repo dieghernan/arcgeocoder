@@ -1,6 +1,6 @@
 ```{r echo=FALSE, results='asis'}
 cat(paste0(
-  "A [`tibble`][tibble::tibble] object with the results. ",
+  "A [tibble][tibble::tbl_df] object with the results. ",
   "See the details of the output in ",
   " [ArcGIS REST API Service output](",
   arcgeocoder:::arcurl("out"), ")."

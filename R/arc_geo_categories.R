@@ -8,9 +8,9 @@
 #' See [arc_categories] for a detailed explanation and available values.
 #'
 #' **Note that** for obtaining results it is needed:
-#' - Either to provide a pair of coordinates (`x,y` parameters) that would be
+#' - Either to provide a pair of coordinates (`x,y` arguments) that would be
 #'   used as a reference for geocoding.
-#' - Or a viewbox (aka bounding box) on the `bbox` parameter defining an
+#' - Or a viewbox (aka bounding box) on the `bbox` argument defining a
 #'   desired extent of the results.
 #'
 #'  It is possible to combine the two approaches (i.e. providing `x,y,bbox`
@@ -34,10 +34,9 @@
 #' Bounding boxes can be located using different online tools, as
 #' [Bounding Box Tool](https://boundingbox.klokantech.com/).
 #'
-#' For a full list of valid categories see [arc_categories].
-#'
-#' This function is vectorized over `category`, that means that it would perform
-#' one independent call to [arc_geo()] for each `category` value.
+#' For a full list of valid categories see [arc_categories]. This function is
+#' vectorized over `category`, that means that it performs one independent call
+#' to [arc_geo()] for each `category` value.
 #'
 #' `arc_geo_categories()` also understands a single string of categories
 #' separated by commas (`"Cinema,Museum"`), that would be internally treated as
@@ -156,7 +155,7 @@ arc_geo_categories <- function(
   bbox <- validate_bbox(bbox)
 
   if (all(is.na(c(locs, bbox)))) {
-    stop("Provide either a valid combination of x,y parameters or a valid bbox")
+    stop("Provide either a valid combination of x,y arguments or a valid bbox")
   }
 
   # Ready for preparing query
@@ -231,7 +230,7 @@ validate_location <- function(x = NULL, y = NULL) {
 
   # If any NA return NAs with message
   if (anyNA(c(x, y))) {
-    message("Either x or y are missing. `location` parameter won't be used")
+    message("Either x or y are missing. `location` argument won't be used")
     return(c(NA, NA))
   }
 
@@ -268,17 +267,17 @@ validate_bbox <- function(bbox = NULL) {
 
   # If any NA return NAs with message
   if (anyNA(bbox)) {
-    message("`bbox` with NA values. `bbox` parameter won't be used")
+    message("`bbox` with NA values. `bbox` argument won't be used")
     return(c(NA, NA, NA, NA))
   }
 
   if (length(bbox) < 4) {
-    message("`bbox` with less than 4 values. `bbox` parameter won't be used")
+    message("`bbox` with less than 4 values. `bbox` argument won't be used")
     return(c(NA, NA, NA, NA))
   }
 
   if (!is.numeric(bbox)) {
-    message("`bbox` not numeric. `bbox` parameter won't be used")
+    message("`bbox` not numeric. `bbox` argument won't be used")
     return(c(NA, NA, NA, NA))
   }
 

@@ -1,5 +1,5 @@
 ---
-title: "Get started wit arcgeocoder"
+title: "Get started with arcgeocoder"
 output: rmarkdown::html_vignette
 desc: >
   Quick examples showing what arcgeocoder can do for you.
@@ -28,7 +28,7 @@ library(arcgeocoder)
 ```
 
 The goal of **arcgeocoder** is to provide a light interface for geocoding
-addresses and reverse geocoding location trough the [ArcGIS REST API Geocoding
+addresses and reverse geocoding locations through the [ArcGIS REST API Geocoding
 Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
 
 Full site with examples and vignettes on
@@ -42,7 +42,7 @@ and reverse geocoding with the ArcGIS REST API service. The goal of
 as **curl** . In some situations, **curl** may not be available or accessible,
 so **arcgeocoder** uses base functions to overcome this limitation.
 
-The interface of **apigeocoder** is built with the aim of easing the access to
+The interface of **arcgeocoder** is built with the aim of easing the access to
 all the features provided by the API. The API endpoints used by **arcgeocoder**
 are `findAddressCandidates` and `reverseGeocode`, which can be accessed without
 the need for an API key.
@@ -50,7 +50,7 @@ the need for an API key.
 ## Recommended packages
 
 There are other packages much more complete and mature than `nominatimlite`,
-that presents similar features:
+that present similar features:
 
 -   [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
     [@R-tidygeocoder]. Allows to interface with ArcGIS, Nominatim
@@ -146,7 +146,7 @@ food_eiffel <- arc_geo_categories("Food",
   limit = 50, full_results = TRUE
 )
 
-# Plot  by Food Type
+# Plot by Food Type
 ggplot(eiffel_tower, aes(x, y)) +
   geom_point(shape = 17, color = "red", size = 4) +
   geom_point(data = food_eiffel, aes(x, y, color = Type)) +
@@ -159,6 +159,5 @@ ggplot(eiffel_tower, aes(x, y)) +
     caption = "Data from ArcGIS REST API services"
   )
 ```
-
 
 ## References

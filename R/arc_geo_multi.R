@@ -1,8 +1,8 @@
 #' Geocoding using the ArcGIS REST API with multi-field query
 #'
 #' @description
-#' Geocodes addresses given specific address components.This function returns
-#' the [`tibble`][tibble::tibble] associated with the query.
+#' Geocodes addresses given specific address components. This function returns
+#' the [tibble][tibble::tbl_df] associated with the query.
 #'
 #' For geocoding using a single text string use [arc_geo()] function.
 #'
@@ -20,7 +20,7 @@
 #' ```{r child = "man/chunks/out1.Rmd"}
 #' ```
 #'
-#' The resulting output would include also the input parameters (columns with
+#' The resulting output will include also the input arguments (columns with
 #' prefix `q_`) for better tracking the results.
 #'
 #' @details
@@ -29,14 +29,14 @@
 #'
 #' # Address components
 #'
-#' This function allows to perform structured queries by different components of
+#' This function allows performing structured queries by different components of
 #' an address. At least one field should be different than `NA` or `NULL`.
 #'
-#' A vector of values can be provided for each parameter for multiple geocoding.
-#' When using vectors on different parameters, their lengths should be the
+#' A vector of values can be provided for each argument for multiple geocoding.
+#' When using vectors on different arguments, their lengths should be the
 #' same.
 #'
-#' The following list provides a brief description of each parameter:
+#' The following list provides a brief description of each argument:
 #'
 #' - `address`: A string that represents the first line of a street address. In
 #'    most cases it will be the **street name and house number** input, but it
@@ -172,7 +172,7 @@ arc_geo_multi <- function(
   }
   seql <- seq(1, ntot, 1)
 
-  # Add additional parameters to the custom query
+  # Add additional arguments to the custom query
   if (isTRUE(full_results)) {
     # This will override the outFields param provided in the custom_query
     custom_query$outFields <- "*"

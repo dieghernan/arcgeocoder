@@ -19,7 +19,7 @@
       out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, bbox = "uno",
         verbose = TRUE)
     Message
-      `bbox` with less than 4 values. `bbox` parameter won't be used
+      `bbox` with less than 4 values. `bbox` argument won't be used
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -36,7 +36,7 @@
       out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, bbox = c("uno", NA),
       verbose = TRUE)
     Message
-      `bbox` with NA values. `bbox` parameter won't be used
+      `bbox` with NA values. `bbox` argument won't be used
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -53,7 +53,7 @@
       out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, bbox = LETTERS[1:4],
       verbose = TRUE)
     Message
-      `bbox` not numeric. `bbox` parameter won't be used
+      `bbox` not numeric. `bbox` argument won't be used
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:

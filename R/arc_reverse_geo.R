@@ -4,7 +4,7 @@
 #' Generates an address from a latitude and longitude. Latitudes must be
 #' in the range \eqn{\left[-90, 90 \right]} and longitudes in the range
 #' \eqn{\left[-180, 180 \right]}. This function returns the
-#' [`tibble`][tibble::tibble] associated with the query.
+#' [tibble][tibble::tbl_df] associated with the query.
 #'
 #' @param x longitude values in numeric format. Must be in the range
 #'   \eqn{\left[-180, 180 \right]}.
@@ -19,18 +19,18 @@
 #' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
 #'  the progress of the function.
 #' @param outsr The spatial reference of the `x,y` coordinates returned by a
-#'   geocode request. By default is `NULL` (i.e. the parameter won't be used in
+#'   geocode request. By default is `NULL` (i.e. the argument won't be used in
 #'   the query). See **Details** and [arc_spatial_references].
 #' @param langcode Sets the language in which reverse-geocoded addresses are
 #'   returned.
-#' @param featuretypes This parameter limits the possible match types returned.
-#'   By default is `NULL` (i.e. the parameter won't be used in the query).
+#' @param featuretypes This argument limits the possible match types returned.
+#'   By default is `NULL` (i.e. the argument won't be used in the query).
 #'   See **Details**.
 #' @param locationtype Specifies whether the output geometry of
 #' `featuretypes = "PointAddress"` or `featuretypes = "Subaddress"` matches
 #'   should be the rooftop point or street entrance location. Valid values are
-#'   `NULL` (i.e. not using the parameter in the query), `rooftop` and `street`.
-#' @param custom_query API-specific parameters to be used, passed as a named
+#'   `NULL` (i.e. not using the argument in the query), `rooftop` and `street`.
+#' @param custom_query API-specific arguments to be used, passed as a named
 #'   list.
 #'
 #'
@@ -46,16 +46,16 @@
 #'
 #' The spatial reference can be specified as either a well-known ID (WKID). If
 #' not specified, the spatial reference of the output locations is the same as
-#' that of the service ( WGS84, i.e. WKID = 4326)).
+#' that of the service (WGS84, i.e. WKID = 4326)).
 #'
 #' See [arc_spatial_references] for values and examples.
 #'
 #' # `featuretypes`
 #'
 #' See `vignette("featuretypes", package = "arcgeocoder")` for a detailed
-#' explanation of this parameter.
+#' explanation of this argument.
 #'
-#' This parameter may be used for filtering the type of feature to be returned
+#' This argument may be used for filtering the type of feature to be returned
 #' when geocoding. Possible values are:
 #'
 #' -   `"StreetInt"`
@@ -72,10 +72,10 @@
 #' (`featuretypes = c("PointAddress", "StreetAddress")`).
 #'
 #' @return
-#' A [`tibble`][tibble::tibble] with the corresponding results. The `x,y` values
-#' returned by the API would be named `lon,lat`. Note that these coordinates
-#' correspond to the geocoded feature, and may be different of the `x,y` values
-#' provided as inputs.
+#' A [tibble][tibble::tbl_df] with the corresponding results. The `x,y` values
+#' returned by the API are named `lon,lat`. Note that these coordinates
+#' correspond to the geocoded feature, and may be different from the `x,y`
+#' values provided as inputs.
 #'
 #' See the details of the output in
 #' [ArcGIS REST API Service output](`r arcurl("out")`).
@@ -88,11 +88,11 @@
 #' # Several coordinates
 #' arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
 #'
-#' # With options: using some additional parameters
+#' # With options: using some additional arguments
 #' sev <- arc_reverse_geo(
 #'   x = c(-73.98586, -3.188375),
 #'   y = c(40.75728, 55.95335),
-#'   # Restrict to these feautures
+#'   # Restrict to these features
 #'   featuretypes = "POI,StreetInt",
 #'   # Result on this WKID
 #'   outsr = 102100,
@@ -164,7 +164,7 @@ arc_reverse_geo <- function(
 
   seql <- seq(1, ntot, 1)
 
-  # Add additional parameters to the custom query
+  # Add additional arguments to the custom query
 
   custom_query$outSR <- outsr
   custom_query$langCode <- langcode

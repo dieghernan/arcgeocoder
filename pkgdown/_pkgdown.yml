@@ -15,16 +15,16 @@ repo:
 
 home:
   title: arcgeocoder | Geocoding with the ArcGIS REST API Service
-  description: >
-    Lite interface for geocoding and reverse geocoding with the
-    ArcGIS REST API service.
+  description: |
+    Lite interface for geocoding and reverse geocoding with the ArcGIS REST API
+    service.
 authors:
   Diego Hernangómez:
     href: 'https://dieghernan.github.io/'
 
 reference:
 - title: Geocoding and Reverse Geocoding
-  desc: >
+  desc: |
     These functions performs requests to the ArcGIS REST API.
   contents:
   - has_concept("geocoding")
@@ -48,4 +48,3 @@ articles:
   contents:
   - articles/static
   - articles/leaflet
-

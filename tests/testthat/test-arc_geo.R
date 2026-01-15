@@ -112,7 +112,7 @@ test_that("Checking query", {
   expect_identical(names(obj)[1:4], c("query", "at", "ong", "address"))
   expect_gt(ncol(obj), 4)
 
-  # Boosting with parameters
+  # Boosting with arguments
 
   query <- arc_geo(
     "Burger King",

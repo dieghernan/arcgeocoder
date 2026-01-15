@@ -135,7 +135,7 @@ test_that("Checking query", {
   )
   expect_gt(ncol(obj), 4)
 
-  # Boosting with parameters
+  # Boosting with arguments
 
   query <- arc_geo_multi(
     "Burger King",

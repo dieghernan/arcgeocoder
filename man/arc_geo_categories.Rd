@@ -47,30 +47,30 @@ that each query returns a maximum of 50 results.}
 
 \item{full_results}{returns all available data from the API service. This
 is a shorthand of \verb{outFields=*}. See \strong{References}. If \code{FALSE} (default)
-only the default values of the API would be returned. See also
+only the default values of the API are returned. See also
 \code{return_addresses} argument.}
 
 \item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
 
-\item{custom_query}{API-specific parameters to be used, passed as a named
+\item{custom_query}{API-specific arguments to be used, passed as a named
 list.}
 
 \item{...}{
   Arguments passed on to \code{\link[=arc_geo]{arc_geo}}
   \describe{
-    \item{\code{sourcecountry}}{Limits the candidates returned to the specified country
+    \item{\code{sourcecountry}}{limits the candidates returned to the specified country
 or countries. Acceptable values include the three-character country code.
 You can specify multiple country codes to limit results to more than one
 country.}
     \item{\code{outsr}}{The spatial reference of the \verb{x,y} coordinates returned by a
-geocode request. By default is \code{NULL} (i.e. the parameter won't be used in
+geocode request. By default is \code{NULL} (i.e. the argument won't be used in
 the query). See \strong{Details} and \link{arc_spatial_references}.}
     \item{\code{langcode}}{Sets the language in which reverse-geocoded addresses are
 returned.}
   }}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
+A \link[tibble:tbl_df-class]{tibble} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
 }
 \description{
 This function is useful for extracting places with a given category (or list
@@ -81,9 +81,9 @@ See \link{arc_categories} for a detailed explanation and available values.
 
 \strong{Note that} for obtaining results it is needed:
 \itemize{
-\item Either to provide a pair of coordinates (\verb{x,y} parameters) that would be
+\item Either to provide a pair of coordinates (\verb{x,y} arguments) that would be
 used as a reference for geocoding.
-\item Or a viewbox (aka bounding box) on the \code{bbox} parameter defining an
+\item Or a viewbox (aka bounding box) on the \code{bbox} argument defining a
 desired extent of the results.
 }
 
@@ -94,10 +94,9 @@ values) in order to boost the geocoding process. See \strong{Examples}.
 Bounding boxes can be located using different online tools, as
 \href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
 
-For a full list of valid categories see \link{arc_categories}.
-
-This function is vectorized over \code{category}, that means that it would perform
-one independent call to \code{\link[=arc_geo]{arc_geo()}} for each \code{category} value.
+For a full list of valid categories see \link{arc_categories}. This function is
+vectorized over \code{category}, that means that it performs one independent call
+to \code{\link[=arc_geo]{arc_geo()}} for each \code{category} value.
 
 \code{arc_geo_categories()} also understands a single string of categories
 separated by commas (\code{"Cinema,Museum"}), that would be internally treated as
@@ -106,7 +105,7 @@ separated by commas (\code{"Cinema,Museum"}), that would be internally treated a
 \section{\code{outsr}}{
 The spatial reference can be specified as either a well-known ID (WKID). If
 not specified, the spatial reference of the output locations is the same as
-that of the service ( WGS84, i.e. WKID = 4326)).
+that of the service (WGS84, i.e. WKID = 4326)).
 
 See \link{arc_spatial_references} for values and examples.
 }

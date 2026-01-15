@@ -14,7 +14,7 @@ URL: https://dieghernan.github.io/arcgeocoder/,
     https://github.com/dieghernan/arcgeocoder
 BugReports: https://github.com/dieghernan/arcgeocoder/issues
 Depends: 
-    R (>= 4.1)
+    R (>= 4.1.0)
 Imports: 
     dplyr (>= 1.0.0),
     jsonlite (>= 1.7.0)

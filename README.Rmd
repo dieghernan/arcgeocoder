@@ -43,7 +43,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 <!-- badges: end -->
 
 The goal of **arcgeocoder** is to provide a light interface for geocoding
-addresses and reverse geocoding location trough the [ArcGIS REST API Geocoding
+addresses and reverse geocoding locations through the [ArcGIS REST API Geocoding
 Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
 
 Full site with examples and vignettes on
@@ -57,7 +57,7 @@ and reverse geocoding with the ArcGIS REST API service. The goal of
 as **curl**. In some situations, **curl** may not be available or accessible, so
 **arcgeocoder** uses base functions to overcome this limitation.
 
-The interface of **apigeocoder** is built with the aim of easing the access to
+The interface of **arcgeocoder** is built with the aim of easing the access to
 all the features provided by the API. The API endpoints used by **arcgeocoder**
 are `findAddressCandidates` and `reverseGeocode`, which can be accessed
 [**without**]{.underline} the need for an [**API key**]{.underline}.
@@ -65,7 +65,7 @@ are `findAddressCandidates` and `reverseGeocode`, which can be accessed
 ## Recommended packages
 
 There are other packages much more complete and mature than **arcgeocoder**,
-that presents similar features:
+that present similar features:
 
 -   [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
     [@R-tidygeocoder]. Allows to interface with ArcGIS, Nominatim
@@ -158,11 +158,11 @@ knitr::kable(reverse)
 ```
 
 It is possible also to search for specific locations within or near a reference
-are or location using [category
+area or location using [category
 filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
 See more information in the documentation of the data base `arc_categories`.
 
-In the following example we would look for POIs related with food (i.e.
+In the following example we would look for POIs related to food (i.e.
 Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.
 
 ```{r eiffel, fig.cap="Example: Food places near the Eiffel Tower"}
@@ -183,7 +183,7 @@ eiffel_tower |>
   select(lon, lat, LongLabel)
 
 
-# Use lon,lat to boots the search and using category = Food
+# Use lon,lat to boost the search and using category = Food
 food_eiffel <- arc_geo_categories("Food",
   x = eiffel_tower$lon,
   y = eiffel_tower$lat,
@@ -196,7 +196,7 @@ ggplot(eiffel_tower, aes(x, y)) +
   geom_point(data = food_eiffel, aes(x, y, color = Type)) +
   labs(
     title = "Food near the Eiffel Tower",
-    subtitle = "Using arcgecoder",
+    subtitle = "Using arcgeocoder",
     color = "Type of place",
     x = "",
     y = "",

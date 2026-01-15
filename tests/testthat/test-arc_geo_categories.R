@@ -5,7 +5,7 @@ test_that("Errors", {
 
   expect_error(
     arc_geo_categories("Food"),
-    "valid combination of x,y parameters or a valid bbox"
+    "valid combination of x,y arguments or a valid bbox"
   )
   expect_error(
     arc_geo_categories("Food", "a", "a"),

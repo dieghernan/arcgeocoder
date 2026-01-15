@@ -2,11 +2,11 @@
 #'
 #' @description
 #' Geocodes addresses given as character values. This function returns the
-#' [`tibble`][tibble::tibble] object associated with the query.
+#' [tibble][tibble::tbl_df] object associated with the query.
 #'
 #' This function uses the `SingleLine` approach detailed in the
 #' [ArcGIS REST docs](`r arcurl("cand")`). For multi-field queries (i.e.
-#' using specific address parameters) use [arc_geo_multi()] function.
+#' using specific address arguments) use [arc_geo_multi()] function.
 #'
 #' @param address character with single line address
 #'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
@@ -17,10 +17,10 @@
 #'   that each query returns a maximum of 50 results.
 #' @param full_results returns all available data from the API service. This
 #'   is a shorthand of `outFields=*`. See **References**. If `FALSE` (default)
-#'   only the default values of the API would be returned. See also
+#'   only the default values of the API are returned. See also
 #'   `return_addresses` argument.
 #' @param return_addresses return input addresses with results if `TRUE`.
-#' @param sourcecountry Limits the candidates returned to the specified country
+#' @param sourcecountry limits the candidates returned to the specified country
 #'   or countries. Acceptable values include the three-character country code.
 #'   You can specify multiple country codes to limit results to more than one
 #'   country.
@@ -108,7 +108,7 @@ arc_geo <- function(
   }
   seql <- seq(1, ntot, 1)
 
-  # Add additional parameters to the custom query
+  # Add additional arguments to the custom query
   if (isTRUE(full_results)) {
     # This will override the outFields param provided in the custom_query
     custom_query$outFields <- "*"

@@ -6,8 +6,8 @@
 \alias{arc_categories}
 \title{ArcGIS REST API category data base}
 \format{
-A \code{\link[tibble:tibble]{tibble}} with
-376 rows and
+A \link[tibble:tbl_df-class]{tibble} with
+383 rows and
 fields:
 \describe{
 \item{level_1}{Top-level category}
@@ -21,7 +21,7 @@ fields:
 \description{
 Database of available categories that can be used for filtering results
 provided by \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}} and \code{\link[=arc_geo_categories]{arc_geo_categories()}} in
-\code{\link[tibble:tibble]{tibble}} format.
+\link[tibble:tbl_df-class]{tibble} format.
 }
 \details{
 See \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering} for details and
@@ -37,16 +37,16 @@ results. For example, a search for a city may match to a street name, or a
 search for an airport code may match to a country abbreviation.
 
 For such cases, the service provides the ability to filter out unwanted
-geocode results with the \code{category} parameter. The \code{category} parameter
+geocode results with the \code{category} argument. The \code{category} argument
 limits the types of places for which the service searches, thus eliminating
 false positive matches and potentially speeding up the search process.
 
-The results shows a list of categories with three different hierarchy levels
+The results show a list of categories with three different hierarchy levels
 (\code{level_1}, \code{level_2}, \code{level_3}). If a \code{level_1} category is requested
 (i.e. \code{POI}) the child categories may be included also in the results.
 }
 \note{
-Data extracted on \strong{10 January 2023}.
+Data extracted on \strong{15 January 2026}.
 }
 \examples{
 \dontshow{if (arcgeocoder_check_access()) withAutoprint(\{ # examplesIf}

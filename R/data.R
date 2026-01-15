@@ -4,9 +4,9 @@
 #'
 #' Database of available categories that can be used for filtering results
 #' provided by [arc_geo()], [arc_geo_multi()] and [arc_geo_categories()] in
-#' [`tibble`][tibble::tibble] format.
+#' [tibble][tibble::tbl_df] format.
 #'
-#' @note Data extracted on **10 January 2023**.
+#' @note Data extracted on **15 January 2026**.
 #'
 #'
 #' @source
@@ -19,7 +19,7 @@
 #' @docType data
 #'
 #' @format
-#' A [`tibble`][tibble::tibble] with
+#' A [tibble][tibble::tbl_df] with
 #' `r prettyNum(nrow(arcgeocoder::arc_categories), big.mark=",")` rows and
 #' fields:
 #' \describe{
@@ -42,11 +42,11 @@
 #' search for an airport code may match to a country abbreviation.
 #'
 #' For such cases, the service provides the ability to filter out unwanted
-#' geocode results with the `category` parameter. The `category` parameter
+#' geocode results with the `category` argument. The `category` argument
 #' limits the types of places for which the service searches, thus eliminating
 #' false positive matches and potentially speeding up the search process.
 #'
-#' The results shows a list of categories with three different hierarchy levels
+#' The results show a list of categories with three different hierarchy levels
 #' (`level_1`, `level_2`, `level_3`). If a `level_1` category is requested
 #' (i.e. `POI`) the child categories may be included also in the results.
 #'
@@ -95,10 +95,10 @@ NULL
 #'
 #' @description
 #'
-#' Database of available spatial references (CRS) in [`tibble`][tibble::tibble]
+#' Database of available spatial references (CRS) in [tibble][tibble::tbl_df]
 #' format.
 #'
-#' @note Data extracted on **14 January 2023**.
+#' @note Data extracted on **15 January 2026**.
 #'
 #'
 #' @source
@@ -111,7 +111,7 @@ NULL
 #'
 #' @docType data
 #'
-#' @format A [`tibble`][tibble::tibble] with
+#' @format A [tibble][tibble::tbl_df] with
 #' `r prettyNum(nrow(arcgeocoder::arc_spatial_references), big.mark=",")` rows
 #' and fields:
 #' \describe{
@@ -128,7 +128,7 @@ NULL
 #' }
 #' @details
 #'
-#' This data base is useful when using the `outsr` parameter of the functions.
+#' This data base is useful when using the `outsr` argument of the functions.
 #'
 #' Some projections ids have changed over time, for example Web Mercator is
 #' `wkid  = 102100` is deprecated and currently is `wkid = 3857`. However, both
@@ -142,7 +142,8 @@ NULL
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
-#' # Get all possible valuesdata("arc_spatial_references")
+#' # Get all possible values
+#' data("arc_spatial_references")
 #' arc_spatial_references
 #'
 #' # Request with deprecated Web Mercator

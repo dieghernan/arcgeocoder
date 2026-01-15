@@ -34,7 +34,7 @@ that each query returns a maximum of 50 results.}
 
 \item{full_results}{returns all available data from the API service. This
 is a shorthand of \verb{outFields=*}. See \strong{References}. If \code{FALSE} (default)
-only the default values of the API would be returned. See also
+only the default values of the API are returned. See also
 \code{return_addresses} argument.}
 
 \item{return_addresses}{return input addresses with results if \code{TRUE}.}
@@ -45,13 +45,13 @@ only the default values of the API would be returned. See also
 the progress of the function.}
 
 \item{outsr}{The spatial reference of the \verb{x,y} coordinates returned by a
-geocode request. By default is \code{NULL} (i.e. the parameter won't be used in
+geocode request. By default is \code{NULL} (i.e. the argument won't be used in
 the query). See \strong{Details} and \link{arc_spatial_references}.}
 
 \item{langcode}{Sets the language in which reverse-geocoded addresses are
 returned.}
 
-\item{sourcecountry}{Limits the candidates returned to the specified country
+\item{sourcecountry}{limits the candidates returned to the specified country
 or countries. Acceptable values include the three-character country code.
 You can specify multiple country codes to limit results to more than one
 country.}
@@ -60,19 +60,19 @@ country.}
 Several values can be used as well as a vector (i.e.
 \code{c("Cinema", "Museum")}). See \link{arc_categories} for details.}
 
-\item{custom_query}{API-specific parameters to be used, passed as a named
+\item{custom_query}{API-specific arguments to be used, passed as a named
 list.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
+A \link[tibble:tbl_df-class]{tibble} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
 }
 \description{
 Geocodes addresses given as character values. This function returns the
-\code{\link[tibble:tibble]{tibble}} object associated with the query.
+\link[tibble:tbl_df-class]{tibble} object associated with the query.
 
 This function uses the \code{SingleLine} approach detailed in the
 \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}. For multi-field queries (i.e.
-using specific address parameters) use \code{\link[=arc_geo_multi]{arc_geo_multi()}} function.
+using specific address arguments) use \code{\link[=arc_geo_multi]{arc_geo_multi()}} function.
 }
 \details{
 More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}.
@@ -80,7 +80,7 @@ More info and valid values in the \href{https://developers.arcgis.com/rest/geoco
 \section{\code{outsr}}{
 The spatial reference can be specified as either a well-known ID (WKID). If
 not specified, the spatial reference of the output locations is the same as
-that of the service ( WGS84, i.e. WKID = 4326)).
+that of the service (WGS84, i.e. WKID = 4326)).
 
 See \link{arc_spatial_references} for values and examples.
 }
