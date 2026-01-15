@@ -3,11 +3,11 @@
 tibble object associated with the query.
 This function uses the SingleLine approach detailed in the
 ArcGIS REST docs. For multi-field queries (i.e.
-using specific address parameters) use arc_geo_multi() function."><meta property="og:description" content="Geocodes addresses given as character values. This function returns the
+using specific address arguments) use arc_geo_multi() function."><meta property="og:description" content="Geocodes addresses given as character values. This function returns the
 tibble object associated with the query.
 This function uses the SingleLine approach detailed in the
 ArcGIS REST docs. For multi-field queries (i.e.
-using specific address parameters) use arc_geo_multi() function."><meta property="og:image" content="https://dieghernan.github.io/arcgeocoder/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@dhernangomez"><meta name="twitter:site" content="@dhernangomez"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-BMYBJTKBY0"></script><script>
+using specific address arguments) use arc_geo_multi() function."><meta property="og:image" content="https://dieghernan.github.io/arcgeocoder/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@dhernangomez"><meta name="twitter:site" content="@dhernangomez"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-BMYBJTKBY0"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -61,10 +61,10 @@ using specific address parameters) use arc_geo_multi() function."><meta property
 
     <div class="ref-description section level2">
     <p>Geocodes addresses given as character values. This function returns the
-<code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></code> object associated with the query.</p>
+<a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble</a> object associated with the query.</p>
 <p>This function uses the <code>SingleLine</code> approach detailed in the
 <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm" class="external-link">ArcGIS REST docs</a>. For multi-field queries (i.e.
-using specific address parameters) use <code><a href="arc_geo_multi.html">arc_geo_multi()</a></code> function.</p>
+using specific address arguments) use <code><a href="arc_geo_multi.html">arc_geo_multi()</a></code> function.</p>
     </div>
 
     <div class="section level2">
@@ -112,7 +112,7 @@ that each query returns a maximum of 50 results.</p></dd>
 <dt id="arg-full-results">full_results<a class="anchor" aria-label="anchor" href="#arg-full-results"></a></dt>
 <dd><p>returns all available data from the API service. This
 is a shorthand of <code>outFields=*</code>. See <strong>References</strong>. If <code>FALSE</code> (default)
-only the default values of the API would be returned. See also
+only the default values of the API are returned. See also
 <code>return_addresses</code> argument.</p></dd>
 
 
@@ -131,7 +131,7 @@ the progress of the function.</p></dd>
 
 <dt id="arg-outsr">outsr<a class="anchor" aria-label="anchor" href="#arg-outsr"></a></dt>
 <dd><p>The spatial reference of the <code>x,y</code> coordinates returned by a
-geocode request. By default is <code>NULL</code> (i.e. the parameter won't be used in
+geocode request. By default is <code>NULL</code> (i.e. the argument won't be used in
 the query). See <strong>Details</strong> and <a href="arc_spatial_references.html">arc_spatial_references</a>.</p></dd>
 
 
@@ -141,7 +141,7 @@ returned.</p></dd>
 
 
 <dt id="arg-sourcecountry">sourcecountry<a class="anchor" aria-label="anchor" href="#arg-sourcecountry"></a></dt>
-<dd><p>Limits the candidates returned to the specified country
+<dd><p>limits the candidates returned to the specified country
 or countries. Acceptable values include the three-character country code.
 You can specify multiple country codes to limit results to more than one
 country.</p></dd>
@@ -154,13 +154,13 @@ Several values can be used as well as a vector (i.e.
 
 
 <dt id="arg-custom-query">custom_query<a class="anchor" aria-label="anchor" href="#arg-custom-query"></a></dt>
-<dd><p>API-specific parameters to be used, passed as a named
+<dd><p>API-specific arguments to be used, passed as a named
 list.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></code> object with the results. See the details of the output in  <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API Service output</a>.</p>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble</a> object with the results. See the details of the output in  <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API Service output</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -170,7 +170,7 @@ list.</p></dd>
     <h2 id="outsr"><code>outsr</code><a class="anchor" aria-label="anchor" href="#outsr"></a></h2>
     <p>The spatial reference can be specified as either a well-known ID (WKID). If
 not specified, the spatial reference of the output locations is the same as
-that of the service ( WGS84, i.e. WKID = 4326)).</p>
+that of the service (WGS84, i.e. WKID = 4326)).</p>
 <p>See <a href="arc_spatial_references.html">arc_spatial_references</a> for values and examples.</p>
     </div>
     <div class="section level2">

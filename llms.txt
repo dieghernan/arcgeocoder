@@ -1,7 +1,7 @@
 # arcgeocoder
 
 The goal of **arcgeocoder** is to provide a light interface for
-geocoding addresses and reverse geocoding location trough the [ArcGIS
+geocoding addresses and reverse geocoding locations through the [ArcGIS
 REST API Geocoding
 Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
 
@@ -17,7 +17,7 @@ dependencies, such as **curl**. In some situations, **curl** may not be
 available or accessible, so **arcgeocoder** uses base functions to
 overcome this limitation.
 
-The interface of **apigeocoder** is built with the aim of easing the
+The interface of **arcgeocoder** is built with the aim of easing the
 access to all the features provided by the API. The API endpoints used
 by **arcgeocoder** are `findAddressCandidates` and `reverseGeocode`,
 which can be accessed ***without*** the need for an ***API key***.
@@ -25,7 +25,7 @@ which can be accessed ***without*** the need for an ***API key***.
 ## Recommended packages
 
 There are other packages much more complete and mature than
-**arcgeocoder**, that presents similar features:
+**arcgeocoder**, that present similar features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)). Allows to interface with
@@ -128,12 +128,12 @@ reverse <- arc_reverse_geo(
 |  -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
 
 It is possible also to search for specific locations within or near a
-reference are or location using [category
+reference area or location using [category
 filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
 See more information in the documentation of the data base
 `arc_categories`.
 
-In the following example we would look for POIs related with food (i.e.
+In the following example we would look for POIs related to food (i.e.
 Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.
 
 ``` r
@@ -158,7 +158,7 @@ eiffel_tower |>
 #> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…
 
 
-# Use lon,lat to boots the search and using category = Food
+# Use lon,lat to boost the search and using category = Food
 food_eiffel <- arc_geo_categories("Food",
   x = eiffel_tower$lon,
   y = eiffel_tower$lat,
@@ -171,7 +171,7 @@ ggplot(eiffel_tower, aes(x, y)) +
   geom_point(data = food_eiffel, aes(x, y, color = Type)) +
   labs(
     title = "Food near the Eiffel Tower",
-    subtitle = "Using arcgecoder",
+    subtitle = "Using arcgeocoder",
     color = "Type of place",
     x = "",
     y = "",

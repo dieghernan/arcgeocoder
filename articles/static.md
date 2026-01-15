@@ -3,8 +3,8 @@
 ## Example 1: sf objects
 
 The following example shows how it is possible to create a nice static
-map with data retrieved with **arcgeocoder** and converting it to an
-**sf** object:
+map with data retrieved with **arcgeocoder** and converted to an **sf**
+object:
 
 ``` r
 library(arcgeocoder)
@@ -19,7 +19,7 @@ mc <- arc_geo_multi("McDonalds",
   city = "Barcelona",
   region = "Catalonia", countrycode = "ES",
   category = "Food", limit = 50,
-  custom_query = list(outFields = c("LongLabel", "Type,StAdd"))
+  custom_query = list(outFields = c("LongLabel", "Type", "StAddr"))
 )
 
 # To sf
@@ -52,7 +52,7 @@ mc2_sf <- arc_geo_multi("McDonalds",
   region = "Catalonia", countrycode = "ES",
   category = "Food", limit = 50,
   custom_query = list(
-    outFields = c("LongLabel", "Type", "StAdd"),
+    outFields = c("LongLabel", "Type", "StAddr"),
     searchExtent = bbox
   )
 ) |>
@@ -87,12 +87,12 @@ ggplot() +
   geom_sf(data = bcn, fill = NA, color = "black", linewidth = 1) +
   geom_sf(data = mc2_sf, color = "red") +
   coord_sf(crs = 3857) +
-  labs(caption = "(c) OpenStreetMap contributors, (c) CARTO")
+  labs(caption = get_credit("CartoDB.Positron"))
 ```
 
 ![A map showing the location of McDonald's restaurants in Barcelona,
-Spain, over an image provided by Carto
-DB](static_files/figure-html/terra-1.png)
+Spain, over an image provided by
+CARTO](static_files/figure-html/terra-1.png)
 
 ## Session info
 
@@ -108,13 +108,13 @@ Details
     #>  collate  English_United States.utf8
     #>  ctype    English_United States.utf8
     #>  tz       UTC
-    #>  date     2026-01-14
+    #>  date     2026-01-15
     #>  pandoc   3.1.11 @ C:/HOSTED~1/windows/pandoc/31F387~1.11/x64/PANDOC~1.11/ (via rmarkdown)
     #>  quarto   NA
     #> 
     #> ─ Packages ───────────────────────────────────────────────────────────────────
     #>  package      * version    date (UTC) lib source
-    #>  arcgeocoder  * 0.2.1.9000 2026-01-14 [1] local
+    #>  arcgeocoder  * 0.2.1.9000 2026-01-15 [1] local
     #>  bslib          0.9.0      2025-01-30 [1] RSPM
     #>  cachem         1.1.0      2024-05-16 [1] RSPM
     #>  class          7.3-23     2025-01-01 [3] CRAN (R 4.5.2)

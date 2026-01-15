@@ -3,7 +3,7 @@
 Generates an address from a latitude and longitude. Latitudes must be in
 the range \\\left\[-90, 90 \right\]\\ and longitudes in the range
 \\\left\[-180, 180 \right\]\\. This function returns the
-[`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
+[tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
 associated with the query.
 
 ## Usage
@@ -62,7 +62,7 @@ arc_reverse_geo(
 - outsr:
 
   The spatial reference of the `x,y` coordinates returned by a geocode
-  request. By default is `NULL` (i.e. the parameter won't be used in the
+  request. By default is `NULL` (i.e. the argument won't be used in the
   query). See **Details** and
   [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md).
 
@@ -72,8 +72,8 @@ arc_reverse_geo(
 
 - featuretypes:
 
-  This parameter limits the possible match types returned. By default is
-  `NULL` (i.e. the parameter won't be used in the query). See
+  This argument limits the possible match types returned. By default is
+  `NULL` (i.e. the argument won't be used in the query). See
   **Details**.
 
 - locationtype:
@@ -81,19 +81,19 @@ arc_reverse_geo(
   Specifies whether the output geometry of
   `featuretypes = "PointAddress"` or `featuretypes = "Subaddress"`
   matches should be the rooftop point or street entrance location. Valid
-  values are `NULL` (i.e. not using the parameter in the query),
+  values are `NULL` (i.e. not using the argument in the query),
   `rooftop` and `street`.
 
 - custom_query:
 
-  API-specific parameters to be used, passed as a named list.
+  API-specific arguments to be used, passed as a named list.
 
 ## Value
 
-A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-the corresponding results. The `x,y` values returned by the API would be
+A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
+with the corresponding results. The `x,y` values returned by the API are
 named `lon,lat`. Note that these coordinates correspond to the geocoded
-feature, and may be different of the `x,y` values provided as inputs.
+feature, and may be different from the `x,y` values provided as inputs.
 
 See the details of the output in [ArcGIS REST API Service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
@@ -107,7 +107,7 @@ docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse
 
 The spatial reference can be specified as either a well-known ID (WKID).
 If not specified, the spatial reference of the output locations is the
-same as that of the service ( WGS84, i.e. WKID = 4326)).
+same as that of the service (WGS84, i.e. WKID = 4326)).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
@@ -116,9 +116,9 @@ for values and examples.
 ## `featuretypes`
 
 See `vignette("featuretypes", package = "arcgeocoder")` for a detailed
-explanation of this parameter.
+explanation of this argument.
 
-This parameter may be used for filtering the type of feature to be
+This argument may be used for filtering the type of feature to be
 returned when geocoding. Possible values are:
 
 - `"StreetInt"`
@@ -176,11 +176,11 @@ arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
 #> 1 -74.0   40.8 178-198 W 44th St, New York, NY, 10036, USA                      
 #> 2  -3.19  56.0 Microsoft, 3 Waterloo Place, Canongate, Edinburgh, Midlothian, S…
 
-# With options: using some additional parameters
+# With options: using some additional arguments
 sev <- arc_reverse_geo(
   x = c(-73.98586, -3.188375),
   y = c(40.75728, 55.95335),
-  # Restrict to these feautures
+  # Restrict to these features
   featuretypes = "POI,StreetInt",
   # Result on this WKID
   outsr = 102100,

@@ -54,15 +54,15 @@ format."><meta property="og:image" content="https://dieghernan.github.io/arcgeoc
     </div>
 
     <div class="ref-description section level2">
-    <p>Database of available spatial references (CRS) in <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></code>
+    <p>Database of available spatial references (CRS) in <a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble</a>
 format.</p>
     </div>
 
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></code> with
-9,364 rows
+    <p>A <a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble</a> with
+9,608 rows
 and fields:</p><dl><dt>projtype</dt>
 <dd><p>Projection type (<code>"ProjectedCoordinateSystems", "GeographicCoordinateSystems","VerticalCoordinateSystems"</code>)</p></dd>
 
@@ -96,14 +96,14 @@ working with <a href="https://CRAN.R-project.org/package=sf" class="external-lin
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>This data base is useful when using the <code>outsr</code> parameter of the functions.</p>
+    <p>This data base is useful when using the <code>outsr</code> argument of the functions.</p>
 <p>Some projections ids have changed over time, for example Web Mercator is
 <code>wkid  = 102100</code> is deprecated and currently is <code>wkid = 3857</code>. However, both
 values would work, and they would return similar results.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>Data extracted on <strong>14 January 2023</strong>.</p>
+    <p>Data extracted on <strong>15 January 2026</strong>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -115,9 +115,10 @@ values would work, and they would return similar results.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co"># Get all possible valuesdata("arc_spatial_references")</span></span></span>
+<span class="r-in"><span><span class="co"># Get all possible values</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"arc_spatial_references"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">arc_spatial_references</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9,364 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9,608 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    projtype      wkid latestWkid authority deprecated description areaname wkt  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>000       <span style="text-decoration: underline;">2</span>000 EPSG      FALSE      Anguilla 1… Anguill… <span style="color: #949494;">"</span>PRO…</span>
@@ -125,12 +126,12 @@ values would work, and they would return similar results.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>002       <span style="text-decoration: underline;">2</span>002 EPSG      FALSE      Dominica 1… Dominic… <span style="color: #949494;">"</span>PRO…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>003       <span style="text-decoration: underline;">2</span>003 EPSG      FALSE      Grenada 19… Grenada… <span style="color: #949494;">"</span>PRO…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>004       <span style="text-decoration: underline;">2</span>004 EPSG      FALSE      Montserrat… Montser… <span style="color: #949494;">"</span>PRO…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>005       <span style="text-decoration: underline;">2</span>005 EPSG      FALSE      St Kitts 1… St Kitt… <span style="color: #949494;">"</span>PRO…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>006       <span style="text-decoration: underline;">2</span>006 EPSG      FALSE      St Lucia 1… St Luci… <span style="color: #949494;">"</span>PRO…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>007       <span style="text-decoration: underline;">2</span>007 EPSG      FALSE      St Vincent… St Vinc… <span style="color: #949494;">"</span>PRO…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>005       <span style="text-decoration: underline;">2</span>005 EPSG      FALSE      St. Kitts … St Kitt… <span style="color: #949494;">"</span>PRO…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>006       <span style="text-decoration: underline;">2</span>006 EPSG      FALSE      St. Lucia … St Luci… <span style="color: #949494;">"</span>PRO…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>007       <span style="text-decoration: underline;">2</span>007 EPSG      FALSE      St. Vincen… St Vinc… <span style="color: #949494;">"</span>PRO…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>008       <span style="text-decoration: underline;">2</span>008 EPSG      TRUE       NAD 1927 S… Canada … <span style="color: #949494;">"</span>PRO…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>009       <span style="text-decoration: underline;">2</span>009 EPSG      FALSE      NAD 1927 S… Canada … <span style="color: #949494;">"</span>PRO…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 9,354 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ProjectedCo…  <span style="text-decoration: underline;">2</span>009       <span style="text-decoration: underline;">2</span>009 EPSG      FALSE      NAD 1927 C… Canada … <span style="color: #949494;">"</span>PRO…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 9,598 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Request with deprecated Web Mercator</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
@@ -146,7 +147,7 @@ values would work, and they would return similar results.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ latestWkid  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3857</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ authority   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Esri"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ deprecated  <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ description <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "WGS 1984 Web Mercator Major Auxiliary Sphere"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ description <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "WGS 1984 Web Mercator (auxiliary sphere)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ areaname    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "World - 85~S to 85~N"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ wkt         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "PROJCS[\"WGS_1984_Web_Mercator_Auxiliary_Sphere\",GEOGCS[…</span>
 <span class="r-in"><span></span></span>

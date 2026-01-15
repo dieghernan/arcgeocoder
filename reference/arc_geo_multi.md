@@ -1,8 +1,8 @@
 # Geocoding using the ArcGIS REST API with multi-field query
 
-Geocodes addresses given specific address components.This function
+Geocodes addresses given specific address components. This function
 returns the
-[`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
+[tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
 associated with the query.
 
 For geocoding using a single text string use
@@ -64,8 +64,8 @@ arc_geo_multi(
 
   returns all available data from the API service. This is a shorthand
   of `outFields=*`. See **References**. If `FALSE` (default) only the
-  default values of the API would be returned. See also
-  `return_addresses` argument.
+  default values of the API are returned. See also `return_addresses`
+  argument.
 
 - return_addresses:
 
@@ -83,7 +83,7 @@ arc_geo_multi(
 - outsr:
 
   The spatial reference of the `x,y` coordinates returned by a geocode
-  request. By default is `NULL` (i.e. the parameter won't be used in the
+  request. By default is `NULL` (i.e. the argument won't be used in the
   query). See **Details** and
   [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md).
 
@@ -101,17 +101,17 @@ arc_geo_multi(
 
 - custom_query:
 
-  API-specific parameters to be used, passed as a named list.
+  API-specific arguments to be used, passed as a named list.
 
 ## Value
 
-A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) object
-with the results. See the details of the output in [ArcGIS REST API
-Service
+A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
+object with the results. See the details of the output in [ArcGIS REST
+API Service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
-The resulting output would include also the input parameters (columns
-with prefix `q_`) for better tracking the results.
+The resulting output will include also the input arguments (columns with
+prefix `q_`) for better tracking the results.
 
 ## Details
 
@@ -120,15 +120,15 @@ docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-ad
 
 ## Address components
 
-This function allows to perform structured queries by different
+This function allows performing structured queries by different
 components of an address. At least one field should be different than
 `NA` or `NULL`.
 
-A vector of values can be provided for each parameter for multiple
-geocoding. When using vectors on different parameters, their lengths
+A vector of values can be provided for each argument for multiple
+geocoding. When using vectors on different arguments, their lengths
 should be the same.
 
-The following list provides a brief description of each parameter:
+The following list provides a brief description of each argument:
 
 - `address`: A string that represents the first line of a street
   address. In most cases it will be the **street name and house number**
@@ -171,7 +171,7 @@ The following list provides a brief description of each parameter:
 
 The spatial reference can be specified as either a well-known ID (WKID).
 If not specified, the spatial reference of the output locations is the
-same as that of the service ( WGS84, i.e. WKID = 4326)).
+same as that of the service (WGS84, i.e. WKID = 4326)).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)

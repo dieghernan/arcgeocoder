@@ -16,9 +16,11 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="arcgeocoder | Geocoding with the ArcGIS REST API Service">
-<meta name="description" content="Lite interface for geocoding and reverse geocoding with the ArcGIS REST API service.
+<meta name="description" content="Lite interface for geocoding and reverse geocoding with the ArcGIS REST API
+service.
 ">
-<meta property="og:description" content="Lite interface for geocoding and reverse geocoding with the ArcGIS REST API service.
+<meta property="og:description" content="Lite interface for geocoding and reverse geocoding with the ArcGIS REST API
+service.
 ">
 <meta property="og:image" content="https://dieghernan.github.io/arcgeocoder/logo.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -91,18 +93,18 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>The goal of <strong>arcgeocoder</strong> is to provide a light interface for geocoding addresses and reverse geocoding location trough the <a href="https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm" class="external-link">ArcGIS REST API Geocoding Service</a>.</p>
+<p>The goal of <strong>arcgeocoder</strong> is to provide a light interface for geocoding addresses and reverse geocoding locations through the <a href="https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm" class="external-link">ArcGIS REST API Geocoding Service</a>.</p>
 <p>Full site with examples and vignettes on <a href="https://dieghernan.github.io/arcgeocoder/" class="uri">https://dieghernan.github.io/arcgeocoder/</a></p>
 <div class="section level2">
 <h2 id="why-arcgeocoder">Why <strong>arcgeocoder</strong>?<a class="anchor" aria-label="anchor" href="#why-arcgeocoder"></a>
 </h2>
 <p><strong>arcgeocoder</strong> is a package that provides a lightweight interface for geocoding and reverse geocoding with the ArcGIS REST API service. The goal of <strong>arcgeocoder</strong> is to access the ArcGIS REST API with fewer dependencies, such as <strong>curl</strong>. In some situations, <strong>curl</strong> may not be available or accessible, so <strong>arcgeocoder</strong> uses base functions to overcome this limitation.</p>
-<p>The interface of <strong>apigeocoder</strong> is built with the aim of easing the access to all the features provided by the API. The API endpoints used by <strong>arcgeocoder</strong> are <code>findAddressCandidates</code> and <code>reverseGeocode</code>, which can be accessed <u><strong>without</strong></u> the need for an <u><strong>API key</strong></u>.</p>
+<p>The interface of <strong>arcgeocoder</strong> is built with the aim of easing the access to all the features provided by the API. The API endpoints used by <strong>arcgeocoder</strong> are <code>findAddressCandidates</code> and <code>reverseGeocode</code>, which can be accessed <u><strong>without</strong></u> the need for an <u><strong>API key</strong></u>.</p>
 </div>
 <div class="section level2">
 <h2 id="recommended-packages">Recommended packages<a class="anchor" aria-label="anchor" href="#recommended-packages"></a>
 </h2>
-<p>There are other packages much more complete and mature than <strong>arcgeocoder</strong>, that presents similar features:</p>
+<p>There are other packages much more complete and mature than <strong>arcgeocoder</strong>, that present similar features:</p>
 <ul>
 <li>
 <a href="https://jessecambon.github.io/tidygeocoder/" class="external-link"><strong>tidygeocoder</strong></a> (<a href="#ref-R-tidygeocoder">Cambon et al. 2021</a>). Allows to interface with ArcGIS, Nominatim (OpenStreetMaps), Google, TomTom, Mapbox, etc. for geocoding and reverse geocoding.</li>
@@ -270,8 +272,8 @@
 </tr>
 </tbody>
 </table>
-<p>It is possible also to search for specific locations within or near a reference are or location using <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">category filtering</a>. See more information in the documentation of the data base <code>arc_categories</code>.</p>
-<p>In the following example we would look for POIs related with food (i.e. Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.</p>
+<p>It is possible also to search for specific locations within or near a reference area or location using <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">category filtering</a>. See more information in the documentation of the data base <code>arc_categories</code>.</p>
+<p>In the following example we would look for POIs related to food (i.e. Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># For plotting</span></span>
 <span></span>
@@ -294,7 +296,7 @@
 <span><span class="co">#&gt; 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…</span></span>
 <span></span>
 <span></span>
-<span><span class="co"># Use lon,lat to boots the search and using category = Food</span></span>
+<span><span class="co"># Use lon,lat to boost the search and using category = Food</span></span>
 <span><span class="va">food_eiffel</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/arc_geo_categories.html">arc_geo_categories</a></span><span class="op">(</span><span class="st">"Food"</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">eiffel_tower</span><span class="op">$</span><span class="va">lon</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">eiffel_tower</span><span class="op">$</span><span class="va">lat</span>,</span>
@@ -307,7 +309,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">food_eiffel</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, color <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
 <span>    title <span class="op">=</span> <span class="st">"Food near the Eiffel Tower"</span>,</span>
-<span>    subtitle <span class="op">=</span> <span class="st">"Using arcgecoder"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Using arcgeocoder"</span>,</span>
 <span>    color <span class="op">=</span> <span class="st">"Type of place"</span>,</span>
 <span>    x <span class="op">=</span> <span class="st">""</span>,</span>
 <span>    y <span class="op">=</span> <span class="st">""</span>,</span>

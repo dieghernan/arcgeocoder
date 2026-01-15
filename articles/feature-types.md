@@ -31,13 +31,13 @@ the tolerance specified in the *Search Tolerance* column.
 
 In **arcgeocoder**, this hierarchy is implemented in
 [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md),
-specifically through the `featuretypes` parameter. The default value
-(`featuretypes = NULL`) does not include the parameter in the API call.
+specifically through the `featuretypes` argument. The default value
+(`featuretypes = NULL`) does not include the argument in the API call.
 In this case, the hierarchy presented in the previous table would apply.
 
 It is possible to narrow down the output of the query to a specific
-feature type or a list of feature types.The possible values supported
-for this parameter are:
+feature type or a list of feature types. The possible values supported
+for this argument are:
 
 - `"StreetInt"`
 - `"DistanceMarker"`
@@ -50,7 +50,7 @@ for this parameter are:
 - `"Locality"`
 
 As mentioned, is to possible to include several feature types. If more
-than one value is specified for the parameter, the values must be
+than one value is specified for the argument, the values must be
 separated by a comma, with no spaces after the comma.
 
 ### single `featuretypes` value
@@ -78,7 +78,7 @@ library(dplyr)
 ### Example 1: Match to `POI` centroid returned
 
 In this example, we do not provide any value to the `featuretypes`
-parameter. This input location is within the search tolerance of both
+argument. This input location is within the search tolerance of both
 `POI` and `PointAddress` features, but a match to the `POI` centroid is
 returned because it has a higher priority (see [**Table 1**](#table1)).
 Note that the output field `Addr_type` indicates the type of feature.
@@ -188,6 +188,6 @@ depending on the value of `featuretypes`. By using `featuretypes = NULL`
 the feature type returned would depend on the hierarchy explained in
 [**Table 1**](#table1).
 
-Depending on the location, the `featuretype` filter may not return
+Depending on the location, the `featuretypes` filter may not return
 results, hence for general purposes using `featuretypes = NULL` is
 safer.

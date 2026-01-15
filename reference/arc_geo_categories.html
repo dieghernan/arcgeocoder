@@ -4,9 +4,9 @@ of categories) near or within a given location or area. This is a wrapper
 of arc_geo(), but it is vectorized over category.
 See arc_categories for a detailed explanation and available values.
 Note that for obtaining results it is needed:
-Either to provide a pair of coordinates (x,y parameters) that would be
+Either to provide a pair of coordinates (x,y arguments) that would be
 used as a reference for geocoding.
-Or a viewbox (aka bounding box) on the bbox parameter defining an
+Or a viewbox (aka bounding box) on the bbox argument defining a
 desired extent of the results.
 
 
@@ -16,9 +16,9 @@ of categories) near or within a given location or area. This is a wrapper
 of arc_geo(), but it is vectorized over category.
 See arc_categories for a detailed explanation and available values.
 Note that for obtaining results it is needed:
-Either to provide a pair of coordinates (x,y parameters) that would be
+Either to provide a pair of coordinates (x,y arguments) that would be
 used as a reference for geocoding.
-Or a viewbox (aka bounding box) on the bbox parameter defining an
+Or a viewbox (aka bounding box) on the bbox argument defining a
 desired extent of the results.
 
 
@@ -80,9 +80,9 @@ values) in order to boost the geocoding process. See Examples."><meta property="
 of categories) near or within a given location or area. This is a wrapper
 of <code><a href="arc_geo.html">arc_geo()</a></code>, but it is vectorized over <code>category</code>.</p>
 <p>See <a href="arc_categories.html">arc_categories</a> for a detailed explanation and available values.</p>
-<p><strong>Note that</strong> for obtaining results it is needed:</p><ul><li><p>Either to provide a pair of coordinates (<code>x,y</code> parameters) that would be
+<p><strong>Note that</strong> for obtaining results it is needed:</p><ul><li><p>Either to provide a pair of coordinates (<code>x,y</code> arguments) that would be
 used as a reference for geocoding.</p></li>
-<li><p>Or a viewbox (aka bounding box) on the <code>bbox</code> parameter defining an
+<li><p>Or a viewbox (aka bounding box) on the <code>bbox</code> argument defining a
 desired extent of the results.</p></li>
 </ul><p>It is possible to combine the two approaches (i.e. providing <code>x,y,bbox</code>
 values) in order to boost the geocoding process. See <strong>Examples</strong>.</p>
@@ -154,7 +154,7 @@ that each query returns a maximum of 50 results.</p></dd>
 <dt id="arg-full-results">full_results<a class="anchor" aria-label="anchor" href="#arg-full-results"></a></dt>
 <dd><p>returns all available data from the API service. This
 is a shorthand of <code>outFields=*</code>. See <strong>References</strong>. If <code>FALSE</code> (default)
-only the default values of the API would be returned. See also
+only the default values of the API are returned. See also
 <code>return_addresses</code> argument.</p></dd>
 
 
@@ -163,20 +163,20 @@ only the default values of the API would be returned. See also
 
 
 <dt id="arg-custom-query">custom_query<a class="anchor" aria-label="anchor" href="#arg-custom-query"></a></dt>
-<dd><p>API-specific parameters to be used, passed as a named
+<dd><p>API-specific arguments to be used, passed as a named
 list.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Arguments passed on to <code><a href="arc_geo.html">arc_geo</a></code></p><dl><dt><code>sourcecountry</code></dt>
-<dd><p>Limits the candidates returned to the specified country
+<dd><p>limits the candidates returned to the specified country
 or countries. Acceptable values include the three-character country code.
 You can specify multiple country codes to limit results to more than one
 country.</p></dd>
 
     <dt><code>outsr</code></dt>
 <dd><p>The spatial reference of the <code>x,y</code> coordinates returned by a
-geocode request. By default is <code>NULL</code> (i.e. the parameter won't be used in
+geocode request. By default is <code>NULL</code> (i.e. the argument won't be used in
 the query). See <strong>Details</strong> and <a href="arc_spatial_references.html">arc_spatial_references</a>.</p></dd>
 
     <dt><code>langcode</code></dt>
@@ -189,15 +189,15 @@ returned.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></code> object with the results. See the details of the output in  <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API Service output</a>.</p>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble</a> object with the results. See the details of the output in  <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API Service output</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Bounding boxes can be located using different online tools, as
 <a href="https://boundingbox.klokantech.com/" class="external-link">Bounding Box Tool</a>.</p>
-<p>For a full list of valid categories see <a href="arc_categories.html">arc_categories</a>.</p>
-<p>This function is vectorized over <code>category</code>, that means that it would perform
-one independent call to <code><a href="arc_geo.html">arc_geo()</a></code> for each <code>category</code> value.</p>
+<p>For a full list of valid categories see <a href="arc_categories.html">arc_categories</a>. This function is
+vectorized over <code>category</code>, that means that it performs one independent call
+to <code><a href="arc_geo.html">arc_geo()</a></code> for each <code>category</code> value.</p>
 <p><code>arc_geo_categories()</code> also understands a single string of categories
 separated by commas (<code>"Cinema,Museum"</code>), that would be internally treated as
 <code>c("Cinema", "Museum")</code>.</p>
@@ -206,7 +206,7 @@ separated by commas (<code>"Cinema,Museum"</code>), that would be internally tre
     <h2 id="outsr"><code>outsr</code><a class="anchor" aria-label="anchor" href="#outsr"></a></h2>
     <p>The spatial reference can be specified as either a well-known ID (WKID). If
 not specified, the spatial reference of the output locations is the same as
-that of the service ( WGS84, i.e. WKID = 4326)).</p>
+that of the service (WGS84, i.e. WKID = 4326)).</p>
 <p>See <a href="arc_spatial_references.html">arc_spatial_references</a> for values and examples.</p>
     </div>
     <div class="section level2">

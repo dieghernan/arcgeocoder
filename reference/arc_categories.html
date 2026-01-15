@@ -58,14 +58,14 @@ tibble format."><meta property="og:image" content="https://dieghernan.github.io/
     <div class="ref-description section level2">
     <p>Database of available categories that can be used for filtering results
 provided by <code><a href="arc_geo.html">arc_geo()</a></code>, <code><a href="arc_geo_multi.html">arc_geo_multi()</a></code> and <code><a href="arc_geo_categories.html">arc_geo_categories()</a></code> in
-<code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></code> format.</p>
+<a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble</a> format.</p>
     </div>
 
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></code> with
-376 rows and
+    <p>A <a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble</a> with
+383 rows and
 fields:</p><dl><dt>level_1</dt>
 <dd><p>Top-level category</p></dd>
 
@@ -94,16 +94,16 @@ match to many different places, and users may sometimes receive unexpected
 results. For example, a search for a city may match to a street name, or a
 search for an airport code may match to a country abbreviation.</p>
 <p>For such cases, the service provides the ability to filter out unwanted
-geocode results with the <code>category</code> parameter. The <code>category</code> parameter
+geocode results with the <code>category</code> argument. The <code>category</code> argument
 limits the types of places for which the service searches, thus eliminating
 false positive matches and potentially speeding up the search process.</p>
-<p>The results shows a list of categories with three different hierarchy levels
+<p>The results show a list of categories with three different hierarchy levels
 (<code>level_1</code>, <code>level_2</code>, <code>level_3</code>). If a <code>level_1</code> category is requested
 (i.e. <code>POI</code>) the child categories may be included also in the results.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>Data extracted on <strong>10 January 2023</strong>.</p>
+    <p>Data extracted on <strong>15 January 2026</strong>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -118,20 +118,20 @@ false positive matches and potentially speeding up the search process.</p>
 <span class="r-in"><span><span class="co"># Get all possible values</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"arc_categories"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">arc_categories</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 376 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    level_1 level_2          level_3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Address Subaddress       <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Address Point Address    <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Address Street Address   <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Address Distance Marker  <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Address Intersection     <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Address Street Midblock  <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Address Street Name      <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Postal  Primary Postal   <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Postal  Postal Locality  <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Postal  Postal Extension <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 366 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 383 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    level_1 level_2         level_3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Address Subaddress      <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Address Point Address   <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Address Street Address  <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Address Distance Marker <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Address Intersection    <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Address Street Midblock <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Address Street Between  <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Address Street Name     <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Postal  Primary Postal  <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Postal  Postal Locality <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 373 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Using categories</span></span></span>
 <span class="r-in"><span></span></span>

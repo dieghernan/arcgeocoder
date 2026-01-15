@@ -1,13 +1,13 @@
 # Geocoding using the ArcGIS REST API
 
 Geocodes addresses given as character values. This function returns the
-[`tibble`](https://tibble.tidyverse.org/reference/tibble.html) object
-associated with the query.
+[tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
+object associated with the query.
 
 This function uses the `SingleLine` approach detailed in the [ArcGIS
 REST
 docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
-For multi-field queries (i.e. using specific address parameters) use
+For multi-field queries (i.e. using specific address arguments) use
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)
 function.
 
@@ -56,8 +56,8 @@ arc_geo(
 
   returns all available data from the API service. This is a shorthand
   of `outFields=*`. See **References**. If `FALSE` (default) only the
-  default values of the API would be returned. See also
-  `return_addresses` argument.
+  default values of the API are returned. See also `return_addresses`
+  argument.
 
 - return_addresses:
 
@@ -75,7 +75,7 @@ arc_geo(
 - outsr:
 
   The spatial reference of the `x,y` coordinates returned by a geocode
-  request. By default is `NULL` (i.e. the parameter won't be used in the
+  request. By default is `NULL` (i.e. the argument won't be used in the
   query). See **Details** and
   [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md).
 
@@ -85,7 +85,7 @@ arc_geo(
 
 - sourcecountry:
 
-  Limits the candidates returned to the specified country or countries.
+  limits the candidates returned to the specified country or countries.
   Acceptable values include the three-character country code. You can
   specify multiple country codes to limit results to more than one
   country.
@@ -100,13 +100,13 @@ arc_geo(
 
 - custom_query:
 
-  API-specific parameters to be used, passed as a named list.
+  API-specific arguments to be used, passed as a named list.
 
 ## Value
 
-A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) object
-with the results. See the details of the output in [ArcGIS REST API
-Service
+A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
+object with the results. See the details of the output in [ArcGIS REST
+API Service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 ## Details
@@ -118,7 +118,7 @@ docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-ad
 
 The spatial reference can be specified as either a well-known ID (WKID).
 If not specified, the spatial reference of the output locations is the
-same as that of the service ( WGS84, i.e. WKID = 4326)).
+same as that of the service (WGS84, i.e. WKID = 4326)).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)

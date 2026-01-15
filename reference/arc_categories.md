@@ -6,13 +6,13 @@ provided by
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)
 and
 [`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md)
-in [`tibble`](https://tibble.tidyverse.org/reference/tibble.html)
+in [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
 format.
 
 ## Format
 
-A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-376 rows and fields:
+A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
+with 383 rows and fields:
 
 - level_1:
 
@@ -48,19 +48,19 @@ may match to a street name, or a search for an airport code may match to
 a country abbreviation.
 
 For such cases, the service provides the ability to filter out unwanted
-geocode results with the `category` parameter. The `category` parameter
+geocode results with the `category` argument. The `category` argument
 limits the types of places for which the service searches, thus
 eliminating false positive matches and potentially speeding up the
 search process.
 
-The results shows a list of categories with three different hierarchy
+The results show a list of categories with three different hierarchy
 levels (`level_1`, `level_2`, `level_3`). If a `level_1` category is
 requested (i.e. `POI`) the child categories may be included also in the
 results.
 
 ## Note
 
-Data extracted on **10 January 2023**.
+Data extracted on **15 January 2026**.
 
 ## See also
 
@@ -78,20 +78,20 @@ Other datasets:
 # Get all possible values
 data("arc_categories")
 arc_categories
-#> # A tibble: 376 × 3
-#>    level_1 level_2          level_3
-#>    <chr>   <chr>            <chr>  
-#>  1 Address Subaddress       NA     
-#>  2 Address Point Address    NA     
-#>  3 Address Street Address   NA     
-#>  4 Address Distance Marker  NA     
-#>  5 Address Intersection     NA     
-#>  6 Address Street Midblock  NA     
-#>  7 Address Street Name      NA     
-#>  8 Postal  Primary Postal   NA     
-#>  9 Postal  Postal Locality  NA     
-#> 10 Postal  Postal Extension NA     
-#> # ℹ 366 more rows
+#> # A tibble: 383 × 3
+#>    level_1 level_2         level_3
+#>    <chr>   <chr>           <chr>  
+#>  1 Address Subaddress      NA     
+#>  2 Address Point Address   NA     
+#>  3 Address Street Address  NA     
+#>  4 Address Distance Marker NA     
+#>  5 Address Intersection    NA     
+#>  6 Address Street Midblock NA     
+#>  7 Address Street Between  NA     
+#>  8 Address Street Name     NA     
+#>  9 Postal  Primary Postal  NA     
+#> 10 Postal  Postal Locality NA     
+#> # ℹ 373 more rows
 
 # Using categories
 

@@ -1,7 +1,7 @@
-# Get started wit arcgeocoder
+# Get started with arcgeocoder
 
 The goal of **arcgeocoder** is to provide a light interface for
-geocoding addresses and reverse geocoding location trough the [ArcGIS
+geocoding addresses and reverse geocoding locations through the [ArcGIS
 REST API Geocoding
 Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
 
@@ -17,7 +17,7 @@ dependencies, such as **curl** . In some situations, **curl** may not be
 available or accessible, so **arcgeocoder** uses base functions to
 overcome this limitation.
 
-The interface of **apigeocoder** is built with the aim of easing the
+The interface of **arcgeocoder** is built with the aim of easing the
 access to all the features provided by the API. The API endpoints used
 by **arcgeocoder** are `findAddressCandidates` and `reverseGeocode`,
 which can be accessed without the need for an API key.
@@ -25,7 +25,7 @@ which can be accessed without the need for an API key.
 ## Recommended packages
 
 There are other packages much more complete and mature than
-`nominatimlite`, that presents similar features:
+`nominatimlite`, that present similar features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)). Allows to interface with
@@ -140,9 +140,9 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                                              
-#>   <dbl> <dbl> <chr>                                                                                  
-#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-de-France, FRA
+#>     lon   lat LongLabel                                                                 
+#>   <dbl> <dbl> <chr>                                                                     
+#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-…
 
 
 # Use lon,lat to boots the search and using category = Food
@@ -152,7 +152,7 @@ food_eiffel <- arc_geo_categories("Food",
   limit = 50, full_results = TRUE
 )
 
-# Plot  by Food Type
+# Plot by Food Type
 ggplot(eiffel_tower, aes(x, y)) +
   geom_point(shape = 17, color = "red", size = 4) +
   geom_point(data = food_eiffel, aes(x, y, color = Type)) +

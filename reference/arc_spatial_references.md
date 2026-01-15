@@ -1,12 +1,13 @@
 # ESRI (ArcGIS) Spatial Reference data base
 
 Database of available spatial references (CRS) in
-[`tibble`](https://tibble.tidyverse.org/reference/tibble.html) format.
+[tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
+format.
 
 ## Format
 
-A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-9,364 rows and fields:
+A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
+with 9,608 rows and fields:
 
 - projtype:
 
@@ -50,7 +51,7 @@ factory](https://github.com/Esri/projection-engine-db-doc)
 
 ## Details
 
-This data base is useful when using the `outsr` parameter of the
+This data base is useful when using the `outsr` argument of the
 functions.
 
 Some projections ids have changed over time, for example Web Mercator is
@@ -59,7 +60,7 @@ both values would work, and they would return similar results.
 
 ## Note
 
-Data extracted on **14 January 2023**.
+Data extracted on **15 January 2026**.
 
 ## See also
 
@@ -72,9 +73,10 @@ Other datasets:
 
 ``` r
 # \donttest{
-# Get all possible valuesdata("arc_spatial_references")
+# Get all possible values
+data("arc_spatial_references")
 arc_spatial_references
-#> # A tibble: 9,364 × 8
+#> # A tibble: 9,608 × 8
 #>    projtype      wkid latestWkid authority deprecated description areaname wkt  
 #>    <chr>        <int>      <int> <chr>     <lgl>      <chr>       <chr>    <chr>
 #>  1 ProjectedCo…  2000       2000 EPSG      FALSE      Anguilla 1… Anguill… "PRO…
@@ -82,12 +84,12 @@ arc_spatial_references
 #>  3 ProjectedCo…  2002       2002 EPSG      FALSE      Dominica 1… Dominic… "PRO…
 #>  4 ProjectedCo…  2003       2003 EPSG      FALSE      Grenada 19… Grenada… "PRO…
 #>  5 ProjectedCo…  2004       2004 EPSG      FALSE      Montserrat… Montser… "PRO…
-#>  6 ProjectedCo…  2005       2005 EPSG      FALSE      St Kitts 1… St Kitt… "PRO…
-#>  7 ProjectedCo…  2006       2006 EPSG      FALSE      St Lucia 1… St Luci… "PRO…
-#>  8 ProjectedCo…  2007       2007 EPSG      FALSE      St Vincent… St Vinc… "PRO…
+#>  6 ProjectedCo…  2005       2005 EPSG      FALSE      St. Kitts … St Kitt… "PRO…
+#>  7 ProjectedCo…  2006       2006 EPSG      FALSE      St. Lucia … St Luci… "PRO…
+#>  8 ProjectedCo…  2007       2007 EPSG      FALSE      St. Vincen… St Vinc… "PRO…
 #>  9 ProjectedCo…  2008       2008 EPSG      TRUE       NAD 1927 S… Canada … "PRO…
-#> 10 ProjectedCo…  2009       2009 EPSG      FALSE      NAD 1927 S… Canada … "PRO…
-#> # ℹ 9,354 more rows
+#> 10 ProjectedCo…  2009       2009 EPSG      FALSE      NAD 1927 C… Canada … "PRO…
+#> # ℹ 9,598 more rows
 
 # Request with deprecated Web Mercator
 library(dplyr)
@@ -103,7 +105,7 @@ glimpse(wkid)
 #> $ latestWkid  <int> 3857
 #> $ authority   <chr> "Esri"
 #> $ deprecated  <lgl> TRUE
-#> $ description <chr> "WGS 1984 Web Mercator Major Auxiliary Sphere"
+#> $ description <chr> "WGS 1984 Web Mercator (auxiliary sphere)"
 #> $ areaname    <chr> "World - 85~S to 85~N"
 #> $ wkt         <chr> "PROJCS[\"WGS_1984_Web_Mercator_Auxiliary_Sphere\",GEOGCS[…
 

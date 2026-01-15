@@ -61,7 +61,7 @@ tibble associated with the query."><meta property="og:image" content="https://di
     <p>Generates an address from a latitude and longitude. Latitudes must be
 in the range \(\left[-90, 90 \right]\) and longitudes in the range
 \(\left[-180, 180 \right]\). This function returns the
-<code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></code> associated with the query.</p>
+<a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble</a> associated with the query.</p>
     </div>
 
     <div class="section level2">
@@ -121,7 +121,7 @@ the progress of the function.</p></dd>
 
 <dt id="arg-outsr">outsr<a class="anchor" aria-label="anchor" href="#arg-outsr"></a></dt>
 <dd><p>The spatial reference of the <code>x,y</code> coordinates returned by a
-geocode request. By default is <code>NULL</code> (i.e. the parameter won't be used in
+geocode request. By default is <code>NULL</code> (i.e. the argument won't be used in
 the query). See <strong>Details</strong> and <a href="arc_spatial_references.html">arc_spatial_references</a>.</p></dd>
 
 
@@ -131,8 +131,8 @@ returned.</p></dd>
 
 
 <dt id="arg-featuretypes">featuretypes<a class="anchor" aria-label="anchor" href="#arg-featuretypes"></a></dt>
-<dd><p>This parameter limits the possible match types returned.
-By default is <code>NULL</code> (i.e. the parameter won't be used in the query).
+<dd><p>This argument limits the possible match types returned.
+By default is <code>NULL</code> (i.e. the argument won't be used in the query).
 See <strong>Details</strong>.</p></dd>
 
 
@@ -140,20 +140,20 @@ See <strong>Details</strong>.</p></dd>
 <dd><p>Specifies whether the output geometry of
 <code>featuretypes = "PointAddress"</code> or <code>featuretypes = "Subaddress"</code> matches
 should be the rooftop point or street entrance location. Valid values are
-<code>NULL</code> (i.e. not using the parameter in the query), <code>rooftop</code> and <code>street</code>.</p></dd>
+<code>NULL</code> (i.e. not using the argument in the query), <code>rooftop</code> and <code>street</code>.</p></dd>
 
 
 <dt id="arg-custom-query">custom_query<a class="anchor" aria-label="anchor" href="#arg-custom-query"></a></dt>
-<dd><p>API-specific parameters to be used, passed as a named
+<dd><p>API-specific arguments to be used, passed as a named
 list.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></code> with the corresponding results. The <code>x,y</code> values
-returned by the API would be named <code>lon,lat</code>. Note that these coordinates
-correspond to the geocoded feature, and may be different of the <code>x,y</code> values
-provided as inputs.</p>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble</a> with the corresponding results. The <code>x,y</code> values
+returned by the API are named <code>lon,lat</code>. Note that these coordinates
+correspond to the geocoded feature, and may be different from the <code>x,y</code>
+values provided as inputs.</p>
 <p>See the details of the output in
 <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API Service output</a>.</p>
     </div>
@@ -165,14 +165,14 @@ provided as inputs.</p>
     <h2 id="outsr"><code>outsr</code><a class="anchor" aria-label="anchor" href="#outsr"></a></h2>
     <p>The spatial reference can be specified as either a well-known ID (WKID). If
 not specified, the spatial reference of the output locations is the same as
-that of the service ( WGS84, i.e. WKID = 4326)).</p>
+that of the service (WGS84, i.e. WKID = 4326)).</p>
 <p>See <a href="arc_spatial_references.html">arc_spatial_references</a> for values and examples.</p>
     </div>
     <div class="section level2">
     <h2 id="featuretypes"><code>featuretypes</code><a class="anchor" aria-label="anchor" href="#featuretypes"></a></h2>
     <p>See <code>vignette("featuretypes", package = "arcgeocoder")</code> for a detailed
-explanation of this parameter.</p>
-<p>This parameter may be used for filtering the type of feature to be returned
+explanation of this argument.</p>
+<p>This argument may be used for filtering the type of feature to be returned
 when geocoding. Possible values are:</p><ul><li><p><code>"StreetInt"</code></p></li>
 <li><p><code>"DistanceMarker"</code></p></li>
 <li><p><code>"StreetAddress"</code></p></li>
@@ -217,11 +217,11 @@ when geocoding. Possible values are:</p><ul><li><p><code>"StreetInt"</code></p><
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> -<span style="color: #BB0000;">74.0</span>   40.8 178-198 W 44th St, New York, NY, 10036, USA                      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  -<span style="color: #BB0000;">3.19</span>  56.0 Microsoft, 3 Waterloo Place, Canongate, Edinburgh, Midlothian, S…</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># With options: using some additional parameters</span></span></span>
+<span class="r-in"><span><span class="co"># With options: using some additional arguments</span></span></span>
 <span class="r-in"><span><span class="va">sev</span> <span class="op">&lt;-</span> <span class="fu">arc_reverse_geo</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">73.98586</span>, <span class="op">-</span><span class="fl">3.188375</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40.75728</span>, <span class="fl">55.95335</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  <span class="co"># Restrict to these feautures</span></span></span>
+<span class="r-in"><span>  <span class="co"># Restrict to these features</span></span></span>
 <span class="r-in"><span>  featuretypes <span class="op">=</span> <span class="st">"POI,StreetInt"</span>,</span></span>
 <span class="r-in"><span>  <span class="co"># Result on this WKID</span></span></span>
 <span class="r-in"><span>  outsr <span class="op">=</span> <span class="fl">102100</span>,</span></span>
