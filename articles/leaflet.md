@@ -163,13 +163,13 @@ Details
     #>  collate  English_United States.utf8
     #>  ctype    English_United States.utf8
     #>  tz       UTC
-    #>  date     2026-01-16
+    #>  date     2026-01-17
     #>  pandoc   3.1.11 @ C:/HOSTED~1/windows/pandoc/31F387~1.11/x64/PANDOC~1.11/ (via rmarkdown)
     #>  quarto   NA
     #> 
     #> ─ Packages ───────────────────────────────────────────────────────────────────
     #>  package           * version date (UTC) lib source
-    #>  arcgeocoder       * 0.3.0   2026-01-16 [1] local
+    #>  arcgeocoder       * 0.3.0   2026-01-17 [1] local
     #>  bslib               0.9.0   2025-01-30 [1] RSPM
     #>  cachem              1.1.0   2024-05-16 [1] RSPM
     #>  cli                 3.6.5   2025-04-23 [1] RSPM
@@ -212,7 +212,7 @@ Details
     #>  textshaping         1.0.4   2025-10-10 [1] RSPM
     #>  tibble              3.3.1   2026-01-11 [1] RSPM
     #>  tidyselect          1.2.1   2024-03-11 [1] RSPM
-    #>  vctrs               0.6.5   2023-12-01 [1] RSPM
+    #>  vctrs               0.7.0   2026-01-16 [1] RSPM
     #>  withr               3.0.2   2024-10-28 [1] RSPM
     #>  xfun                0.55    2025-12-16 [1] RSPM
     #>  yaml                2.3.12  2025-12-10 [1] RSPM
