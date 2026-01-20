@@ -143,9 +143,9 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                                 
-#>   <dbl> <dbl> <chr>                                                                     
-#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-…
+#>     lon   lat LongLabel                                                         
+#>   <dbl> <dbl> <chr>                                                             
+#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…
 
 
 # Use lon,lat to boots the search and using category = Food
