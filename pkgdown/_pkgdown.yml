@@ -1,4 +1,4 @@
-url: 'https://dieghernan.github.io/arcgeocoder'
+url: https://dieghernan.github.io/arcgeocoder
 
 template:
   bootstrap: 5
@@ -20,7 +20,7 @@ home:
     service.
 authors:
   Diego Hernangómez:
-    href: 'https://dieghernan.github.io/'
+    href: https://dieghernan.github.io/
 
 reference:
 - title: Geocoding and Reverse Geocoding
