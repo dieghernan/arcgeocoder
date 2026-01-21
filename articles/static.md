@@ -108,13 +108,13 @@ Details
     #>  collate  English_United States.utf8
     #>  ctype    English_United States.utf8
     #>  tz       UTC
-    #>  date     2026-01-20
+    #>  date     2026-01-21
     #>  pandoc   3.1.11 @ C:/HOSTED~1/windows/pandoc/31F387~1.11/x64/PANDOC~1.11/ (via rmarkdown)
     #>  quarto   NA
     #> 
     #> ─ Packages ───────────────────────────────────────────────────────────────────
     #>  package      * version date (UTC) lib source
-    #>  arcgeocoder  * 0.3.0   2026-01-20 [1] local
+    #>  arcgeocoder  * 0.3.0   2026-01-21 [1] local
     #>  bslib          0.9.0   2025-01-30 [1] RSPM
     #>  cachem         1.1.0   2024-05-16 [1] RSPM
     #>  class          7.3-23  2025-01-01 [3] CRAN (R 4.5.2)
