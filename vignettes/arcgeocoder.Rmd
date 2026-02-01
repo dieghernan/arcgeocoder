@@ -1,7 +1,7 @@
 ---
 title: "Get started with arcgeocoder"
 output: rmarkdown::html_vignette
-desc: >
+description: >
   Quick examples showing what arcgeocoder can do for you.
 vignette: >
   %\VignetteIndexEntry{Get started wit arcgeocoder}

@@ -1,6 +1,6 @@
 ---
 title: arcgeocoder and static maps
-desc: Combine arcgeocoder with sf, terra and ggplot2.
+description: Combine arcgeocoder with sf, terra and ggplot2.
 ---
 
 ```{r, include = FALSE}
