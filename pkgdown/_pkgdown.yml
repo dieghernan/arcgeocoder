@@ -12,6 +12,9 @@ template:
 
 repo:
   branch: main
+  
+development:
+  mode: auto
 
 home:
   title: arcgeocoder | Geocoding with the ArcGIS REST API Service
