@@ -1,6 +1,7 @@
 ---
 title: arcgeocoder and leaflet maps
-description: Combine arcgeocoder and leaflet maps.
+description: >
+  Combine **arcgeocoder** and **leaflet** maps.
 ---
 
 ```{r, include = FALSE}

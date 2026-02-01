@@ -42,11 +42,12 @@ reference:
   - arcgeocoder-package
 
 articles:
-- title: Explore arcgeocoder
-  navbar: Explore arcgeocoder
+- title: Explore **arcgeocoder**
+  navbar: >
+    Explore **arcgeocoder**
   contents:
   - feature-types
-- title: Mapping with arcgeocoder
+- title: Mapping with **arcgeocoder**
   navbar: Mapping
   contents:
   - articles/static

@@ -2,7 +2,7 @@
 title: "Get started with arcgeocoder"
 output: rmarkdown::html_vignette
 description: >
-  Quick examples showing what arcgeocoder can do for you.
+  Quick examples showing what **arcgeocoder** can do for you.
 vignette: >
   %\VignetteIndexEntry{Get started wit arcgeocoder}
   %\VignetteEngine{knitr::rmarkdown}

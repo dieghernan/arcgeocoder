@@ -2,7 +2,7 @@
 title: "Reverse geocoding and feature types"
 output: rmarkdown::html_vignette
 description: >
-  Efficient reverse geocoding with arcgeocoder.
+  Efficient reverse geocoding with **arcgeocoder**.
 vignette: >
   %\VignetteIndexEntry{Reverse geocoding and feature types}
   %\VignetteEngine{knitr::rmarkdown}
