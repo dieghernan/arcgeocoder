@@ -62,7 +62,7 @@ There are other packages much more complete and mature than
 
 ## Installation
 
-<div class=".pkgdown-release">
+<div class="pkgdown-release">
 
 Install **arcgeocoder** from
 [**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
@@ -73,7 +73,7 @@ install.packages("arcgeocoder")
 
 </div>
 
-<div class=".pkgdown-dev">
+<div class="pkgdown-devel">
 
 You can install the developing version of **arcgeocoder** with:
 
