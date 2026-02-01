@@ -27,7 +27,7 @@ authors:
 
 reference:
 - title: Geocoding and Reverse Geocoding
-  desc: |
+  desc: >
     These functions performs requests to the ArcGIS REST API.
   contents:
   - has_concept("geocoding")
@@ -46,8 +46,8 @@ articles:
   navbar: Explore arcgeocoder
   contents:
   - feature-types
-- title: Examples
-  navbar: Examples
+- title: Mapping with arcgeocoder
+  navbar: Mapping
   contents:
   - articles/static
   - articles/leaflet

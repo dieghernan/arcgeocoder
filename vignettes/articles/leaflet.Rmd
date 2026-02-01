@@ -1,6 +1,6 @@
 ---
-title: "arcgeocoder and leaflet maps"
-subtitle: "Combine arcgeocoder and leaflet maps"
+title: arcgeocoder and leaflet maps
+desc: Combine arcgeocoder and leaflet maps.
 ---
 
 ```{r, include = FALSE}

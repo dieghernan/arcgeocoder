@@ -1,6 +1,6 @@
 ---
-title: "arcgeocoder and static maps"
-subtitle: "Combine arcgeocoder with sf and terra"
+title: arcgeocoder and static maps
+desc: Combine arcgeocoder with sf, terra and ggplot2.
 ---
 
 ```{r, include = FALSE}
