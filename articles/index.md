@@ -5,7 +5,7 @@
 - [Reverse geocoding and feature
   types](https://dieghernan.github.io/arcgeocoder/articles/feature-types.md):
 
-### Examples
+### Mapping with arcgeocoder
 
 - [arcgeocoder and static
   maps](https://dieghernan.github.io/arcgeocoder/articles/static.md):
