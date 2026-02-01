@@ -45,26 +45,6 @@ Install **arcgeocoder** from
 install.packages("arcgeocoder")
 ```
 
-You can install the developing version of **arcgeocoder** with:
-
-``` r
-# install.packages("pak")
-pak::pak("dieghernan/arcgeocoder")
-```
-
-Alternatively, you can install **arcgeocoder** using the
-[r-universe](https://dieghernan.r-universe.dev/arcgeocoder):
-
-``` r
-# Install arcgeocoder in R:
-install.packages("arcgeocoder",
-  repos = c(
-    "https://dieghernan.r-universe.dev",
-    "https://cloud.r-project.org"
-  )
-)
-```
-
 ## Usage
 
 ### Geocoding and reverse geocoding
