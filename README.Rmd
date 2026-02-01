@@ -79,18 +79,15 @@ that present similar features:
 ## Installation
 
 ::: pkgdown-release
-
 Install **arcgeocoder** from
 [**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
 
 ```{r, eval=FALSE}
 install.packages("arcgeocoder")
 ```
-
 :::
 
 ::: pkgdown-devel
-
 You can install the developing version of **arcgeocoder** with:
 
 ```{r, eval=FALSE}
@@ -110,7 +107,6 @@ install.packages("arcgeocoder",
   )
 )
 ```
-
 :::
 
 ## Usage
