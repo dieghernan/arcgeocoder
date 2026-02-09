@@ -12,13 +12,13 @@ template:
 
 repo:
   branch: main
-  
+
 development:
   mode: auto
 
 home:
   title: arcgeocoder | Geocoding with the ArcGIS REST API Service
-  description: |
+  description: >
     Lite interface for geocoding and reverse geocoding with the ArcGIS REST API
     service.
 authors:
@@ -42,13 +42,13 @@ reference:
   - arcgeocoder-package
 
 articles:
-- title: Explore **arcgeocoder**
+- title: Explore arcgeocoder
   navbar: >
-    Explore **arcgeocoder**
+    Explore arcgeocoder
   contents:
   - feature-types
-- title: Mapping with **arcgeocoder**
-  navbar: Mapping
+- title: Mapping with arcgeocoder
+  navbar: Mapping with arcgeocoder
   contents:
   - articles/static
   - articles/leaflet
