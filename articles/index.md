@@ -1,13 +1,13 @@
 # Articles
 
-### Explore **arcgeocoder**
+### Explore arcgeocoder
 
 - [Reverse geocoding and feature
   types](https://dieghernan.github.io/arcgeocoder/articles/feature-types.md):
 
   Efficient reverse geocoding with **arcgeocoder**.
 
-### Mapping with **arcgeocoder**
+### Mapping with arcgeocoder
 
 - [arcgeocoder and static
   maps](https://dieghernan.github.io/arcgeocoder/articles/static.md):
