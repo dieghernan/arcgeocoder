@@ -27,7 +27,7 @@ the tolerance specified in the *Search Tolerance* column.
 | `POI` area                                                   | within boundary  | A business or landmark that can be represented by an area, such as a large park or university. Not available in all countries.                            |
 | `Postal` or `Locality` area                                  | within boundary  | If the input location intersects multiple boundaries, the feature with the smallest area is returned.                                                     |
 
-**Table 1**: Adapted from ArcGIS REST API `reverseGeocode`
+Table 1: Adapted from ArcGIS REST API `reverseGeocode`
 
 In **arcgeocoder**, this hierarchy is implemented in
 [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_reverse_geo.md),
@@ -80,7 +80,7 @@ library(dplyr)
 In this example, we do not provide any value to the `featuretypes`
 argument. This input location is within the search tolerance of both
 `POI` and `PointAddress` features, but a match to the `POI` centroid is
-returned because it has a higher priority (see [**Table 1**](#table1)).
+returned because it has a higher priority (see [Table 1](#tbl-hier)).
 Note that the output field `Addr_type` indicates the type of feature.
 
 ``` r
@@ -104,7 +104,7 @@ api_poi |>
 |----------:|---------:|:-----------------------------------------------|----------:|---------:|:--------------|
 | -117.1963 | 34.05922 | 1025-1141 W Park Ave, Redlands, CA, 92373, USA | -117.1963 | 34.05917 | StreetAddress |
 
-### Example 2: `Locality` match returned
+### Example 2: `StreetAddress` match returned
 
 We specify here the type of feature we want to get using
 `featuretypes = "StreetAddress"`.
@@ -152,7 +152,7 @@ api_local |>
 ### Example 4: multiple values
 
 When multiple values are included in the API call, the hierarchy
-explained in [**Table 1**](#table1) would still be applied on the
+explained in [Table 1](#tbl-hier) would still be applied on the
 requested `featuretypes`.
 
 ``` r
@@ -222,7 +222,7 @@ npole2 |>
 The API would return different results for the same `x,y` values
 depending on the value of `featuretypes`. By using `featuretypes = NULL`
 the feature type returned would depend on the hierarchy explained in
-[**Table 1**](#table1).
+[Table 1](#tbl-hier).
 
 Depending on the location, the `featuretypes` filter may not return
 results, hence for general purposes using `featuretypes = NULL` is

@@ -130,17 +130,22 @@
 <span></span>
 <span><span class="co"># create a dataframe with addresses</span></span>
 <span><span class="va">some_addresses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">name</span>,                  <span class="op">~</span><span class="va">addr</span>,</span>
-<span>  <span class="st">"White House"</span>,          <span class="st">"1600 Pennsylvania Ave NW, Washington, DC"</span>,</span>
+<span>  <span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">addr</span>,</span>
+<span>  <span class="st">"White House"</span>, <span class="st">"1600 Pennsylvania Ave NW, Washington, DC"</span>,</span>
 <span>  <span class="st">"Transamerica Pyramid"</span>, <span class="st">"600 Montgomery St, San Francisco, CA 94111"</span>,</span>
-<span>  <span class="st">"Willis Tower"</span>,         <span class="st">"233 S Wacker Dr, Chicago, IL 60606"</span></span>
+<span>  <span class="st">"Willis Tower"</span>, <span class="st">"233 S Wacker Dr, Chicago, IL 60606"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># geocode the addresses</span></span>
-<span><span class="va">lat_longs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_geo.html">arc_geo</a></span><span class="op">(</span><span class="va">some_addresses</span><span class="op">$</span><span class="va">addr</span>, lat <span class="op">=</span> <span class="st">"latitude"</span>, long <span class="op">=</span> <span class="st">"longitude"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%</span></span></code></pre></div>
+<span><span class="va">lat_longs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_geo.html">arc_geo</a></span><span class="op">(</span></span>
+<span>  <span class="va">some_addresses</span><span class="op">$</span><span class="va">addr</span>,</span>
+<span>  lat <span class="op">=</span> <span class="st">"latitude"</span>,</span>
+<span>  long <span class="op">=</span> <span class="st">"longitude"</span>,</span>
+<span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>Only a few fields are returned from the geocoder service in this example, but <code>full_results = TRUE</code> can be used to return all of the data from the geocoder service.</p>
-<table class="table caption-top" style="width:100%;">
+<table style="width:100%;" class="table">
+<caption>Example of geocoded addresses</caption>
 <colgroup>
 <col style="width: 20%">
 <col style="width: 4%">
@@ -224,41 +229,15 @@
 <code class="sourceCode R"><span><span class="va">reverse</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">longitude</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">latitude</span>,</span>
-<span>  address <span class="op">=</span> <span class="st">"address_found"</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt;   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%</span></span></code></pre></div>
-<table class="table caption-top">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 10%">
-<col style="width: 76%">
-</colgroup>
-<thead><tr class="header">
-<th style="text-align: right;">x</th>
-<th style="text-align: right;">y</th>
-<th style="text-align: left;">address_found</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">-77.03655</td>
-<td style="text-align: right;">38.89768</td>
-<td style="text-align: left;">White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">-122.40273</td>
-<td style="text-align: right;">37.79516</td>
-<td style="text-align: left;">Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">-87.63587</td>
-<td style="text-align: right;">41.87867</td>
-<td style="text-align: left;">The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA</td>
-</tr>
-</tbody>
-</table>
+<span>  address <span class="op">=</span> <span class="st">"address_found"</span>,</span>
+<span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; Error in parse(text = input): &lt;text&gt;:1:41: unexpected symbol</span></span>
+<span><span class="co">#&gt; 1: knitr::kable(reverse, caption = Example of</span></span>
+<span><span class="co">#&gt;                                             ^</span></span></code></pre>
 <p>It is possible also to search for specific locations within or near a reference are or location using <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">category filtering</a>. See more information in the documentation of the data base <code>arc_categories</code>.</p>
 <p>In the following example we would look for POIs related with food (i.e. Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># For plotting</span></span>
 <span></span>
 <span><span class="co"># Step 1: Locate Eiffel Tower, using multifield query</span></span>
@@ -281,10 +260,12 @@
 <span></span>
 <span></span>
 <span><span class="co"># Use lon,lat to boots the search and using category = Food</span></span>
-<span><span class="va">food_eiffel</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_geo_categories.html">arc_geo_categories</a></span><span class="op">(</span><span class="st">"Food"</span>,</span>
+<span><span class="va">food_eiffel</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_geo_categories.html">arc_geo_categories</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Food"</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">eiffel_tower</span><span class="op">$</span><span class="va">lon</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">eiffel_tower</span><span class="op">$</span><span class="va">lat</span>,</span>
-<span>  limit <span class="op">=</span> <span class="fl">50</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  limit <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>  full_results <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot by Food Type</span></span>

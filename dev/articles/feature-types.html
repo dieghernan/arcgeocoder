@@ -109,13 +109,9 @@
 </h2>
 <p>The purpose of reverse geocoding is to answer the question: What’s near this location? To answer this question, the <code>reverseGeocode</code> operation provided by the <strong>ArcGIS REST API</strong> returns the most relevant feature near an input location based on a prioritized hierarchy of feature types.</p>
 <p>The hierarchy is summarized in the table below, ordered by descending priority. Unless otherwise noted, each feature type is only returned when the distance between the input location and the feature is within the tolerance specified in the <em>Search Tolerance</em> column.</p>
-<div id="table1">
-
-</div>
-<table class="table caption-top">
-<caption>
-<strong>Table 1</strong>: Adapted from ArcGIS REST API <code>reverseGeocode</code>
-</caption>
+<div id="tbl-hier" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-hier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -177,6 +173,11 @@
 </tr>
 </tbody>
 </table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-hier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
+</figcaption></figure>
+</div>
 <p>In <strong>arcgeocoder</strong>, this hierarchy is implemented in <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code>, specifically through the <code>featuretypes</code> argument. The default value (<code>featuretypes = NULL</code>) does not include the argument in the API call. In this case, the hierarchy presented in the previous table would apply.</p>
 <p>It is possible to narrow down the output of the query to a specific feature type or a list of feature types. The possible values supported for this argument are:</p>
 <ul>
@@ -207,7 +208,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <section class="level3"><h3 id="example-1-match-to-poi-centroid-returned">Example 1: Match to <code>POI</code> centroid returned<a class="anchor" aria-label="anchor" href="#example-1-match-to-poi-centroid-returned"></a>
 </h3>
-<p>In this example, we do not provide any value to the <code>featuretypes</code> argument. This input location is within the search tolerance of both <code>POI</code> and <code>PointAddress</code> features, but a match to the <code>POI</code> centroid is returned because it has a higher priority (see <a href="#table1"><strong>Table 1</strong></a>). Note that the output field <code>Addr_type</code> indicates the type of feature.</p>
+<p>In this example, we do not provide any value to the <code>featuretypes</code> argument. This input location is within the search tolerance of both <code>POI</code> and <code>PointAddress</code> features, but a match to the <code>POI</code> centroid is returned because it has a higher priority (see <a href="#tbl-hier" class="quarto-xref">Table 1</a>). Note that the output field <code>Addr_type</code> indicates the type of feature.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">example_x</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">117.196324</span></span>
 <span><span class="va">example_y</span> <span class="op">&lt;-</span> <span class="fl">34.059217</span></span>
@@ -223,7 +224,7 @@
 <span><span class="va">api_poi</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table caption-top">
+<table class="table">
 <colgroup>
 <col style="width: 10%">
 <col style="width: 9%">
@@ -248,7 +249,7 @@
 <td style="text-align: right;">34.05917</td>
 <td style="text-align: left;">StreetAddress</td>
 </tr></tbody>
-</table></section><section class="level3"><h3 id="example-2-locality-match-returned">Example 2: <code>Locality</code> match returned<a class="anchor" aria-label="anchor" href="#example-2-locality-match-returned"></a>
+</table></section><section class="level3"><h3 id="example-2-streetaddress-match-returned">Example 2: <code>StreetAddress</code> match returned<a class="anchor" aria-label="anchor" href="#example-2-streetaddress-match-returned"></a>
 </h3>
 <p>We specify here the type of feature we want to get using <code>featuretypes = "StreetAddress"</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -264,7 +265,7 @@
 <span><span class="va">api_address</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table caption-top">
+<table class="table">
 <colgroup>
 <col style="width: 10%">
 <col style="width: 9%">
@@ -304,7 +305,7 @@
 <span><span class="va">api_local</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table caption-top" style="width:100%;">
+<table style="width:100%;" class="table">
 <colgroup>
 <col style="width: 15%">
 <col style="width: 13%">
@@ -331,7 +332,7 @@
 </tr></tbody>
 </table></section><section class="level3"><h3 id="example-4-multiple-values">Example 4: multiple values<a class="anchor" aria-label="anchor" href="#example-4-multiple-values"></a>
 </h3>
-<p>When multiple values are included in the API call, the hierarchy explained in <a href="#table1"><strong>Table 1</strong></a> would still be applied on the requested <code>featuretypes</code>.</p>
+<p>When multiple values are included in the API call, the hierarchy explained in <a href="#tbl-hier" class="quarto-xref">Table 1</a> would still be applied on the requested <code>featuretypes</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">api_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">example_x</span>,</span>
@@ -345,7 +346,7 @@
 <span><span class="va">api_multiple</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table caption-top">
+<table class="table">
 <colgroup>
 <col style="width: 10%">
 <col style="width: 9%">
@@ -383,7 +384,7 @@
 <span><span class="va">npole</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table caption-top">
+<table class="table">
 <thead><tr class="header">
 <th style="text-align: right;">x</th>
 <th style="text-align: right;">y</th>
@@ -413,7 +414,7 @@
 <span></span>
 <span><span class="va">npole2</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table caption-top">
+<table class="table">
 <thead><tr class="header">
 <th style="text-align: right;">x</th>
 <th style="text-align: right;">y</th>
@@ -426,7 +427,7 @@
 </tr></tbody>
 </table></section></section><section class="level2"><h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
 </h2>
-<p>The API would return different results for the same <code>x,y</code> values depending on the value of <code>featuretypes</code>. By using <code>featuretypes = NULL</code> the feature type returned would depend on the hierarchy explained in <a href="#table1"><strong>Table 1</strong></a>.</p>
+<p>The API would return different results for the same <code>x,y</code> values depending on the value of <code>featuretypes</code>. By using <code>featuretypes = NULL</code> the feature type returned would depend on the hierarchy explained in <a href="#tbl-hier" class="quarto-xref">Table 1</a>.</p>
 <p>Depending on the location, the <code>featuretypes</code> filter may not return results, hence for general purposes using <code>featuretypes = NULL</code> is safer.</p>
 </section><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

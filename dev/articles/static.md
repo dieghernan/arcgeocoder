@@ -41,8 +41,10 @@ ggplot(bcn) +
   geom_sf(data = mc_sf, color = "red")
 ```
 
-![A map showing the location of McDonald's restaurants around Barcelona,
-Spain](static_files/figure-html/sf-1.png)
+![](static_files/figure-html/sf-1.png)
+
+A map showing the location of McDonald’s restaurants around Barcelona,
+Spain
 
 ``` r
 # We can restrict the results to the bbox of BCN in the query
@@ -70,8 +72,9 @@ ggplot(bcn) +
   geom_sf(data = mc2_sf, color = "red")
 ```
 
-![A map showing the location of McDonald's restaurants in Barcelona,
-Spain](static_files/figure-html/sf2-1.png)
+![](static_files/figure-html/sf2-1.png)
+
+A map showing the location of McDonald’s restaurants in Barcelona, Spain
 
 ## Example 2: terra objects
 
@@ -96,9 +99,10 @@ ggplot() +
   labs(caption = get_credit("CartoDB.Positron"))
 ```
 
-![A map showing the location of McDonald's restaurants in Barcelona,
-Spain, over an image provided by
-CARTO](static_files/figure-html/terra-1.png)
+![](static_files/figure-html/terra-1.png)
+
+A map showing the location of McDonald’s restaurants in Barcelona,
+Spain, over an image provided by CARTO
 
 ## Session info
 

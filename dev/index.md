@@ -83,16 +83,12 @@ some_addresses <- tribble(
 )
 
 # geocode the addresses
-lat_longs <- arc_geo(some_addresses$addr, lat = "latitude", long = "longitude")
-#> 
-  |                                                        
-  |                                                  |   0%
-  |                                                        
-  |=================                                 |  33%
-  |                                                        
-  |=================================                 |  67%
-  |                                                        
-  |==================================================| 100%
+lat_longs <- arc_geo(
+  some_addresses$addr,
+  lat = "latitude",
+  long = "longitude",
+  progressbar = FALSE
+)
 ```
 
 Only a few fields are returned from the geocoder service in this
@@ -104,6 +100,8 @@ from the geocoder service.
 | 1600 Pennsylvania Ave NW, Washington, DC   | 38.89768 |  -77.03655 | 1600 Pennsylvania Ave NW, Washington, District of Columbia, 20500 |   100 |  -77.03655 | 38.89768 |  -77.03755 | 38.89668 |  -77.03555 | 38.89868 | 4326 |       4326 |
 | 600 Montgomery St, San Francisco, CA 94111 | 37.79516 | -122.40273 | 600 Montgomery St, San Francisco, California, 94111               |   100 | -122.40273 | 37.79516 | -122.40373 | 37.79416 | -122.40173 | 37.79616 | 4326 |       4326 |
 | 233 S Wacker Dr, Chicago, IL 60606         | 41.87867 |  -87.63587 | 233 S Wacker Dr, Chicago, Illinois, 60606                         |   100 |  -87.63587 | 41.87867 |  -87.63687 | 41.87767 |  -87.63487 | 41.87967 | 4326 |       4326 |
+
+Table 1: Example: geocoding addresses.
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the
@@ -118,17 +116,9 @@ single line address is returned in a column named by the `address`.
 reverse <- arc_reverse_geo(
   x = lat_longs$longitude,
   y = lat_longs$latitude,
-  address = "address_found"
+  address = "address_found",
+  progressbar = FALSE
 )
-#> 
-  |                                                        
-  |                                                  |   0%
-  |                                                        
-  |=================                                 |  33%
-  |                                                        
-  |=================================                 |  67%
-  |                                                        
-  |==================================================| 100%
 ```
 
 |          x |        y | address_found                                                     |
@@ -136,6 +126,8 @@ reverse <- arc_reverse_geo(
 |  -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA |
 | -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA  |
 |  -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
+
+Table 2: Example: reverse geocoding addresses.
 
 It is possible also to search for specific locations within or near a
 reference area or location using [category
