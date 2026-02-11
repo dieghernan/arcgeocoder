@@ -100,21 +100,21 @@ Details
 
     #> ─ Session info ───────────────────────────────────────────────────────────────
     #>  setting  value
-    #>  version  R version 4.5.2 (2025-10-31 ucrt)
-    #>  os       Windows Server 2022 x64 (build 26100)
-    #>  system   x86_64, mingw32
-    #>  ui       RTerm
+    #>  version  R version 4.5.2 (2025-10-31)
+    #>  os       Ubuntu 24.04.3 LTS
+    #>  system   x86_64, linux-gnu
+    #>  ui       X11
     #>  language en
-    #>  collate  English_United States.utf8
-    #>  ctype    English_United States.utf8
+    #>  collate  C.UTF-8
+    #>  ctype    C.UTF-8
     #>  tz       UTC
-    #>  date     2026-02-09
-    #>  pandoc   3.1.11 @ C:/HOSTED~1/windows/pandoc/31F387~1.11/x64/PANDOC~1.11/ (via rmarkdown)
+    #>  date     2026-02-11
+    #>  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
     #>  quarto   NA
     #> 
     #> ─ Packages ───────────────────────────────────────────────────────────────────
     #>  package      * version date (UTC) lib source
-    #>  arcgeocoder  * 0.3.0   2026-02-09 [1] local
+    #>  arcgeocoder  * 0.3.0   2026-02-11 [1] local
     #>  bslib          0.10.0  2026-01-26 [1] RSPM
     #>  cachem         1.1.0   2024-05-16 [1] RSPM
     #>  class          7.3-23  2025-01-01 [3] CRAN (R 4.5.2)
@@ -186,9 +186,9 @@ Details
     #>  xfun           0.56    2026-01-18 [1] RSPM
     #>  yaml           2.3.12  2025-12-10 [1] RSPM
     #> 
-    #>  [1] D:/a/_temp/Library
-    #>  [2] C:/R/site-library
-    #>  [3] C:/R/library
+    #>  [1] /home/runner/work/_temp/Library
+    #>  [2] /opt/R/4.5.2/lib/R/site-library
+    #>  [3] /opt/R/4.5.2/lib/R/library
     #>  * ── Packages attached to the search path.
     #> 
     #> ──────────────────────────────────────────────────────────────────────────────
