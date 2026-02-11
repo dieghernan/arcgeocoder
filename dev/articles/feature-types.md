@@ -88,8 +88,11 @@ example_x <- -117.196324
 example_y <- 34.059217
 
 api_poi <- arc_reverse_geo(
-  x = example_x, y = example_y,
-  langcode = "EN", full_results = TRUE, verbose = TRUE
+  x = example_x,
+  y = example_y,
+  langcode = "EN",
+  full_results = TRUE,
+  verbose = TRUE
 )
 
 api_poi |>
@@ -108,9 +111,12 @@ We specify here the type of feature we want to get using
 
 ``` r
 api_address <- arc_reverse_geo(
-  x = example_x, y = example_y,
+  x = example_x,
+  y = example_y,
   featuretypes = "StreetAddress",
-  langcode = "EN", full_results = TRUE, verbose = TRUE
+  langcode = "EN",
+  full_results = TRUE,
+  verbose = TRUE
 )
 
 api_address |>
@@ -126,9 +132,12 @@ api_address |>
 
 ``` r
 api_local <- arc_reverse_geo(
-  x = example_x, y = example_y,
+  x = example_x,
+  y = example_y,
   featuretypes = "Locality",
-  langcode = "EN", full_results = TRUE, verbose = TRUE
+  langcode = "EN",
+  full_results = TRUE,
+  verbose = TRUE
 )
 
 api_local |>
@@ -148,9 +157,12 @@ requested `featuretypes`.
 
 ``` r
 api_multiple <- arc_reverse_geo(
-  x = example_x, y = example_y,
+  x = example_x,
+  y = example_y,
   featuretypes = c("Locality", "StreetInt", "StreetAddress"),
-  langcode = "EN", full_results = TRUE, verbose = TRUE
+  langcode = "EN",
+  full_results = TRUE,
+  verbose = TRUE
 )
 
 api_multiple |>
@@ -190,7 +202,10 @@ npole |>
 ``` r
 # But no StreetAddress
 npole2 <- arc_reverse_geo(
-  x = 0, y = 90, langcode = "EN", full_results = TRUE,
+  x = 0,
+  y = 90,
+  langcode = "EN",
+  full_results = TRUE,
   featuretypes = "StreetAddress"
 )
 

@@ -50,7 +50,8 @@ Alternatively, you can install **arcgeocoder** using the
 
 ``` r
 # Install arcgeocoder in R:
-install.packages("arcgeocoder",
+install.packages(
+  "arcgeocoder",
   repos = c(
     "https://dieghernan.r-universe.dev",
     "https://cloud.r-project.org"
@@ -75,15 +76,23 @@ library(dplyr)
 
 # create a dataframe with addresses
 some_addresses <- tribble(
-  ~name,                  ~addr,
-  "White House",          "1600 Pennsylvania Ave NW, Washington, DC",
+  ~name, ~addr,
+  "White House", "1600 Pennsylvania Ave NW, Washington, DC",
   "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
-  "Willis Tower",         "233 S Wacker Dr, Chicago, IL 60606"
+  "Willis Tower", "233 S Wacker Dr, Chicago, IL 60606"
 )
 
 # geocode the addresses
 lat_longs <- arc_geo(some_addresses$addr, lat = "latitude", long = "longitude")
-#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
+#> 
+  |                                                        
+  |                                                  |   0%
+  |                                                        
+  |=================                                 |  33%
+  |                                                        
+  |=================================                 |  67%
+  |                                                        
+  |==================================================| 100%
 ```
 
 Only a few fields are returned from the geocoder service in this
@@ -111,7 +120,15 @@ reverse <- arc_reverse_geo(
   y = lat_longs$latitude,
   address = "address_found"
 )
-#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
+#> 
+  |                                                        
+  |                                                  |   0%
+  |                                                        
+  |=================                                 |  33%
+  |                                                        
+  |=================================                 |  67%
+  |                                                        
+  |==================================================| 100%
 ```
 
 |          x |        y | address_found                                                     |
@@ -152,10 +169,12 @@ eiffel_tower |>
 
 
 # Use lon,lat to boost the search and using category = Food
-food_eiffel <- arc_geo_categories("Food",
+food_eiffel <- arc_geo_categories(
+  "Food",
   x = eiffel_tower$lon,
   y = eiffel_tower$lat,
-  limit = 50, full_results = TRUE
+  limit = 50,
+  full_results = TRUE
 )
 
 # Plot by Food Type
@@ -175,8 +194,6 @@ ggplot(eiffel_tower, aes(x, y)) +
 ![Example: Food places near the Eiffel
 Tower](reference/figures/README-eiffel-1.png)
 
-Example: Food places near the Eiffel Tower
-
 ### **arcgeocoder** and **r-spatial**
 
 It is straightforward to convert the results of **arcgeocoder** to an
@@ -185,7 +202,8 @@ It is straightforward to convert the results of **arcgeocoder** to an
 ``` r
 library(sf)
 
-food_eiffel_sf <- st_as_sf(food_eiffel,
+food_eiffel_sf <- st_as_sf(
+  food_eiffel,
   coords = c("lon", "lat"),
   # The CRS of the resulting coords is here
   crs = eiffel_tower$wkid
@@ -226,8 +244,6 @@ ggplot(food_eiffel_sf) +
 ![Example: Food places near the Eiffel Tower using the sf
 package.](reference/figures/README-eiffel_sf-1.png)
 
-Example: Food places near the Eiffel Tower using the sf package.
-
 ## Citation
 
 Hernangómez D (2026). *arcgeocoder: Geocoding with the ArcGIS REST API
@@ -243,7 +259,7 @@ A BibTeX entry for LaTeX users is
   doi = {10.32614/CRAN.package.arcgeocoder},
   author = {Diego Hernangómez},
   year = {2026},
-  version = {0.3.0.9000},
+  version = {0.3.0},
   url = {https://dieghernan.github.io/arcgeocoder/},
   abstract = {Lite interface for finding locations of addresses or businesses around the world using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address. No API key required.},
 }

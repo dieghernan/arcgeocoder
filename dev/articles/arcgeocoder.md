@@ -61,15 +61,7 @@ some_addresses <- tribble(
 
 # geocode the addresses
 lat_longs <- arc_geo(some_addresses$addr, lat = "latitude", long = "longitude")
-#> 
-  |                                                        
-  |                                                  |   0%
-  |                                                        
-  |=================                                 |  33%
-  |                                                        
-  |=================================                 |  67%
-  |                                                        
-  |==================================================| 100%
+#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
 Only a few fields are returned from the geocoder service in this
@@ -97,15 +89,7 @@ reverse <- arc_reverse_geo(
   y = lat_longs$latitude,
   address = "address_found"
 )
-#> 
-  |                                                        
-  |                                                  |   0%
-  |                                                        
-  |=================                                 |  33%
-  |                                                        
-  |=================================                 |  67%
-  |                                                        
-  |==================================================| 100%
+#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
 |          x |        y | address_found                                                     |
@@ -166,7 +150,7 @@ ggplot(eiffel_tower, aes(x, y)) +
   )
 ```
 
-![Example: Food places near the Eiffel Tower](eiffel-1.png)
+![](./eiffel-1.png)
 
 Example: Food places near the Eiffel Tower
 

@@ -15,15 +15,19 @@ library(mapSpain) # sf objects of Spain
 
 # McDonalds in Barcelona, Spain
 
-mc <- arc_geo_multi("McDonalds",
+mc <- arc_geo_multi(
+  "McDonalds",
   city = "Barcelona",
-  region = "Catalonia", countrycode = "ES",
-  category = "Food", limit = 50,
+  region = "Catalonia",
+  countrycode = "ES",
+  category = "Food",
+  limit = 50,
   custom_query = list(outFields = c("LongLabel", "Type", "StAddr"))
 )
 
 # To sf
-mc_sf <- st_as_sf(mc,
+mc_sf <- st_as_sf(
+  mc,
   coords = c("lon", "lat"),
   # here we have the wkid
   crs = mc$latestWkid[1]
@@ -41,16 +45,18 @@ ggplot(bcn) +
 Spain](static_files/figure-html/sf-1.png)
 
 ``` r
-
 # We can restrict the results to the bbox of BCN in the query
 bbox <- st_bbox(bcn) |> paste0(collapse = ",")
 bbox
 #> [1] "2.0536216,41.3217545,2.227167,41.467717"
 
-mc2_sf <- arc_geo_multi("McDonalds",
+mc2_sf <- arc_geo_multi(
+  "McDonalds",
   city = "Barcelona",
-  region = "Catalonia", countrycode = "ES",
-  category = "Food", limit = 50,
+  region = "Catalonia",
+  countrycode = "ES",
+  category = "Food",
+  limit = 50,
   custom_query = list(
     outFields = c("LongLabel", "Type", "StAddr"),
     searchExtent = bbox
@@ -65,7 +71,7 @@ ggplot(bcn) +
 ```
 
 ![A map showing the location of McDonald's restaurants in Barcelona,
-Spain](static_files/figure-html/sf-2.png)
+Spain](static_files/figure-html/sf2-1.png)
 
 ## Example 2: terra objects
 
