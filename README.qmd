@@ -1,25 +1,22 @@
 ---
-output: github_document
+format: gfm
 bibliography: inst/REFERENCES.bib
 link-citations: true
+default-image-extension: ''
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    warning: false
+    message: false
+    dev: "ragg_png"
+    tidy: "styler"
+    fig.path: "man/figures/README-"
+    dpi: 120
+    out.width: "100%"
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r}
-#| include: false
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  warning = FALSE,
-  message = FALSE,
-  dev = "ragg_png",
-  tidy = "styler",
-  fig.path = "man/figures/README-",
-  dpi = 120,
-  out.width = "100%"
-)
-```
+<!-- README.md is generated from README.qmd. Please edit that file -->
 
 # arcgeocoder <a href="https://dieghernan.github.io/arcgeocoder/"><img src="man/figures/logo.png" alt="arcgeocoder website" align="right" height="139"/></a>
 
@@ -80,6 +77,7 @@ that present similar features:
 ## Installation
 
 ::: pkgdown-release
+
 Install **arcgeocoder** from
 [**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
 
@@ -87,9 +85,11 @@ Install **arcgeocoder** from
 #| eval: false
 install.packages("arcgeocoder")
 ```
+
 :::
 
 ::: pkgdown-devel
+
 You can install the developing version of **arcgeocoder** with:
 
 ```{r}
@@ -111,6 +111,7 @@ install.packages("arcgeocoder",
   )
 )
 ```
+
 :::
 
 ## Usage
@@ -257,6 +258,3 @@ toBibtex(citation("arcgeocoder"))
 ```
 
 ## References
-
-::: {#refs}
-:::

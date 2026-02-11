@@ -20,19 +20,16 @@ Imports:
     jsonlite (>= 1.7.0)
 Suggests:
     ggplot2,
-    knitr,
     quarto,
-    rmarkdown,
     sf,
     testthat (>= 3.0.0),
     tibble,
     tidygeocoder
 VignetteBuilder:
-    knitr,
     quarto
 Config/Needs/website: dieghernan/gitdevr, lwgeom, leaflet, terra,
     tidyterra, maptiles, styler, mapSpain, remotes, reactable, crosstalk,
-    sessioninfo
+    sessioninfo, knitr
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
