@@ -7,6 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 bibliography: REFERENCES.bib
 link-citations: true
+tbl-cap-location: bottom
 ---
 
 <!-- arcgeocoder.qmd is generated from arcgeocoder.qmd.orig. Please edit that file -->
@@ -77,14 +78,19 @@ library(dplyr)
 
 # create a dataframe with addresses
 some_addresses <- tribble(
-  ~name,                  ~addr,
-  "White House",          "1600 Pennsylvania Ave NW, Washington, DC",
-  "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
-  "Willis Tower",         "233 S Wacker Dr, Chicago, IL 60606"
+  ~name                  , ~addr                                        ,
+  "White House"          , "1600 Pennsylvania Ave NW, Washington, DC"   ,
+  "Transamerica Pyramid" , "600 Montgomery St, San Francisco, CA 94111" ,
+  "Willis Tower"         , "233 S Wacker Dr, Chicago, IL 60606"
 )
 
 # geocode the addresses
-lat_longs <- arc_geo(some_addresses$addr, lat = "latitude", long = "longitude")
+lat_longs <- arc_geo(
+  some_addresses$addr,
+  lat = "latitude",
+  long = "longitude",
+  progressbar = FALSE
+)
 ```
 
 Only a few fields are returned from the geocoder service in this example, but
@@ -93,7 +99,7 @@ service.
 
 ```{r}
 #| echo: false
-knitr::kable(lat_longs)
+knitr::kable(lat_longs, caption = "Example of geocoded addresses")
 ```
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
@@ -106,13 +112,14 @@ single line address is returned in a column named by the `address`.
 reverse <- arc_reverse_geo(
   x = lat_longs$longitude,
   y = lat_longs$latitude,
-  address = "address_found"
+  address = "address_found",
+  progressbar = FALSE
 )
 ```
 
 ```{r}
 #| echo: false
-knitr::kable(reverse)
+knitr::kable(reverse, caption = Example of reverse geocoded addresses)
 ```
 
 It is possible also to search for specific locations within or near a reference
@@ -144,10 +151,12 @@ eiffel_tower |>
 
 
 # Use lon,lat to boots the search and using category = Food
-food_eiffel <- arc_geo_categories("Food",
+food_eiffel <- arc_geo_categories(
+  "Food",
   x = eiffel_tower$lon,
   y = eiffel_tower$lat,
-  limit = 50, full_results = TRUE
+  limit = 50,
+  full_results = TRUE
 )
 
 # Plot by Food Type

@@ -20,7 +20,7 @@ data retrieved with **arcgeocoder** and converted to an **sf** object:
 
 ```{r}
 #| label: sf
-#| fig-alt: A map showing the location of McDonald's restaurants around
+#| fig-cap: A map showing the location of McDonald's restaurants around
 #|   Barcelona, Spain
 library(arcgeocoder)
 library(dplyr)
@@ -58,7 +58,7 @@ ggplot(bcn) +
 
 ```{r}
 #| label: sf2
-#| fig-alt: A map showing the location of McDonald's restaurants in Barcelona,
+#| fig-cap: A map showing the location of McDonald's restaurants in Barcelona,
 #|   Spain
 # We can restrict the results to the bbox of BCN in the query
 bbox <- st_bbox(bcn) |> paste0(collapse = ",")
@@ -91,7 +91,7 @@ plotting. The tiles themselves are represented here as **terra** objects:
 
 ```{r}
 #| label: terra
-#| fig-alt: A map showing the location of McDonald's restaurants in Barcelona,
+#| fig-cap: A map showing the location of McDonald's restaurants in Barcelona,
 #|   Spain, over an image provided by CARTO
 library(maptiles)
 library(tidyterra)

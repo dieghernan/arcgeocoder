@@ -3,6 +3,7 @@ format: gfm
 bibliography: inst/REFERENCES.bib
 link-citations: true
 default-image-extension: ''
+tbl-cap-location: bottom
 knitr:
   opts_chunk:
     collapse: true
@@ -77,6 +78,7 @@ that present similar features:
 ## Installation
 
 ::: pkgdown-release
+
 Install **arcgeocoder** from
 [**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
 
@@ -84,9 +86,11 @@ Install **arcgeocoder** from
 #| eval: false
 install.packages("arcgeocoder")
 ```
+
 :::
 
 ::: pkgdown-devel
+
 You can install the developing version of **arcgeocoder** with:
 
 ```{r}
@@ -109,6 +113,7 @@ install.packages(
   )
 )
 ```
+
 :::
 
 ## Usage
@@ -128,14 +133,19 @@ library(dplyr)
 
 # create a dataframe with addresses
 some_addresses <- tribble(
-  ~name, ~addr,
-  "White House", "1600 Pennsylvania Ave NW, Washington, DC",
-  "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
-  "Willis Tower", "233 S Wacker Dr, Chicago, IL 60606"
+  ~name                  , ~addr                                        ,
+  "White House"          , "1600 Pennsylvania Ave NW, Washington, DC"   ,
+  "Transamerica Pyramid" , "600 Montgomery St, San Francisco, CA 94111" ,
+  "Willis Tower"         , "233 S Wacker Dr, Chicago, IL 60606"
 )
 
 # geocode the addresses
-lat_longs <- arc_geo(some_addresses$addr, lat = "latitude", long = "longitude")
+lat_longs <- arc_geo(
+  some_addresses$addr,
+  lat = "latitude",
+  long = "longitude",
+  progressbar = FALSE
+)
 ```
 
 Only a few fields are returned from the geocoder service in this example, but
@@ -144,7 +154,8 @@ service.
 
 ```{r}
 #| echo: false
-knitr::kable(lat_longs)
+#| label: tbl-geo
+knitr::kable(lat_longs, caption = "Example: geocoding addresses.")
 ```
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
@@ -157,13 +168,15 @@ single line address is returned in a column named by the `address`.
 reverse <- arc_reverse_geo(
   x = lat_longs$longitude,
   y = lat_longs$latitude,
-  address = "address_found"
+  address = "address_found",
+  progressbar = FALSE
 )
 ```
 
 ```{r}
 #| echo: false
-knitr::kable(reverse)
+#| label: tbl-rev
+knitr::kable(reverse, caption = "Example: reverse geocoding addresses.")
 ```
 
 It is possible also to search for specific locations within or near a reference
@@ -224,7 +237,7 @@ object (geospatial format):
 
 ```{r}
 #| label: eiffel_sf
-#| fig-cap: 'Example: Food places near the Eiffel Tower using the sf package.'
+#| fig.cap: 'Example: Food places near the Eiffel Tower using the sf package.'
 library(sf)
 
 food_eiffel_sf <- st_as_sf(
