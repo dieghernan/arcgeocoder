@@ -1,28 +1,27 @@
 ---
 title: arcgeocoder and static maps
-description: >
-  Combine **arcgeocoder** with **sf**, **terra** and **ggplot2**.
+description: Combine arcgeocoder with sf, terra and ggplot2.
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    warning: false
+    message: false
+    dpi: 300
+    tidy: "styler"
+    dev: "ragg_png"
+    out.width: "100%"
 ---
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  warning = FALSE,
-  message = FALSE,
-  dpi = 300,
-  tidy = "styler",
-  dev = "ragg_png",
-  out.width = "100%"
-)
-```
 
 ## Example 1: sf objects
 
 The following example shows how it is possible to create a nice static map with
 data retrieved with **arcgeocoder** and converted to an **sf** object:
 
-```{r, sf, fig.alt=c("A map showing the location of McDonald's restaurants around Barcelona, Spain", "A map showing the location of McDonald's restaurants in Barcelona, Spain")}
+```{r}
+#| label: sf
+#| fig-alt: !expr c("A map showing the location of McDonald's restaurants around Barcelona,
+#|   Spain", "A map showing the location of McDonald's restaurants in Barcelona, Spain")
 library(arcgeocoder)
 library(dplyr)
 library(sf) # spatial objects
@@ -78,7 +77,10 @@ ggplot(bcn) +
 We can add static map tiles thanks to **maptiles** package and tidyterra for
 plotting. The tiles themselves are represented here as **terra** objects:
 
-```{r terra, fig.alt="A map showing the location of McDonald's restaurants in Barcelona, Spain, over an image provided by CARTO"}
+```{r}
+#| label: terra
+#| fig-alt: A map showing the location of McDonald's restaurants in Barcelona, Spain,
+#|   over an image provided by CARTO
 library(maptiles)
 library(tidyterra)
 
@@ -101,10 +103,9 @@ ggplot() +
 
 <summary>Details</summary>
 
-```{r session, echo=FALSE}
-if (!require("sessioninfo")) {
-  install.packages("sessioninfo")
-}
+```{r}
+#| label: session
+#| echo: false
 sessioninfo::session_info()
 ```
 

@@ -1,21 +1,17 @@
 ---
 title: arcgeocoder and leaflet maps
-description: >
-  Combine **arcgeocoder** and **leaflet** maps.
+description: Combine arcgeocoder and leaflet maps.
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    warning: false
+    message: false
+    dpi: 300
+    tidy: "styler"
+    dev: "ragg_png"
+    out.width: "100%"
 ---
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  warning = FALSE,
-  message = FALSE,
-  dpi = 300,
-  tidy = "styler",
-  dev = "ragg_png",
-  out.width = "100%"
-)
-```
 
 ## Example
 
@@ -26,9 +22,9 @@ map](https://rstudio.github.io/leaflet/) with data retrieved with
 This widget is browsable and filterable thanks to **crosstalk** and
 **reactable**:
 
-```{r example}
+```{r}
+#| label: example
 # Coffee Shops and Bakeries around the Eiffel Tower
-
 
 library(arcgeocoder)
 library(leaflet)
@@ -37,7 +33,6 @@ library(reactable)
 library(crosstalk)
 
 # Step 1: Eiffel Tower
-
 eiffel_tower <- arc_geo_multi("Eiffel Tower",
   city = "Paris", countrycode = "FR",
   category = "POI"
@@ -150,7 +145,8 @@ tb <- reactable(cf_bk_data,
 
 ## Widget
 
-```{r widget}
+```{r}
+#| label: widget
 # Last step: Display all
 htmltools::browsable(
   htmltools::tagList(lmend, tb)
@@ -172,10 +168,9 @@ htmltools::browsable(
 
 <summary>Details</summary>
 
-```{r session, echo=FALSE}
-if (!require("sessioninfo")) {
-  install.packages("sessioninfo")
-}
+```{r}
+#| label: session
+#| echo: false
 sessioninfo::session_info()
 ```
 
