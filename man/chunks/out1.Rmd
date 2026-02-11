@@ -1,4 +1,6 @@
-```{r echo=FALSE, results='asis'}
+```{r}
+#| echo: false
+#| results: asis
 cat(paste0(
   "A [tibble][tibble::tbl_df] object with the results. ",
   "See the details of the output in ",

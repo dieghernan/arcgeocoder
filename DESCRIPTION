@@ -1,7 +1,7 @@
 Package: arcgeocoder
 Title: Geocoding with the 'ArcGIS' REST API Service
-Version: 0.3.0
-Authors@R: 
+Version: 0.3.0.9000
+Authors@R:
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
 Description: Lite interface for finding locations of addresses or
@@ -13,23 +13,23 @@ License: MIT + file LICENSE
 URL: https://dieghernan.github.io/arcgeocoder/,
     https://github.com/dieghernan/arcgeocoder
 BugReports: https://github.com/dieghernan/arcgeocoder/issues
-Depends: 
+Depends:
     R (>= 4.1.0)
-Imports: 
+Imports:
     dplyr (>= 1.0.0),
     jsonlite (>= 1.7.0)
-Suggests: 
+Suggests:
     ggplot2,
-    knitr,
-    rmarkdown,
+    quarto,
     sf,
     testthat (>= 3.0.0),
     tibble,
     tidygeocoder
-VignetteBuilder: 
-    knitr
+VignetteBuilder:
+    quarto
 Config/Needs/website: dieghernan/gitdevr, lwgeom, leaflet, terra,
-    tidyterra, maptiles, styler, mapSpain, remotes, reactable, crosstalk
+    tidyterra, maptiles, styler, mapSpain, remotes, reactable, crosstalk,
+    sessioninfo, knitr
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8

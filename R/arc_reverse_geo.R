@@ -8,7 +8,7 @@
 #'
 #' @param x longitude values in numeric format. Must be in the range
 #'   \eqn{\left[-180, 180 \right]}.
-#' @param y  latitude values in numeric format. Must be in the range
+#' @param y latitude values in numeric format. Must be in the range
 #'   \eqn{\left[-90, 90 \right]}.
 #' @param address address column name in the output data (default  `"address"`).
 #' @param full_results returns all available data from the API service. If
@@ -32,8 +32,6 @@
 #'   `NULL` (i.e. not using the argument in the query), `rooftop` and `street`.
 #' @param custom_query API-specific arguments to be used, passed as a named
 #'   list.
-#'
-#'
 #'
 #' @references
 #' [ArcGIS REST `reverseGeocode`](`r arcurl("rev")`).

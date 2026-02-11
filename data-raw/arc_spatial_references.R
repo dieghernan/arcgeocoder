@@ -28,7 +28,7 @@ end <- lapply(proj_url, function(x) {
     # bind_cols(ext) |>
     relocate(projtype, .before = 1)
 
-  dep <- ifelse(df_2$deprecated == "no", FALSE, TRUE)
+  dep <- df_2$deprecated != "no"
   df_2$deprecated <- dep
 
   as_tibble(df_2)

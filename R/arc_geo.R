@@ -30,7 +30,6 @@
 #'
 #' @inheritParams arc_reverse_geo
 #'
-#'
 #' @references
 #' [ArcGIS REST `findAddressCandidates`](`r arcurl("cand")`).
 #'

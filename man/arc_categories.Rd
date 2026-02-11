@@ -62,7 +62,6 @@ sea_1 <- arc_geo("sea",
   limit = 2
 )
 
-
 dplyr::glimpse(sea_1)
 
 # An airport, but if we use categories...
