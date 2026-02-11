@@ -1,6 +1,6 @@
 ---
 title: "Get started with arcgeocoder"
-description: Quick examples showing what **arcgeocoder** can do for you.
+description: Quick examples showing what arcgeocoder can do for you.
 vignette: >
   %\VignetteIndexEntry{Get started wit arcgeocoder}
   %\VignetteEngine{quarto::html}
@@ -9,7 +9,7 @@ bibliography: REFERENCES.bib
 link-citations: true
 ---
 
-<!-- arcgeocoder.Rmd is generated from arcgeocoder.Rmd.orig. Please edit that file -->
+<!-- arcgeocoder.qmd is generated from arcgeocoder.qmd.orig. Please edit that file -->
 
 
 

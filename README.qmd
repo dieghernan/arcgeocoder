@@ -77,7 +77,6 @@ that present similar features:
 ## Installation
 
 ::: pkgdown-release
-
 Install **arcgeocoder** from
 [**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
 
@@ -85,11 +84,9 @@ Install **arcgeocoder** from
 #| eval: false
 install.packages("arcgeocoder")
 ```
-
 :::
 
 ::: pkgdown-devel
-
 You can install the developing version of **arcgeocoder** with:
 
 ```{r}
@@ -104,14 +101,14 @@ Alternatively, you can install **arcgeocoder** using the
 ```{r}
 #| eval: false
 # Install arcgeocoder in R:
-install.packages("arcgeocoder",
+install.packages(
+  "arcgeocoder",
   repos = c(
     "https://dieghernan.r-universe.dev",
     "https://cloud.r-project.org"
   )
 )
 ```
-
 :::
 
 ## Usage
@@ -131,10 +128,10 @@ library(dplyr)
 
 # create a dataframe with addresses
 some_addresses <- tribble(
-  ~name,                  ~addr,
-  "White House",          "1600 Pennsylvania Ave NW, Washington, DC",
+  ~name, ~addr,
+  "White House", "1600 Pennsylvania Ave NW, Washington, DC",
   "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
-  "Willis Tower",         "233 S Wacker Dr, Chicago, IL 60606"
+  "Willis Tower", "233 S Wacker Dr, Chicago, IL 60606"
 )
 
 # geocode the addresses
@@ -198,10 +195,12 @@ eiffel_tower |>
 
 
 # Use lon,lat to boost the search and using category = Food
-food_eiffel <- arc_geo_categories("Food",
+food_eiffel <- arc_geo_categories(
+  "Food",
   x = eiffel_tower$lon,
   y = eiffel_tower$lat,
-  limit = 50, full_results = TRUE
+  limit = 50,
+  full_results = TRUE
 )
 
 # Plot by Food Type
@@ -228,7 +227,8 @@ object (geospatial format):
 #| fig-cap: 'Example: Food places near the Eiffel Tower using the sf package.'
 library(sf)
 
-food_eiffel_sf <- st_as_sf(food_eiffel,
+food_eiffel_sf <- st_as_sf(
+  food_eiffel,
   coords = c("lon", "lat"),
   # The CRS of the resulting coords is here
   crs = eiffel_tower$wkid

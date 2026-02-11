@@ -8,7 +8,6 @@
 #'
 #' @note Data extracted on **15 January 2026**.
 #'
-#'
 #' @source
 #' [ArcGIS REST Category filtering](`r arcurl("filt")`).
 #'
@@ -50,7 +49,6 @@
 #' (`level_1`, `level_2`, `level_3`). If a `level_1` category is requested
 #' (i.e. `POI`) the child categories may be included also in the results.
 #'
-#'
 #' @family datasets
 #'
 #' @seealso [arc_geo_categories()], [arc_geo()], [arc_geo_multi()]
@@ -67,7 +65,6 @@
 #'   custom_query = list(outFields = c("LongLabel", "Type")),
 #'   limit = 2
 #' )
-#'
 #'
 #' dplyr::glimpse(sea_1)
 #'
@@ -99,7 +96,6 @@ NULL
 #' format.
 #'
 #' @note Data extracted on **15 January 2026**.
-#'
 #'
 #' @source
 #' [ESRI Projection Engine
@@ -138,7 +134,6 @@ NULL
 #'
 #' @seealso
 #' [sf::st_crs()]
-#'
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{

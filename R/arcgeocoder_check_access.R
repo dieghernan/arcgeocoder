@@ -63,7 +63,6 @@ skip_if_api_server <- function() {
 #' A wrapper of [utils::download.file()]. On warning on error it will
 #' retry the call.
 #'
-#'
 #' @family api_management
 #'
 #' @inheritParams utils::download.file

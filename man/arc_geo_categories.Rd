@@ -121,7 +121,6 @@ carab <- arc_geo("Carabanchel, Madrid, Spain")
 # CRS
 carab_crs <- unique(carab$latestWkid)
 
-
 library(ggplot2)
 
 base_map <- ggplot(carab) +
@@ -132,14 +131,12 @@ base_map <- ggplot(carab) +
   ) +
   coord_sf(crs = carab_crs)
 
-
 # Ex1: Search near Carabanchel (not restricted)
 ex1 <- arc_geo_categories("Gas Station",
   # Location
   x = carab$lon, y = carab$lat,
   limit = 50, full_results = TRUE
 )
-
 
 # Reduce number of labels to most common ones
 library(dplyr)

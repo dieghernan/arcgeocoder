@@ -6,7 +6,6 @@
 #'
 #' For geocoding using a single text string use [arc_geo()] function.
 #'
-#'
 #' @param address,address2,address3,neighborhood,city,subregion Address
 #'   components  (See **Details**).
 #' @param region,postal,postalext,countrycode More address components, see
@@ -25,7 +24,6 @@
 #'
 #' @details
 #' More info and valid values in the [ArcGIS REST docs](`r arcurl("cand")`).
-#'
 #'
 #' # Address components
 #'

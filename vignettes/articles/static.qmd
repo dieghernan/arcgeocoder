@@ -20,8 +20,8 @@ data retrieved with **arcgeocoder** and converted to an **sf** object:
 
 ```{r}
 #| label: sf
-#| fig-alt: !expr c("A map showing the location of McDonald's restaurants around Barcelona,
-#|   Spain", "A map showing the location of McDonald's restaurants in Barcelona, Spain")
+#| fig-alt: A map showing the location of McDonald's restaurants around
+#|   Barcelona, Spain
 library(arcgeocoder)
 library(dplyr)
 library(sf) # spatial objects
@@ -30,15 +30,19 @@ library(mapSpain) # sf objects of Spain
 
 # McDonalds in Barcelona, Spain
 
-mc <- arc_geo_multi("McDonalds",
+mc <- arc_geo_multi(
+  "McDonalds",
   city = "Barcelona",
-  region = "Catalonia", countrycode = "ES",
-  category = "Food", limit = 50,
+  region = "Catalonia",
+  countrycode = "ES",
+  category = "Food",
+  limit = 50,
   custom_query = list(outFields = c("LongLabel", "Type", "StAddr"))
 )
 
 # To sf
-mc_sf <- st_as_sf(mc,
+mc_sf <- st_as_sf(
+  mc,
   coords = c("lon", "lat"),
   # here we have the wkid
   crs = mc$latestWkid[1]
@@ -50,15 +54,23 @@ bcn <- esp_get_munic(munic = "Barcelona") |>
 ggplot(bcn) +
   geom_sf() +
   geom_sf(data = mc_sf, color = "red")
+```
 
+```{r}
+#| label: sf2
+#| fig-alt: A map showing the location of McDonald's restaurants in Barcelona,
+#|   Spain
 # We can restrict the results to the bbox of BCN in the query
 bbox <- st_bbox(bcn) |> paste0(collapse = ",")
 bbox
 
-mc2_sf <- arc_geo_multi("McDonalds",
+mc2_sf <- arc_geo_multi(
+  "McDonalds",
   city = "Barcelona",
-  region = "Catalonia", countrycode = "ES",
-  category = "Food", limit = 50,
+  region = "Catalonia",
+  countrycode = "ES",
+  category = "Food",
+  limit = 50,
   custom_query = list(
     outFields = c("LongLabel", "Type", "StAddr"),
     searchExtent = bbox
@@ -79,8 +91,8 @@ plotting. The tiles themselves are represented here as **terra** objects:
 
 ```{r}
 #| label: terra
-#| fig-alt: A map showing the location of McDonald's restaurants in Barcelona, Spain,
-#|   over an image provided by CARTO
+#| fig-alt: A map showing the location of McDonald's restaurants in Barcelona,
+#|   Spain, over an image provided by CARTO
 library(maptiles)
 library(tidyterra)
 
