@@ -108,17 +108,3 @@ ggplot() +
   coord_sf(crs = 3857) +
   labs(caption = get_credit("CartoDB.Positron"))
 ```
-
-## Session info
-
-<details>
-
-<summary>Details</summary>
-
-```{r}
-#| label: session
-#| echo: false
-sessioninfo::session_info()
-```
-
-</details>

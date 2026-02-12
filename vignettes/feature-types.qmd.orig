@@ -42,7 +42,7 @@ the *Search Tolerance* column.
 
 ::: {#tbl-hier}
 | Feature type | Search tolerance | Comments |
-|---------------------------|---------------------------|---------------------------|
+|----|----|----|
 | `StreetInt` | 10 meters | Intersections are only returned when `featuretypes = "StreetInt"` is included in the request. |
 | `StreetAddress` (near), `DistanceMarker`, or `StreetName` | 3 meters | Candidates of type `StreetName` are only returned if `featureTypes = "streetName"` is included in the request. |
 | `POI` centroid | 25 meters | A business or landmark that can be represented by a point. |

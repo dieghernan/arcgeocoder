@@ -43,12 +43,12 @@ icon_url <- paste0(
   "https://raw.githubusercontent.com/dieghernan/arcgeocoder/",
   "main/vignettes/articles/"
 )
+
 eiffel_icon <- makeIcon(
   iconUrl = paste0(icon_url, "eiffel-tower.png"),
   iconWidth = 50, iconHeight = 50,
   iconAnchorX = 25, iconAnchorY = 25
 )
-
 
 # Step 2: Coffee Shops and Bakeries nearby
 cf_bk <- arc_geo_categories(
@@ -162,16 +162,3 @@ htmltools::browsable(
 -   [Croissant icons created by Freepik -
     Flaticon](https://www.flaticon.com/free-icons/croissant "croissant icons")
 
-## Session info
-
-<details>
-
-<summary>Details</summary>
-
-```{r}
-#| label: session
-#| echo: false
-sessioninfo::session_info()
-```
-
-</details>

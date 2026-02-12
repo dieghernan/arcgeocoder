@@ -48,7 +48,7 @@ Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world
 Full site with examples and vignettes on
 <https://dieghernan.github.io/arcgeocoder/>
 
-## Why **arcgeocoder**?
+## Why arcgeocoder?
 
 **arcgeocoder** is a package that provides a lightweight interface for geocoding
 and reverse geocoding with the ArcGIS REST API service. The goal of
@@ -78,7 +78,6 @@ that present similar features:
 ## Installation
 
 ::: pkgdown-release
-
 Install **arcgeocoder** from
 [**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
 
@@ -86,10 +85,11 @@ Install **arcgeocoder** from
 #| eval: false
 install.packages("arcgeocoder")
 ```
-
 :::
 
 ::: pkgdown-devel
+Check the docs of the developing version
+in <https://dieghernan.github.io/arcgeocoder/dev/>.
 
 You can install the developing version of **arcgeocoder** with:
 
@@ -113,7 +113,6 @@ install.packages(
   )
 )
 ```
-
 :::
 
 ## Usage
@@ -133,10 +132,10 @@ library(dplyr)
 
 # create a dataframe with addresses
 some_addresses <- tribble(
-  ~name                  , ~addr                                        ,
-  "White House"          , "1600 Pennsylvania Ave NW, Washington, DC"   ,
-  "Transamerica Pyramid" , "600 Montgomery St, San Francisco, CA 94111" ,
-  "Willis Tower"         , "233 S Wacker Dr, Chicago, IL 60606"
+  ~name, ~addr,
+  "White House", "1600 Pennsylvania Ave NW, Washington, DC",
+  "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
+  "Willis Tower", "233 S Wacker Dr, Chicago, IL 60606"
 )
 
 # geocode the addresses
@@ -154,8 +153,9 @@ service.
 
 ```{r}
 #| echo: false
-#| label: tbl-geo
-knitr::kable(lat_longs, caption = "Example: geocoding addresses.")
+#| output: asis
+knitr::kable(lat_longs)
+cat("<p class=\"caption\">Table 1: Example: geocoding addresses.</p>")
 ```
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
@@ -175,8 +175,9 @@ reverse <- arc_reverse_geo(
 
 ```{r}
 #| echo: false
-#| label: tbl-rev
-knitr::kable(reverse, caption = "Example: reverse geocoding addresses.")
+#| output: asis
+knitr::kable(reverse)
+cat("<p class=\"caption\">Table 2: Example: reverse geocoding addresses.</p>")
 ```
 
 It is possible also to search for specific locations within or near a reference
@@ -230,14 +231,14 @@ ggplot(eiffel_tower, aes(x, y)) +
   )
 ```
 
-### **arcgeocoder** and **r-spatial**
+### arcgeocoder and r-spatial
 
 It is straightforward to convert the results of **arcgeocoder** to an **sf**
 object (geospatial format):
 
 ```{r}
 #| label: eiffel_sf
-#| fig.cap: 'Example: Food places near the Eiffel Tower using the sf package.'
+#| fig-cap: 'Example: Food places near the Eiffel Tower using the sf package.'
 library(sf)
 
 food_eiffel_sf <- st_as_sf(
@@ -258,7 +259,7 @@ ggplot(food_eiffel_sf) +
 
 ```{r}
 #| echo: false
-#| results: asis
+#| output: asis
 print(citation("arcgeocoder"), style = "html")
 ```
 

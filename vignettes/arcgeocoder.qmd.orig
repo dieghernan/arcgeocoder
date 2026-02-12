@@ -34,7 +34,7 @@ Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world
 Full site with examples and vignettes on
 <https://dieghernan.github.io/arcgeocoder/>
 
-## Why **arcgeocoder**?
+## Why arcgeocoder?
 
 **arcgeocoder** is a package that provides a lightweight interface for geocoding
 and reverse geocoding with the ArcGIS REST API service. The goal of
@@ -97,10 +97,16 @@ Only a few fields are returned from the geocoder service in this example, but
 `full_results = TRUE` can be used to return all of the data from the geocoder
 service.
 
+::: {#tbl-geo}
+
 ```{r}
 #| echo: false
-knitr::kable(lat_longs, caption = "Example of geocoded addresses")
+knitr::kable(lat_longs)
 ```
+
+Example: geocoding addresses
+
+:::
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
 we can use the `arc_reverse_geo()` function. The arguments are similar to the
@@ -117,10 +123,16 @@ reverse <- arc_reverse_geo(
 )
 ```
 
+
+::: {#tbl-reverse}
+
 ```{r}
 #| echo: false
-knitr::kable(reverse, caption = Example of reverse geocoded addresses)
+knitr::kable(reverse)
 ```
+Example: reverse geocoding addresses.
+
+:::
 
 It is possible also to search for specific locations within or near a reference
 are or location using [category
