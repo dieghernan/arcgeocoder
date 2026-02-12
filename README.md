@@ -1,5 +1,6 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
 
 # arcgeocoder <a href="https://dieghernan.github.io/arcgeocoder/"><img src="man/figures/logo.png" alt="arcgeocoder website" align="right" height="139"/></a>
 
@@ -31,7 +32,7 @@ Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world
 Full site with examples and vignettes on
 <https://dieghernan.github.io/arcgeocoder/>
 
-## Why **arcgeocoder**?
+## Why arcgeocoder?
 
 **arcgeocoder** is a package that provides a lightweight interface for
 geocoding and reverse geocoding with the ArcGIS REST API service. The
@@ -62,12 +63,21 @@ There are other packages much more complete and mature than
 
 ## Installation
 
+<div class="pkgdown-release">
+
 Install **arcgeocoder** from
 [**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
 
 ``` r
 install.packages("arcgeocoder")
 ```
+
+</div>
+
+<div class="pkgdown-devel">
+
+Check the docs of the developing version
+in <https://dieghernan.github.io/arcgeocoder/dev/>.
 
 You can install the developing version of **arcgeocoder** with:
 
@@ -81,13 +91,16 @@ Alternatively, you can install **arcgeocoder** using the
 
 ``` r
 # Install arcgeocoder in R:
-install.packages("arcgeocoder",
+install.packages(
+  "arcgeocoder",
   repos = c(
     "https://dieghernan.r-universe.dev",
     "https://cloud.r-project.org"
   )
 )
 ```
+
+</div>
 
 ## Usage
 
@@ -105,15 +118,19 @@ library(dplyr)
 
 # create a dataframe with addresses
 some_addresses <- tribble(
-  ~name,                  ~addr,
-  "White House",          "1600 Pennsylvania Ave NW, Washington, DC",
+  ~name, ~addr,
+  "White House", "1600 Pennsylvania Ave NW, Washington, DC",
   "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
-  "Willis Tower",         "233 S Wacker Dr, Chicago, IL 60606"
+  "Willis Tower", "233 S Wacker Dr, Chicago, IL 60606"
 )
 
 # geocode the addresses
-lat_longs <- arc_geo(some_addresses$addr, lat = "latitude", long = "longitude")
-#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
+lat_longs <- arc_geo(
+  some_addresses$addr,
+  lat = "latitude",
+  long = "longitude",
+  progressbar = FALSE
+)
 ```
 
 Only a few fields are returned from the geocoder service in this
@@ -126,6 +143,11 @@ from the geocoder service.
 | 600 Montgomery St, San Francisco, CA 94111 | 37.79516 | -122.40273 | 600 Montgomery St, San Francisco, California, 94111 | 100 | -122.40273 | 37.79516 | -122.40373 | 37.79416 | -122.40173 | 37.79616 | 4326 | 4326 |
 | 233 S Wacker Dr, Chicago, IL 60606 | 41.87867 | -87.63587 | 233 S Wacker Dr, Chicago, Illinois, 60606 | 100 | -87.63587 | 41.87867 | -87.63687 | 41.87767 | -87.63487 | 41.87967 | 4326 | 4326 |
 
+<p class="caption">
+
+Table 1: Example: geocoding addresses.
+</p>
+
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the `arc_reverse_geo()` function. The arguments
 are similar to the `arc_geo()` function, but now we specify the input
@@ -137,9 +159,9 @@ column named by the `address`.
 reverse <- arc_reverse_geo(
   x = lat_longs$longitude,
   y = lat_longs$latitude,
-  address = "address_found"
+  address = "address_found",
+  progressbar = FALSE
 )
-#>   |                                                          |                                                  |   0%  |                                                          |=================                                 |  33%  |                                                          |=================================                 |  67%  |                                                          |==================================================| 100%
 ```
 
 | x | y | address_found |
@@ -147,6 +169,11 @@ reverse <- arc_reverse_geo(
 | -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA |
 | -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA |
 | -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
+
+<p class="caption">
+
+Table 2: Example: reverse geocoding addresses.
+</p>
 
 It is possible also to search for specific locations within or near a
 reference area or location using [category
@@ -180,10 +207,12 @@ eiffel_tower |>
 
 
 # Use lon,lat to boost the search and using category = Food
-food_eiffel <- arc_geo_categories("Food",
+food_eiffel <- arc_geo_categories(
+  "Food",
   x = eiffel_tower$lon,
   y = eiffel_tower$lat,
-  limit = 50, full_results = TRUE
+  limit = 50,
+  full_results = TRUE
 )
 
 # Plot by Food Type
@@ -200,17 +229,10 @@ ggplot(eiffel_tower, aes(x, y)) +
   )
 ```
 
-<div class="figure">
+<img src="man/figures/README-eiffel-1.png" style="width:100.0%"
+alt="Example: Food places near the Eiffel Tower" />
 
-<img src="man/figures/README-eiffel-1.png" alt="Example: Food places near the Eiffel Tower" width="100%" />
-<p class="caption">
-
-Example: Food places near the Eiffel Tower
-</p>
-
-</div>
-
-### **arcgeocoder** and **r-spatial**
+### arcgeocoder and r-spatial
 
 It is straightforward to convert the results of **arcgeocoder** to an
 **sf** object (geospatial format):
@@ -218,7 +240,8 @@ It is straightforward to convert the results of **arcgeocoder** to an
 ``` r
 library(sf)
 
-food_eiffel_sf <- st_as_sf(food_eiffel,
+food_eiffel_sf <- st_as_sf(
+  food_eiffel,
   coords = c("lon", "lat"),
   # The CRS of the resulting coords is here
   crs = eiffel_tower$wkid
@@ -256,15 +279,8 @@ ggplot(food_eiffel_sf) +
   coord_sf(crs = 3035)
 ```
 
-<div class="figure">
-
-<img src="man/figures/README-eiffel_sf-1.png" alt="Example: Food places near the Eiffel Tower using the sf package." width="100%" />
-<p class="caption">
-
-Example: Food places near the Eiffel Tower using the sf package.
-</p>
-
-</div>
+<img src="man/figures/README-eiffel_sf-1.png" style="width:100.0%"
+alt="Example: Food places near the Eiffel Tower using the sf package." />
 
 ## Citation
 

@@ -1,27 +1,27 @@
 ---
-title: "arcgeocoder and static maps"
-subtitle: "Combine arcgeocoder with sf and terra"
+title: arcgeocoder and static maps
+description: Combine arcgeocoder with sf, terra and ggplot2.
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    warning: false
+    message: false
+    dpi: 300
+    tidy: "styler"
+    dev: "ragg_png"
+    out.width: "100%"
 ---
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  warning = FALSE,
-  message = FALSE,
-  dpi = 300,
-  tidy = "styler",
-  dev = "ragg_png",
-  out.width = "100%"
-)
-```
 
 ## Example 1: sf objects
 
 The following example shows how it is possible to create a nice static map with
 data retrieved with **arcgeocoder** and converted to an **sf** object:
 
-```{r, sf, fig.alt=c("A map showing the location of McDonald's restaurants around Barcelona, Spain", "A map showing the location of McDonald's restaurants in Barcelona, Spain")}
+```{r}
+#| label: sf
+#| fig-cap: A map showing the location of McDonald's restaurants around
+#|   Barcelona, Spain
 library(arcgeocoder)
 library(dplyr)
 library(sf) # spatial objects
@@ -30,15 +30,19 @@ library(mapSpain) # sf objects of Spain
 
 # McDonalds in Barcelona, Spain
 
-mc <- arc_geo_multi("McDonalds",
+mc <- arc_geo_multi(
+  "McDonalds",
   city = "Barcelona",
-  region = "Catalonia", countrycode = "ES",
-  category = "Food", limit = 50,
+  region = "Catalonia",
+  countrycode = "ES",
+  category = "Food",
+  limit = 50,
   custom_query = list(outFields = c("LongLabel", "Type", "StAddr"))
 )
 
 # To sf
-mc_sf <- st_as_sf(mc,
+mc_sf <- st_as_sf(
+  mc,
   coords = c("lon", "lat"),
   # here we have the wkid
   crs = mc$latestWkid[1]
@@ -50,15 +54,23 @@ bcn <- esp_get_munic(munic = "Barcelona") |>
 ggplot(bcn) +
   geom_sf() +
   geom_sf(data = mc_sf, color = "red")
+```
 
+```{r}
+#| label: sf2
+#| fig-cap: A map showing the location of McDonald's restaurants in Barcelona,
+#|   Spain
 # We can restrict the results to the bbox of BCN in the query
 bbox <- st_bbox(bcn) |> paste0(collapse = ",")
 bbox
 
-mc2_sf <- arc_geo_multi("McDonalds",
+mc2_sf <- arc_geo_multi(
+  "McDonalds",
   city = "Barcelona",
-  region = "Catalonia", countrycode = "ES",
-  category = "Food", limit = 50,
+  region = "Catalonia",
+  countrycode = "ES",
+  category = "Food",
+  limit = 50,
   custom_query = list(
     outFields = c("LongLabel", "Type", "StAddr"),
     searchExtent = bbox
@@ -77,7 +89,10 @@ ggplot(bcn) +
 We can add static map tiles thanks to **maptiles** package and tidyterra for
 plotting. The tiles themselves are represented here as **terra** objects:
 
-```{r terra, fig.alt="A map showing the location of McDonald's restaurants in Barcelona, Spain, over an image provided by CARTO"}
+```{r}
+#| label: terra
+#| fig-cap: A map showing the location of McDonald's restaurants in Barcelona,
+#|   Spain, over an image provided by CARTO
 library(maptiles)
 library(tidyterra)
 
@@ -93,18 +108,3 @@ ggplot() +
   coord_sf(crs = 3857) +
   labs(caption = get_credit("CartoDB.Positron"))
 ```
-
-## Session info
-
-<details>
-
-<summary>Details</summary>
-
-```{r session, echo=FALSE}
-if (!require("sessioninfo")) {
-  install.packages("sessioninfo")
-}
-sessioninfo::session_info()
-```
-
-</details>

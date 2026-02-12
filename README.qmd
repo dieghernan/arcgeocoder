@@ -1,24 +1,23 @@
 ---
-output: github_document
+format: gfm
 bibliography: inst/REFERENCES.bib
 link-citations: true
+default-image-extension: ''
+tbl-cap-location: bottom
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    warning: false
+    message: false
+    dev: "ragg_png"
+    tidy: "styler"
+    fig.path: "man/figures/README-"
+    dpi: 120
+    out.width: "100%"
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  warning = FALSE,
-  message = FALSE,
-  dev = "ragg_png",
-  tidy = "styler",
-  fig.path = "man/figures/README-",
-  dpi = 120,
-  out.width = "100%"
-)
-```
+<!-- README.md is generated from README.qmd. Please edit that file -->
 
 # arcgeocoder <a href="https://dieghernan.github.io/arcgeocoder/"><img src="man/figures/logo.png" alt="arcgeocoder website" align="right" height="139"/></a>
 
@@ -49,7 +48,7 @@ Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world
 Full site with examples and vignettes on
 <https://dieghernan.github.io/arcgeocoder/>
 
-## Why **arcgeocoder**?
+## Why arcgeocoder?
 
 **arcgeocoder** is a package that provides a lightweight interface for geocoding
 and reverse geocoding with the ArcGIS REST API service. The goal of
@@ -78,16 +77,24 @@ that present similar features:
 
 ## Installation
 
+::: pkgdown-release
 Install **arcgeocoder** from
 [**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 install.packages("arcgeocoder")
 ```
+:::
+
+::: pkgdown-devel
+Check the docs of the developing version
+in <https://dieghernan.github.io/arcgeocoder/dev/>.
 
 You can install the developing version of **arcgeocoder** with:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 # install.packages("pak")
 pak::pak("dieghernan/arcgeocoder")
 ```
@@ -95,15 +102,18 @@ pak::pak("dieghernan/arcgeocoder")
 Alternatively, you can install **arcgeocoder** using the
 [r-universe](https://dieghernan.r-universe.dev/arcgeocoder):
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 # Install arcgeocoder in R:
-install.packages("arcgeocoder",
+install.packages(
+  "arcgeocoder",
   repos = c(
     "https://dieghernan.r-universe.dev",
     "https://cloud.r-project.org"
   )
 )
 ```
+:::
 
 ## Usage
 
@@ -115,28 +125,37 @@ In this first example we will geocode a few addresses using the `arc_geo()`
 function. Note that **arcgeocoder** works straight away, and you don't need to
 provide any API key to start geocoding!
 
-```{r example}
+```{r}
+#| label: example
 library(arcgeocoder)
 library(dplyr)
 
 # create a dataframe with addresses
 some_addresses <- tribble(
-  ~name,                  ~addr,
-  "White House",          "1600 Pennsylvania Ave NW, Washington, DC",
+  ~name, ~addr,
+  "White House", "1600 Pennsylvania Ave NW, Washington, DC",
   "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
-  "Willis Tower",         "233 S Wacker Dr, Chicago, IL 60606"
+  "Willis Tower", "233 S Wacker Dr, Chicago, IL 60606"
 )
 
 # geocode the addresses
-lat_longs <- arc_geo(some_addresses$addr, lat = "latitude", long = "longitude")
+lat_longs <- arc_geo(
+  some_addresses$addr,
+  lat = "latitude",
+  long = "longitude",
+  progressbar = FALSE
+)
 ```
 
 Only a few fields are returned from the geocoder service in this example, but
 `full_results = TRUE` can be used to return all of the data from the geocoder
 service.
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
+#| output: asis
 knitr::kable(lat_longs)
+cat("<p class=\"caption\">Table 1: Example: geocoding addresses.</p>")
 ```
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
@@ -149,12 +168,16 @@ single line address is returned in a column named by the `address`.
 reverse <- arc_reverse_geo(
   x = lat_longs$longitude,
   y = lat_longs$latitude,
-  address = "address_found"
+  address = "address_found",
+  progressbar = FALSE
 )
 ```
 
-```{r, echo = FALSE}
+```{r}
+#| echo: false
+#| output: asis
 knitr::kable(reverse)
+cat("<p class=\"caption\">Table 2: Example: reverse geocoding addresses.</p>")
 ```
 
 It is possible also to search for specific locations within or near a reference
@@ -165,7 +188,9 @@ See more information in the documentation of the data base `arc_categories`.
 In the following example we would look for POIs related to food (i.e.
 Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.
 
-```{r eiffel, fig.cap="Example: Food places near the Eiffel Tower"}
+```{r}
+#| label: eiffel
+#| fig-cap: 'Example: Food places near the Eiffel Tower'
 library(ggplot2) # For plotting
 
 # Step 1: Locate Eiffel Tower, using multifield query
@@ -184,10 +209,12 @@ eiffel_tower |>
 
 
 # Use lon,lat to boost the search and using category = Food
-food_eiffel <- arc_geo_categories("Food",
+food_eiffel <- arc_geo_categories(
+  "Food",
   x = eiffel_tower$lon,
   y = eiffel_tower$lat,
-  limit = 50, full_results = TRUE
+  limit = 50,
+  full_results = TRUE
 )
 
 # Plot by Food Type
@@ -204,15 +231,18 @@ ggplot(eiffel_tower, aes(x, y)) +
   )
 ```
 
-### **arcgeocoder** and **r-spatial**
+### arcgeocoder and r-spatial
 
 It is straightforward to convert the results of **arcgeocoder** to an **sf**
 object (geospatial format):
 
-```{r eiffel_sf, fig.cap="Example: Food places near the Eiffel Tower using the sf package."}
+```{r}
+#| label: eiffel_sf
+#| fig-cap: 'Example: Food places near the Eiffel Tower using the sf package.'
 library(sf)
 
-food_eiffel_sf <- st_as_sf(food_eiffel,
+food_eiffel_sf <- st_as_sf(
+  food_eiffel,
   coords = c("lon", "lat"),
   # The CRS of the resulting coords is here
   crs = eiffel_tower$wkid
@@ -227,17 +257,18 @@ ggplot(food_eiffel_sf) +
 
 ## Citation
 
-```{r echo=FALSE, results='asis'}
+```{r}
+#| echo: false
+#| output: asis
 print(citation("arcgeocoder"), style = "html")
 ```
 
 A BibTeX entry for LaTeX users is
 
-```{r echo=FALSE, comment=""}
+```{r}
+#| echo: false
+#| comment: ''
 toBibtex(citation("arcgeocoder"))
 ```
 
 ## References
-
-::: {#refs}
-:::

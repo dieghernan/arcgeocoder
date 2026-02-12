@@ -1,4 +1,4 @@
-url: 'https://dieghernan.github.io/arcgeocoder'
+url: https://dieghernan.github.io/arcgeocoder
 
 template:
   bootstrap: 5
@@ -11,20 +11,23 @@ template:
       card: summary_large_image
 
 repo:
-  branch: main
+  branch: release
+
+development:
+  mode: auto
 
 home:
   title: arcgeocoder | Geocoding with the ArcGIS REST API Service
-  description: |
+  description: >
     Lite interface for geocoding and reverse geocoding with the ArcGIS REST API
     service.
 authors:
   Diego Hernangómez:
-    href: 'https://dieghernan.github.io/'
+    href: https://dieghernan.github.io/
 
 reference:
 - title: Geocoding and Reverse Geocoding
-  desc: |
+  desc: >
     These functions performs requests to the ArcGIS REST API.
   contents:
   - has_concept("geocoding")
@@ -40,11 +43,12 @@ reference:
 
 articles:
 - title: Explore arcgeocoder
-  navbar: Explore arcgeocoder
+  navbar: >
+    Explore arcgeocoder
   contents:
   - feature-types
-- title: Examples
-  navbar: Examples
+- title: Mapping with arcgeocoder
+  navbar: Mapping with arcgeocoder
   contents:
   - articles/static
   - articles/leaflet

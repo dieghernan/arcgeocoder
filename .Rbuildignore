@@ -30,3 +30,15 @@
 ^[.]?air[.]toml$
 ^\.vscode$
 ^jarl\.toml$
+/.quarto/
+[.]quarto_ipynb$
+^vignettes/\.quarto$
+^vignettes/articles/\.quarto$
+^vignettes/articles/*_files$
+^vignettes/arcgeocoder\.qmd\.orig$
+^vignettes/*_files$
+^vignettes/feature-types\.qmd\.orig$
+^README\.qmd$
+^inst/README\.qmd$
+^README_files$
+^README\.html$
