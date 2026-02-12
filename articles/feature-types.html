@@ -19,11 +19,9 @@
 <link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Reverse geocoding and feature types">
-<meta name="description" content="Efficient reverse geocoding with **arcgeocoder**.
-">
-<meta property="og:description" content="Efficient reverse geocoding with **arcgeocoder**.
-">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="feature-types_files/libs/quarto-html/popper.min.js"></script><script src="feature-types_files/libs/quarto-html/tippy.umd.min.js"></script><link href="feature-types_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="feature-types_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Reverse geocoding and feature types">
 <meta property="og:image" content="https://dieghernan.github.io/arcgeocoder/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@dhernangomez">
@@ -88,48 +86,35 @@
 
 
   </div>
-</nav><div class="container template-article">
-
-
-
-
+</nav><div class="container template-quarto">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Reverse geocoding and feature types</h1>
-            
-      
-      <small class="dont-index">Source: <a href="https://github.com/dieghernan/arcgeocoder/blob/main/vignettes/feature-types.Rmd" class="external-link"><code>vignettes/feature-types.Rmd</code></a></small>
-      <div class="d-none name"><code>feature-types.Rmd</code></div>
+
+
+
+
+      <small class="dont-index">Source: <a href="https://github.com/dieghernan/arcgeocoder/blob/release/vignettes/feature-types.qmd" class="external-link"><code>vignettes/feature-types.qmd</code></a></small>
+      <div class="d-none name"><code></code></div>
     </div>
 
-    
-    
-<!-- feature-types.Rmd is generated from feature-types.Rmd.orig. Please edit that file -->
-<p><em>Adapted from <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link uri">https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm</a></em></p>
-<div class="section level2">
-<h2 id="reverse-geocode-details">Reverse geocode details<a class="anchor" aria-label="anchor" href="#reverse-geocode-details"></a>
-</h2>
-<p>The purpose of reverse geocoding is to answer the question: What’s
-near this location? To answer this question, the
-<code>reverseGeocode</code> operation provided by the <strong>ArcGIS
-REST API</strong> returns the most relevant feature near an input
-location based on a prioritized hierarchy of feature types.</p>
-<p>The hierarchy is summarized in the table below, ordered by descending
-priority. Unless otherwise noted, each feature type is only returned
-when the distance between the input location and the feature is within
-the tolerance specified in the <em>Search Tolerance</em> column.</p>
-<div id="table1">
 
-</div>
+
+
+
+
+    <!-- feature-types.qmd is generated from feature-types.qmd.orig. Please edit that file --><p><em>Adapted from <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link uri">https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm</a></em></p>
+<section class="level2"><h2 id="reverse-geocoding-details">Reverse geocoding details<a class="anchor" aria-label="anchor" href="#reverse-geocoding-details"></a>
+</h2>
+<p>The purpose of reverse geocoding is to answer the question: What’s near this location? To answer this question, the <code>reverseGeocode</code> operation provided by the <strong>ArcGIS REST API</strong> returns the most relevant feature near an input location based on a prioritized hierarchy of feature types.</p>
+<p>The hierarchy is summarized in the table below, ordered by descending priority. Unless otherwise noted, each feature type is only returned when the distance between the input location and the feature is within the tolerance specified in the <em>Search Tolerance</em> column.</p>
+<div id="tbl-hier" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-hier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>
-<strong>Table 1</strong>: Adapted from ArcGIS REST API
-<code>reverseGeocode</code>
-</caption>
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead><tr class="header">
 <th>Feature type</th>
@@ -140,18 +125,14 @@ the tolerance specified in the <em>Search Tolerance</em> column.</p>
 <tr class="odd">
 <td><code>StreetInt</code></td>
 <td>10 meters</td>
-<td>Intersections are only returned when
-<code>featuretypes = "StreetInt"</code> is included in the request.</td>
+<td>Intersections are only returned when <code>featuretypes = "StreetInt"</code> is included in the request.</td>
 </tr>
 <tr class="even">
 <td>
-<code>StreetAddress</code> (near), <code>DistanceMarker</code>, or
-<code>StreetName</code>
+<code>StreetAddress</code> (near), <code>DistanceMarker</code>, or <code>StreetName</code>
 </td>
 <td>3 meters</td>
-<td>Candidates of type <code>StreetName</code> are only returned if
-<code>featureTypes = "streetName"</code> is included in the
-request.</td>
+<td>Candidates of type <code>StreetName</code> are only returned if <code>featureTypes = "streetName"</code> is included in the request.</td>
 </tr>
 <tr class="odd">
 <td>
@@ -163,52 +144,41 @@ request.</td>
 <td><code>Subaddress</code></td>
 <td>10 meters</td>
 <td>
-<code>Subaddress</code> candidates, which can be features such as
-apartments or floors in a building, maybe not being returned under
-certain conditions.</td>
+<code>Subaddress</code> candidates, which can be features such as apartments or floors in a building, maybe not being returned under certain conditions.</td>
 </tr>
 <tr class="odd">
 <td><code>PointAddress</code></td>
 <td>50 meters</td>
-<td>A <code>PointAddress</code> match is not returned if it is on the
-opposite side of the street as the input location, even if it is within
-50 meters of the location.</td>
+<td>A <code>PointAddress</code> match is not returned if it is on the opposite side of the street as the input location, even if it is within 50 meters of the location.</td>
 </tr>
 <tr class="even">
 <td>
-<code>StreetAddress</code> (distant), <code>DistanceMarker</code>,
-or <code>StreetName</code>
+<code>StreetAddress</code> (distant), <code>DistanceMarker</code>, or <code>StreetName</code>
 </td>
 <td>100 meters</td>
-<td>Candidates of type <code>StreetName</code> are only returned if
-<code>featuretypes = "StreetName"</code> is included in the
-request.</td>
+<td>Candidates of type <code>StreetName</code> are only returned if <code>featuretypes = "StreetName"</code> is included in the request.</td>
 </tr>
 <tr class="odd">
 <td>
 <code>POI</code> area</td>
 <td>within boundary</td>
-<td>A business or landmark that can be represented by an area, such as a
-large park or university. Not available in all countries.</td>
+<td>A business or landmark that can be represented by an area, such as a large park or university. Not available in all countries.</td>
 </tr>
 <tr class="even">
 <td>
 <code>Postal</code> or <code>Locality</code> area</td>
 <td>within boundary</td>
-<td>If the input location intersects multiple boundaries, the feature
-with the smallest area is returned.</td>
+<td>If the input location intersects multiple boundaries, the feature with the smallest area is returned.</td>
 </tr>
 </tbody>
 </table>
-<p>In <strong>arcgeocoder</strong>, this hierarchy is implemented in
-<code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code>, specifically through the
-<code>featuretypes</code> argument. The default value
-(<code>featuretypes = NULL</code>) does not include the argument in the
-API call. In this case, the hierarchy presented in the previous table
-would apply.</p>
-<p>It is possible to narrow down the output of the query to a specific
-feature type or a list of feature types. The possible values supported
-for this argument are:</p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-hier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
+</figcaption></figure>
+</div>
+<p>In <strong>arcgeocoder</strong>, this hierarchy is implemented in <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code>, specifically through the <code>featuretypes</code> argument. The default value (<code>featuretypes = NULL</code>) does not include the argument in the API call. In this case, the hierarchy presented in the previous table would apply.</p>
+<p>It is possible to narrow down the output of the query to a specific feature type or a list of feature types. The possible values supported for this argument are:</p>
 <ul>
 <li><code>"StreetInt"</code></li>
 <li><code>"DistanceMarker"</code></li>
@@ -220,87 +190,115 @@ for this argument are:</p>
 <li><code>"Postal"</code></li>
 <li><code>"Locality"</code></li>
 </ul>
-<p>As mentioned, is to possible to include several feature types. If
-more than one value is specified for the argument, the values must be
-separated by a comma, with no spaces after the comma.</p>
-<div class="section level3">
-<h3 id="single-featuretypes-value">single <code>featuretypes</code> value<a class="anchor" aria-label="anchor" href="#single-featuretypes-value"></a>
+<p>As mentioned, is to possible to include several feature types. If more than one value is specified for the argument, the values must be separated by a comma, with no spaces after the comma.</p>
+<section class="level3"><h3 id="single-featuretypes-value">single <code>featuretypes</code> value<a class="anchor" aria-label="anchor" href="#single-featuretypes-value"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span><span class="va">...</span>, featuretypes <span class="op">=</span> <span class="st">"PointAddress"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="multiple-featuretypes-value">multiple <code>featuretypes</code> value<a class="anchor" aria-label="anchor" href="#multiple-featuretypes-value"></a>
+</section><section class="level3"><h3 id="multiple-featuretypes-value">multiple <code>featuretypes</code> value<a class="anchor" aria-label="anchor" href="#multiple-featuretypes-value"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span><span class="va">...</span>, featuretypes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PointAddress"</span>, <span class="st">"StreetAddress"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+</section></section><section class="level2"><h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
-<p>In the following examples, we would provide different examples for
-better understanding.</p>
+<p>In the following examples, we would provide different examples for better understanding.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/arcgeocoder/">arcgeocoder</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
-<div class="section level3">
-<h3 id="example-1-match-to-poi-centroid-returned">Example 1: Match to <code>POI</code> centroid returned<a class="anchor" aria-label="anchor" href="#example-1-match-to-poi-centroid-returned"></a>
+<section class="level3"><h3 id="example-1-match-to-poi-centroid-returned">Example 1: Match to <code>POI</code> centroid returned<a class="anchor" aria-label="anchor" href="#example-1-match-to-poi-centroid-returned"></a>
 </h3>
-<p>In this example, we do not provide any value to the
-<code>featuretypes</code> argument. This input location is within the
-search tolerance of both <code>POI</code> and <code>PointAddress</code>
-features, but a match to the <code>POI</code> centroid is returned
-because it has a higher priority (see <a href="#table1"><strong>Table
-1</strong></a>). Note that the output field <code>Addr_type</code>
-indicates the type of feature.</p>
+<p>In this example, we do not provide any value to the <code>featuretypes</code> argument. This input location is within the search tolerance of both <code>POI</code> and <code>PointAddress</code> features, but a match to the <code>POI</code> centroid is returned because it has a higher priority (see <a href="#tbl-hier" class="quarto-xref">Table 1</a>). Note that the output field <code>Addr_type</code> indicates the type of feature.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">example_x</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">117.203741</span></span>
-<span><span class="va">example_y</span> <span class="op">&lt;-</span> <span class="fl">40.95029</span></span>
+<code class="sourceCode R"><span><span class="va">example_x</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">117.196324</span></span>
+<span><span class="va">example_y</span> <span class="op">&lt;-</span> <span class="fl">34.059217</span></span>
 <span></span>
 <span><span class="va">api_poi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="va">example_x</span>, y <span class="op">=</span> <span class="va">example_y</span>,</span>
-<span>  langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  x <span class="op">=</span> <span class="va">example_x</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">example_y</span>,</span>
+<span>  langcode <span class="op">=</span> <span class="st">"EN"</span>,</span>
+<span>  full_results <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">api_poi</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="13%">
-<col width="12%">
-<col width="32%">
-<col width="13%">
-<col width="12%">
-<col width="13%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 47%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 14%">
 </colgroup>
 <thead><tr class="header">
-<th align="right">x</th>
-<th align="right">y</th>
-<th align="left">address</th>
-<th align="right">lon</th>
-<th align="right">lat</th>
-<th align="left">Addr_type</th>
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">y</th>
+<th style="text-align: left;">address</th>
+<th style="text-align: right;">lon</th>
+<th style="text-align: right;">lat</th>
+<th style="text-align: left;">Addr_type</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="right">-117.2037</td>
-<td align="right">40.95029</td>
-<td align="left">89414, Golconda, NV, USA</td>
-<td align="right">-117.2037</td>
-<td align="right">40.95029</td>
-<td align="left">Postal</td>
+<td style="text-align: right;">-117.1963</td>
+<td style="text-align: right;">34.05922</td>
+<td style="text-align: left;">1025-1141 W Park Ave, Redlands, CA, 92373, USA</td>
+<td style="text-align: right;">-117.1963</td>
+<td style="text-align: right;">34.05917</td>
+<td style="text-align: left;">StreetAddress</td>
 </tr></tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="example-2-locality-match-returned">Example 2: <code>Locality</code> match returned<a class="anchor" aria-label="anchor" href="#example-2-locality-match-returned"></a>
+</table></section><section class="level3"><h3 id="example-2-streetaddress-match-returned">Example 2: <code>StreetAddress</code> match returned<a class="anchor" aria-label="anchor" href="#example-2-streetaddress-match-returned"></a>
 </h3>
+<p>We specify here the type of feature we want to get using <code>featuretypes = "StreetAddress"</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">api_address</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="va">example_x</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">example_y</span>,</span>
+<span>  featuretypes <span class="op">=</span> <span class="st">"StreetAddress"</span>,</span>
+<span>  langcode <span class="op">=</span> <span class="st">"EN"</span>,</span>
+<span>  full_results <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">api_address</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 47%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 14%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">y</th>
+<th style="text-align: left;">address</th>
+<th style="text-align: right;">lon</th>
+<th style="text-align: right;">lat</th>
+<th style="text-align: left;">Addr_type</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: right;">-117.1963</td>
+<td style="text-align: right;">34.05922</td>
+<td style="text-align: left;">1025-1141 W Park Ave, Redlands, CA, 92373, USA</td>
+<td style="text-align: right;">-117.1963</td>
+<td style="text-align: right;">34.05917</td>
+<td style="text-align: left;">StreetAddress</td>
+</tr></tbody>
+</table></section><section class="level3"><h3 id="example-3-locality-match-returned">Example 3: <code>Locality</code> match returned<a class="anchor" aria-label="anchor" href="#example-3-locality-match-returned"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">api_local</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="va">example_x</span>, y <span class="op">=</span> <span class="va">example_y</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">example_x</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">example_y</span>,</span>
 <span>  featuretypes <span class="op">=</span> <span class="st">"Locality"</span>,</span>
-<span>  langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  langcode <span class="op">=</span> <span class="st">"EN"</span>,</span>
+<span>  full_results <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">api_local</span> <span class="op">|&gt;</span></span>
@@ -308,85 +306,76 @@ indicates the type of feature.</p>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="13%">
-<col width="12%">
-<col width="32%">
-<col width="13%">
-<col width="12%">
-<col width="13%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 27%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 15%">
 </colgroup>
 <thead><tr class="header">
-<th align="right">x</th>
-<th align="right">y</th>
-<th align="left">address</th>
-<th align="right">lon</th>
-<th align="right">lat</th>
-<th align="left">Addr_type</th>
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">y</th>
+<th style="text-align: left;">address</th>
+<th style="text-align: right;">lon</th>
+<th style="text-align: right;">lat</th>
+<th style="text-align: left;">Addr_type</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="right">-117.2037</td>
-<td align="right">40.95029</td>
-<td align="left">Humboldt County, NV, USA</td>
-<td align="right">-117.2037</td>
-<td align="right">40.95029</td>
-<td align="left">Locality</td>
+<td style="text-align: right;">-117.1963</td>
+<td style="text-align: right;">34.05922</td>
+<td style="text-align: left;">Redlands, CA, USA</td>
+<td style="text-align: right;">-117.1963</td>
+<td style="text-align: right;">34.05922</td>
+<td style="text-align: left;">Locality</td>
 </tr></tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="example-3-multiple-values">Example 3: multiple values<a class="anchor" aria-label="anchor" href="#example-3-multiple-values"></a>
+</table></section><section class="level3"><h3 id="example-4-multiple-values">Example 4: multiple values<a class="anchor" aria-label="anchor" href="#example-4-multiple-values"></a>
 </h3>
-<p>When multiple values are included in the API call, the hierarchy
-explained in <a href="#table1"><strong>Table 1</strong></a> would still
-be applied on the requested <code>featuretypes</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<p>When multiple values are included in the API call, the hierarchy explained in <a href="#tbl-hier" class="quarto-xref">Table 1</a> would still be applied on the requested <code>featuretypes</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">api_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="va">example_x</span>, y <span class="op">=</span> <span class="va">example_y</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">example_x</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">example_y</span>,</span>
 <span>  featuretypes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Locality"</span>, <span class="st">"StreetInt"</span>, <span class="st">"StreetAddress"</span><span class="op">)</span>,</span>
-<span>  langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  langcode <span class="op">=</span> <span class="st">"EN"</span>,</span>
+<span>  full_results <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">api_multiple</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">address</span>, <span class="va">lon</span>, <span class="va">lat</span>, <span class="va">Addr_type</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="13%">
-<col width="12%">
-<col width="32%">
-<col width="13%">
-<col width="12%">
-<col width="13%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 47%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 14%">
 </colgroup>
 <thead><tr class="header">
-<th align="right">x</th>
-<th align="right">y</th>
-<th align="left">address</th>
-<th align="right">lon</th>
-<th align="right">lat</th>
-<th align="left">Addr_type</th>
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">y</th>
+<th style="text-align: left;">address</th>
+<th style="text-align: right;">lon</th>
+<th style="text-align: right;">lat</th>
+<th style="text-align: left;">Addr_type</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="right">-117.2037</td>
-<td align="right">40.95029</td>
-<td align="left">Humboldt County, NV, USA</td>
-<td align="right">-117.2037</td>
-<td align="right">40.95029</td>
-<td align="left">Locality</td>
+<td style="text-align: right;">-117.1963</td>
+<td style="text-align: right;">34.05922</td>
+<td style="text-align: left;">1025-1141 W Park Ave, Redlands, CA, 92373, USA</td>
+<td style="text-align: right;">-117.1963</td>
+<td style="text-align: right;">34.05917</td>
+<td style="text-align: left;">StreetAddress</td>
 </tr></tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="example-4-no-results-for-specific-featuretypes">Example 4: No results for specific <code>featuretypes</code><a class="anchor" aria-label="anchor" href="#example-4-no-results-for-specific-featuretypes"></a>
+</table></section><section class="level3"><h3 id="example-5-no-results-for-specific-featuretypes">Example 5: No results for specific <code>featuretypes</code>
+<a class="anchor" aria-label="anchor" href="#example-5-no-results-for-specific-featuretypes"></a>
 </h3>
-<p>In the following example we present a case where only certain
-<code>featuretypes</code> are near the requested location. In this case,
-when reverse geocoding the North Pole the API would return a
-<code>Locality</code> but no <code>StreetAddress</code> is found.</p>
-<p>When it is not possible to return results,
-<code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code> returns an empty
-<strong>tibble</strong>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>In the following example we present a case where only certain <code>featuretypes</code> are near the requested location. In this case, when reverse geocoding the North Pole the API would return a <code>Locality</code> but no <code>StreetAddress</code> is found.</p>
+<p>When it is not possible to return results, <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code> returns an empty <strong>tibble</strong>.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># North Pole</span></span>
 <span></span>
 <span><span class="va">npole</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">90</span>, langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -396,26 +385,29 @@ when reverse geocoding the North Pole the API would return a
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
-<th align="right">x</th>
-<th align="right">y</th>
-<th align="left">address</th>
-<th align="right">lon</th>
-<th align="right">lat</th>
-<th align="left">Addr_type</th>
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">y</th>
+<th style="text-align: left;">address</th>
+<th style="text-align: right;">lon</th>
+<th style="text-align: right;">lat</th>
+<th style="text-align: left;">Addr_type</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="right">0</td>
-<td align="right">90</td>
-<td align="left">Ozero Shybyndy</td>
-<td align="right">0</td>
-<td align="right">90</td>
-<td align="left">POI</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: left;">Ozero Shybyndy</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: left;">POI</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># But no StreetAddress</span></span>
 <span><span class="va">npole2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">90</span>, langcode <span class="op">=</span> <span class="st">"EN"</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  x <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  y <span class="op">=</span> <span class="fl">90</span>,</span>
+<span>  langcode <span class="op">=</span> <span class="st">"EN"</span>,</span>
+<span>  full_results <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  featuretypes <span class="op">=</span> <span class="st">"StreetAddress"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -423,34 +415,105 @@ when reverse geocoding the North Pole the API would return a
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
-<th align="right">x</th>
-<th align="right">y</th>
-<th align="left">address</th>
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">y</th>
+<th style="text-align: left;">address</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="right">0</td>
-<td align="right">90</td>
-<td align="left">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: left;">NA</td>
 </tr></tbody>
-</table>
-</div>
-</div>
-<div class="section level2">
-<h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
+</table></section></section><section class="level2"><h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
 </h2>
-<p>The API would return different results for the same <code>x,y</code>
-values depending on the value of <code>featuretypes</code>. By using
-<code>featuretypes = NULL</code> the feature type returned would depend
-on the hierarchy explained in <a href="#table1"><strong>Table
-1</strong></a>.</p>
-<p>Depending on the location, the <code>featuretypes</code> filter may
-not return results, hence for general purposes using
-<code>featuretypes = NULL</code> is safer.</p>
-</div>
-  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+<p>The API would return different results for the same <code>x,y</code> values depending on the value of <code>featuretypes</code>. By using <code>featuretypes = NULL</code> the feature type returned would depend on the hierarchy explained in <a href="#tbl-hier" class="quarto-xref">Table 1</a>.</p>
+<p>Depending on the location, the <code>featuretypes</code> filter may not return results, hence for general purposes using <code>featuretypes = NULL</code> is safer.</p>
+</section><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config);
+    }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script></main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
-
 
 
     <footer><div class="pkgdown-footer-left">

@@ -3,7 +3,7 @@
 *Adapted from
 <https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm>*
 
-## Reverse geocode details
+## Reverse geocoding details
 
 The purpose of reverse geocoding is to answer the question: What’s near
 this location? To answer this question, the `reverseGeocode` operation
@@ -27,7 +27,7 @@ the tolerance specified in the *Search Tolerance* column.
 | `POI` area                                                   | within boundary  | A business or landmark that can be represented by an area, such as a large park or university. Not available in all countries.                            |
 | `Postal` or `Locality` area                                  | within boundary  | If the input location intersects multiple boundaries, the feature with the smallest area is returned.                                                     |
 
-**Table 1**: Adapted from ArcGIS REST API `reverseGeocode`
+Table 1: Adapted from ArcGIS REST API `reverseGeocode`
 
 In **arcgeocoder**, this hierarchy is implemented in
 [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md),
@@ -80,16 +80,19 @@ library(dplyr)
 In this example, we do not provide any value to the `featuretypes`
 argument. This input location is within the search tolerance of both
 `POI` and `PointAddress` features, but a match to the `POI` centroid is
-returned because it has a higher priority (see [**Table 1**](#table1)).
+returned because it has a higher priority (see [Table 1](#tbl-hier)).
 Note that the output field `Addr_type` indicates the type of feature.
 
 ``` r
-example_x <- -117.203741
-example_y <- 40.95029
+example_x <- -117.196324
+example_y <- 34.059217
 
 api_poi <- arc_reverse_geo(
-  x = example_x, y = example_y,
-  langcode = "EN", full_results = TRUE, verbose = TRUE
+  x = example_x,
+  y = example_y,
+  langcode = "EN",
+  full_results = TRUE,
+  verbose = TRUE
 )
 
 api_poi |>
@@ -97,17 +100,44 @@ api_poi |>
   knitr::kable()
 ```
 
-|         x |        y | address                  |       lon |      lat | Addr_type |
-|----------:|---------:|:-------------------------|----------:|---------:|:----------|
-| -117.2037 | 40.95029 | 89414, Golconda, NV, USA | -117.2037 | 40.95029 | Postal    |
+|         x |        y | address                                        |       lon |      lat | Addr_type     |
+|----------:|---------:|:-----------------------------------------------|----------:|---------:|:--------------|
+| -117.1963 | 34.05922 | 1025-1141 W Park Ave, Redlands, CA, 92373, USA | -117.1963 | 34.05917 | StreetAddress |
 
-### Example 2: `Locality` match returned
+### Example 2: `StreetAddress` match returned
+
+We specify here the type of feature we want to get using
+`featuretypes = "StreetAddress"`.
+
+``` r
+api_address <- arc_reverse_geo(
+  x = example_x,
+  y = example_y,
+  featuretypes = "StreetAddress",
+  langcode = "EN",
+  full_results = TRUE,
+  verbose = TRUE
+)
+
+api_address |>
+  select(x, y, address, lon, lat, Addr_type) |>
+  knitr::kable()
+```
+
+|         x |        y | address                                        |       lon |      lat | Addr_type     |
+|----------:|---------:|:-----------------------------------------------|----------:|---------:|:--------------|
+| -117.1963 | 34.05922 | 1025-1141 W Park Ave, Redlands, CA, 92373, USA | -117.1963 | 34.05917 | StreetAddress |
+
+### Example 3: `Locality` match returned
 
 ``` r
 api_local <- arc_reverse_geo(
-  x = example_x, y = example_y,
+  x = example_x,
+  y = example_y,
   featuretypes = "Locality",
-  langcode = "EN", full_results = TRUE, verbose = TRUE
+  langcode = "EN",
+  full_results = TRUE,
+  verbose = TRUE
 )
 
 api_local |>
@@ -115,21 +145,24 @@ api_local |>
   knitr::kable()
 ```
 
-|         x |        y | address                  |       lon |      lat | Addr_type |
-|----------:|---------:|:-------------------------|----------:|---------:|:----------|
-| -117.2037 | 40.95029 | Humboldt County, NV, USA | -117.2037 | 40.95029 | Locality  |
+|         x |        y | address           |       lon |      lat | Addr_type |
+|----------:|---------:|:------------------|----------:|---------:|:----------|
+| -117.1963 | 34.05922 | Redlands, CA, USA | -117.1963 | 34.05922 | Locality  |
 
-### Example 3: multiple values
+### Example 4: multiple values
 
 When multiple values are included in the API call, the hierarchy
-explained in [**Table 1**](#table1) would still be applied on the
+explained in [Table 1](#tbl-hier) would still be applied on the
 requested `featuretypes`.
 
 ``` r
 api_multiple <- arc_reverse_geo(
-  x = example_x, y = example_y,
+  x = example_x,
+  y = example_y,
   featuretypes = c("Locality", "StreetInt", "StreetAddress"),
-  langcode = "EN", full_results = TRUE, verbose = TRUE
+  langcode = "EN",
+  full_results = TRUE,
+  verbose = TRUE
 )
 
 api_multiple |>
@@ -137,11 +170,11 @@ api_multiple |>
   knitr::kable()
 ```
 
-|         x |        y | address                  |       lon |      lat | Addr_type |
-|----------:|---------:|:-------------------------|----------:|---------:|:----------|
-| -117.2037 | 40.95029 | Humboldt County, NV, USA | -117.2037 | 40.95029 | Locality  |
+|         x |        y | address                                        |       lon |      lat | Addr_type     |
+|----------:|---------:|:-----------------------------------------------|----------:|---------:|:--------------|
+| -117.1963 | 34.05922 | 1025-1141 W Park Ave, Redlands, CA, 92373, USA | -117.1963 | 34.05917 | StreetAddress |
 
-### Example 4: No results for specific `featuretypes`
+### Example 5: No results for specific `featuretypes`
 
 In the following example we present a case where only certain
 `featuretypes` are near the requested location. In this case, when
@@ -169,7 +202,10 @@ npole |>
 ``` r
 # But no StreetAddress
 npole2 <- arc_reverse_geo(
-  x = 0, y = 90, langcode = "EN", full_results = TRUE,
+  x = 0,
+  y = 90,
+  langcode = "EN",
+  full_results = TRUE,
   featuretypes = "StreetAddress"
 )
 
@@ -186,7 +222,7 @@ npole2 |>
 The API would return different results for the same `x,y` values
 depending on the value of `featuretypes`. By using `featuretypes = NULL`
 the feature type returned would depend on the hierarchy explained in
-[**Table 1**](#table1).
+[Table 1](#tbl-hier).
 
 Depending on the location, the `featuretypes` filter may not return
 results, hence for general purposes using `featuretypes = NULL` is

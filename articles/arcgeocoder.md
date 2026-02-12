@@ -8,7 +8,7 @@ Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world
 Full site with examples and vignettes on
 <https://dieghernan.github.io/arcgeocoder/>
 
-## Why **arcgeocoder**?
+## Why arcgeocoder?
 
 **arcgeocoder** is a package that provides a lightweight interface for
 geocoding and reverse geocoding with the ArcGIS REST API service. The
@@ -53,23 +53,19 @@ library(dplyr)
 
 # create a dataframe with addresses
 some_addresses <- tribble(
-  ~name,                  ~addr,
-  "White House",          "1600 Pennsylvania Ave NW, Washington, DC",
+  ~name, ~addr,
+  "White House", "1600 Pennsylvania Ave NW, Washington, DC",
   "Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",
-  "Willis Tower",         "233 S Wacker Dr, Chicago, IL 60606"
+  "Willis Tower", "233 S Wacker Dr, Chicago, IL 60606"
 )
 
 # geocode the addresses
-lat_longs <- arc_geo(some_addresses$addr, lat = "latitude", long = "longitude")
-#> 
-  |                                                        
-  |                                                  |   0%
-  |                                                        
-  |=================                                 |  33%
-  |                                                        
-  |=================================                 |  67%
-  |                                                        
-  |==================================================| 100%
+lat_longs <- arc_geo(
+  some_addresses$addr,
+  lat = "latitude",
+  long = "longitude",
+  progressbar = FALSE
+)
 ```
 
 Only a few fields are returned from the geocoder service in this
@@ -81,6 +77,8 @@ from the geocoder service.
 | 1600 Pennsylvania Ave NW, Washington, DC   | 38.89768 |  -77.03655 | 1600 Pennsylvania Ave NW, Washington, District of Columbia, 20500 |   100 |  -77.03655 | 38.89768 |  -77.03755 | 38.89668 |  -77.03555 | 38.89868 | 4326 |       4326 |
 | 600 Montgomery St, San Francisco, CA 94111 | 37.79516 | -122.40273 | 600 Montgomery St, San Francisco, California, 94111               |   100 | -122.40273 | 37.79516 | -122.40373 | 37.79416 | -122.40173 | 37.79616 | 4326 |       4326 |
 | 233 S Wacker Dr, Chicago, IL 60606         | 41.87867 |  -87.63587 | 233 S Wacker Dr, Chicago, Illinois, 60606                         |   100 |  -87.63587 | 41.87867 |  -87.63687 | 41.87767 |  -87.63487 | 41.87967 | 4326 |       4326 |
+
+Table 1: Example: geocoding addresses
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the
@@ -95,17 +93,9 @@ single line address is returned in a column named by the `address`.
 reverse <- arc_reverse_geo(
   x = lat_longs$longitude,
   y = lat_longs$latitude,
-  address = "address_found"
+  address = "address_found",
+  progressbar = FALSE
 )
-#> 
-  |                                                        
-  |                                                  |   0%
-  |                                                        
-  |=================                                 |  33%
-  |                                                        
-  |=================================                 |  67%
-  |                                                        
-  |==================================================| 100%
 ```
 
 |          x |        y | address_found                                                     |
@@ -113,6 +103,8 @@ reverse <- arc_reverse_geo(
 |  -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA |
 | -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA  |
 |  -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
+
+Table 2: Example: reverse geocoding addresses.
 
 It is possible also to search for specific locations within or near a
 reference are or location using [category
@@ -140,16 +132,18 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                         
-#>   <dbl> <dbl> <chr>                                                             
-#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…
+#>     lon   lat LongLabel                                                            
+#>   <dbl> <dbl> <chr>                                                                
+#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris,…
 
 
 # Use lon,lat to boots the search and using category = Food
-food_eiffel <- arc_geo_categories("Food",
+food_eiffel <- arc_geo_categories(
+  "Food",
   x = eiffel_tower$lon,
   y = eiffel_tower$lat,
-  limit = 50, full_results = TRUE
+  limit = 50,
+  full_results = TRUE
 )
 
 # Plot by Food Type
@@ -166,7 +160,7 @@ ggplot(eiffel_tower, aes(x, y)) +
   )
 ```
 
-![Example: Food places near the Eiffel Tower](eiffel-1.png)
+![](./eiffel-1.png)
 
 Example: Food places near the Eiffel Tower
 

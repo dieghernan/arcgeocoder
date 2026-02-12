@@ -9,7 +9,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/dieghernan/arcgeocoder/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/dieghernan/arcgeocoder/blob/release/inst/CITATION)
 
 Hernangómez D (2026). *arcgeocoder: Geocoding with the ArcGIS REST API
 Service*.
