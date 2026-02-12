@@ -106,7 +106,7 @@
 
     <!-- arcgeocoder.qmd is generated from arcgeocoder.qmd.orig. Please edit that file --><p>The goal of <strong>arcgeocoder</strong> is to provide a light interface for geocoding addresses and reverse geocoding locations through the <a href="https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm" class="external-link">ArcGIS REST API Geocoding Service</a>.</p>
 <p>Full site with examples and vignettes on <a href="https://dieghernan.github.io/arcgeocoder/" class="uri">https://dieghernan.github.io/arcgeocoder/</a></p>
-<section class="level2"><h2 id="why-arcgeocoder">Why <strong>arcgeocoder</strong>?<a class="anchor" aria-label="anchor" href="#why-arcgeocoder"></a>
+<section class="level2"><h2 id="why-arcgeocoder">Why arcgeocoder?<a class="anchor" aria-label="anchor" href="#why-arcgeocoder"></a>
 </h2>
 <p><strong>arcgeocoder</strong> is a package that provides a lightweight interface for geocoding and reverse geocoding with the ArcGIS REST API service. The goal of <strong>arcgeocoder</strong> is to access the ArcGIS REST API with fewer dependencies, such as <strong>curl</strong> . In some situations, <strong>curl</strong> may not be available or accessible, so <strong>arcgeocoder</strong> uses base functions to overcome this limitation.</p>
 <p>The interface of <strong>arcgeocoder</strong> is built with the aim of easing the access to all the features provided by the API. The API endpoints used by <strong>arcgeocoder</strong> are <code>findAddressCandidates</code> and <code>reverseGeocode</code>, which can be accessed without the need for an API key.</p>
@@ -144,8 +144,9 @@
 <span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Only a few fields are returned from the geocoder service in this example, but <code>full_results = TRUE</code> can be used to return all of the data from the geocoder service.</p>
+<div id="tbl-geo" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-geo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table style="width:100%;" class="table">
-<caption>Example of geocoded addresses</caption>
 <colgroup>
 <col style="width: 20%">
 <col style="width: 4%">
@@ -224,6 +225,11 @@
 </tr>
 </tbody>
 </table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-geo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 1: Example: geocoding addresses
+</figcaption></figure>
+</div>
 <p>To perform reverse geocoding (obtaining addresses from geographic coordinates), we can use the <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code> function. The arguments are similar to the <code><a href="../reference/arc_geo.html">arc_geo()</a></code> function, but now we specify the input data columns with the <code>x</code> and <code>y</code> arguments. The dataset used here is from the geocoder query above. The single line address is returned in a column named by the <code>address</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reverse</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
@@ -232,12 +238,45 @@
 <span>  address <span class="op">=</span> <span class="st">"address_found"</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; Error in parse(text = input): &lt;text&gt;:1:41: unexpected symbol</span></span>
-<span><span class="co">#&gt; 1: knitr::kable(reverse, caption = Example of</span></span>
-<span><span class="co">#&gt;                                             ^</span></span></code></pre>
+<div id="tbl-reverse" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-reverse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 10%">
+<col style="width: 76%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">y</th>
+<th style="text-align: left;">address_found</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-77.03655</td>
+<td style="text-align: right;">38.89768</td>
+<td style="text-align: left;">White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-122.40273</td>
+<td style="text-align: right;">37.79516</td>
+<td style="text-align: left;">Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-87.63587</td>
+<td style="text-align: right;">41.87867</td>
+<td style="text-align: left;">The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-reverse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 2: Example: reverse geocoding addresses.
+</figcaption></figure>
+</div>
 <p>It is possible also to search for specific locations within or near a reference are or location using <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">category filtering</a>. See more information in the documentation of the data base <code>arc_categories</code>.</p>
 <p>In the following example we would look for POIs related with food (i.e. Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># For plotting</span></span>
 <span></span>
 <span><span class="co"># Step 1: Locate Eiffel Tower, using multifield query</span></span>
@@ -254,9 +293,9 @@
 <span><span class="va">eiffel_tower</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">lon</span>, <span class="va">lat</span>, <span class="va">LongLabel</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 3</span></span>
-<span><span class="co">#&gt;     lon   lat LongLabel                                                                              </span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                                                                                  </span></span>
-<span><span class="co">#&gt; 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-de-France, FRA</span></span>
+<span><span class="co">#&gt;     lon   lat LongLabel                                                            </span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                                                                </span></span>
+<span><span class="co">#&gt; 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris,…</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># Use lon,lat to boots the search and using category = Food</span></span>

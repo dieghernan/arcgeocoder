@@ -8,7 +8,7 @@ Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world
 Full site with examples and vignettes on
 <https://dieghernan.github.io/arcgeocoder/>
 
-## Why **arcgeocoder**?
+## Why arcgeocoder?
 
 **arcgeocoder** is a package that provides a lightweight interface for
 geocoding and reverse geocoding with the ArcGIS REST API service. The
@@ -37,6 +37,9 @@ There are other packages much more complete and mature than
   API](https://nominatim.org/release-docs/latest/) service.
 
 ## Installation
+
+Check the docs of the developing version
+in <https://dieghernan.github.io/arcgeocoder/dev/>.
 
 You can install the developing version of **arcgeocoder** with:
 
@@ -101,7 +104,7 @@ from the geocoder service.
 | 600 Montgomery St, San Francisco, CA 94111 | 37.79516 | -122.40273 | 600 Montgomery St, San Francisco, California, 94111               |   100 | -122.40273 | 37.79516 | -122.40373 | 37.79416 | -122.40173 | 37.79616 | 4326 |       4326 |
 | 233 S Wacker Dr, Chicago, IL 60606         | 41.87867 |  -87.63587 | 233 S Wacker Dr, Chicago, Illinois, 60606                         |   100 |  -87.63587 | 41.87867 |  -87.63687 | 41.87767 |  -87.63487 | 41.87967 | 4326 |       4326 |
 
-Table 1: Example: geocoding addresses.
+Table 1: Example: geocoding addresses.
 
 To perform reverse geocoding (obtaining addresses from geographic
 coordinates), we can use the
@@ -127,7 +130,7 @@ reverse <- arc_reverse_geo(
 | -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA  |
 |  -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
 
-Table 2: Example: reverse geocoding addresses.
+Table 2: Example: reverse geocoding addresses.
 
 It is possible also to search for specific locations within or near a
 reference area or location using [category
@@ -186,7 +189,7 @@ ggplot(eiffel_tower, aes(x, y)) +
 ![Example: Food places near the Eiffel
 Tower](reference/figures/README-eiffel-1.png)
 
-### **arcgeocoder** and **r-spatial**
+### arcgeocoder and r-spatial
 
 It is straightforward to convert the results of **arcgeocoder** to an
 **sf** object (geospatial format):
@@ -251,7 +254,7 @@ A BibTeX entry for LaTeX users is
   doi = {10.32614/CRAN.package.arcgeocoder},
   author = {Diego Hernangómez},
   year = {2026},
-  version = {0.3.0},
+  version = {0.3.0.9000},
   url = {https://dieghernan.github.io/arcgeocoder/},
   abstract = {Lite interface for finding locations of addresses or businesses around the world using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address. No API key required.},
 }
