@@ -42,3 +42,6 @@
 ^inst/README\.qmd$
 ^README_files$
 ^README\.html$
+^\.quarto$
+^\./vignettes/arcgeocoder\.qmd\.orig$
+^\./vignettes/feature-types\.qmd\.orig$
