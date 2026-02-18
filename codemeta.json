@@ -4,7 +4,10 @@
   "identifier": "arcgeocoder",
   "description": "Lite interface for finding locations of addresses or businesses around the world using the 'ArcGIS' REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address. No API key required.",
   "name": "arcgeocoder: Geocoding with the 'ArcGIS' REST API Service",
-  "relatedLink": ["https://dieghernan.github.io/arcgeocoder/", "https://CRAN.R-project.org/package=arcgeocoder"],
+  "relatedLink": [
+    "https://dieghernan.github.io/arcgeocoder/",
+    "https://CRAN.R-project.org/package=arcgeocoder"
+  ],
   "codeRepository": "https://github.com/dieghernan/arcgeocoder",
   "issueTracker": "https://github.com/dieghernan/arcgeocoder/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -171,7 +174,21 @@
     "SystemRequirements": null
   },
   "applicationCategory": "cartography",
-  "keywords": ["r", "geocoding", "arcgis", "address", "reverse-geocoding", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "cran-r", "gis", "cran"],
+  "keywords": [
+    "r",
+    "geocoding",
+    "arcgis",
+    "address",
+    "reverse-geocoding",
+    "rstats",
+    "r-package",
+    "api-wrapper",
+    "api-rest",
+    "arcgis-api",
+    "cran-r",
+    "gis",
+    "cran"
+  ],
   "fileSize": "425.129KB",
   "citation": [
     {
@@ -193,6 +210,9 @@
   ],
   "releaseNotes": "https://github.com/dieghernan/arcgeocoder/blob/main/NEWS.md",
   "readme": "https://github.com/dieghernan/arcgeocoder/blob/main/README.md",
-  "contIntegration": ["https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yml", "https://app.codecov.io/gh/dieghernan/arcgeocoder"],
+  "contIntegration": [
+    "https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yaml",
+    "https://app.codecov.io/gh/dieghernan/arcgeocoder"
+  ],
   "developmentStatus": "https://www.repostatus.org/#active"
 }
