@@ -141,8 +141,8 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                         
-#>   <dbl> <dbl> <chr>                                                             
+#>     lon   lat LongLabel
+#>   <dbl> <dbl> <chr>
 #> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…
 
 
@@ -195,17 +195,17 @@ food_eiffel_sf
 #> Geodetic CRS:  WGS 84
 #> # A tibble: 50 × 85
 #>    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax
-#>  * <chr>      <dbl> <dbl> <lgl>       <lgl>       <lgl>       <lgl>      
-#>  1 Food        2.29  48.9 NA          NA          NA          NA         
-#>  2 Food        2.29  48.9 NA          NA          NA          NA         
-#>  3 Food        2.29  48.9 NA          NA          NA          NA         
-#>  4 Food        2.29  48.9 NA          NA          NA          NA         
-#>  5 Food        2.29  48.9 NA          NA          NA          NA         
-#>  6 Food        2.29  48.9 NA          NA          NA          NA         
-#>  7 Food        2.29  48.9 NA          NA          NA          NA         
-#>  8 Food        2.29  48.9 NA          NA          NA          NA         
-#>  9 Food        2.29  48.9 NA          NA          NA          NA         
-#> 10 Food        2.29  48.9 NA          NA          NA          NA         
+#>  * <chr>      <dbl> <dbl> <lgl>       <lgl>       <lgl>       <lgl>
+#>  1 Food        2.29  48.9 NA          NA          NA          NA
+#>  2 Food        2.29  48.9 NA          NA          NA          NA
+#>  3 Food        2.29  48.9 NA          NA          NA          NA
+#>  4 Food        2.29  48.9 NA          NA          NA          NA
+#>  5 Food        2.29  48.9 NA          NA          NA          NA
+#>  6 Food        2.29  48.9 NA          NA          NA          NA
+#>  7 Food        2.29  48.9 NA          NA          NA          NA
+#>  8 Food        2.29  48.9 NA          NA          NA          NA
+#>  9 Food        2.29  48.9 NA          NA          NA          NA
+#> 10 Food        2.29  48.9 NA          NA          NA          NA
 #> # ℹ 40 more rows
 #> # ℹ 78 more variables: address <chr>, score <int>, x <dbl>, y <dbl>,
 #> #   Loc_name <chr>, Status <chr>, Score <int>, Match_addr <chr>,
