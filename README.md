@@ -1,5 +1,3 @@
-
-
 <!-- README.md is generated from README.qmd. Please edit that file -->
 
 # arcgeocoder <a href="https://dieghernan.github.io/arcgeocoder/"><img src="man/figures/logo.png" alt="arcgeocoder website" align="right" height="139"/></a>
@@ -11,7 +9,7 @@ status](https://www.r-pkg.org/badges/version/arcgeocoder)](https://CRAN.R-projec
 [![CRAN
 results](https://badges.cranchecks.info/worst/arcgeocoder.svg)](https://cran.r-project.org/web/checks/check_results_arcgeocoder.html)
 [![Downloads](https://cranlogs.r-pkg.org/badges/arcgeocoder)](https://CRAN.R-project.org/package=arcgeocoder)
-[![R-CMD-check](https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yml/badge.svg)](https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full.yml)
+[![R-CMD-check](https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full*.yaml/badge.svg)](https://github.com/dieghernan/arcgeocoder/actions/workflows/check-full*.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/arcgeocoder/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/arcgeocoder)
 [![r-universe](https://dieghernan.r-universe.dev/badges/arcgeocoder)](https://dieghernan.r-universe.dev/arcgeocoder)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/arcgeocoder/badge)](https://www.codefactor.io/repository/github/dieghernan/arcgeocoder)
@@ -67,7 +65,7 @@ There are other packages much more complete and mature than
 Install **arcgeocoder** from
 [**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
 
-``` r
+```r
 install.packages("arcgeocoder")
 ```
 
@@ -80,7 +78,7 @@ in <https://dieghernan.github.io/arcgeocoder/dev/>.
 
 You can install the developing version of **arcgeocoder** with:
 
-``` r
+```r
 # install.packages("pak")
 pak::pak("dieghernan/arcgeocoder")
 ```
@@ -88,7 +86,7 @@ pak::pak("dieghernan/arcgeocoder")
 Alternatively, you can install **arcgeocoder** using the
 [r-universe](https://dieghernan.r-universe.dev/arcgeocoder):
 
-``` r
+```r
 # Install arcgeocoder in R:
 install.packages(
   "arcgeocoder",
@@ -105,13 +103,13 @@ install.packages(
 
 ### Geocoding and reverse geocoding
 
-*Note: examples adapted from **tidygeocoder** package*
+_Note: examples adapted from **tidygeocoder** package_
 
 In this first example we will geocode a few addresses using the
 `arc_geo()` function. Note that **arcgeocoder** works straight away, and
 you don’t need to provide any API key to start geocoding!
 
-``` r
+```r
 library(arcgeocoder)
 library(dplyr)
 
@@ -136,15 +134,16 @@ Only a few fields are returned from the geocoder service in this
 example, but `full_results = TRUE` can be used to return all of the data
 from the geocoder service.
 
-| query | latitude | longitude | address | score | x | y | xmin | ymin | xmax | ymax | wkid | latestWkid |
-|:---|---:|---:|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 1600 Pennsylvania Ave NW, Washington, DC | 38.89768 | -77.03655 | 1600 Pennsylvania Ave NW, Washington, District of Columbia, 20500 | 100 | -77.03655 | 38.89768 | -77.03755 | 38.89668 | -77.03555 | 38.89868 | 4326 | 4326 |
-| 600 Montgomery St, San Francisco, CA 94111 | 37.79516 | -122.40273 | 600 Montgomery St, San Francisco, California, 94111 | 100 | -122.40273 | 37.79516 | -122.40373 | 37.79416 | -122.40173 | 37.79616 | 4326 | 4326 |
-| 233 S Wacker Dr, Chicago, IL 60606 | 41.87867 | -87.63587 | 233 S Wacker Dr, Chicago, Illinois, 60606 | 100 | -87.63587 | 41.87867 | -87.63687 | 41.87767 | -87.63487 | 41.87967 | 4326 | 4326 |
+| query                                      | latitude |  longitude | address                                                           | score |          x |        y |       xmin |     ymin |       xmax |     ymax | wkid | latestWkid |
+| :----------------------------------------- | -------: | ---------: | :---------------------------------------------------------------- | ----: | ---------: | -------: | ---------: | -------: | ---------: | -------: | ---: | ---------: |
+| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89768 |  -77.03655 | 1600 Pennsylvania Ave NW, Washington, District of Columbia, 20500 |   100 |  -77.03655 | 38.89768 |  -77.03755 | 38.89668 |  -77.03555 | 38.89868 | 4326 |       4326 |
+| 600 Montgomery St, San Francisco, CA 94111 | 37.79516 | -122.40273 | 600 Montgomery St, San Francisco, California, 94111               |   100 | -122.40273 | 37.79516 | -122.40373 | 37.79416 | -122.40173 | 37.79616 | 4326 |       4326 |
+| 233 S Wacker Dr, Chicago, IL 60606         | 41.87867 |  -87.63587 | 233 S Wacker Dr, Chicago, Illinois, 60606                         |   100 |  -87.63587 | 41.87867 |  -87.63687 | 41.87767 |  -87.63487 | 41.87967 | 4326 |       4326 |
 
 <p class="caption">
 
 Table 1: Example: geocoding addresses.
+
 </p>
 
 To perform reverse geocoding (obtaining addresses from geographic
@@ -154,7 +153,7 @@ data columns with the `x` and `y` arguments. The dataset used here is
 from the geocoder query above. The single line address is returned in a
 column named by the `address`.
 
-``` r
+```r
 reverse <- arc_reverse_geo(
   x = lat_longs$longitude,
   y = lat_longs$latitude,
@@ -163,15 +162,16 @@ reverse <- arc_reverse_geo(
 )
 ```
 
-| x | y | address_found |
-|---:|---:|:---|
-| -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA |
-| -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA |
-| -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
+|          x |        y | address_found                                                     |
+| ---------: | -------: | :---------------------------------------------------------------- |
+|  -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA |
+| -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA  |
+|  -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
 
 <p class="caption">
 
 Table 2: Example: reverse geocoding addresses.
+
 </p>
 
 It is possible also to search for specific locations within or near a
@@ -183,7 +183,7 @@ See more information in the documentation of the data base
 In the following example we would look for POIs related to food (i.e.
 Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.
 
-``` r
+```r
 library(ggplot2) # For plotting
 
 # Step 1: Locate Eiffel Tower, using multifield query
@@ -200,8 +200,8 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                         
-#>   <dbl> <dbl> <chr>                                                             
+#>     lon   lat LongLabel
+#>   <dbl> <dbl> <chr>
 #> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…
 
 
@@ -236,7 +236,7 @@ alt="Example: Food places near the Eiffel Tower" />
 It is straightforward to convert the results of **arcgeocoder** to an
 **sf** object (geospatial format):
 
-``` r
+```r
 library(sf)
 
 food_eiffel_sf <- st_as_sf(
@@ -254,17 +254,17 @@ food_eiffel_sf
 #> Geodetic CRS:  WGS 84
 #> # A tibble: 50 × 85
 #>    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax
-#>  * <chr>      <dbl> <dbl> <lgl>       <lgl>       <lgl>       <lgl>      
-#>  1 Food        2.29  48.9 NA          NA          NA          NA         
-#>  2 Food        2.29  48.9 NA          NA          NA          NA         
-#>  3 Food        2.29  48.9 NA          NA          NA          NA         
-#>  4 Food        2.29  48.9 NA          NA          NA          NA         
-#>  5 Food        2.29  48.9 NA          NA          NA          NA         
-#>  6 Food        2.29  48.9 NA          NA          NA          NA         
-#>  7 Food        2.29  48.9 NA          NA          NA          NA         
-#>  8 Food        2.29  48.9 NA          NA          NA          NA         
-#>  9 Food        2.29  48.9 NA          NA          NA          NA         
-#> 10 Food        2.29  48.9 NA          NA          NA          NA         
+#>  * <chr>      <dbl> <dbl> <lgl>       <lgl>       <lgl>       <lgl>
+#>  1 Food        2.29  48.9 NA          NA          NA          NA
+#>  2 Food        2.29  48.9 NA          NA          NA          NA
+#>  3 Food        2.29  48.9 NA          NA          NA          NA
+#>  4 Food        2.29  48.9 NA          NA          NA          NA
+#>  5 Food        2.29  48.9 NA          NA          NA          NA
+#>  6 Food        2.29  48.9 NA          NA          NA          NA
+#>  7 Food        2.29  48.9 NA          NA          NA          NA
+#>  8 Food        2.29  48.9 NA          NA          NA          NA
+#>  9 Food        2.29  48.9 NA          NA          NA          NA
+#> 10 Food        2.29  48.9 NA          NA          NA          NA
 #> # ℹ 40 more rows
 #> # ℹ 78 more variables: address <chr>, score <int>, x <dbl>, y <dbl>,
 #> #   Loc_name <chr>, Status <chr>, Score <int>, Match_addr <chr>,
@@ -289,6 +289,7 @@ Hernangómez D (2026). <em>arcgeocoder: Geocoding with the ArcGIS REST
 API Service</em>.
 <a href="https://doi.org/10.32614/CRAN.package.arcgeocoder">doi:10.32614/CRAN.package.arcgeocoder</a>,
 <a href="https://dieghernan.github.io/arcgeocoder/">https://dieghernan.github.io/arcgeocoder/</a>.
+
 </p>
 
 A BibTeX entry for LaTeX users is
@@ -312,15 +313,15 @@ entry-spacing="0">
 
 Cambon, Jesse, Diego Hernangómez, Christopher Belanger, and Daniel
 Possenriede. 2021. “<span class="nocase">tidygeocoder</span>: An R
-Package for Geocoding.” *Journal of Open Source Software* 6 (65): 3544.
+Package for Geocoding.” _Journal of Open Source Software_ 6 (65): 3544.
 <https://doi.org/10.21105/joss.03544>.
 
 </div>
 
 <div id="ref-R-nominatimlite" class="csl-entry">
 
-Hernangómez, Diego. 2024. *<span class="nocase">nominatimlite</span>:
-Interface with Nominatim API Service* (version 0.2.1).
+Hernangómez, Diego. 2024. _<span class="nocase">nominatimlite</span>:
+Interface with Nominatim API Service_ (version 0.2.1).
 <https://doi.org/10.5281/zenodo.5113195>.
 
 </div>
