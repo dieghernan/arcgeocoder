@@ -1,5 +1,12 @@
 # Changelog
 
+## arcgeocoder 0.4.0
+
+CRAN release: 2026-03-20
+
+- Migrate docs to Quarto
+  ([\#24](https://github.com/dieghernan/arcgeocoder/issues/24)).
+
 ## arcgeocoder 0.3.0
 
 CRAN release: 2026-01-15

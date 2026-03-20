@@ -1,6 +1,6 @@
 # arcgeocoder
 
-The goal of **arcgeocoder** is to provide a light interface for
+The goal of **arcgeocoder** is to provide a lightweight interface for
 geocoding addresses and reverse geocoding locations through the [ArcGIS
 REST API Geocoding
 Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
@@ -17,15 +17,15 @@ dependencies, such as **curl**. In some situations, **curl** may not be
 available or accessible, so **arcgeocoder** uses base functions to
 overcome this limitation.
 
-The interface of **arcgeocoder** is built with the aim of easing the
-access to all the features provided by the API. The API endpoints used
-by **arcgeocoder** are `findAddressCandidates` and `reverseGeocode`,
-which can be accessed ***without*** the need for an ***API key***.
+The interface of **arcgeocoder** is built with the aim of easing access
+to all the features provided by the API. The API endpoints used by
+**arcgeocoder** are `findAddressCandidates` and `reverseGeocode`, which
+can be accessed ***without*** the need for an ***API key***.
 
 ## Recommended packages
 
-There are other packages much more complete and mature than
-**arcgeocoder**, that present similar features:
+There are other packages that are more complete and mature and provide
+similar features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)). Allows to interface with
@@ -33,7 +33,7 @@ There are other packages much more complete and mature than
   geocoding and reverse geocoding.
 - [**nominatimlite**](https://dieghernan.github.io/nominatimlite/)
   ([Hernangómez 2024](#ref-R-nominatimlite)). Similar to **arcgeocoder**
-  but using data from OpenStreetMaps trough the [Nominatim
+  but using data from OpenStreetMaps through the [Nominatim
   API](https://nominatim.org/release-docs/latest/) service.
 
 ## Installation
@@ -115,14 +115,15 @@ reverse <- arc_reverse_geo(
 
 Table 2: Example: reverse geocoding addresses.
 
-It is possible also to search for specific locations within or near a
+It is also possible to search for specific locations within or near a
 reference area or location using [category
 filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
-See more information in the documentation of the data base
+See more information in the documentation of the database
 `arc_categories`.
 
-In the following example we would look for POIs related to food (i.e.
-Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.
+In the following example we look for POIs related to food
+(i.e. Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in
+France.
 
 ``` r
 library(ggplot2) # For plotting
@@ -141,8 +142,8 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel
-#>   <dbl> <dbl> <chr>
+#>     lon   lat LongLabel                                                         
+#>   <dbl> <dbl> <chr>                                                             
 #> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…
 
 
@@ -195,17 +196,17 @@ food_eiffel_sf
 #> Geodetic CRS:  WGS 84
 #> # A tibble: 50 × 85
 #>    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax
-#>  * <chr>      <dbl> <dbl> <lgl>       <lgl>       <lgl>       <lgl>
-#>  1 Food        2.29  48.9 NA          NA          NA          NA
-#>  2 Food        2.29  48.9 NA          NA          NA          NA
-#>  3 Food        2.29  48.9 NA          NA          NA          NA
-#>  4 Food        2.29  48.9 NA          NA          NA          NA
-#>  5 Food        2.29  48.9 NA          NA          NA          NA
-#>  6 Food        2.29  48.9 NA          NA          NA          NA
-#>  7 Food        2.29  48.9 NA          NA          NA          NA
-#>  8 Food        2.29  48.9 NA          NA          NA          NA
-#>  9 Food        2.29  48.9 NA          NA          NA          NA
-#> 10 Food        2.29  48.9 NA          NA          NA          NA
+#>  * <chr>      <dbl> <dbl> <lgl>       <lgl>       <lgl>       <lgl>      
+#>  1 Food        2.29  48.9 NA          NA          NA          NA         
+#>  2 Food        2.29  48.9 NA          NA          NA          NA         
+#>  3 Food        2.29  48.9 NA          NA          NA          NA         
+#>  4 Food        2.29  48.9 NA          NA          NA          NA         
+#>  5 Food        2.29  48.9 NA          NA          NA          NA         
+#>  6 Food        2.29  48.9 NA          NA          NA          NA         
+#>  7 Food        2.29  48.9 NA          NA          NA          NA         
+#>  8 Food        2.29  48.9 NA          NA          NA          NA         
+#>  9 Food        2.29  48.9 NA          NA          NA          NA         
+#> 10 Food        2.29  48.9 NA          NA          NA          NA         
 #> # ℹ 40 more rows
 #> # ℹ 78 more variables: address <chr>, score <int>, x <dbl>, y <dbl>,
 #> #   Loc_name <chr>, Status <chr>, Score <int>, Match_addr <chr>,
@@ -237,7 +238,7 @@ A BibTeX entry for LaTeX users is
   doi = {10.32614/CRAN.package.arcgeocoder},
   author = {Diego Hernangómez},
   year = {2026},
-  version = {0.3.0},
+  version = {0.4.0},
   url = {https://dieghernan.github.io/arcgeocoder/},
   abstract = {Lite interface for finding locations of addresses or businesses around the world using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address. No API key required.},
 }

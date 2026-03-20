@@ -7,9 +7,8 @@ object associated with the query.
 This function uses the `SingleLine` approach detailed in the [ArcGIS
 REST
 docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
-For multi-field queries (i.e. using specific address arguments) use
-[`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)
-function.
+For multi-field queries (i.e. using specific address components), use
+[`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md).
 
 ## Usage
 
@@ -35,42 +34,39 @@ arc_geo(
 
 - address:
 
-  character with single line address
-  (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
-  (`c("Madrid", "Barcelona")`).
+  Single-line address text (e.g.
+  `"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses (
+  `c("Madrid", "Barcelona")`).
 
 - lat:
 
-  latitude column name in the output data (default `"lat"`).
+  Latitude column name in the output data (default `"lat"`).
 
 - long:
 
-  longitude column name in the output data (default `"lon"`).
+  Longitude column name in the output data (default `"lon"`).
 
 - limit:
 
-  maximum number of results to return per input address. Note that each
-  query returns a maximum of 50 results.
+  Maximum number of results to return per input address. Each query has
+  a hard API limit of 50 results.
 
 - full_results:
 
-  returns all available data from the API service. This is a shorthand
-  of `outFields=*`. See **References**. If `FALSE` (default) only the
-  default values of the API are returned. See also `return_addresses`
-  argument.
+  Logical; if `TRUE` return all available API fields via `outFields=*`.
+  Default is `FALSE`.
 
 - return_addresses:
 
-  return input addresses with results if `TRUE`.
+  Logical; if `TRUE` keep input query in output.
 
 - verbose:
 
-  if `TRUE` then detailed logs are output to the console.
+  Logical; if `TRUE` output process messages to console.
 
 - progressbar:
 
-  Logical. If `TRUE` displays a progress bar to indicate the progress of
-  the function.
+  Logical; if `TRUE` shows a progress bar for multiple points.
 
 - outsr:
 
@@ -85,22 +81,18 @@ arc_geo(
 
 - sourcecountry:
 
-  limits the candidates returned to the specified country or countries.
-  Acceptable values include the three-character country code. You can
-  specify multiple country codes to limit results to more than one
-  country.
+  Country filter using ISO codes (e.g. `"USA"`). Multiple values can be
+  specified (comma-separated).
 
 - category:
 
-  A place or address type that can be used to filter results. Several
-  values can be used as well as a vector (i.e. `c("Cinema", "Museum")`).
-  See
-  [arc_categories](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
-  for details.
+  Place or address type used as a filter. Multiple values are accepted
+  (e.g. `c("Cinema", "Museum")`). See
+  [arc_categories](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md).
 
 - custom_query:
 
-  API-specific arguments to be used, passed as a named list.
+  Additional API parameters as named list values.
 
 ## Value
 
@@ -111,8 +103,9 @@ output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-servi
 
 ## Details
 
-More info and valid values in the [ArcGIS REST
-docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
+See the [ArcGIS REST
+docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
+for more info and valid values.
 
 ## `outsr`
 

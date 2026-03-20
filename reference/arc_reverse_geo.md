@@ -39,25 +39,24 @@ arc_reverse_geo(
 
 - address:
 
-  address column name in the output data (default `"address"`).
+  Output address column name (default `"address"`).
 
 - full_results:
 
-  returns all available data from the API service. If `FALSE` (default)
-  only latitude, longitude and address columns are returned.
+  Logical; if `TRUE` return all available API fields. `FALSE` (default)
+  returns latitude, longitude and address only.
 
 - return_coords:
 
-  return input coordinates with results if `TRUE`.
+  Logical; if `TRUE` return input coordinates with results.
 
 - verbose:
 
-  if `TRUE` then detailed logs are output to the console.
+  Logical; if `TRUE` output process messages to console.
 
 - progressbar:
 
-  Logical. If `TRUE` displays a progress bar to indicate the progress of
-  the function.
+  Logical; if `TRUE` shows a progress bar for multiple points.
 
 - outsr:
 
@@ -100,8 +99,9 @@ output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-servi
 
 ## Details
 
-More info and valid values in the [ArcGIS REST
-docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm).
+See the [ArcGIS REST
+docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm)
+for more info and valid values.
 
 ## `outsr`
 
