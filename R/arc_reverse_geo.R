@@ -10,14 +10,14 @@
 #'   \eqn{\left[-180, 180 \right]}.
 #' @param y latitude values in numeric format. Must be in the range
 #'   \eqn{\left[-90, 90 \right]}.
-#' @param address address column name in the output data (default  `"address"`).
-#' @param full_results returns all available data from the API service. If
-#'   `FALSE` (default) only latitude, longitude and address columns are
-#'   returned.
-#' @param return_coords	return input coordinates with results if `TRUE`.
-#' @param verbose if `TRUE` then detailed logs are output to the console.
-#' @param progressbar Logical. If `TRUE` displays a progress bar to indicate
-#'  the progress of the function.
+#' @param address Output address column name (default `"address"`).
+#' @param full_results Logical; if `TRUE` return all available API fields.
+#'   `FALSE` (default) returns latitude, longitude and address only.
+#' @param return_coords Logical; if `TRUE` return input coordinates with
+#'   results.
+#' @param verbose Logical; if `TRUE` output process messages to console.
+#' @param progressbar Logical; if `TRUE` shows a progress bar for multiple
+#'   points.
 #' @param outsr The spatial reference of the `x,y` coordinates returned by a
 #'   geocode request. By default is `NULL` (i.e. the argument won't be used in
 #'   the query). See **Details** and [arc_spatial_references].
@@ -38,7 +38,7 @@
 #'
 #' @details
 #'
-#' More info and valid values in the [ArcGIS REST docs](`r arcurl("rev")`).
+#' See the [ArcGIS REST docs](`r arcurl("rev")`) for more info and valid values.
 #'
 #' # `outsr`
 #'

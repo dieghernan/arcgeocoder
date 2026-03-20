@@ -30,29 +30,27 @@ arc_geo_multi(
 }
 \arguments{
 \item{address, address2, address3, neighborhood, city, subregion}{Address
-components  (See \strong{Details}).}
+components. See \strong{Details}.}
 
-\item{region, postal, postalext, countrycode}{More address components, see
-(See \strong{Details}).}
+\item{region, postal, postalext, countrycode}{Additional address components.
+See \strong{Details}.}
 
-\item{lat}{latitude column name in the output data (default  \code{"lat"}).}
+\item{lat}{Latitude column name in the output data (default \code{"lat"}).}
 
-\item{long}{longitude column name in the output data (default  \code{"lon"}).}
+\item{long}{Longitude column name in the output data (default \code{"lon"}).}
 
-\item{limit}{maximum number of results to return per input address. Note
-that each query returns a maximum of 50 results.}
+\item{limit}{Maximum number of results to return per input address. Each
+query has a hard API limit of 50 results.}
 
-\item{full_results}{returns all available data from the API service. This
-is a shorthand of \verb{outFields=*}. See \strong{References}. If \code{FALSE} (default)
-only the default values of the API are returned. See also
-\code{return_addresses} argument.}
+\item{full_results}{Logical; if \code{TRUE} return all available API fields
+via \verb{outFields=*}. Default is \code{FALSE}.}
 
-\item{return_addresses}{return input addresses with results if \code{TRUE}.}
+\item{return_addresses}{Logical; if \code{TRUE} keep input query in output.}
 
-\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{Logical; if \code{TRUE} output process messages to console.}
 
-\item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
-the progress of the function.}
+\item{progressbar}{Logical; if \code{TRUE} shows a progress bar for multiple
+points.}
 
 \item{outsr}{The spatial reference of the \verb{x,y} coordinates returned by a
 geocode request. By default is \code{NULL} (i.e. the argument won't be used in
@@ -61,12 +59,10 @@ the query). See \strong{Details} and \link{arc_spatial_references}.}
 \item{langcode}{Sets the language in which reverse-geocoded addresses are
 returned.}
 
-\item{category}{A place or address type that can be used to filter results.
-Several values can be used as well as a vector (i.e.
-\code{c("Cinema", "Museum")}). See \link{arc_categories} for details.}
+\item{category}{Place or address type used as a filter. Multiple values are
+accepted (e.g. \code{c("Cinema", "Museum")}). See \link{arc_categories}.}
 
-\item{custom_query}{API-specific arguments to be used, passed as a named
-list.}
+\item{custom_query}{Additional API parameters as named list values.}
 }
 \value{
 A \link[tibble:tbl_df-class]{tibble} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
@@ -81,7 +77,8 @@ the \link[tibble:tbl_df-class]{tibble} associated with the query.
 For geocoding using a single text string use \code{\link[=arc_geo]{arc_geo()}} function.
 }
 \details{
-More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}.
+See the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs} for more info and valid
+values.
 }
 \section{Address components}{
 This function allows performing structured queries by different components of

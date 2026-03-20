@@ -26,18 +26,18 @@ arc_reverse_geo(
 \item{y}{latitude values in numeric format. Must be in the range
 \eqn{\left[-90, 90 \right]}.}
 
-\item{address}{address column name in the output data (default  \code{"address"}).}
+\item{address}{Output address column name (default \code{"address"}).}
 
-\item{full_results}{returns all available data from the API service. If
-\code{FALSE} (default) only latitude, longitude and address columns are
-returned.}
+\item{full_results}{Logical; if \code{TRUE} return all available API fields.
+\code{FALSE} (default) returns latitude, longitude and address only.}
 
-\item{return_coords}{return input coordinates with results if \code{TRUE}.}
+\item{return_coords}{Logical; if \code{TRUE} return input coordinates with
+results.}
 
-\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{Logical; if \code{TRUE} output process messages to console.}
 
-\item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
-the progress of the function.}
+\item{progressbar}{Logical; if \code{TRUE} shows a progress bar for multiple
+points.}
 
 \item{outsr}{The spatial reference of the \verb{x,y} coordinates returned by a
 geocode request. By default is \code{NULL} (i.e. the argument won't be used in
@@ -74,7 +74,7 @@ in the range \eqn{\left[-90, 90 \right]} and longitudes in the range
 \link[tibble:tbl_df-class]{tibble} associated with the query.
 }
 \details{
-More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST docs}.
+See the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST docs} for more info and valid values.
 }
 \section{\code{outsr}}{
 The spatial reference can be specified as either a well-known ID (WKID). If

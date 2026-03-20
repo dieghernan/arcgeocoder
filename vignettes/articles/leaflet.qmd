@@ -161,4 +161,3 @@ htmltools::browsable(
     Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
 -   [Croissant icons created by Freepik -
     Flaticon](https://www.flaticon.com/free-icons/croissant "croissant icons")
-

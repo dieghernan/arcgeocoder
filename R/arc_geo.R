@@ -6,27 +6,23 @@
 #'
 #' This function uses the `SingleLine` approach detailed in the
 #' [ArcGIS REST docs](`r arcurl("cand")`). For multi-field queries (i.e.
-#' using specific address arguments) use [arc_geo_multi()] function.
+#' using specific address components), use [arc_geo_multi()].
 #'
-#' @param address character with single line address
-#'   (`"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
-#'   (`c("Madrid", "Barcelona")`).
-#' @param lat	latitude column name in the output data (default  `"lat"`).
-#' @param long	longitude column name in the output data (default  `"lon"`).
-#' @param limit	maximum number of results to return per input address. Note
-#'   that each query returns a maximum of 50 results.
-#' @param full_results returns all available data from the API service. This
-#'   is a shorthand of `outFields=*`. See **References**. If `FALSE` (default)
-#'   only the default values of the API are returned. See also
-#'   `return_addresses` argument.
-#' @param return_addresses return input addresses with results if `TRUE`.
-#' @param sourcecountry limits the candidates returned to the specified country
-#'   or countries. Acceptable values include the three-character country code.
-#'   You can specify multiple country codes to limit results to more than one
-#'   country.
-#' @param category A place or address type that can be used to filter results.
-#'   Several values can be used as well as a vector (i.e.
-#'   `c("Cinema", "Museum")`). See [arc_categories] for details.
+#' @param address Single-line address text (e.g.
+#'   `"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses (
+#'   `c("Madrid", "Barcelona")`).
+#' @param lat Latitude column name in the output data (default `"lat"`).
+#' @param long Longitude column name in the output data (default `"lon"`).
+#' @param limit Maximum number of results to return per input address. Each
+#'   query has a hard API limit of 50 results.
+#' @param full_results Logical; if `TRUE` return all available API fields
+#'   via `outFields=*`. Default is `FALSE`.
+#' @param return_addresses Logical; if `TRUE` keep input query in output.
+#' @param sourcecountry Country filter using ISO codes (e.g. `"USA"`).
+#'   Multiple values can be specified (comma-separated).
+#' @param category Place or address type used as a filter. Multiple values are
+#'   accepted (e.g. `c("Cinema", "Museum")`). See [arc_categories].
+#' @param custom_query Additional API parameters as named list values.
 #'
 #' @inheritParams arc_reverse_geo
 #'
@@ -39,7 +35,8 @@
 #' ```
 #'
 #' @details
-#' More info and valid values in the [ArcGIS REST docs](`r arcurl("cand")`).
+#' See the [ArcGIS REST docs](`r arcurl("cand")`) for more info and valid
+#' values.
 #'
 #' @inheritSection arc_reverse_geo `outsr`
 #'

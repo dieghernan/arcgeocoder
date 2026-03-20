@@ -21,28 +21,26 @@ arc_geo(
 )
 }
 \arguments{
-\item{address}{character with single line address
-(\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses
-(\code{c("Madrid", "Barcelona")}).}
+\item{address}{Single-line address text (e.g.
+\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses (
+\code{c("Madrid", "Barcelona")}).}
 
-\item{lat}{latitude column name in the output data (default  \code{"lat"}).}
+\item{lat}{Latitude column name in the output data (default \code{"lat"}).}
 
-\item{long}{longitude column name in the output data (default  \code{"lon"}).}
+\item{long}{Longitude column name in the output data (default \code{"lon"}).}
 
-\item{limit}{maximum number of results to return per input address. Note
-that each query returns a maximum of 50 results.}
+\item{limit}{Maximum number of results to return per input address. Each
+query has a hard API limit of 50 results.}
 
-\item{full_results}{returns all available data from the API service. This
-is a shorthand of \verb{outFields=*}. See \strong{References}. If \code{FALSE} (default)
-only the default values of the API are returned. See also
-\code{return_addresses} argument.}
+\item{full_results}{Logical; if \code{TRUE} return all available API fields
+via \verb{outFields=*}. Default is \code{FALSE}.}
 
-\item{return_addresses}{return input addresses with results if \code{TRUE}.}
+\item{return_addresses}{Logical; if \code{TRUE} keep input query in output.}
 
-\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{Logical; if \code{TRUE} output process messages to console.}
 
-\item{progressbar}{Logical. If \code{TRUE} displays a progress bar to indicate
-the progress of the function.}
+\item{progressbar}{Logical; if \code{TRUE} shows a progress bar for multiple
+points.}
 
 \item{outsr}{The spatial reference of the \verb{x,y} coordinates returned by a
 geocode request. By default is \code{NULL} (i.e. the argument won't be used in
@@ -51,17 +49,13 @@ the query). See \strong{Details} and \link{arc_spatial_references}.}
 \item{langcode}{Sets the language in which reverse-geocoded addresses are
 returned.}
 
-\item{sourcecountry}{limits the candidates returned to the specified country
-or countries. Acceptable values include the three-character country code.
-You can specify multiple country codes to limit results to more than one
-country.}
+\item{sourcecountry}{Country filter using ISO codes (e.g. \code{"USA"}).
+Multiple values can be specified (comma-separated).}
 
-\item{category}{A place or address type that can be used to filter results.
-Several values can be used as well as a vector (i.e.
-\code{c("Cinema", "Museum")}). See \link{arc_categories} for details.}
+\item{category}{Place or address type used as a filter. Multiple values are
+accepted (e.g. \code{c("Cinema", "Museum")}). See \link{arc_categories}.}
 
-\item{custom_query}{API-specific arguments to be used, passed as a named
-list.}
+\item{custom_query}{Additional API parameters as named list values.}
 }
 \value{
 A \link[tibble:tbl_df-class]{tibble} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
@@ -72,10 +66,11 @@ Geocodes addresses given as character values. This function returns the
 
 This function uses the \code{SingleLine} approach detailed in the
 \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}. For multi-field queries (i.e.
-using specific address arguments) use \code{\link[=arc_geo_multi]{arc_geo_multi()}} function.
+using specific address components), use \code{\link[=arc_geo_multi]{arc_geo_multi()}}.
 }
 \details{
-More info and valid values in the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}.
+See the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs} for more info and valid
+values.
 }
 \section{\code{outsr}}{
 The spatial reference can be specified as either a well-known ID (WKID). If

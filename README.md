@@ -23,7 +23,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-The goal of **arcgeocoder** is to provide a light interface for
+The goal of **arcgeocoder** is to provide a lightweight interface for
 geocoding addresses and reverse geocoding locations through the [ArcGIS
 REST API Geocoding
 Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
@@ -40,16 +40,15 @@ dependencies, such as **curl**. In some situations, **curl** may not be
 available or accessible, so **arcgeocoder** uses base functions to
 overcome this limitation.
 
-The interface of **arcgeocoder** is built with the aim of easing the
-access to all the features provided by the API. The API endpoints used
-by **arcgeocoder** are `findAddressCandidates` and `reverseGeocode`,
-which can be accessed <u>**without**</u> the need for an <u>**API
-key**</u>.
+The interface of **arcgeocoder** is built with the aim of easing access
+to all the features provided by the API. The API endpoints used by
+**arcgeocoder** are `findAddressCandidates` and `reverseGeocode`, which
+can be accessed <u>**without**</u> the need for an <u>**API key**</u>.
 
 ## Recommended packages
 
-There are other packages much more complete and mature than
-**arcgeocoder**, that present similar features:
+There are other packages that are more complete and mature and provide
+similar features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)). Allows to interface with
@@ -57,7 +56,7 @@ There are other packages much more complete and mature than
   geocoding and reverse geocoding.
 - [**nominatimlite**](https://dieghernan.github.io/nominatimlite/)
   ([Hernangómez 2024](#ref-R-nominatimlite)). Similar to **arcgeocoder**
-  but using data from OpenStreetMaps trough the [Nominatim
+  but using data from OpenStreetMaps through the [Nominatim
   API](https://nominatim.org/release-docs/latest/) service.
 
 ## Installation
@@ -174,14 +173,15 @@ reverse <- arc_reverse_geo(
 Table 2: Example: reverse geocoding addresses.
 </p>
 
-It is possible also to search for specific locations within or near a
+It is also possible to search for specific locations within or near a
 reference area or location using [category
 filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
-See more information in the documentation of the data base
+See more information in the documentation of the database
 `arc_categories`.
 
-In the following example we would look for POIs related to food (i.e.
-Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.
+In the following example we look for POIs related to food
+(i.e. Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in
+France.
 
 ``` r
 library(ggplot2) # For plotting

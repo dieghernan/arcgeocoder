@@ -38,30 +38,25 @@ See \strong{Details}.}
 \item{name}{Optionally, a string indicating the name or address of the
 desired results.}
 
-\item{lat}{latitude column name in the output data (default  \code{"lat"}).}
+\item{lat}{Latitude column name in the output data (default \code{"lat"}).}
 
-\item{long}{longitude column name in the output data (default  \code{"lon"}).}
+\item{long}{Longitude column name in the output data (default \code{"lon"}).}
 
-\item{limit}{maximum number of results to return per input address. Note
-that each query returns a maximum of 50 results.}
+\item{limit}{Maximum number of results per query. ArcGIS API limits a single
+request to 50 results.}
 
-\item{full_results}{returns all available data from the API service. This
-is a shorthand of \verb{outFields=*}. See \strong{References}. If \code{FALSE} (default)
-only the default values of the API are returned. See also
-\code{return_addresses} argument.}
+\item{full_results}{Logical; if \code{TRUE} return all available API fields
+via \verb{outFields=*}. Default is \code{FALSE}.}
 
-\item{verbose}{if \code{TRUE} then detailed logs are output to the console.}
+\item{verbose}{Logical; if \code{TRUE} output process messages to console.}
 
-\item{custom_query}{API-specific arguments to be used, passed as a named
-list.}
+\item{custom_query}{Additional API parameters as named list values.}
 
 \item{...}{
   Arguments passed on to \code{\link[=arc_geo]{arc_geo}}
   \describe{
-    \item{\code{sourcecountry}}{limits the candidates returned to the specified country
-or countries. Acceptable values include the three-character country code.
-You can specify multiple country codes to limit results to more than one
-country.}
+    \item{\code{sourcecountry}}{Country filter using ISO codes (e.g. \code{"USA"}).
+Multiple values can be specified (comma-separated).}
     \item{\code{outsr}}{The spatial reference of the \verb{x,y} coordinates returned by a
 geocode request. By default is \code{NULL} (i.e. the argument won't be used in
 the query). See \strong{Details} and \link{arc_spatial_references}.}
@@ -79,23 +74,22 @@ of \code{\link[=arc_geo]{arc_geo()}}, but it is vectorized over \code{category}.
 
 See \link{arc_categories} for a detailed explanation and available values.
 
-\strong{Note that} for obtaining results it is needed:
+\strong{Note:} to obtain results, provide one of the following:
 \itemize{
-\item Either to provide a pair of coordinates (\verb{x,y} arguments) that would be
-used as a reference for geocoding.
-\item Or a viewbox (aka bounding box) on the \code{bbox} argument defining a
-desired extent of the results.
+\item A pair of coordinates (\verb{x,y} arguments) used as a reference for geocoding.
+\item A viewbox (aka bounding box) via the \code{bbox} argument defining a desired
+extent for results.
 }
 
-It is possible to combine the two approaches (i.e. providing \verb{x,y,bbox}
-values) in order to boost the geocoding process. See \strong{Examples}.
+It is possible to combine both approaches (i.e. providing \verb{x,y,bbox} values)
+to improve the geocoding process. See \strong{Examples}.
 }
 \details{
 Bounding boxes can be located using different online tools, as
 \href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
 
 For a full list of valid categories see \link{arc_categories}. This function is
-vectorized over \code{category}, that means that it performs one independent call
+vectorized over \code{category}, which means it performs one independent call
 to \code{\link[=arc_geo]{arc_geo()}} for each \code{category} value.
 
 \code{arc_geo_categories()} also understands a single string of categories

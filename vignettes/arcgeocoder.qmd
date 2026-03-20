@@ -2,7 +2,7 @@
 title: "Get started with arcgeocoder"
 description: Quick examples showing what arcgeocoder can do for you.
 vignette: >
-  %\VignetteIndexEntry{Get started wit arcgeocoder}
+  %\VignetteIndexEntry{Get started with arcgeocoder}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 bibliography: REFERENCES.bib
@@ -45,7 +45,7 @@ that present similar features:
     geocoding.
 -   [**nominatimlite**](https://dieghernan.github.io/nominatimlite/)
     [@R-nominatimlite]. Similar to **arcgeocoder** but using data from
-    OpenStreetMaps trough the [Nominatim
+    OpenStreetMaps through the [Nominatim
     API](https://nominatim.org/release-docs/latest/) service.
 
 ## Usage
@@ -87,7 +87,6 @@ service.
 ::: {#tbl-geo}
 
 
-
 |query                                      | latitude|  longitude|address                                                           | score|          x|        y|       xmin|     ymin|       xmax|     ymax| wkid| latestWkid|
 |:------------------------------------------|--------:|----------:|:-----------------------------------------------------------------|-----:|----------:|--------:|----------:|--------:|----------:|--------:|----:|----------:|
 |1600 Pennsylvania Ave NW, Washington, DC   | 38.89768|  -77.03655|1600 Pennsylvania Ave NW, Washington, District of Columbia, 20500 |   100|  -77.03655| 38.89768|  -77.03755| 38.89668|  -77.03555| 38.89868| 4326|       4326|
@@ -97,7 +96,6 @@ service.
 
 
 Example: geocoding addresses
-
 :::
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
@@ -116,9 +114,7 @@ reverse <- arc_reverse_geo(
 )
 ```
 
-
 ::: {#tbl-reverse}
-
 
 
 |          x|        y|address_found                                                     |
@@ -128,17 +124,17 @@ reverse <- arc_reverse_geo(
 |  -87.63587| 41.87867|The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
 
 
-Example: reverse geocoding addresses.
 
+Example: reverse geocoding addresses.
 :::
 
-It is possible also to search for specific locations within or near a reference
-are or location using [category
+It is also possible to search for specific locations within or near a reference
+area or location using [category
 filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
-See more information in the documentation of the data base `arc_categories`.
+See more information in the documentation of the database `arc_categories`.
 
-In the following example we would look for POIs related with food (i.e.
-Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.
+In the following example we look for POIs related to food (i.e. Restaurants,
+Coffee Shops, Bakeries) near the Eiffel Tower in France.
 
 
 ``` r
@@ -158,12 +154,12 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                         
-#>   <dbl> <dbl> <chr>                                                             
-#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…
+#>     lon   lat LongLabel                                                                    
+#>   <dbl> <dbl> <chr>                                                                        
+#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-de-…
 
 
-# Use lon,lat to boots the search and using category = Food
+# Use lon,lat to boost the search and category = Food
 food_eiffel <- arc_geo_categories(
   "Food",
   x = eiffel_tower$lon,

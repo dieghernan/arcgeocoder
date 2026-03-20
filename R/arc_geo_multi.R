@@ -7,9 +7,9 @@
 #' For geocoding using a single text string use [arc_geo()] function.
 #'
 #' @param address,address2,address3,neighborhood,city,subregion Address
-#'   components  (See **Details**).
-#' @param region,postal,postalext,countrycode More address components, see
-#'    (See **Details**).
+#'   components. See **Details**.
+#' @param region,postal,postalext,countrycode Additional address components.
+#'   See **Details**.
 #' @inheritParams arc_geo
 #'
 #' @references
@@ -23,7 +23,8 @@
 #' prefix `q_`) for better tracking the results.
 #'
 #' @details
-#' More info and valid values in the [ArcGIS REST docs](`r arcurl("cand")`).
+#' See the [ArcGIS REST docs](`r arcurl("cand")`) for more info and valid
+#' values.
 #'
 #' # Address components
 #'
@@ -208,7 +209,7 @@ arc_geo_multi <- function(
   all_res
 }
 
-# Helpef fun
+# Helper function
 input_multi <- function(
   address = NULL,
   address2 = NULL,
@@ -240,7 +241,7 @@ input_multi <- function(
     stop("No address component provided. Must provide at least one value")
   }
   if (length(unique(nolens)) != 1) {
-    stop("When providing several components their lenghts should be the same")
+    stop("When providing several components their lengths should be the same")
   }
 
   the_df <- dplyr::bind_rows(multi_list[names(nolens)])

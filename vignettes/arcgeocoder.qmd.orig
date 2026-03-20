@@ -2,7 +2,7 @@
 title: "Get started with arcgeocoder"
 description: Quick examples showing what arcgeocoder can do for you.
 vignette: >
-  %\VignetteIndexEntry{Get started wit arcgeocoder}
+  %\VignetteIndexEntry{Get started with arcgeocoder}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 bibliography: REFERENCES.bib
@@ -58,7 +58,7 @@ that present similar features:
     geocoding.
 -   [**nominatimlite**](https://dieghernan.github.io/nominatimlite/)
     [@R-nominatimlite]. Similar to **arcgeocoder** but using data from
-    OpenStreetMaps trough the [Nominatim
+    OpenStreetMaps through the [Nominatim
     API](https://nominatim.org/release-docs/latest/) service.
 
 ## Usage
@@ -98,14 +98,12 @@ Only a few fields are returned from the geocoder service in this example, but
 service.
 
 ::: {#tbl-geo}
-
 ```{r}
 #| echo: false
 knitr::kable(lat_longs)
 ```
 
 Example: geocoding addresses
-
 :::
 
 To perform reverse geocoding (obtaining addresses from geographic coordinates),
@@ -123,24 +121,22 @@ reverse <- arc_reverse_geo(
 )
 ```
 
-
 ::: {#tbl-reverse}
-
 ```{r}
 #| echo: false
 knitr::kable(reverse)
 ```
-Example: reverse geocoding addresses.
 
+Example: reverse geocoding addresses.
 :::
 
-It is possible also to search for specific locations within or near a reference
-are or location using [category
+It is also possible to search for specific locations within or near a reference
+area or location using [category
 filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
-See more information in the documentation of the data base `arc_categories`.
+See more information in the documentation of the database `arc_categories`.
 
-In the following example we would look for POIs related with food (i.e.
-Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.
+In the following example we look for POIs related to food (i.e. Restaurants,
+Coffee Shops, Bakeries) near the Eiffel Tower in France.
 
 ```{r}
 #| label: eiffel
@@ -162,7 +158,7 @@ eiffel_tower |>
   select(lon, lat, LongLabel)
 
 
-# Use lon,lat to boots the search and using category = Food
+# Use lon,lat to boost the search and category = Food
 food_eiffel <- arc_geo_categories(
   "Food",
   x = eiffel_tower$lon,
