@@ -21,7 +21,7 @@ the tolerance specified in the *Search Tolerance* column.
 | `StreetInt`                                                  | 10 meters        | Intersections are only returned when `featuretypes = "StreetInt"` is included in the request.                                                             |
 | `StreetAddress` (near), `DistanceMarker`, or `StreetName`    | 3 meters         | Candidates of type `StreetName` are only returned if `featureTypes = "streetName"` is included in the request.                                            |
 | `POI` centroid                                               | 25 meters        | A business or landmark that can be represented by a point.                                                                                                |
-| `Subaddress`                                                 | 10 meters        | `Subaddress` candidates, which can be features such as apartments or floors in a building, maybe not being returned under certain conditions.             |
+| `Subaddress`                                                 | 10 meters        | `Subaddress` candidates, which can be features such as apartments or floors in a building, may not be returned under certain conditions.                  |
 | `PointAddress`                                               | 50 meters        | A `PointAddress` match is not returned if it is on the opposite side of the street as the input location, even if it is within 50 meters of the location. |
 | `StreetAddress` (distant), `DistanceMarker`, or `StreetName` | 100 meters       | Candidates of type `StreetName` are only returned if `featuretypes = "StreetName"` is included in the request.                                            |
 | `POI` area                                                   | within boundary  | A business or landmark that can be represented by an area, such as a large park or university. Not available in all countries.                            |
@@ -49,7 +49,7 @@ for this argument are:
 - `"Postal"`
 - `"Locality"`
 
-As mentioned, is to possible to include several feature types. If more
+As mentioned, it is possible to include several feature types. If more
 than one value is specified for the argument, the values must be
 separated by a comma, with no spaces after the comma.
 
@@ -67,8 +67,8 @@ arc_reverse_geo(..., featuretypes = c("PointAddress", "StreetAddress"))
 
 ## Examples
 
-In the following examples, we would provide different examples for
-better understanding.
+In the following examples, we provide different scenarios for better
+understanding.
 
 ``` r
 library(arcgeocoder)
@@ -152,8 +152,8 @@ api_local |>
 ### Example 4: multiple values
 
 When multiple values are included in the API call, the hierarchy
-explained in [Table 1](#tbl-hier) would still be applied on the
-requested `featuretypes`.
+explained in [Table 1](#tbl-hier) is still applied to the requested
+`featuretypes`.
 
 ``` r
 api_multiple <- arc_reverse_geo(
@@ -219,10 +219,9 @@ npole2 |>
 
 ## Conclusion
 
-The API would return different results for the same `x,y` values
-depending on the value of `featuretypes`. By using `featuretypes = NULL`
-the feature type returned would depend on the hierarchy explained in
-[Table 1](#tbl-hier).
+The API can return different results for the same `x,y` values depending
+on the value of `featuretypes`. When `featuretypes = NULL`, the feature
+type returned depends on the hierarchy shown in [Table 1](#tbl-hier).
 
 Depending on the location, the `featuretypes` filter may not return
 results, hence for general purposes using `featuretypes = NULL` is

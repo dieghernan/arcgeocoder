@@ -3,11 +3,11 @@
 tibble object associated with the query.
 This function uses the SingleLine approach detailed in the
 ArcGIS REST docs. For multi-field queries (i.e.
-using specific address arguments) use arc_geo_multi() function."><meta property="og:description" content="Geocodes addresses given as character values. This function returns the
+using specific address components), use arc_geo_multi()."><meta property="og:description" content="Geocodes addresses given as character values. This function returns the
 tibble object associated with the query.
 This function uses the SingleLine approach detailed in the
 ArcGIS REST docs. For multi-field queries (i.e.
-using specific address arguments) use arc_geo_multi() function."><meta property="og:image" content="https://dieghernan.github.io/arcgeocoder/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@dhernangomez"><meta name="twitter:site" content="@dhernangomez"><meta name="robots" content="noindex"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-BMYBJTKBY0"></script><script>
+using specific address components), use arc_geo_multi()."><meta property="og:image" content="https://dieghernan.github.io/arcgeocoder/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@dhernangomez"><meta name="twitter:site" content="@dhernangomez"><meta name="robots" content="noindex"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-BMYBJTKBY0"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -69,7 +69,7 @@ using specific address arguments) use arc_geo_multi() function."><meta property=
 <a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble</a> object associated with the query.</p>
 <p>This function uses the <code>SingleLine</code> approach detailed in the
 <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm" class="external-link">ArcGIS REST docs</a>. For multi-field queries (i.e.
-using specific address arguments) use <code><a href="arc_geo_multi.html">arc_geo_multi()</a></code> function.</p>
+using specific address components), use <code><a href="arc_geo_multi.html">arc_geo_multi()</a></code>.</p>
     </div>
 
     <div class="section level2">
@@ -96,42 +96,40 @@ using specific address arguments) use <code><a href="arc_geo_multi.html">arc_geo
 
 
 <dl><dt id="arg-address">address<a class="anchor" aria-label="anchor" href="#arg-address"></a></dt>
-<dd><p>character with single line address
-(<code>"1600 Pennsylvania Ave NW, Washington"</code>) or a vector of addresses
-(<code>c("Madrid", "Barcelona")</code>).</p></dd>
+<dd><p>Single-line address text (e.g.
+<code>"1600 Pennsylvania Ave NW, Washington"</code>) or a vector of addresses (
+<code>c("Madrid", "Barcelona")</code>).</p></dd>
 
 
 <dt id="arg-lat">lat<a class="anchor" aria-label="anchor" href="#arg-lat"></a></dt>
-<dd><p>latitude column name in the output data (default  <code>"lat"</code>).</p></dd>
+<dd><p>Latitude column name in the output data (default <code>"lat"</code>).</p></dd>
 
 
 <dt id="arg-long">long<a class="anchor" aria-label="anchor" href="#arg-long"></a></dt>
-<dd><p>longitude column name in the output data (default  <code>"lon"</code>).</p></dd>
+<dd><p>Longitude column name in the output data (default <code>"lon"</code>).</p></dd>
 
 
 <dt id="arg-limit">limit<a class="anchor" aria-label="anchor" href="#arg-limit"></a></dt>
-<dd><p>maximum number of results to return per input address. Note
-that each query returns a maximum of 50 results.</p></dd>
+<dd><p>Maximum number of results to return per input address. Each
+query has a hard API limit of 50 results.</p></dd>
 
 
 <dt id="arg-full-results">full_results<a class="anchor" aria-label="anchor" href="#arg-full-results"></a></dt>
-<dd><p>returns all available data from the API service. This
-is a shorthand of <code>outFields=*</code>. See <strong>References</strong>. If <code>FALSE</code> (default)
-only the default values of the API are returned. See also
-<code>return_addresses</code> argument.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> return all available API fields
+via <code>outFields=*</code>. Default is <code>FALSE</code>.</p></dd>
 
 
 <dt id="arg-return-addresses">return_addresses<a class="anchor" aria-label="anchor" href="#arg-return-addresses"></a></dt>
-<dd><p>return input addresses with results if <code>TRUE</code>.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> keep input query in output.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>if <code>TRUE</code> then detailed logs are output to the console.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> output process messages to console.</p></dd>
 
 
 <dt id="arg-progressbar">progressbar<a class="anchor" aria-label="anchor" href="#arg-progressbar"></a></dt>
-<dd><p>Logical. If <code>TRUE</code> displays a progress bar to indicate
-the progress of the function.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> shows a progress bar for multiple
+points.</p></dd>
 
 
 <dt id="arg-outsr">outsr<a class="anchor" aria-label="anchor" href="#arg-outsr"></a></dt>
@@ -146,21 +144,17 @@ returned.</p></dd>
 
 
 <dt id="arg-sourcecountry">sourcecountry<a class="anchor" aria-label="anchor" href="#arg-sourcecountry"></a></dt>
-<dd><p>limits the candidates returned to the specified country
-or countries. Acceptable values include the three-character country code.
-You can specify multiple country codes to limit results to more than one
-country.</p></dd>
+<dd><p>Country filter using ISO codes (e.g. <code>"USA"</code>).
+Multiple values can be specified (comma-separated).</p></dd>
 
 
 <dt id="arg-category">category<a class="anchor" aria-label="anchor" href="#arg-category"></a></dt>
-<dd><p>A place or address type that can be used to filter results.
-Several values can be used as well as a vector (i.e.
-<code>c("Cinema", "Museum")</code>). See <a href="arc_categories.html">arc_categories</a> for details.</p></dd>
+<dd><p>Place or address type used as a filter. Multiple values are
+accepted (e.g. <code>c("Cinema", "Museum")</code>). See <a href="arc_categories.html">arc_categories</a>.</p></dd>
 
 
 <dt id="arg-custom-query">custom_query<a class="anchor" aria-label="anchor" href="#arg-custom-query"></a></dt>
-<dd><p>API-specific arguments to be used, passed as a named
-list.</p></dd>
+<dd><p>Additional API parameters as named list values.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -169,7 +163,8 @@ list.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>More info and valid values in the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm" class="external-link">ArcGIS REST docs</a>.</p>
+    <p>See the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm" class="external-link">ArcGIS REST docs</a> for more info and valid
+values.</p>
     </div>
     <div class="section level2">
     <h2 id="outsr"><code>outsr</code><a class="anchor" aria-label="anchor" href="#outsr"></a></h2>

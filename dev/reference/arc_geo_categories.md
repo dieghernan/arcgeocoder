@@ -10,16 +10,16 @@ See
 [arc_categories](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_categories.md)
 for a detailed explanation and available values.
 
-**Note that** for obtaining results it is needed:
+**Note:** to obtain results, provide one of the following:
 
-- Either to provide a pair of coordinates (`x,y` arguments) that would
-  be used as a reference for geocoding.
+- A pair of coordinates (`x,y` arguments) used as a reference for
+  geocoding.
 
-- Or a viewbox (aka bounding box) on the `bbox` argument defining a
-  desired extent of the results.
+- A viewbox (aka bounding box) via the `bbox` argument defining a
+  desired extent for results.
 
-It is possible to combine the two approaches (i.e. providing `x,y,bbox`
-values) in order to boost the geocoding process. See **Examples**.
+It is possible to combine both approaches (i.e. providing `x,y,bbox`
+values) to improve the geocoding process. See **Examples**.
 
 ## Usage
 
@@ -70,31 +70,29 @@ arc_geo_categories(
 
 - lat:
 
-  latitude column name in the output data (default `"lat"`).
+  Latitude column name in the output data (default `"lat"`).
 
 - long:
 
-  longitude column name in the output data (default `"lon"`).
+  Longitude column name in the output data (default `"lon"`).
 
 - limit:
 
-  maximum number of results to return per input address. Note that each
-  query returns a maximum of 50 results.
+  Maximum number of results per query. ArcGIS API limits a single
+  request to 50 results.
 
 - full_results:
 
-  returns all available data from the API service. This is a shorthand
-  of `outFields=*`. See **References**. If `FALSE` (default) only the
-  default values of the API are returned. See also `return_addresses`
-  argument.
+  Logical; if `TRUE` return all available API fields via `outFields=*`.
+  Default is `FALSE`.
 
 - verbose:
 
-  if `TRUE` then detailed logs are output to the console.
+  Logical; if `TRUE` output process messages to console.
 
 - custom_query:
 
-  API-specific arguments to be used, passed as a named list.
+  Additional API parameters as named list values.
 
 - ...:
 
@@ -103,10 +101,8 @@ arc_geo_categories(
 
   `sourcecountry`
 
-  :   limits the candidates returned to the specified country or
-      countries. Acceptable values include the three-character country
-      code. You can specify multiple country codes to limit results to
-      more than one country.
+  :   Country filter using ISO codes (e.g. `"USA"`). Multiple values can
+      be specified (comma-separated).
 
   `outsr`
 
@@ -134,8 +130,8 @@ Box Tool](https://boundingbox.klokantech.com/).
 
 For a full list of valid categories see
 [arc_categories](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_categories.md).
-This function is vectorized over `category`, that means that it performs
-one independent call to
+This function is vectorized over `category`, which means it performs one
+independent call to
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo.md)
 for each `category` value.
 

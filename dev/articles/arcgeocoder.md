@@ -33,7 +33,7 @@ There are other packages much more complete and mature than
   geocoding and reverse geocoding.
 - [**nominatimlite**](https://dieghernan.github.io/nominatimlite/)
   ([Hernangómez 2024](#ref-R-nominatimlite)). Similar to **arcgeocoder**
-  but using data from OpenStreetMaps trough the [Nominatim
+  but using data from OpenStreetMaps through the [Nominatim
   API](https://nominatim.org/release-docs/latest/) service.
 
 ## Usage
@@ -106,14 +106,15 @@ reverse <- arc_reverse_geo(
 
 Table 2: Example: reverse geocoding addresses.
 
-It is possible also to search for specific locations within or near a
-reference are or location using [category
+It is also possible to search for specific locations within or near a
+reference area or location using [category
 filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
-See more information in the documentation of the data base
+See more information in the documentation of the database
 `arc_categories`.
 
-In the following example we would look for POIs related with food (i.e.
-Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in France.
+In the following example we look for POIs related to food
+(i.e. Restaurants, Coffee Shops, Bakeries) near the Eiffel Tower in
+France.
 
 ``` r
 library(ggplot2) # For plotting
@@ -132,12 +133,12 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                         
-#>   <dbl> <dbl> <chr>                                                             
-#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…
+#>     lon   lat LongLabel                                                                    
+#>   <dbl> <dbl> <chr>                                                                        
+#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-de-…
 
 
-# Use lon,lat to boots the search and using category = Food
+# Use lon,lat to boost the search and category = Food
 food_eiffel <- arc_geo_categories(
   "Food",
   x = eiffel_tower$lon,

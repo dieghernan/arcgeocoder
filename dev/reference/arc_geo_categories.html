@@ -3,27 +3,25 @@
 of categories) near or within a given location or area. This is a wrapper
 of arc_geo(), but it is vectorized over category.
 See arc_categories for a detailed explanation and available values.
-Note that for obtaining results it is needed:
-Either to provide a pair of coordinates (x,y arguments) that would be
-used as a reference for geocoding.
-Or a viewbox (aka bounding box) on the bbox argument defining a
-desired extent of the results.
+Note: to obtain results, provide one of the following:
+A pair of coordinates (x,y arguments) used as a reference for geocoding.
+A viewbox (aka bounding box) via the bbox argument defining a desired
+extent for results.
 
 
-It is possible to combine the two approaches (i.e. providing x,y,bbox
-values) in order to boost the geocoding process. See Examples."><meta property="og:description" content="This function is useful for extracting places with a given category (or list
+It is possible to combine both approaches (i.e. providing x,y,bbox values)
+to improve the geocoding process. See Examples."><meta property="og:description" content="This function is useful for extracting places with a given category (or list
 of categories) near or within a given location or area. This is a wrapper
 of arc_geo(), but it is vectorized over category.
 See arc_categories for a detailed explanation and available values.
-Note that for obtaining results it is needed:
-Either to provide a pair of coordinates (x,y arguments) that would be
-used as a reference for geocoding.
-Or a viewbox (aka bounding box) on the bbox argument defining a
-desired extent of the results.
+Note: to obtain results, provide one of the following:
+A pair of coordinates (x,y arguments) used as a reference for geocoding.
+A viewbox (aka bounding box) via the bbox argument defining a desired
+extent for results.
 
 
-It is possible to combine the two approaches (i.e. providing x,y,bbox
-values) in order to boost the geocoding process. See Examples."><meta property="og:image" content="https://dieghernan.github.io/arcgeocoder/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@dhernangomez"><meta name="twitter:site" content="@dhernangomez"><meta name="robots" content="noindex"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-BMYBJTKBY0"></script><script>
+It is possible to combine both approaches (i.e. providing x,y,bbox values)
+to improve the geocoding process. See Examples."><meta property="og:image" content="https://dieghernan.github.io/arcgeocoder/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@dhernangomez"><meta name="twitter:site" content="@dhernangomez"><meta name="robots" content="noindex"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-BMYBJTKBY0"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -85,12 +83,11 @@ values) in order to boost the geocoding process. See Examples."><meta property="
 of categories) near or within a given location or area. This is a wrapper
 of <code><a href="arc_geo.html">arc_geo()</a></code>, but it is vectorized over <code>category</code>.</p>
 <p>See <a href="arc_categories.html">arc_categories</a> for a detailed explanation and available values.</p>
-<p><strong>Note that</strong> for obtaining results it is needed:</p><ul><li><p>Either to provide a pair of coordinates (<code>x,y</code> arguments) that would be
-used as a reference for geocoding.</p></li>
-<li><p>Or a viewbox (aka bounding box) on the <code>bbox</code> argument defining a
-desired extent of the results.</p></li>
-</ul><p>It is possible to combine the two approaches (i.e. providing <code>x,y,bbox</code>
-values) in order to boost the geocoding process. See <strong>Examples</strong>.</p>
+<p><strong>Note:</strong> to obtain results, provide one of the following:</p><ul><li><p>A pair of coordinates (<code>x,y</code> arguments) used as a reference for geocoding.</p></li>
+<li><p>A viewbox (aka bounding box) via the <code>bbox</code> argument defining a desired
+extent for results.</p></li>
+</ul><p>It is possible to combine both approaches (i.e. providing <code>x,y,bbox</code> values)
+to improve the geocoding process. See <strong>Examples</strong>.</p>
     </div>
 
     <div class="section level2">
@@ -144,40 +141,35 @@ desired results.</p></dd>
 
 
 <dt id="arg-lat">lat<a class="anchor" aria-label="anchor" href="#arg-lat"></a></dt>
-<dd><p>latitude column name in the output data (default  <code>"lat"</code>).</p></dd>
+<dd><p>Latitude column name in the output data (default <code>"lat"</code>).</p></dd>
 
 
 <dt id="arg-long">long<a class="anchor" aria-label="anchor" href="#arg-long"></a></dt>
-<dd><p>longitude column name in the output data (default  <code>"lon"</code>).</p></dd>
+<dd><p>Longitude column name in the output data (default <code>"lon"</code>).</p></dd>
 
 
 <dt id="arg-limit">limit<a class="anchor" aria-label="anchor" href="#arg-limit"></a></dt>
-<dd><p>maximum number of results to return per input address. Note
-that each query returns a maximum of 50 results.</p></dd>
+<dd><p>Maximum number of results per query. ArcGIS API limits a single
+request to 50 results.</p></dd>
 
 
 <dt id="arg-full-results">full_results<a class="anchor" aria-label="anchor" href="#arg-full-results"></a></dt>
-<dd><p>returns all available data from the API service. This
-is a shorthand of <code>outFields=*</code>. See <strong>References</strong>. If <code>FALSE</code> (default)
-only the default values of the API are returned. See also
-<code>return_addresses</code> argument.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> return all available API fields
+via <code>outFields=*</code>. Default is <code>FALSE</code>.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>if <code>TRUE</code> then detailed logs are output to the console.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> output process messages to console.</p></dd>
 
 
 <dt id="arg-custom-query">custom_query<a class="anchor" aria-label="anchor" href="#arg-custom-query"></a></dt>
-<dd><p>API-specific arguments to be used, passed as a named
-list.</p></dd>
+<dd><p>Additional API parameters as named list values.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Arguments passed on to <code><a href="arc_geo.html">arc_geo</a></code></p><dl><dt><code>sourcecountry</code></dt>
-<dd><p>limits the candidates returned to the specified country
-or countries. Acceptable values include the three-character country code.
-You can specify multiple country codes to limit results to more than one
-country.</p></dd>
+<dd><p>Country filter using ISO codes (e.g. <code>"USA"</code>).
+Multiple values can be specified (comma-separated).</p></dd>
 
     <dt><code>outsr</code></dt>
 <dd><p>The spatial reference of the <code>x,y</code> coordinates returned by a
@@ -201,7 +193,7 @@ returned.</p></dd>
     <p>Bounding boxes can be located using different online tools, as
 <a href="https://boundingbox.klokantech.com/" class="external-link">Bounding Box Tool</a>.</p>
 <p>For a full list of valid categories see <a href="arc_categories.html">arc_categories</a>. This function is
-vectorized over <code>category</code>, that means that it performs one independent call
+vectorized over <code>category</code>, which means it performs one independent call
 to <code><a href="arc_geo.html">arc_geo()</a></code> for each <code>category</code> value.</p>
 <p><code>arc_geo_categories()</code> also understands a single string of categories
 separated by commas (<code>"Cinema,Museum"</code>), that would be internally treated as
