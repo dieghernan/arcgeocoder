@@ -10,7 +10,7 @@ test_that("Errors", {
 
   expect_error(
     arc_geo_multi("a", c("a", "b")),
-    "their lenghts should be the same"
+    "their lengths should be the same"
   )
 
   expect_error(

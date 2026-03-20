@@ -1,4 +1,4 @@
-# arcgeocoder (development version)
+# arcgeocoder 0.4.0
 
 -   Migrate docs to Quarto (#24).
 
