@@ -130,18 +130,18 @@ dplyr::glimpse(sea_2)
 #> Rows: 2
 #> Columns: 15
 #> $ query      <chr> "sea", "sea"
-#> $ lat        <dbl> 40.71816, 48.84329
-#> $ lon        <dbl> -73.959946, -3.001996
+#> $ lat        <dbl> 40.71816, 47.86564
+#> $ lon        <dbl> -73.959946, -4.221409
 #> $ address    <chr> "Sea", "Sea"
 #> $ score      <int> 100, 100
-#> $ x          <dbl> -73.959946, -3.001996
-#> $ y          <dbl> 40.71816, 48.84329
-#> $ LongLabel  <chr> "Sea, 114 N 6th St, Brooklyn, NY, 11249, USA", "Sea, Parc a…
+#> $ x          <dbl> -73.959946, -4.221409
+#> $ y          <dbl> 40.71816, 47.86564
+#> $ LongLabel  <chr> "Sea, 114 N 6th St, Brooklyn, NY, 11249, USA", "Sea, 6 Rue …
 #> $ Type       <chr> "Restaurant", "Restaurant"
-#> $ xmin       <dbl> -73.960946, -3.006996
-#> $ ymin       <dbl> 40.71716, 48.83829
-#> $ xmax       <dbl> -73.958946, -2.996996
-#> $ ymax       <dbl> 40.71916, 48.84829
+#> $ xmin       <dbl> -73.960946, -4.226409
+#> $ ymin       <dbl> 40.71716, 47.86064
+#> $ xmax       <dbl> -73.958946, -4.216409
+#> $ ymax       <dbl> 40.71916, 47.87064
 #> $ wkid       <int> 4326, 4326
 #> $ latestWkid <int> 4326, 4326
 
@@ -153,22 +153,22 @@ sea_3 <- arc_geo("sea",
 )
 
 dplyr::glimpse(sea_3)
-#> Rows: 1
+#> Rows: 5
 #> Columns: 15
-#> $ query      <chr> "sea"
-#> $ lat        <dbl> 54.30124
-#> $ lon        <dbl> -0.409833
-#> $ address    <chr> "Sea Life Scarborough"
-#> $ score      <dbl> 81.67
-#> $ x          <dbl> -0.409833
-#> $ y          <dbl> 54.30124
-#> $ LongLabel  <chr> "Sea Life Scarborough, North Bay Promenade, Scarborough, No…
-#> $ Type       <chr> "Aquarium"
-#> $ xmin       <dbl> -0.414833
-#> $ ymin       <dbl> 54.29624
-#> $ xmax       <dbl> -0.404833
-#> $ ymax       <dbl> 54.30624
-#> $ wkid       <int> 4326
-#> $ latestWkid <int> 4326
+#> $ query      <chr> "sea", "sea", "sea", "sea", "sea"
+#> $ lat        <dbl> 50.81961, 53.81288, 53.46756, 52.93494, 54.30120
+#> $ lon        <dbl> -0.1357540, -3.0548750, -2.3409094, 0.4834270, -0.4097964
+#> $ address    <chr> "Sea Life Brighton", "Sea Life Blackpool", "Sea Life Manche…
+#> $ score      <dbl> 82.00, 81.88, 81.76, 81.76, 81.67
+#> $ x          <dbl> -0.1357540, -3.0548750, -2.3409094, 0.4834270, -0.4097964
+#> $ y          <dbl> 50.81961, 53.81288, 53.46756, 52.93494, 54.30120
+#> $ LongLabel  <chr> "Sea Life Brighton, 1 Marine Parade, Queen's Park, Brighton…
+#> $ Type       <chr> "Aquarium", "Aquarium", "Aquarium", "Aquarium", "Aquarium"
+#> $ xmin       <dbl> -0.1407540, -3.0598750, -2.3459094, 0.4784270, -0.4147964
+#> $ ymin       <dbl> 50.81461, 53.80788, 53.46256, 52.92994, 54.29620
+#> $ xmax       <dbl> -0.1307540, -3.0498750, -2.3359094, 0.4884270, -0.4047964
+#> $ ymax       <dbl> 50.82461, 53.81788, 53.47256, 52.93994, 54.30620
+#> $ wkid       <int> 4326, 4326, 4326, 4326, 4326
+#> $ latestWkid <int> 4326, 4326, 4326, 4326, 4326
 # }
 ```

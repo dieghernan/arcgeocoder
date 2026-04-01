@@ -174,7 +174,7 @@ arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
 #>        x     y address                                                          
 #>    <dbl> <dbl> <chr>                                                            
 #> 1 -74.0   40.8 178-198 W 44th St, New York, NY, 10036, USA                      
-#> 2  -3.19  56.0 Microsoft, 3 Waterloo Place, Canongate, Edinburgh, Midlothian, S…
+#> 2  -3.19  56.0 Thistle & Churn Ice Cream, 1 Waterloo Place, Canongate, Edinburg…
 
 # With options: using some additional arguments
 sev <- arc_reverse_geo(
@@ -211,20 +211,20 @@ dplyr::glimpse(sev)
 #> Columns: 39
 #> $ x            <dbl> -73.985860, -3.188375
 #> $ y            <dbl> 40.75728, 55.95335
-#> $ address      <chr> "W 44th St & Broadway, New York, NY, 10036, USA", "Micros…
-#> $ lat          <dbl> 4976603, 7549135
-#> $ lon          <dbl> -8236060.8, -354915.4
-#> $ Match_addr   <chr> "W 44th St & Broadway, New York, New York, 10036", "Micro…
-#> $ LongLabel    <chr> "W 44th St & Broadway, New York, NY, 10036, USA", "Micros…
-#> $ ShortLabel   <chr> "W 44th St & Broadway", "Microsoft"
+#> $ address      <chr> "W 44th St & Broadway, New York, NY, 10036, USA", "Thistl…
+#> $ lat          <dbl> 4976603, 7549116
+#> $ lon          <dbl> -8236060.8, -354916.9
+#> $ Match_addr   <chr> "W 44th St & Broadway, New York, New York, 10036", "Thist…
+#> $ LongLabel    <chr> "W 44th St & Broadway, New York, NY, 10036, USA", "Thistl…
+#> $ ShortLabel   <chr> "W 44th St & Broadway", "Thistle & Churn Ice Cream"
 #> $ Addr_type    <chr> "StreetInt", "POI"
-#> $ Type         <chr> NA, "Consumer Electronics Store"
-#> $ PlaceName    <chr> NA, "Microsoft"
-#> $ AddNum       <chr> NA, "3"
-#> $ Address      <chr> "W 44th St & Broadway", "3 Waterloo Place"
+#> $ Type         <chr> NA, "Restaurant"
+#> $ PlaceName    <chr> NA, "Thistle & Churn Ice Cream"
+#> $ AddNum       <chr> NA, "1"
+#> $ Address      <chr> "W 44th St & Broadway", "1 Waterloo Place"
 #> $ Block        <chr> NA, NA
 #> $ Sector       <chr> NA, NA
-#> $ Neighborhood <chr> "Midtown", "Canongate"
+#> $ Neighborhood <chr> "Times Square", "Canongate"
 #> $ District     <chr> "Manhattan", NA
 #> $ City         <chr> "New York", "Edinburgh"
 #> $ MetroArea    <chr> NA, "Edinburgh"
@@ -236,8 +236,8 @@ dplyr::glimpse(sev)
 #> $ PostalExt    <chr> "4011", NA
 #> $ CntryName    <chr> "United States", "United Kingdom"
 #> $ CountryCode  <chr> "USA", "GBR"
-#> $ X            <dbl> -73.985793, -3.188259
-#> $ Y            <dbl> 40.75726, 55.95335
+#> $ X            <dbl> -73.985793, -3.188273
+#> $ Y            <dbl> 40.75726, 55.95325
 #> $ InputX       <dbl> -73.985860, -3.188375
 #> $ InputY       <dbl> 40.75728, 55.95335
 #> $ StrucType    <chr> NA, NA
