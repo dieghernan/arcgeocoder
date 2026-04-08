@@ -6,7 +6,7 @@
 \alias{arc_spatial_references}
 \title{ESRI (ArcGIS) Spatial Reference data base}
 \format{
-A \link[tibble:tbl_df-class]{tibble} with
+A \link[tibble:tbl_df]{tibble} with
 9,608 rows
 and fields:
 \describe{
@@ -25,7 +25,7 @@ working with \CRANpkg{sf} or \CRANpkg{terra}}
 \href{https://github.com/Esri/projection-engine-db-doc}{ESRI Projection Engine factory}
 }
 \description{
-Database of available spatial references (CRS) in \link[tibble:tbl_df-class]{tibble}
+Database of available spatial references (CRS) in \link[tibble:tbl_df]{tibble}
 format.
 }
 \details{
@@ -75,7 +75,7 @@ try(sf::st_crs(wkid$wkt))
 \seealso{
 \code{\link[sf:st_crs]{sf::st_crs()}}
 
-Other datasets: 
+Other datasets:
 \code{\link{arc_categories}}
 }
 \concept{datasets}

@@ -58,11 +58,11 @@ accepted (e.g. \code{c("Cinema", "Museum")}). See \link{arc_categories}.}
 \item{custom_query}{Additional API parameters as named list values.}
 }
 \value{
-A \link[tibble:tbl_df-class]{tibble} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
+A \link[tibble:tbl_df]{tibble} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
 }
 \description{
 Geocodes addresses given as character values. This function returns the
-\link[tibble:tbl_df-class]{tibble} object associated with the query.
+\link[tibble:tbl_df]{tibble} object associated with the query.
 
 This function uses the \code{SingleLine} approach detailed in the
 \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}. For multi-field queries (i.e.
@@ -113,8 +113,8 @@ with_params_usa |>
 \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
 
 Other functions for geocoding:
-\code{\link{arc_geo_categories}()},
-\code{\link{arc_geo_multi}()},
-\code{\link{arc_reverse_geo}()}
+\code{\link[=arc_geo_categories]{arc_geo_categories()}},
+\code{\link[=arc_geo_multi]{arc_geo_multi()}},
+\code{\link[=arc_reverse_geo]{arc_reverse_geo()}}
 }
 \concept{geocoding}

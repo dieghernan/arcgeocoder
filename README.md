@@ -247,12 +247,12 @@ food_eiffel_sf <- st_as_sf(
 )
 
 food_eiffel_sf
-#> Simple feature collection with 50 features and 84 fields
+#> Simple feature collection with 50 features and 85 fields
 #> Geometry type: POINT
 #> Dimension:     XY
-#> Bounding box:  xmin: 2.2899 ymin: 48.85509 xmax: 2.299974 ymax: 48.8623
+#> Bounding box:  xmin: 2.2899 ymin: 48.8565 xmax: 2.299326 ymax: 48.86134
 #> Geodetic CRS:  WGS 84
-#> # A tibble: 50 × 85
+#> # A tibble: 50 × 86
 #>    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax
 #>  * <chr>      <dbl> <dbl> <lgl>       <lgl>       <lgl>       <lgl>      
 #>  1 Food        2.29  48.9 NA          NA          NA          NA         
@@ -266,7 +266,7 @@ food_eiffel_sf
 #>  9 Food        2.29  48.9 NA          NA          NA          NA         
 #> 10 Food        2.29  48.9 NA          NA          NA          NA         
 #> # ℹ 40 more rows
-#> # ℹ 78 more variables: address <chr>, score <int>, x <dbl>, y <dbl>,
+#> # ℹ 79 more variables: address <chr>, score <int>, x <dbl>, y <dbl>,
 #> #   Loc_name <chr>, Status <chr>, Score <int>, Match_addr <chr>,
 #> #   LongLabel <chr>, ShortLabel <chr>, Addr_type <chr>, Type <chr>,
 #> #   PlaceName <chr>, Place_addr <chr>, Phone <chr>, URL <chr>, Rank <int>,
@@ -305,8 +305,7 @@ A BibTeX entry for LaTeX users is
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-R-tidygeocoder" class="csl-entry">
 
@@ -320,7 +319,7 @@ Package for Geocoding.” *Journal of Open Source Software* 6 (65): 3544.
 <div id="ref-R-nominatimlite" class="csl-entry">
 
 Hernangómez, Diego. 2024. *<span class="nocase">nominatimlite</span>:
-Interface with Nominatim API Service* (version 0.2.1).
+Interface with Nominatim API Service*. Version 0.2.1.
 <https://doi.org/10.5281/zenodo.5113195>.
 
 </div>

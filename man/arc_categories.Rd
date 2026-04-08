@@ -6,7 +6,7 @@
 \alias{arc_categories}
 \title{ArcGIS REST API category data base}
 \format{
-A \link[tibble:tbl_df-class]{tibble} with
+A \link[tibble:tbl_df]{tibble} with
 383 rows and
 fields:
 \describe{
@@ -21,7 +21,7 @@ fields:
 \description{
 Database of available categories that can be used for filtering results
 provided by \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}} and \code{\link[=arc_geo_categories]{arc_geo_categories()}} in
-\link[tibble:tbl_df-class]{tibble} format.
+\link[tibble:tbl_df]{tibble} format.
 }
 \details{
 See \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering} for details and
@@ -87,7 +87,7 @@ dplyr::glimpse(sea_3)
 \seealso{
 \code{\link[=arc_geo_categories]{arc_geo_categories()}}, \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}}
 
-Other datasets: 
+Other datasets:
 \code{\link{arc_spatial_references}}
 }
 \concept{datasets}

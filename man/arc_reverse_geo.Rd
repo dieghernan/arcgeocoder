@@ -59,7 +59,7 @@ should be the rooftop point or street entrance location. Valid values are
 list.}
 }
 \value{
-A \link[tibble:tbl_df-class]{tibble} with the corresponding results. The \verb{x,y} values
+A \link[tibble:tbl_df]{tibble} with the corresponding results. The \verb{x,y} values
 returned by the API are named \verb{lon,lat}. Note that these coordinates
 correspond to the geocoded feature, and may be different from the \verb{x,y}
 values provided as inputs.
@@ -71,7 +71,7 @@ See the details of the output in
 Generates an address from a latitude and longitude. Latitudes must be
 in the range \eqn{\left[-90, 90 \right]} and longitudes in the range
 \eqn{\left[-180, 180 \right]}. This function returns the
-\link[tibble:tbl_df-class]{tibble} associated with the query.
+\link[tibble:tbl_df]{tibble} associated with the query.
 }
 \details{
 See the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST docs} for more info and valid values.
@@ -137,8 +137,8 @@ dplyr::glimpse(sev)
 \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}
 
 Other functions for geocoding:
-\code{\link{arc_geo}()},
-\code{\link{arc_geo_categories}()},
-\code{\link{arc_geo_multi}()}
+\code{\link[=arc_geo]{arc_geo()}},
+\code{\link[=arc_geo_categories]{arc_geo_categories()}},
+\code{\link[=arc_geo_multi]{arc_geo_multi()}}
 }
 \concept{geocoding}

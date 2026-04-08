@@ -53,7 +53,7 @@ via \verb{outFields=*}. Default is \code{FALSE}.}
 \item{custom_query}{Additional API parameters as named list values.}
 
 \item{...}{
-  Arguments passed on to \code{\link[=arc_geo]{arc_geo}}
+  Arguments passed on to \code{\link{arc_geo}}
   \describe{
     \item{\code{sourcecountry}}{Country filter using ISO codes (e.g. \code{"USA"}).
 Multiple values can be specified (comma-separated).}
@@ -65,7 +65,7 @@ returned.}
   }}
 }
 \value{
-A \link[tibble:tbl_df-class]{tibble} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
+A \link[tibble:tbl_df]{tibble} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
 }
 \description{
 This function is useful for extracting places with a given category (or list
@@ -186,8 +186,8 @@ base_map +
 \link{arc_categories}
 
 Other functions for geocoding:
-\code{\link{arc_geo}()},
-\code{\link{arc_geo_multi}()},
-\code{\link{arc_reverse_geo}()}
+\code{\link[=arc_geo]{arc_geo()}},
+\code{\link[=arc_geo_multi]{arc_geo_multi()}},
+\code{\link[=arc_reverse_geo]{arc_reverse_geo()}}
 }
 \concept{geocoding}
