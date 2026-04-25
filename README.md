@@ -287,7 +287,7 @@ alt="Example: Food places near the Eiffel Tower using the sf package." />
 
 Hernangómez D (2026). <em>arcgeocoder: Geocoding with the ArcGIS REST
 API Service</em>.
-<a href="https://doi.org/10.32614/CRAN.package.arcgeocoder">doi:10.32614/CRAN.package.arcgeocoder</a>,
+<a href="https://doi.org/10.32614/CRAN.package.arcgeocoder">doi:10.32614/CRAN.package.arcgeocoder</a>.
 <a href="https://dieghernan.github.io/arcgeocoder/">https://dieghernan.github.io/arcgeocoder/</a>.
 </p>
 
