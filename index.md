@@ -227,7 +227,7 @@ package.](reference/figures/README-eiffel_sf-1.png)
 
 Hernangómez D (2026). *arcgeocoder: Geocoding with the ArcGIS REST API
 Service*.
-[doi:10.32614/CRAN.package.arcgeocoder](https://doi.org/10.32614/CRAN.package.arcgeocoder),
+[doi:10.32614/CRAN.package.arcgeocoder](https://doi.org/10.32614/CRAN.package.arcgeocoder).
 <https://dieghernan.github.io/arcgeocoder/>.
 
 A BibTeX entry for LaTeX users is
