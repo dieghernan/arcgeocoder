@@ -10,6 +10,7 @@ This widget is browsable and filterable thanks to **crosstalk** and
 **reactable**:
 
 ``` r
+
 # Coffee Shops and Bakeries around the Eiffel Tower
 
 library(arcgeocoder)
@@ -132,6 +133,7 @@ tb <- reactable(cf_bk_data,
 ## Widget
 
 ``` r
+
 # Last step: Display all
 htmltools::browsable(
   htmltools::tagList(lmend, tb)

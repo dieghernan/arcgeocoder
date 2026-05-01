@@ -42,6 +42,7 @@ Install **arcgeocoder** from
 [**CRAN**](https://CRAN.R-project.org/package=arcgeocoder) with:
 
 ``` r
+
 install.packages("arcgeocoder")
 ```
 
@@ -57,6 +58,7 @@ function. Note that **arcgeocoder** works straight away, and you don’t
 need to provide any API key to start geocoding!
 
 ``` r
+
 library(arcgeocoder)
 library(dplyr)
 
@@ -81,11 +83,11 @@ Only a few fields are returned from the geocoder service in this
 example, but `full_results = TRUE` can be used to return all of the data
 from the geocoder service.
 
-| query                                      | latitude |  longitude | address                                                           | score |          x |        y |       xmin |     ymin |       xmax |     ymax | wkid | latestWkid |
-|:-------------------------------------------|---------:|-----------:|:------------------------------------------------------------------|------:|-----------:|---------:|-----------:|---------:|-----------:|---------:|-----:|-----------:|
-| 1600 Pennsylvania Ave NW, Washington, DC   | 38.89768 |  -77.03655 | 1600 Pennsylvania Ave NW, Washington, District of Columbia, 20500 |   100 |  -77.03655 | 38.89768 |  -77.03755 | 38.89668 |  -77.03555 | 38.89868 | 4326 |       4326 |
-| 600 Montgomery St, San Francisco, CA 94111 | 37.79516 | -122.40273 | 600 Montgomery St, San Francisco, California, 94111               |   100 | -122.40273 | 37.79516 | -122.40373 | 37.79416 | -122.40173 | 37.79616 | 4326 |       4326 |
-| 233 S Wacker Dr, Chicago, IL 60606         | 41.87867 |  -87.63587 | 233 S Wacker Dr, Chicago, Illinois, 60606                         |   100 |  -87.63587 | 41.87867 |  -87.63687 | 41.87767 |  -87.63487 | 41.87967 | 4326 |       4326 |
+| query | latitude | longitude | address | score | x | y | xmin | ymin | xmax | ymax | wkid | latestWkid |
+|:---|---:|---:|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1600 Pennsylvania Ave NW, Washington, DC | 38.89768 | -77.03655 | 1600 Pennsylvania Ave NW, Washington, District of Columbia, 20500 | 100 | -77.03655 | 38.89768 | -77.03755 | 38.89668 | -77.03555 | 38.89868 | 4326 | 4326 |
+| 600 Montgomery St, San Francisco, CA 94111 | 37.79516 | -122.40273 | 600 Montgomery St, San Francisco, California, 94111 | 100 | -122.40273 | 37.79516 | -122.40373 | 37.79416 | -122.40173 | 37.79616 | 4326 | 4326 |
+| 233 S Wacker Dr, Chicago, IL 60606 | 41.87867 | -87.63587 | 233 S Wacker Dr, Chicago, Illinois, 60606 | 100 | -87.63587 | 41.87867 | -87.63687 | 41.87767 | -87.63487 | 41.87967 | 4326 | 4326 |
 
 Table 1: Example: geocoding addresses.
 
@@ -99,6 +101,7 @@ arguments. The dataset used here is from the geocoder query above. The
 single line address is returned in a column named by the `address`.
 
 ``` r
+
 reverse <- arc_reverse_geo(
   x = lat_longs$longitude,
   y = lat_longs$latitude,
@@ -107,11 +110,11 @@ reverse <- arc_reverse_geo(
 )
 ```
 
-|          x |        y | address_found                                                     |
-|-----------:|---------:|:------------------------------------------------------------------|
-|  -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA |
-| -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA  |
-|  -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
+| x | y | address_found |
+|---:|---:|:---|
+| -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA |
+| -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA |
+| -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
 
 Table 2: Example: reverse geocoding addresses.
 
@@ -126,6 +129,7 @@ In the following example we look for POIs related to food
 France.
 
 ``` r
+
 library(ggplot2) # For plotting
 
 # Step 1: Locate Eiffel Tower, using multifield query
@@ -179,6 +183,7 @@ It is straightforward to convert the results of **arcgeocoder** to an
 **sf** object (geospatial format):
 
 ``` r
+
 library(sf)
 
 food_eiffel_sf <- st_as_sf(

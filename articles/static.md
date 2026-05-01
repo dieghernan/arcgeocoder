@@ -7,6 +7,7 @@ map with data retrieved with **arcgeocoder** and converted to an **sf**
 object:
 
 ``` r
+
 library(arcgeocoder)
 library(dplyr)
 library(sf) # spatial objects
@@ -47,6 +48,7 @@ A map showing the location of McDonald’s restaurants around Barcelona,
 Spain
 
 ``` r
+
 # We can restrict the results to the bbox of BCN in the query
 bbox <- st_bbox(bcn) |> paste0(collapse = ",")
 bbox
@@ -83,6 +85,7 @@ for plotting. The tiles themselves are represented here as **terra**
 objects:
 
 ``` r
+
 library(maptiles)
 library(tidyterra)
 
