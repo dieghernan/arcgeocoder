@@ -31,12 +31,12 @@ VignetteBuilder:
 Config/Needs/website: dieghernan/gitdevr, lwgeom, leaflet, terra,
     tidyterra, maptiles, styler, mapSpain, remotes, reactable, crosstalk,
     sessioninfo
-Config/roxygen2/version: 7.3.3.9000
+Config/roxygen2/markdown: TRUE
+Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 LazyData: true
-Roxygen: list(markdown = TRUE)
 X-schema.org-applicationCategory: cartography
 X-schema.org-keywords: r, geocoding, arcgis, address, reverse-geocoding,
     rstats, r-package, api-wrapper, api-rest, arcgis-api, cran-r, gis,
