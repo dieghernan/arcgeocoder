@@ -109,14 +109,14 @@ tb <- reactable(cf_bk_data,
     ),
     URL = colDef(cell = function(value) {
       # Render as a link
-      if (is.null(value) | is.na(value)) {
+      if (any(is.null(value), is.na(value))) {
         return("")
       }
       htmltools::a(href = value, target = "_blank", as.character(value))
     }),
     Phone = colDef(cell = function(value) {
       # Render as a link
-      if (is.null(value) | is.na(value)) {
+      if (any(is.null(value), is.na(value))) {
         return("")
       }
       clearphone <- gsub("-", "", value)
