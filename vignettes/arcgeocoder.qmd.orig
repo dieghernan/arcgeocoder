@@ -52,14 +52,14 @@ the need for an API key.
 There are other packages much more complete and mature than `nominatimlite`,
 that present similar features:
 
--   [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
-    [@R-tidygeocoder]. Allows to interface with ArcGIS, Nominatim
-    (OpenStreetMaps), Google, TomTom, Mapbox, etc. for geocoding and reverse
-    geocoding.
--   [**nominatimlite**](https://dieghernan.github.io/nominatimlite/)
-    [@R-nominatimlite]. Similar to **arcgeocoder** but using data from
-    OpenStreetMaps through the [Nominatim
-    API](https://nominatim.org/release-docs/latest/) service.
+- [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
+  [@R-tidygeocoder]. Allows to interface with ArcGIS, Nominatim
+  (OpenStreetMaps), Google, TomTom, Mapbox, etc. for geocoding and reverse
+  geocoding.
+- [**nominatimlite**](https://dieghernan.github.io/nominatimlite/)
+  [@R-nominatimlite]. Similar to **arcgeocoder** but using data from
+  OpenStreetMaps through the [Nominatim
+  API](https://nominatim.org/release-docs/latest/) service.
 
 ## Usage
 

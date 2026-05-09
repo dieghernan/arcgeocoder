@@ -7,20 +7,11 @@ test_that("Errors", {
     arc_geo_categories("Food"),
     "valid combination of x,y arguments or a valid bbox"
   )
-  expect_error(
-    arc_geo_categories("Food", "a", "a"),
-    "must be numeric"
-  )
-  expect_error(
-    arc_geo_categories("Food", 0, 0, address = "Error")
-  )
+  expect_error(arc_geo_categories("Food", "a", "a"), "must be numeric")
+  expect_error(arc_geo_categories("Food", 0, 0, address = "Error"))
 
-  expect_error(
-    arc_geo_categories("Food", 0, 0, progressbar = TRUE)
-  )
-  expect_error(
-    arc_geo_categories("Food", 0, 0, return_addresses = TRUE)
-  )
+  expect_error(arc_geo_categories("Food", 0, 0, progressbar = TRUE))
+  expect_error(arc_geo_categories("Food", 0, 0, return_addresses = TRUE))
 })
 
 test_that("Messages", {
@@ -33,11 +24,7 @@ test_that("Messages", {
     "longitudes have been restricted"
   )
   expect_message(
-    out <- arc_geo_categories(
-      "Address,Postal,Coordinate System,POI",
-      0,
-      200
-    ),
+    out <- arc_geo_categories("Address,Postal,Coordinate System,POI", 0, 200),
     "latitudes have been restricted"
   )
 
@@ -149,9 +136,7 @@ test_that("Test with all params", {
       verbose = TRUE,
       outsr = 102100,
       langcode = "ES",
-      custom_query = list(
-        outFields = "LongLabel"
-      )
+      custom_query = list(outFields = "LongLabel")
     )
   )
 
@@ -174,9 +159,7 @@ test_that("Test with all params", {
     sourcecountry = "ES",
     outsr = 102100,
     langcode = "ES",
-    custom_query = list(
-      outFields = "LongLabel"
-    )
+    custom_query = list(outFields = "LongLabel")
   )
 
   expect_true("bbbb" %in% names(out2))

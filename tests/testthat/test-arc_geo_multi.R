@@ -3,20 +3,14 @@ test_that("Errors", {
   skip_if_api_server()
   skip_if_offline()
 
-  expect_error(
-    arc_geo_multi(),
-    "No address component provided"
-  )
+  expect_error(arc_geo_multi(), "No address component provided")
 
   expect_error(
     arc_geo_multi("a", c("a", "b")),
     "their lengths should be the same"
   )
 
-  expect_error(
-    arc_geo_multi(NA),
-    "No address component provided"
-  )
+  expect_error(arc_geo_multi(NA), "No address component provided")
 
   expect_s3_class(
     out <- arc_geo_multi(
@@ -34,9 +28,7 @@ test_that("Messages", {
   skip_if_api_server()
   skip_if_offline()
 
-  expect_snapshot(
-    out <- arc_geo_multi("Madrid", limit = 200)
-  )
+  expect_snapshot(out <- arc_geo_multi("Madrid", limit = 200))
 
   expect_snapshot(
     out <- arc_geo_multi(
@@ -74,14 +66,7 @@ test_that("Checking query", {
   )
   expect_identical(
     names(obj),
-    c(
-      "q_address",
-      "q_city",
-      "q_countrycode",
-      "query",
-      "at",
-      "ong"
-    )
+    c("q_address", "q_city", "q_countrycode", "query", "at", "ong")
   )
 
   obj1 <- arc_geo_multi(
@@ -125,13 +110,7 @@ test_that("Checking query", {
 
   expect_identical(
     names(obj)[1:5],
-    c(
-      "q_address",
-      "query",
-      "at",
-      "ong",
-      "address"
-    )
+    c("q_address", "query", "at", "ong", "address")
   )
   expect_gt(ncol(obj), 4)
 
@@ -184,13 +163,7 @@ test_that("Dedupe", {
   expect_equal(nrow(dup), 100)
   expect_equal(
     as.character(dup$query),
-    rep(
-      c(
-        "address=Pentagon",
-        "address=Barcelona"
-      ),
-      50
-    )
+    rep(c("address=Pentagon", "address=Barcelona"), 50)
   )
 
   # Check deduping
@@ -199,13 +172,7 @@ test_that("Dedupe", {
   expect_equal(nrow(dedup), 2)
   expect_equal(
     as.character(dedup$query),
-    rep(
-      c(
-        "address=Pentagon",
-        "address=Barcelona"
-      ),
-      1
-    )
+    rep(c("address=Pentagon", "address=Barcelona"), 1)
   )
 })
 

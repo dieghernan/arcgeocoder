@@ -122,14 +122,14 @@ tb <- reactable(cf_bk_data,
     ),
     URL = colDef(cell = function(value) {
       # Render as a link
-      if (is.null(value) | is.na(value)) {
+      if (any(is.null(value), is.na(value))) {
         return("")
       }
       htmltools::a(href = value, target = "_blank", as.character(value))
     }),
     Phone = colDef(cell = function(value) {
       # Render as a link
-      if (is.null(value) | is.na(value)) {
+      if (any(is.null(value), is.na(value))) {
         return("")
       }
       clearphone <- gsub("-", "", value)
@@ -155,9 +155,9 @@ htmltools::browsable(
 
 ## Attributions
 
--   [Eiffel tower icons created by Freepik -
-    Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
--   [Mug icons created by Freepik -
-    Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
--   [Croissant icons created by Freepik -
-    Flaticon](https://www.flaticon.com/free-icons/croissant "croissant icons")
+- [Eiffel tower icons created by Freepik -
+  Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
+- [Mug icons created by Freepik -
+  Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
+- [Croissant icons created by Freepik -
+  Flaticon](https://www.flaticon.com/free-icons/croissant "croissant icons")

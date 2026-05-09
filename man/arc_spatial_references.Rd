@@ -48,7 +48,7 @@ arc_spatial_references
 # Request with deprecated Web Mercator
 library(dplyr)
 wkid <- arc_spatial_references |>
-  filter(latestWkid == 3857 & deprecated == TRUE) |>
+  filter(latestWkid == 3857 & deprecated) |>
   slice(1)
 
 glimpse(wkid)

@@ -39,9 +39,7 @@ test_that("Messages", {
   skip_if_api_server()
   skip_if_offline()
 
-  expect_snapshot(
-    out <- arc_geo("Madrid", limit = 200)
-  )
+  expect_snapshot(out <- arc_geo("Madrid", limit = 200))
 
   expect_snapshot(out <- arc_geo("Madrid", verbose = TRUE))
 })

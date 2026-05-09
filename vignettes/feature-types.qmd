@@ -29,7 +29,7 @@ the *Search Tolerance* column.
 
 ::: {#tbl-hier}
 | Feature type | Search tolerance | Comments |
-|---------------------------|---------------------------|---------------------------|
+|----|----|----|
 | `StreetInt` | 10 meters | Intersections are only returned when `featuretypes = "StreetInt"` is included in the request. |
 | `StreetAddress` (near), `DistanceMarker`, or `StreetName` | 3 meters | Candidates of type `StreetName` are only returned if `featureTypes = "streetName"` is included in the request. |
 | `POI` centroid | 25 meters | A business or landmark that can be represented by a point. |
@@ -50,15 +50,15 @@ case, the hierarchy presented in the previous table would apply.
 It is possible to narrow down the output of the query to a specific feature type
 or a list of feature types. The possible values supported for this argument are:
 
--   `"StreetInt"`
--   `"DistanceMarker"`
--   `"StreetAddress"`
--   `"StreetName"`
--   `"POI"`
--   `"Subaddress"`
--   `"PointAddress"`
--   `"Postal"`
--   `"Locality"`
+- `"StreetInt"`
+- `"DistanceMarker"`
+- `"StreetAddress"`
+- `"StreetName"`
+- `"POI"`
+- `"Subaddress"`
+- `"PointAddress"`
+- `"Postal"`
+- `"Locality"`
 
 As mentioned, it is possible to include several feature types. If more than one
 value is specified for the argument, the values must be separated by a comma,

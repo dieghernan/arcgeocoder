@@ -88,16 +88,15 @@ arc_api_call <- function(url, destfile, quiet) {
 
   url <- URLencode(url)
   # nocov start
-  dwn_res <-
-    tryCatch(
-      download.file(url, destfile = destfile, quiet = TRUE, mode = "wb"),
-      warning = function(e) {
-        FALSE
-      },
-      error = function(e) {
-        FALSE
-      }
-    )
+  dwn_res <- tryCatch(
+    download.file(url, destfile = destfile, quiet = TRUE, mode = "wb"),
+    warning = function(e) {
+      FALSE
+    },
+    error = function(e) {
+      FALSE
+    }
+  )
   # nocov end
 
   # nocov start
@@ -107,16 +106,15 @@ arc_api_call <- function(url, destfile, quiet) {
     }
     Sys.sleep(1)
 
-    dwn_res <-
-      tryCatch(
-        download.file(url, destfile = destfile, quiet = TRUE, mode = "wb"),
-        warning = function(e) {
-          FALSE
-        },
-        error = function(e) {
-          FALSE
-        }
-      )
+    dwn_res <- tryCatch(
+      download.file(url, destfile = destfile, quiet = TRUE, mode = "wb"),
+      warning = function(e) {
+        FALSE
+      },
+      error = function(e) {
+        FALSE
+      }
+    )
   }
 
   if (isFALSE(dwn_res)) {

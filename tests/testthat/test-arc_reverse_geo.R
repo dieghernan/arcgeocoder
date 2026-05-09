@@ -7,10 +7,7 @@ test_that("Errors", {
     arc_reverse_geo(0, c(2, 3)),
     "x and y should have the same number"
   )
-  expect_error(
-    arc_reverse_geo("a", "a"),
-    "must be numeric"
-  )
+  expect_error(arc_reverse_geo("a", "a"), "must be numeric")
 })
 
 test_that("Messages", {
