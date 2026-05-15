@@ -67,6 +67,7 @@
 #' @inheritSection arc_reverse_geo `outsr`
 #'
 #' @export
+#' @encoding UTF-8
 #'
 #' @seealso [tidygeocoder::geo()]
 #' @family geocoding

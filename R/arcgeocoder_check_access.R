@@ -14,6 +14,7 @@
 #' }
 #' @keywords internal
 #' @export
+#' @encoding UTF-8
 arcgeocoder_check_access <- function() {
   api <- paste0(
     "https://geocode.arcgis.com/arcgis/rest/services/",

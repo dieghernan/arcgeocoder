@@ -64,6 +64,7 @@
 #'   select(lat, lon, CntryName, LongLabel)
 #' }
 #' @export
+#' @encoding UTF-8
 #'
 #' @seealso [tidygeocoder::geo()]
 #' @family geocoding

@@ -102,6 +102,7 @@
 #' }
 #'
 #' @export
+#' @encoding UTF-8
 #'
 #' @family geocoding
 #' @seealso [tidygeocoder::reverse_geo()]

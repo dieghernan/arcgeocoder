@@ -60,6 +60,7 @@
 #' ```
 #'
 #' @export
+#' @encoding UTF-8
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
 #' # Full workflow: gas stations near Carabanchel, Madrid.
