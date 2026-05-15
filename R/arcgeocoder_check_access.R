@@ -3,10 +3,10 @@
 #' @family api_management
 #'
 #' @description
-#' Check if **R** has access to resources at ArcGIS REST API
+#' Check whether **R** has access to resources at the ArcGIS REST API
 #' <`r arcurl("over")`>.
 #'
-#' @return a logical.
+#' @return A logical value.
 #'
 #' @examples
 #' \donttest{
@@ -20,7 +20,7 @@ arcgeocoder_check_access <- function() {
     "World/GeocodeServer/reverseGeocode?"
   )
 
-  # Compose url
+  # Compose URL.
   url <- paste0(api, "location=0,0&f=json")
   destfile <- tempfile(fileext = ".json")
 
@@ -56,12 +56,11 @@ skip_if_api_server <- function() {
   # nocov end
 }
 
-
-#' Helper function for centralize API queries
+#' Helper function to centralize API queries
 #'
 #' @description
-#' A wrapper of [utils::download.file()]. On warning on error it will
-#' retry the call.
+#' A wrapper of [utils::download.file()]. On warning or error, it retries the
+#' call.
 #'
 #' @family api_management
 #'

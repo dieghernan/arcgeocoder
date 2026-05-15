@@ -4,7 +4,7 @@
       out <- arc_geo("Madrid", limit = 200)
     Message
       
-      ArcGIS REST API provides 50 results as a maximum.  Your query may be incomplete
+      The ArcGIS REST API provides a maximum of 50 results.  Your query may be incomplete.
 
 ---
 

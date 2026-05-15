@@ -1,10 +1,10 @@
 # arcgeocoder 0.4.0
 
-- Migrate docs to Quarto (#24).
+- Migrated documentation to Quarto (#24).
 
 # arcgeocoder 0.3.0
 
-- Minimum **R** version now is `4.1.0`.
+- The minimum **R** version is now `4.1.0`.
 
 # arcgeocoder 0.2.1
 
@@ -12,17 +12,17 @@
 
 # arcgeocoder 0.2.0
 
-- `arc_geo_categories()` is now vectorized on `category` argument.
+- `arc_geo_categories()` is now vectorized over the `category` argument.
 - Fixed typos in documentation.
-- A vector can now be used on each named element of `custom_query`.
+- A vector can now be used in each named element of `custom_query`.
 - Added **ggplot2** and **sf** to Suggests.
 
 # arcgeocoder 0.1.0
 
-- First **CRAN** release 🚀.
+- First **CRAN** release.
 - Added articles to the **pkgdown** site and included icons for examples.
 - Status changed to active.
-- Added a new database `?arc_spatial_references`.
+- Added the `?arc_spatial_references` data object.
 
 # arcgeocoder 0.0.1
 

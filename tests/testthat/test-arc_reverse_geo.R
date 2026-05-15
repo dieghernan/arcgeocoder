@@ -5,7 +5,7 @@ test_that("Errors", {
 
   expect_error(
     arc_reverse_geo(0, c(2, 3)),
-    "x and y should have the same number"
+    "x and y must have the same number"
   )
   expect_error(arc_reverse_geo("a", "a"), "must be numeric")
 })
@@ -17,11 +17,11 @@ test_that("Messages", {
 
   expect_message(
     out <- arc_reverse_geo(200, 0),
-    "longitudes have been restricted"
+    "Longitudes have been restricted"
   )
   expect_message(
     out <- arc_reverse_geo(0, 200),
-    "latitudes have been restricted"
+    "Latitudes have been restricted"
   )
 
   expect_snapshot(out <- arc_reverse_geo(0, 90, verbose = TRUE))

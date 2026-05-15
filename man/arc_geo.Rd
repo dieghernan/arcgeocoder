@@ -22,8 +22,8 @@ arc_geo(
 }
 \arguments{
 \item{address}{Single-line address text (e.g.
-\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses (
-\code{c("Madrid", "Barcelona")}).}
+\code{"1600 Pennsylvania Ave NW, Washington"}) or a vector of addresses
+(e.g. \code{c("Madrid", "Barcelona")}).}
 
 \item{lat}{Latitude column name in the output data (default \code{"lat"}).}
 
@@ -32,19 +32,19 @@ arc_geo(
 \item{limit}{Maximum number of results to return per input address. Each
 query has a hard API limit of 50 results.}
 
-\item{full_results}{Logical; if \code{TRUE} return all available API fields
+\item{full_results}{Logical. If \code{TRUE}, return all available API fields
 via \verb{outFields=*}. Default is \code{FALSE}.}
 
-\item{return_addresses}{Logical; if \code{TRUE} keep input query in output.}
+\item{return_addresses}{Logical. If \code{TRUE}, keep input query in output.}
 
-\item{verbose}{Logical; if \code{TRUE} output process messages to console.}
+\item{verbose}{Logical. If \code{TRUE}, output process messages to the console.}
 
-\item{progressbar}{Logical; if \code{TRUE} shows a progress bar for multiple
+\item{progressbar}{Logical. If \code{TRUE}, show a progress bar for multiple
 points.}
 
-\item{outsr}{The spatial reference of the \verb{x,y} coordinates returned by a
-geocode request. By default is \code{NULL} (i.e. the argument won't be used in
-the query). See \strong{Details} and \link{arc_spatial_references}.}
+\item{outsr}{The spatial reference of the \code{x} and \code{y} coordinates returned
+by a geocode request. By default, it is \code{NULL} (i.e. the argument will not
+be used in the query). See \strong{Details} and \link{arc_spatial_references}.}
 
 \item{langcode}{Sets the language in which reverse-geocoded addresses are
 returned.}
@@ -58,7 +58,7 @@ accepted (e.g. \code{c("Cinema", "Museum")}). See \link{arc_categories}.}
 \item{custom_query}{Additional API parameters as named list values.}
 }
 \value{
-A \link[tibble:tbl_df]{tibble} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
+A \link[tibble:tbl_df]{tibble} object with the results. See output details in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 }
 \description{
 Geocodes addresses given as character values. This function returns the
@@ -69,13 +69,13 @@ This function uses the \code{SingleLine} approach detailed in the
 using specific address components), use \code{\link[=arc_geo_multi]{arc_geo_multi()}}.
 }
 \details{
-See the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs} for more info and valid
-values.
+See the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs} for more information and
+valid values.
 }
 \section{\code{outsr}}{
-The spatial reference can be specified as either a well-known ID (WKID). If
-not specified, the spatial reference of the output locations is the same as
-that of the service (WGS84, i.e. WKID = 4326)).
+The spatial reference can be specified as a well-known ID (WKID). If not
+specified, the spatial reference of the output locations is the same as that
+of the service (WGS84, i.e. WKID = 4326).
 
 See \link{arc_spatial_references} for values and examples.
 }
@@ -87,7 +87,7 @@ arc_geo("Madrid, Spain")
 
 library(dplyr)
 
-# Several addresses with additional output fields
+# Several addresses with additional output fields.
 with_params <- arc_geo(c("Madrid", "Barcelona"),
   custom_query = list(outFields = c("LongLabel", "CntryName"))
 )
@@ -95,7 +95,7 @@ with_params <- arc_geo(c("Madrid", "Barcelona"),
 with_params |>
   select(lat, lon, CntryName, LongLabel)
 
-# With options: restrict search to USA
+# With options: restrict search to the USA.
 with_params_usa <- arc_geo(c("Madrid", "Barcelona"),
   sourcecountry = "USA",
   custom_query = list(outFields = c("LongLabel", "CntryName"))

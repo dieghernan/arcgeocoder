@@ -7,7 +7,7 @@ test_that("Errors", {
 
   expect_error(
     arc_geo_multi("a", c("a", "b")),
-    "their lengths should be the same"
+    "their lengths must be the same"
   )
 
   expect_error(arc_geo_multi(NA), "No address component provided")

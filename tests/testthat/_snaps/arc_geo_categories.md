@@ -19,7 +19,7 @@
       out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, bbox = "uno",
         verbose = TRUE)
     Message
-      `bbox` with less than 4 values. `bbox` argument won't be used
+      `bbox` has fewer than 4 values. The `bbox` argument will not be used
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -36,7 +36,7 @@
       out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, bbox = c("uno", NA),
       verbose = TRUE)
     Message
-      `bbox` with NA values. `bbox` argument won't be used
+      `bbox` has NA values. The `bbox` argument will not be used
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -53,7 +53,7 @@
       out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, bbox = LETTERS[1:4],
       verbose = TRUE)
     Message
-      `bbox` not numeric. `bbox` argument won't be used
+      `bbox` is not numeric. The `bbox` argument will not be used
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -71,7 +71,7 @@
         200, 89), verbose = TRUE)
     Message
       
-      bbox xmin,xmax have been restricted to [-180, 180]
+      `bbox` xmin and xmax have been restricted to [-180, 180]
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -90,7 +90,7 @@
         200, 89), verbose = TRUE)
     Message
       
-      bbox xmin,xmax have been restricted to [-180, 180]
+      `bbox` xmin and xmax have been restricted to [-180, 180]
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -109,7 +109,7 @@
         100, 95), verbose = TRUE)
     Message
       
-      bbox ymin,ymax have been restricted to [-90, 90]
+      `bbox` ymin and ymax have been restricted to [-90, 90]
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:

@@ -1,10 +1,10 @@
-#' Geocoding using the ArcGIS REST API with multi-field query
+#' Geocoding using the ArcGIS REST API with a multi-field query
 #'
 #' @description
 #' Geocodes addresses given specific address components. This function returns
 #' the [tibble][tibble::tbl_df] associated with the query.
 #'
-#' For geocoding using a single text string use [arc_geo()] function.
+#' For geocoding with a single text string, use [arc_geo()].
 #'
 #' @param address,address2,address3,neighborhood,city,subregion Address
 #'   components. See **Details**.
@@ -19,51 +19,50 @@
 #' ```{r child = "man/chunks/out1.Rmd"}
 #' ```
 #'
-#' The resulting output will include also the input arguments (columns with
-#' prefix `q_`) for better tracking the results.
+#' The resulting output will also include the input arguments (columns with
+#' prefix `q_`) to better track the results.
 #'
 #' @details
-#' See the [ArcGIS REST docs](`r arcurl("cand")`) for more info and valid
-#' values.
+#' See the [ArcGIS REST docs](`r arcurl("cand")`) for more information and
+#' valid values.
 #'
 #' # Address components
 #'
 #' This function allows performing structured queries by different components of
-#' an address. At least one field should be different than `NA` or `NULL`.
+#' an address. At least one field should be different from `NA` or `NULL`.
 #'
 #' A vector of values can be provided for each argument for multiple geocoding.
-#' When using vectors on different arguments, their lengths should be the
-#' same.
+#' When using vectors on different arguments, their lengths must be the same.
 #'
 #' The following list provides a brief description of each argument:
 #'
 #' - `address`: A string that represents the first line of a street address. In
-#'    most cases it will be the **street name and house number** input, but it
-#'    can also be used to input building name or place-name.
+#'   most cases, it is the **street name and house number** input, but it can
+#'   also be used to input a building name or place-name.
 #' - `address2`: A string that represents the second line of a street address.
-#'   This can include **street name/house number, building name, place-name, or
-#'   sub unit**.
+#'   This can include **street name/house number, building name, place-name or
+#'   subunit**.
 #' - `address3`: A string that represents the third line of a street address.
-#'   This can include **street name/house number, building name, place-name, or
-#'   sub unit**.
+#'   This can include **street name/house number, building name, place-name or
+#'   subunit**.
 #' - `neighborhood`: The smallest administrative division associated with an
-#'   address, typically, a **neighborhood** or a section of a larger populated
+#'   address, typically a **neighborhood** or a section of a larger populated
 #'   place.
 #' - `city`: The next largest administrative division associated with an
-#'   address, typically, a **city or municipality**.
-#'  - `subregion`: The next largest administrative division associated with an
-#'   address. Depending on the country, a sub region can represent a
-#'  **county, state, or province**.
-#'  - `region`: The largest administrative division associated with an address,
-#'    typically, a **state or province**.
-#' - `postal`: The **standard postal code** for an address, typically, a
-#'    three– to six-digit alphanumeric code.
+#'   address, typically a **city or municipality**.
+#' - `subregion`: The next largest administrative division associated with an
+#'   address. Depending on the country, a subregion can represent a
+#'   **county, state or province**.
+#' - `region`: The largest administrative division associated with an address,
+#'   typically a **state or province**.
+#' - `postal`: The **standard postal code** for an address, typically a
+#'   three– to six-digit alphanumeric code.
 #' - `postalext`: A **postal code extension**, such as the United States Postal
-#'    Service ZIP+4 code.
-#'  - `countrycode`: A value representing the **country**. Providing this value
-#'    **increases geocoding speed**. Acceptable values include the full country
-#'    name in English or the official language of the country, the two-character
-#'    country code, or the three-character country code.
+#'   Service ZIP+4 code.
+#' - `countrycode`: A value representing the **country**. Providing this value
+#'   **increases geocoding speed**. Acceptable values include the full country
+#'   name in English or the official language of the country, the two-character
+#'   country code or the three-character country code.
 #'
 #' @inheritSection arc_reverse_geo `outsr`
 #'
@@ -85,7 +84,7 @@
 #'   select(lat, lon, CntryName, Region, LongLabel) |>
 #'   slice_head(n = 10)
 #'
-#' # Restrict search to Spain
+#' # Restrict search to Spain.
 #' simple2 <- arc_geo_multi(
 #'   address = "Plaza Mayor", countrycode = "ESP",
 #'   limit = 10,
@@ -96,7 +95,7 @@
 #'   select(lat, lon, CntryName, Region, LongLabel) |>
 #'   slice_head(n = 10)
 #'
-#' # Restrict to a region
+#' # Restrict to a region.
 #' simple3 <- arc_geo_multi(
 #'   address = "Plaza Mayor", region = "Segovia",
 #'   countrycode = "ESP",
@@ -131,7 +130,7 @@ arc_geo_multi <- function(
   category = NULL,
   custom_query = list()
 ) {
-  # Treat input multi
+  # Prepare multi-field input.
   init_df <- input_multi(
     address,
     address2,
@@ -147,33 +146,33 @@ arc_geo_multi <- function(
 
   if (limit > 50) {
     message(paste(
-      "\nArcGIS REST API provides 50 results as a maximum. ",
-      "Your query may be incomplete"
+      "\nThe ArcGIS REST API provides a maximum of 50 results. ",
+      "Your query may be incomplete."
     ))
     limit <- min(50, limit)
   }
 
-  # Dedupe for query
+  # Deduplicate queries.
   init_key <- init_df
   key <- unique(init_df$query)
   key <- key[!is.na(key)]
 
   if (length(key) == 0) {
-    stop("No address component provided. Must provide at least one value")
+    stop("No address component provided. Provide at least one value")
   }
 
-  # Set progress bar
+  # Set progress bar.
   ntot <- length(key)
-  # Set progress bar if n > 1
+  # Show progress bar only for multiple queries.
   progressbar <- all(progressbar, ntot > 1)
   if (progressbar) {
     pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
   }
   seql <- seq(1, ntot, 1)
 
-  # Add additional arguments to the custom query
+  # Add API arguments to the custom query.
   if (isTRUE(full_results)) {
-    # This will override the outFields param provided in the custom_query
+    # Override any `outFields` parameter provided in `custom_query`.
     custom_query$outFields <- "*"
   }
 
@@ -209,7 +208,7 @@ arc_geo_multi <- function(
   all_res
 }
 
-# Helper function
+# Helper function.
 input_multi <- function(
   address = NULL,
   address2 = NULL,
@@ -238,15 +237,15 @@ input_multi <- function(
   getlen <- lengths(multi_list)
   nolens <- getlen[getlen != 0]
   if (length(nolens) == 0) {
-    stop("No address component provided. Must provide at least one value")
+    stop("No address component provided. Provide at least one value")
   }
   if (length(unique(nolens)) != 1) {
-    stop("When providing several components their lengths should be the same")
+    stop("When providing several components, their lengths must be the same")
   }
 
   the_df <- dplyr::bind_rows(multi_list[names(nolens)])
 
-  # Build query for each row
+  # Build a query for each row.
   nr <- seq_len(nrow(the_df))
 
   query <- lapply(nr, function(x) {

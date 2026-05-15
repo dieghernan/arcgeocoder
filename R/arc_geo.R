@@ -9,15 +9,15 @@
 #' using specific address components), use [arc_geo_multi()].
 #'
 #' @param address Single-line address text (e.g.
-#'   `"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses (
-#'   `c("Madrid", "Barcelona")`).
+#'   `"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
+#'   (e.g. `c("Madrid", "Barcelona")`).
 #' @param lat Latitude column name in the output data (default `"lat"`).
 #' @param long Longitude column name in the output data (default `"lon"`).
 #' @param limit Maximum number of results to return per input address. Each
 #'   query has a hard API limit of 50 results.
-#' @param full_results Logical; if `TRUE` return all available API fields
+#' @param full_results Logical. If `TRUE`, return all available API fields
 #'   via `outFields=*`. Default is `FALSE`.
-#' @param return_addresses Logical; if `TRUE` keep input query in output.
+#' @param return_addresses Logical. If `TRUE`, keep input query in output.
 #' @param sourcecountry Country filter using ISO codes (e.g. `"USA"`).
 #'   Multiple values can be specified (comma-separated).
 #' @param category Place or address type used as a filter. Multiple values are
@@ -35,8 +35,8 @@
 #' ```
 #'
 #' @details
-#' See the [ArcGIS REST docs](`r arcurl("cand")`) for more info and valid
-#' values.
+#' See the [ArcGIS REST docs](`r arcurl("cand")`) for more information and
+#' valid values.
 #'
 #' @inheritSection arc_reverse_geo `outsr`
 #'
@@ -46,7 +46,7 @@
 #'
 #' library(dplyr)
 #'
-#' # Several addresses with additional output fields
+#' # Several addresses with additional output fields.
 #' with_params <- arc_geo(c("Madrid", "Barcelona"),
 #'   custom_query = list(outFields = c("LongLabel", "CntryName"))
 #' )
@@ -54,7 +54,7 @@
 #' with_params |>
 #'   select(lat, lon, CntryName, LongLabel)
 #'
-#' # With options: restrict search to USA
+#' # With options: restrict search to the USA.
 #' with_params_usa <- arc_geo(c("Madrid", "Barcelona"),
 #'   sourcecountry = "USA",
 #'   custom_query = list(outFields = c("LongLabel", "CntryName"))
@@ -85,28 +85,28 @@ arc_geo <- function(
 ) {
   if (limit > 50) {
     message(paste(
-      "\nArcGIS REST API provides 50 results as a maximum. ",
-      "Your query may be incomplete"
+      "\nThe ArcGIS REST API provides a maximum of 50 results. ",
+      "Your query may be incomplete."
     ))
     limit <- min(50, limit)
   }
 
-  # Dedupe for query
+  # Deduplicate addresses before querying.
   init_key <- dplyr::tibble(query = address)
   key <- unique(address)
 
-  # Set progress bar
+  # Set progress bar.
   ntot <- length(key)
-  # Set progress bar if n > 1
+  # Show progress bar only for multiple addresses.
   progressbar <- all(progressbar, ntot > 1)
   if (progressbar) {
     pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
   }
   seql <- seq(1, ntot, 1)
 
-  # Add additional arguments to the custom query
+  # Add API arguments to the custom query.
   if (isTRUE(full_results)) {
-    # This will override the outFields param provided in the custom_query
+    # Override any `outFields` parameter provided in `custom_query`.
     custom_query$outFields <- "*"
   }
 
@@ -143,7 +143,6 @@ arc_geo <- function(
   all_res
 }
 
-
 arc_geo_single <- function(
   address,
   lat = "lat",
@@ -161,7 +160,7 @@ arc_geo_single <- function(
     "services/World/GeocodeServer/findAddressCandidates?"
   )
 
-  # Compose url
+  # Compose URL.
   if (singleline) {
     ad_q <- paste0("SingleLine=", address)
   } else {
@@ -172,7 +171,7 @@ arc_geo_single <- function(
 
   url <- add_custom_query(custom_query, url)
 
-  # Download to temp file
+  # Download to a temporary file.
   json <- tempfile(fileext = ".json")
   res <- arc_api_call(url, json, isFALSE(verbose))
 
@@ -181,7 +180,7 @@ arc_geo_single <- function(
 
   # nocov start
   if (isFALSE(res)) {
-    message("\n", url, " not reachable.")
+    message("\n", url, " is not reachable.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
@@ -189,14 +188,14 @@ arc_geo_single <- function(
 
   result_init <- jsonlite::fromJSON(json, flatten = FALSE)
 
-  # Empty query
+  # Handle empty queries.
   if (length(result_init$candidates) == 0) {
     message("\nNo results for query ", address)
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
 
-  # Unnest fields
+  # Unnest fields.
   tbl_query$lat <- NA
   tbl_query$lon <- NA
   result_unn <- unnest_geo(result_init)
@@ -204,7 +203,7 @@ arc_geo_single <- function(
   result_end$lat <- as.double(result_unn$y)
   result_end$lon <- as.double(result_unn$x)
 
-  # Keep names in the right order
+  # Keep names in the requested order.
 
   result_out <- keep_names(
     result_end,

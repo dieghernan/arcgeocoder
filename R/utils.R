@@ -4,7 +4,7 @@ add_custom_query <- function(custom_query = list(), url) {
     return(url)
   }
 
-  # Collapse
+  # Collapse vector values into query strings.
   custom_query <- lapply(custom_query, paste0, collapse = ",")
 
   opts <- paste0(names(custom_query), "=", custom_query, collapse = "&")
@@ -37,7 +37,7 @@ unnest_reverse <- function(x) {
   endobj_loc <- dplyr::as_tibble(x_loc[lngths_loc == 1])
   names(endobj_loc) <- c("lon", "lat")
 
-  # ArcGIS address
+  # Use ArcGIS address label when available.
   if ("LongLabel" %in% names(lngths)) {
     ad <- dplyr::as_tibble(x_add$LongLabel)[1, ]
     names(ad) <- "address"
@@ -54,13 +54,12 @@ unnest_reverse <- function(x) {
   endobj_loc
 }
 
-
 unnest_geo <- function(x) {
-  # Candidates
+  # Extract candidates.
   x_cand <- x$candidates
 
   maybe_df <- vapply(x_cand, is.data.frame, FUN.VALUE = logical(1))
-  # Extract first those that are not
+  # Extract scalar candidate fields first.
   endobj <- dplyr::as_tibble(x_cand[!maybe_df])
 
   unnes <- maybe_df[maybe_df]
@@ -133,7 +132,7 @@ empty_tbl_rev <- function(x, address) {
 
   names(x) <- c(init_nm, address)
 
-  # Reorder and get only address
+  # Keep only the address column.
   x <- x[, address]
 
   x
@@ -150,7 +149,7 @@ empty_tbl <- function(x, lat, lon) {
   x
 }
 
-# Helper for url in docs
+# Helper for URLs in documentation.
 arcurl <- function(x) {
   base <- "https://developers.arcgis.com/rest/geocode/api-reference"
 

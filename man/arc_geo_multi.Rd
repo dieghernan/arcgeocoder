@@ -2,7 +2,7 @@
 % Please edit documentation in R/arc_geo_multi.R
 \name{arc_geo_multi}
 \alias{arc_geo_multi}
-\title{Geocoding using the ArcGIS REST API with multi-field query}
+\title{Geocoding using the ArcGIS REST API with a multi-field query}
 \usage{
 arc_geo_multi(
   address = NULL,
@@ -42,19 +42,19 @@ See \strong{Details}.}
 \item{limit}{Maximum number of results to return per input address. Each
 query has a hard API limit of 50 results.}
 
-\item{full_results}{Logical; if \code{TRUE} return all available API fields
+\item{full_results}{Logical. If \code{TRUE}, return all available API fields
 via \verb{outFields=*}. Default is \code{FALSE}.}
 
-\item{return_addresses}{Logical; if \code{TRUE} keep input query in output.}
+\item{return_addresses}{Logical. If \code{TRUE}, keep input query in output.}
 
-\item{verbose}{Logical; if \code{TRUE} output process messages to console.}
+\item{verbose}{Logical. If \code{TRUE}, output process messages to the console.}
 
-\item{progressbar}{Logical; if \code{TRUE} shows a progress bar for multiple
+\item{progressbar}{Logical. If \code{TRUE}, show a progress bar for multiple
 points.}
 
-\item{outsr}{The spatial reference of the \verb{x,y} coordinates returned by a
-geocode request. By default is \code{NULL} (i.e. the argument won't be used in
-the query). See \strong{Details} and \link{arc_spatial_references}.}
+\item{outsr}{The spatial reference of the \code{x} and \code{y} coordinates returned
+by a geocode request. By default, it is \code{NULL} (i.e. the argument will not
+be used in the query). See \strong{Details} and \link{arc_spatial_references}.}
 
 \item{langcode}{Sets the language in which reverse-geocoded addresses are
 returned.}
@@ -65,65 +65,64 @@ accepted (e.g. \code{c("Cinema", "Museum")}). See \link{arc_categories}.}
 \item{custom_query}{Additional API parameters as named list values.}
 }
 \value{
-A \link[tibble:tbl_df]{tibble} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
+A \link[tibble:tbl_df]{tibble} object with the results. See output details in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 
-The resulting output will include also the input arguments (columns with
-prefix \code{q_}) for better tracking the results.
+The resulting output will also include the input arguments (columns with
+prefix \code{q_}) to better track the results.
 }
 \description{
 Geocodes addresses given specific address components. This function returns
 the \link[tibble:tbl_df]{tibble} associated with the query.
 
-For geocoding using a single text string use \code{\link[=arc_geo]{arc_geo()}} function.
+For geocoding with a single text string, use \code{\link[=arc_geo]{arc_geo()}}.
 }
 \details{
-See the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs} for more info and valid
-values.
+See the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs} for more information and
+valid values.
 }
 \section{Address components}{
 This function allows performing structured queries by different components of
-an address. At least one field should be different than \code{NA} or \code{NULL}.
+an address. At least one field should be different from \code{NA} or \code{NULL}.
 
 A vector of values can be provided for each argument for multiple geocoding.
-When using vectors on different arguments, their lengths should be the
-same.
+When using vectors on different arguments, their lengths must be the same.
 
 The following list provides a brief description of each argument:
 \itemize{
 \item \code{address}: A string that represents the first line of a street address. In
-most cases it will be the \strong{street name and house number} input, but it
-can also be used to input building name or place-name.
+most cases, it is the \strong{street name and house number} input, but it can
+also be used to input a building name or place-name.
 \item \code{address2}: A string that represents the second line of a street address.
-This can include \strong{street name/house number, building name, place-name, or
-sub unit}.
+This can include \strong{street name/house number, building name, place-name or
+subunit}.
 \item \code{address3}: A string that represents the third line of a street address.
-This can include \strong{street name/house number, building name, place-name, or
-sub unit}.
+This can include \strong{street name/house number, building name, place-name or
+subunit}.
 \item \code{neighborhood}: The smallest administrative division associated with an
-address, typically, a \strong{neighborhood} or a section of a larger populated
+address, typically a \strong{neighborhood} or a section of a larger populated
 place.
 \item \code{city}: The next largest administrative division associated with an
-address, typically, a \strong{city or municipality}.
+address, typically a \strong{city or municipality}.
 \item \code{subregion}: The next largest administrative division associated with an
-address. Depending on the country, a sub region can represent a
-\strong{county, state, or province}.
+address. Depending on the country, a subregion can represent a
+\strong{county, state or province}.
 \item \code{region}: The largest administrative division associated with an address,
-typically, a \strong{state or province}.
-\item \code{postal}: The \strong{standard postal code} for an address, typically, a
+typically a \strong{state or province}.
+\item \code{postal}: The \strong{standard postal code} for an address, typically a
 three– to six-digit alphanumeric code.
 \item \code{postalext}: A \strong{postal code extension}, such as the United States Postal
 Service ZIP+4 code.
 \item \code{countrycode}: A value representing the \strong{country}. Providing this value
 \strong{increases geocoding speed}. Acceptable values include the full country
 name in English or the official language of the country, the two-character
-country code, or the three-character country code.
+country code or the three-character country code.
 }
 }
 
 \section{\code{outsr}}{
-The spatial reference can be specified as either a well-known ID (WKID). If
-not specified, the spatial reference of the output locations is the same as
-that of the service (WGS84, i.e. WKID = 4326)).
+The spatial reference can be specified as a well-known ID (WKID). If not
+specified, the spatial reference of the output locations is the same as that
+of the service (WGS84, i.e. WKID = 4326).
 
 See \link{arc_spatial_references} for values and examples.
 }
@@ -142,7 +141,7 @@ simple |>
   select(lat, lon, CntryName, Region, LongLabel) |>
   slice_head(n = 10)
 
-# Restrict search to Spain
+# Restrict search to Spain.
 simple2 <- arc_geo_multi(
   address = "Plaza Mayor", countrycode = "ESP",
   limit = 10,
@@ -153,7 +152,7 @@ simple2 |>
   select(lat, lon, CntryName, Region, LongLabel) |>
   slice_head(n = 10)
 
-# Restrict to a region
+# Restrict to a region.
 simple3 <- arc_geo_multi(
   address = "Plaza Mayor", region = "Segovia",
   countrycode = "ESP",

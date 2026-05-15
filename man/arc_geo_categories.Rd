@@ -2,7 +2,7 @@
 % Please edit documentation in R/arc_geo_categories.R
 \name{arc_geo_categories}
 \alias{arc_geo_categories}
-\title{Geocode places on a given area by category}
+\title{Geocode places in a given area by category}
 \usage{
 arc_geo_categories(
   category,
@@ -21,18 +21,18 @@ arc_geo_categories(
 }
 \arguments{
 \item{category}{A place or address type that can be used to filter results.
-Several values can be used as well as a vector (i.e.
-\code{c("Cinema", "Museum")}), performing one call for each value. See
+Several values can also be supplied as a vector (i.e.
+\code{c("Cinema", "Museum")}), which performs one call for each value. See
 \strong{Details}.}
 
-\item{x}{longitude values in numeric format. Must be in the range
+\item{x}{Longitude values in numeric format. Must be in the range
 \eqn{\left[-180, 180 \right]}.}
 
-\item{y}{latitude values in numeric format. Must be in the range
+\item{y}{Latitude values in numeric format. Must be in the range
 \eqn{\left[-90, 90 \right]}.}
 
-\item{bbox}{A numeric vector of latitude and longitude
-\code{c(minX, minY, maxX, maxY)} that restrict the search area.
+\item{bbox}{A numeric vector of longitude and latitude
+\code{c(minX, minY, maxX, maxY)} that restricts the search area.
 See \strong{Details}.}
 
 \item{name}{Optionally, a string indicating the name or address of the
@@ -45,10 +45,10 @@ desired results.}
 \item{limit}{Maximum number of results per query. ArcGIS API limits a single
 request to 50 results.}
 
-\item{full_results}{Logical; if \code{TRUE} return all available API fields
+\item{full_results}{Logical. If \code{TRUE}, return all available API fields
 via \verb{outFields=*}. Default is \code{FALSE}.}
 
-\item{verbose}{Logical; if \code{TRUE} output process messages to console.}
+\item{verbose}{Logical. If \code{TRUE}, output process messages to the console.}
 
 \item{custom_query}{Additional API parameters as named list values.}
 
@@ -57,15 +57,15 @@ via \verb{outFields=*}. Default is \code{FALSE}.}
   \describe{
     \item{\code{sourcecountry}}{Country filter using ISO codes (e.g. \code{"USA"}).
 Multiple values can be specified (comma-separated).}
-    \item{\code{outsr}}{The spatial reference of the \verb{x,y} coordinates returned by a
-geocode request. By default is \code{NULL} (i.e. the argument won't be used in
-the query). See \strong{Details} and \link{arc_spatial_references}.}
+    \item{\code{outsr}}{The spatial reference of the \code{x} and \code{y} coordinates returned
+by a geocode request. By default, it is \code{NULL} (i.e. the argument will not
+be used in the query). See \strong{Details} and \link{arc_spatial_references}.}
     \item{\code{langcode}}{Sets the language in which reverse-geocoded addresses are
 returned.}
   }}
 }
 \value{
-A \link[tibble:tbl_df]{tibble} object with the results. See the details of the output in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
+A \link[tibble:tbl_df]{tibble} object with the results. See output details in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 }
 \description{
 This function is useful for extracting places with a given category (or list
@@ -76,16 +76,17 @@ See \link{arc_categories} for a detailed explanation and available values.
 
 \strong{Note:} to obtain results, provide one of the following:
 \itemize{
-\item A pair of coordinates (\verb{x,y} arguments) used as a reference for geocoding.
-\item A viewbox (aka bounding box) via the \code{bbox} argument defining a desired
-extent for results.
+\item A pair of coordinates (\code{x} and \code{y} arguments) used as a reference for
+geocoding.
+\item A bounding box via the \code{bbox} argument defining a desired extent for
+results.
 }
 
-It is possible to combine both approaches (i.e. providing \verb{x,y,bbox} values)
-to improve the geocoding process. See \strong{Examples}.
+It is possible to combine both approaches (i.e. providing \code{x}, \code{y} and
+\code{bbox} values) to improve the geocoding process. See \strong{Examples}.
 }
 \details{
-Bounding boxes can be located using different online tools, as
+Bounding boxes can be located using online tools, such as
 \href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
 
 For a full list of valid categories see \link{arc_categories}. This function is
@@ -93,13 +94,13 @@ vectorized over \code{category}, which means it performs one independent call
 to \code{\link[=arc_geo]{arc_geo()}} for each \code{category} value.
 
 \code{arc_geo_categories()} also understands a single string of categories
-separated by commas (\code{"Cinema,Museum"}), that would be internally treated as
+separated by commas (\code{"Cinema,Museum"}), which is treated internally as
 \code{c("Cinema", "Museum")}.
 }
 \section{\code{outsr}}{
-The spatial reference can be specified as either a well-known ID (WKID). If
-not specified, the spatial reference of the output locations is the same as
-that of the service (WGS84, i.e. WKID = 4326)).
+The spatial reference can be specified as a well-known ID (WKID). If not
+specified, the spatial reference of the output locations is the same as that
+of the service (WGS84, i.e. WKID = 4326).
 
 See \link{arc_spatial_references} for values and examples.
 }
@@ -107,12 +108,12 @@ See \link{arc_spatial_references} for values and examples.
 \examples{
 \dontshow{if (arcgeocoder_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
-# Full workflow: Gas Stations near Carabanchel, Madrid
+# Full workflow: gas stations near Carabanchel, Madrid.
 
-# Get Carabanchel
+# Get Carabanchel.
 carab <- arc_geo("Carabanchel, Madrid, Spain")
 
-# CRS
+# CRS.
 carab_crs <- unique(carab$latestWkid)
 
 library(ggplot2)
@@ -125,14 +126,14 @@ base_map <- ggplot(carab) +
   ) +
   coord_sf(crs = carab_crs)
 
-# Ex1: Search near Carabanchel (not restricted)
+# Example 1: Search near Carabanchel (not restricted).
 ex1 <- arc_geo_categories("Gas Station",
-  # Location
+  # Location.
   x = carab$lon, y = carab$lat,
   limit = 50, full_results = TRUE
 )
 
-# Reduce number of labels to most common ones
+# Reduce labels to the most common ones.
 library(dplyr)
 
 labs <- ex1 |>
@@ -148,11 +149,11 @@ base_map +
     subtitle = "Search near (points may be far away)"
   )
 
-# Example 2: Include part of the name, different results
+# Example 2: Include part of the name for different results.
 ex2 <- arc_geo_categories("Gas Station",
-  # Name
+  # Name.
   name = "Repsol",
-  # Location
+  # Location.
   x = carab$lon, y = carab$lat,
   limit = 50, full_results = TRUE
 )
@@ -164,7 +165,7 @@ base_map +
     subtitle = "Search near with name"
   )
 
-# Example 3: Near within a extent
+# Example 3: Search within a bounding box.
 ex3 <- arc_geo_categories("Gas Station",
   name = "Repsol",
   bbox = c(carab$xmin, carab$ymin, carab$xmax, carab$ymax),
@@ -175,7 +176,7 @@ base_map +
   geom_point(data = ex3, aes(lon, lat, color = ShortLabel)) +
   labs(
     title = "Example 3",
-    subtitle = "Search near with name and bbox"
+    subtitle = "Search near with name and bounding box"
   )
 }
 \dontshow{\}) # examplesIf}

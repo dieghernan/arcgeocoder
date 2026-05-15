@@ -2,7 +2,7 @@
 % Please edit documentation in R/arc_reverse_geo.R
 \name{arc_reverse_geo}
 \alias{arc_reverse_geo}
-\title{Reverse Geocoding using the ArcGIS REST API}
+\title{Reverse geocoding using the ArcGIS REST API}
 \usage{
 arc_reverse_geo(
   x,
@@ -20,34 +20,34 @@ arc_reverse_geo(
 )
 }
 \arguments{
-\item{x}{longitude values in numeric format. Must be in the range
+\item{x}{Longitude values in numeric format. Must be in the range
 \eqn{\left[-180, 180 \right]}.}
 
-\item{y}{latitude values in numeric format. Must be in the range
+\item{y}{Latitude values in numeric format. Must be in the range
 \eqn{\left[-90, 90 \right]}.}
 
 \item{address}{Output address column name (default \code{"address"}).}
 
-\item{full_results}{Logical; if \code{TRUE} return all available API fields.
+\item{full_results}{Logical. If \code{TRUE}, return all available API fields.
 \code{FALSE} (default) returns latitude, longitude and address only.}
 
-\item{return_coords}{Logical; if \code{TRUE} return input coordinates with
+\item{return_coords}{Logical. If \code{TRUE}, return input coordinates with
 results.}
 
-\item{verbose}{Logical; if \code{TRUE} output process messages to console.}
+\item{verbose}{Logical. If \code{TRUE}, output process messages to the console.}
 
-\item{progressbar}{Logical; if \code{TRUE} shows a progress bar for multiple
+\item{progressbar}{Logical. If \code{TRUE}, show a progress bar for multiple
 points.}
 
-\item{outsr}{The spatial reference of the \verb{x,y} coordinates returned by a
-geocode request. By default is \code{NULL} (i.e. the argument won't be used in
-the query). See \strong{Details} and \link{arc_spatial_references}.}
+\item{outsr}{The spatial reference of the \code{x} and \code{y} coordinates returned
+by a geocode request. By default, it is \code{NULL} (i.e. the argument will not
+be used in the query). See \strong{Details} and \link{arc_spatial_references}.}
 
 \item{langcode}{Sets the language in which reverse-geocoded addresses are
 returned.}
 
 \item{featuretypes}{This argument limits the possible match types returned.
-By default is \code{NULL} (i.e. the argument won't be used in the query).
+By default, it is \code{NULL} (i.e. the argument will not be used in the query).
 See \strong{Details}.}
 
 \item{locationtype}{Specifies whether the output geometry of
@@ -59,27 +59,28 @@ should be the rooftop point or street entrance location. Valid values are
 list.}
 }
 \value{
-A \link[tibble:tbl_df]{tibble} with the corresponding results. The \verb{x,y} values
-returned by the API are named \verb{lon,lat}. Note that these coordinates
-correspond to the geocoded feature, and may be different from the \verb{x,y}
-values provided as inputs.
+A \link[tibble:tbl_df]{tibble} with the corresponding results. The \code{x} and \code{y}
+values returned by the API are named \code{lon} and \code{lat}. Note that these
+coordinates correspond to the geocoded feature and may differ from the \code{x}
+and \code{y} values provided as inputs.
 
 See the details of the output in
-\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API Service output}.
+\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 }
 \description{
-Generates an address from a latitude and longitude. Latitudes must be
-in the range \eqn{\left[-90, 90 \right]} and longitudes in the range
+Generates an address from a latitude and longitude. Latitudes must be in the
+range \eqn{\left[-90, 90 \right]} and longitudes in the range
 \eqn{\left[-180, 180 \right]}. This function returns the
 \link[tibble:tbl_df]{tibble} associated with the query.
 }
 \details{
-See the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST docs} for more info and valid values.
+See the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST docs} for more information and
+valid values.
 }
 \section{\code{outsr}}{
-The spatial reference can be specified as either a well-known ID (WKID). If
-not specified, the spatial reference of the output locations is the same as
-that of the service (WGS84, i.e. WKID = 4326)).
+The spatial reference can be specified as a well-known ID (WKID). If not
+specified, the spatial reference of the output locations is the same as that
+of the service (WGS84, i.e. WKID = 4326).
 
 See \link{arc_spatial_references} for values and examples.
 }
@@ -88,8 +89,8 @@ See \link{arc_spatial_references} for values and examples.
 See \code{vignette("featuretypes", package = "arcgeocoder")} for a detailed
 explanation of this argument.
 
-This argument may be used for filtering the type of feature to be returned
-when geocoding. Possible values are:
+This argument may be used to filter the type of feature returned when
+geocoding. Possible values are:
 \itemize{
 \item \code{"StreetInt"}
 \item \code{"DistanceMarker"}
@@ -112,16 +113,16 @@ It is also possible to use several values as a vector
 
 arc_reverse_geo(x = -73.98586, y = 40.75728)
 
-# Several coordinates
+# Several coordinates.
 arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
 
-# With options: using some additional arguments
+# With options: use additional arguments.
 sev <- arc_reverse_geo(
   x = c(-73.98586, -3.188375),
   y = c(40.75728, 55.95335),
-  # Restrict to these features
+  # Restrict to these features.
   featuretypes = "POI,StreetInt",
-  # Result on this WKID
+  # Return results in this WKID.
   outsr = 102100,
   verbose = TRUE, full_results = TRUE
 )

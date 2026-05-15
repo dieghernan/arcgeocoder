@@ -1,8 +1,8 @@
-#' ArcGIS REST API category data base
+#' ArcGIS REST API category database
 #'
 #' @description
 #'
-#' Database of available categories that can be used for filtering results
+#' Database of available categories that can be used to filter results
 #' provided by [arc_geo()], [arc_geo_multi()] and [arc_geo_categories()] in
 #' [tibble][tibble::tbl_df] format.
 #'
@@ -22,9 +22,9 @@
 #' `r prettyNum(nrow(arcgeocoder::arc_categories), big.mark=",")` rows and
 #' fields:
 #' \describe{
-#'   \item{level_1}{Top-level category}
-#'   \item{level_2}{Second-level category}
-#'   \item{level_3}{Child-level category}
+#'   \item{level_1}{Top-level category.}
+#'   \item{level_2}{Second-level category.}
+#'   \item{level_3}{Child-level category.}
 #' }
 #' @details
 #'
@@ -32,9 +32,9 @@
 #' examples.
 #'
 #' The geocoding service allows users to search for and geocode many types of
-#' addresses and places around the world. This simplifies the application
-#' building process, as developers don't need to know what types of places
-#' their users are searching for, because the service can decipher that.
+#' addresses and places around the world. This simplifies application
+#' development because developers do not need to know what types of places
+#' their users are searching for; the service can decipher that.
 #' However, due to this flexibility, it is possible for ambiguous searches to
 #' match to many different places, and users may sometimes receive unexpected
 #' results. For example, a search for a city may match to a street name, or a
@@ -47,7 +47,7 @@
 #'
 #' The results show a list of categories with three different hierarchy levels
 #' (`level_1`, `level_2`, `level_3`). If a `level_1` category is requested
-#' (i.e. `POI`) the child categories may be included also in the results.
+#' (i.e. `POI`), the child categories may also be included in the results.
 #'
 #' @family datasets
 #'
@@ -55,11 +55,11 @@
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
-#' # Get all possible values
+#' # Get all possible values.
 #' data("arc_categories")
 #' arc_categories
 #'
-#' # Using categories
+#' # Use categories.
 #'
 #' sea_1 <- arc_geo("sea",
 #'   custom_query = list(outFields = c("LongLabel", "Type")),
@@ -77,7 +77,7 @@
 #'
 #' dplyr::glimpse(sea_2)
 #'
-#' # We can use a list of categories
+#' # Use a list of categories.
 #' sea_3 <- arc_geo("sea",
 #'   custom_query = list(outFields = c("LongLabel", "Type")),
 #'   sourcecountry = "UK", limit = 5,
@@ -88,7 +88,7 @@
 #' }
 NULL
 
-#' ESRI (ArcGIS) Spatial Reference data base
+#' Esri (ArcGIS) spatial reference database
 #'
 #' @description
 #'
@@ -98,7 +98,7 @@ NULL
 #' @note Data extracted on **15 January 2026**.
 #'
 #' @source
-#' [ESRI Projection Engine
+#' [Esri Projection Engine
 #' factory](https://github.com/Esri/projection-engine-db-doc)
 #'
 #' @encoding UTF-8
@@ -111,24 +111,24 @@ NULL
 #' `r prettyNum(nrow(arcgeocoder::arc_spatial_references), big.mark=",")` rows
 #' and fields:
 #' \describe{
-#'   \item{projtype}{Projection type (`"ProjectedCoordinateSystems",
-#'   "GeographicCoordinateSystems","VerticalCoordinateSystems"`)}
-#'   \item{wkid}{Well-Known ID}
-#'   \item{latestWkid}{Most recent `wkid`, in case that `wkid` is deprecated}
-#'   \item{authority}{`wkid` authority (Esri or EPSG)}
-#'   \item{deprecated}{Logical indicating if `wkid` is deprecated}
-#'   \item{description}{Human-readable description of the `wkid`}
-#'   \item{areaname}{Use area of the `wkid`}
+#'   \item{projtype}{Projection type (`"ProjectedCoordinateSystems"`,
+#'   `"GeographicCoordinateSystems"` or `"VerticalCoordinateSystems"`).}
+#'   \item{wkid}{Well-Known ID.}
+#'   \item{latestWkid}{Most recent `wkid`, if `wkid` is deprecated.}
+#'   \item{authority}{`wkid` authority (Esri or EPSG).}
+#'   \item{deprecated}{Logical indicating whether `wkid` is deprecated.}
+#'   \item{description}{Human-readable description of the `wkid`.}
+#'   \item{areaname}{Use area of the `wkid`.}
 #'   \item{wkt}{Representation of `wkid` in Well-Known Text (WKT). Useful when
-#'   working with \CRANpkg{sf} or \CRANpkg{terra}}
+#'   working with \CRANpkg{sf} or \CRANpkg{terra}.}
 #' }
 #' @details
 #'
-#' This data base is useful when using the `outsr` argument of the functions.
+#' This database is useful when using the `outsr` argument.
 #'
-#' Some projections ids have changed over time, for example Web Mercator is
-#' `wkid  = 102100` is deprecated and currently is `wkid = 3857`. However, both
-#' values would work, and they would return similar results.
+#' Some projection IDs have changed over time. For example, Web Mercator
+#' `wkid = 102100` is deprecated and is currently `wkid = 3857`. However, both
+#' values work and return similar results.
 #'
 #' @family datasets
 #'
@@ -137,11 +137,11 @@ NULL
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
-#' # Get all possible values
+#' # Get all possible values.
 #' data("arc_spatial_references")
 #' arc_spatial_references
 #'
-#' # Request with deprecated Web Mercator
+#' # Request with deprecated Web Mercator.
 #' library(dplyr)
 #' wkid <- arc_spatial_references |>
 #'   filter(latestWkid == 3857 & deprecated) |>
@@ -151,19 +151,20 @@ NULL
 #'
 #' add <- arc_geo("London, United Kingdom", outsr = wkid$wkid)
 #'
-#' # Note values lat, lon and wkid. latestwkid give the current valid wkid
+#' # Note values for `lat`, `lon` and `wkid`. `latestWkid` gives the current
+#' # valid `wkid`.
 #' add |>
 #'   select(lat, lon, wkid, latestWkid) |>
 #'   glimpse()
 #'
-#' # See with sf
+#' # Try with `sf`.
 #'
 #' try(sf::st_crs(wkid$wkid))
 #'
-#' # But
+#' # Try the latest WKID.
 #' try(sf::st_crs(wkid$latestWkid))
 #'
-#' # or
+#' # Or use WKT.
 #' try(sf::st_crs(wkid$wkt))
 #' }
 NULL
