@@ -1,6 +1,6 @@
 # Check access to ArcGIS REST
 
-Check if **R** has access to resources at ArcGIS REST API
+Check whether **R** has access to resources at the ArcGIS REST API
 <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
 
 ## Usage
@@ -11,7 +11,7 @@ arcgeocoder_check_access()
 
 ## Value
 
-a logical.
+A logical value.
 
 ## Examples
 

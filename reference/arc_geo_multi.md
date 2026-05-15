@@ -1,13 +1,12 @@
-# Geocoding using the ArcGIS REST API with multi-field query
+# Geocoding using the ArcGIS REST API with a multi-field query
 
 Geocodes addresses given specific address components. This function
 returns the
 [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
 associated with the query.
 
-For geocoding using a single text string use
-[`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md)
-function.
+For geocoding with a single text string, use
+[`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md).
 
 ## Usage
 
@@ -62,26 +61,26 @@ arc_geo_multi(
 
 - full_results:
 
-  Logical; if `TRUE` return all available API fields via `outFields=*`.
+  Logical. If `TRUE`, return all available API fields via `outFields=*`.
   Default is `FALSE`.
 
 - return_addresses:
 
-  Logical; if `TRUE` keep input query in output.
+  Logical. If `TRUE`, keep input query in output.
 
 - verbose:
 
-  Logical; if `TRUE` output process messages to console.
+  Logical. If `TRUE`, output process messages to the console.
 
 - progressbar:
 
-  Logical; if `TRUE` shows a progress bar for multiple points.
+  Logical. If `TRUE`, show a progress bar for multiple points.
 
 - outsr:
 
-  The spatial reference of the `x,y` coordinates returned by a geocode
-  request. By default is `NULL` (i.e. the argument won't be used in the
-  query). See **Details** and
+  The spatial reference of the `x` and `y` coordinates returned by a
+  geocode request. By default, it is `NULL` (i.e. the argument will not
+  be used in the query). See **Details** and
   [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md).
 
 - langcode:
@@ -101,58 +100,57 @@ arc_geo_multi(
 ## Value
 
 A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-object with the results. See the details of the output in [ArcGIS REST
-API Service
+object with the results. See output details in [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
-The resulting output will include also the input arguments (columns with
-prefix `q_`) for better tracking the results.
+The resulting output will also include the input arguments (columns with
+prefix `q_`) to better track the results.
 
 ## Details
 
 See the [ArcGIS REST
 docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
-for more info and valid values.
+for more information and valid values.
 
 ## Address components
 
 This function allows performing structured queries by different
-components of an address. At least one field should be different than
+components of an address. At least one field should be different from
 `NA` or `NULL`.
 
 A vector of values can be provided for each argument for multiple
-geocoding. When using vectors on different arguments, their lengths
-should be the same.
+geocoding. When using vectors on different arguments, their lengths must
+be the same.
 
 The following list provides a brief description of each argument:
 
 - `address`: A string that represents the first line of a street
-  address. In most cases it will be the **street name and house number**
-  input, but it can also be used to input building name or place-name.
+  address. In most cases, it is the **street name and house number**
+  input, but it can also be used to input a building name or place-name.
 
 - `address2`: A string that represents the second line of a street
   address. This can include **street name/house number, building name,
-  place-name, or sub unit**.
+  place-name or subunit**.
 
 - `address3`: A string that represents the third line of a street
   address. This can include **street name/house number, building name,
-  place-name, or sub unit**.
+  place-name or subunit**.
 
 - `neighborhood`: The smallest administrative division associated with
-  an address, typically, a **neighborhood** or a section of a larger
+  an address, typically a **neighborhood** or a section of a larger
   populated place.
 
 - `city`: The next largest administrative division associated with an
-  address, typically, a **city or municipality**.
+  address, typically a **city or municipality**.
 
 - `subregion`: The next largest administrative division associated with
-  an address. Depending on the country, a sub region can represent a
-  **county, state, or province**.
+  an address. Depending on the country, a subregion can represent a
+  **county, state or province**.
 
 - `region`: The largest administrative division associated with an
-  address, typically, a **state or province**.
+  address, typically a **state or province**.
 
-- `postal`: The **standard postal code** for an address, typically, a
+- `postal`: The **standard postal code** for an address, typically a
   three– to six-digit alphanumeric code.
 
 - `postalext`: A **postal code extension**, such as the United States
@@ -161,13 +159,13 @@ The following list provides a brief description of each argument:
 - `countrycode`: A value representing the **country**. Providing this
   value **increases geocoding speed**. Acceptable values include the
   full country name in English or the official language of the country,
-  the two-character country code, or the three-character country code.
+  the two-character country code or the three-character country code.
 
 ## `outsr`
 
-The spatial reference can be specified as either a well-known ID (WKID).
-If not specified, the spatial reference of the output locations is the
-same as that of the service (WGS84, i.e. WKID = 4326)).
+The spatial reference can be specified as a well-known ID (WKID). If not
+specified, the spatial reference of the output locations is the same as
+that of the service (WGS84, i.e. WKID = 4326).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
@@ -215,7 +213,7 @@ simple |>
 #>  9 37.2   -1.87 España    Andalucía       Plaza Mayor, Calle de Juan Anglada 5,…
 #> 10 38.2   -3.77 España    Andalucía       Plaza Mayor, Calle de la Conquista 3,…
 
-# Restrict search to Spain
+# Restrict search to Spain.
 simple2 <- arc_geo_multi(
   address = "Plaza Mayor", countrycode = "ESP",
   limit = 10,
@@ -239,7 +237,7 @@ simple2 |>
 #>  9  42.0  0.258 España    Aragón          Plaza Mayor, 22422, Fonz, Huesca, Ara…
 #> 10  42.5  0.135 España    Aragón          Plaza Mayor, 22360, Labuerda, Huesca,…
 
-# Restrict to a region
+# Restrict to a region.
 simple3 <- arc_geo_multi(
   address = "Plaza Mayor", region = "Segovia",
   countrycode = "ESP",

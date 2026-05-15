@@ -1,4 +1,4 @@
-# Reverse Geocoding using the ArcGIS REST API
+# Reverse geocoding using the ArcGIS REST API
 
 Generates an address from a latitude and longitude. Latitudes must be in
 the range \\\left\[-90, 90 \right\]\\ and longitudes in the range
@@ -29,12 +29,12 @@ arc_reverse_geo(
 
 - x:
 
-  longitude values in numeric format. Must be in the range
+  Longitude values in numeric format. Must be in the range
   \\\left\[-180, 180 \right\]\\.
 
 - y:
 
-  latitude values in numeric format. Must be in the range \\\left\[-90,
+  Latitude values in numeric format. Must be in the range \\\left\[-90,
   90 \right\]\\.
 
 - address:
@@ -43,26 +43,26 @@ arc_reverse_geo(
 
 - full_results:
 
-  Logical; if `TRUE` return all available API fields. `FALSE` (default)
+  Logical. If `TRUE`, return all available API fields. `FALSE` (default)
   returns latitude, longitude and address only.
 
 - return_coords:
 
-  Logical; if `TRUE` return input coordinates with results.
+  Logical. If `TRUE`, return input coordinates with results.
 
 - verbose:
 
-  Logical; if `TRUE` output process messages to console.
+  Logical. If `TRUE`, output process messages to the console.
 
 - progressbar:
 
-  Logical; if `TRUE` shows a progress bar for multiple points.
+  Logical. If `TRUE`, show a progress bar for multiple points.
 
 - outsr:
 
-  The spatial reference of the `x,y` coordinates returned by a geocode
-  request. By default is `NULL` (i.e. the argument won't be used in the
-  query). See **Details** and
+  The spatial reference of the `x` and `y` coordinates returned by a
+  geocode request. By default, it is `NULL` (i.e. the argument will not
+  be used in the query). See **Details** and
   [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md).
 
 - langcode:
@@ -71,8 +71,8 @@ arc_reverse_geo(
 
 - featuretypes:
 
-  This argument limits the possible match types returned. By default is
-  `NULL` (i.e. the argument won't be used in the query). See
+  This argument limits the possible match types returned. By default, it
+  is `NULL` (i.e. the argument will not be used in the query). See
   **Details**.
 
 - locationtype:
@@ -90,24 +90,25 @@ arc_reverse_geo(
 ## Value
 
 A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-with the corresponding results. The `x,y` values returned by the API are
-named `lon,lat`. Note that these coordinates correspond to the geocoded
-feature, and may be different from the `x,y` values provided as inputs.
+with the corresponding results. The `x` and `y` values returned by the
+API are named `lon` and `lat`. Note that these coordinates correspond to
+the geocoded feature and may differ from the `x` and `y` values provided
+as inputs.
 
-See the details of the output in [ArcGIS REST API Service
+See the details of the output in [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 ## Details
 
 See the [ArcGIS REST
 docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm)
-for more info and valid values.
+for more information and valid values.
 
 ## `outsr`
 
-The spatial reference can be specified as either a well-known ID (WKID).
-If not specified, the spatial reference of the output locations is the
-same as that of the service (WGS84, i.e. WKID = 4326)).
+The spatial reference can be specified as a well-known ID (WKID). If not
+specified, the spatial reference of the output locations is the same as
+that of the service (WGS84, i.e. WKID = 4326).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
@@ -118,8 +119,8 @@ for values and examples.
 See `vignette("featuretypes", package = "arcgeocoder")` for a detailed
 explanation of this argument.
 
-This argument may be used for filtering the type of feature to be
-returned when geocoding. Possible values are:
+This argument may be used to filter the type of feature returned when
+geocoding. Possible values are:
 
 - `"StreetInt"`
 
@@ -167,7 +168,7 @@ arc_reverse_geo(x = -73.98586, y = 40.75728)
 #>   <dbl> <dbl> <chr>                                      
 #> 1 -74.0  40.8 178-198 W 44th St, New York, NY, 10036, USA
 
-# Several coordinates
+# Several coordinates.
 arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
 #>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
 #> # A tibble: 2 × 3
@@ -176,13 +177,13 @@ arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
 #> 1 -74.0   40.8 178-198 W 44th St, New York, NY, 10036, USA                      
 #> 2  -3.19  56.0 Thistle & Churn Ice Cream, 1 Waterloo Place, Canongate, Edinburg…
 
-# With options: using some additional arguments
+# With options: use additional arguments.
 sev <- arc_reverse_geo(
   x = c(-73.98586, -3.188375),
   y = c(40.75728, 55.95335),
-  # Restrict to these features
+  # Restrict to these features.
   featuretypes = "POI,StreetInt",
-  # Result on this WKID
+  # Return results in this WKID.
   outsr = 102100,
   verbose = TRUE, full_results = TRUE
 )

@@ -2,19 +2,18 @@
 
 ## Example 1: sf objects
 
-The following example shows how it is possible to create a nice static
-map with data retrieved with **arcgeocoder** and converted to an **sf**
-object:
+The following example shows how to create a static map with data
+retrieved with **arcgeocoder** and converted to an **sf** object:
 
 ``` r
 
 library(arcgeocoder)
 library(dplyr)
-library(sf) # spatial objects
+library(sf) # Spatial objects.
 library(ggplot2)
-library(mapSpain) # sf objects of Spain
+library(mapSpain) # **sf** objects of Spain.
 
-# McDonalds in Barcelona, Spain
+# McDonald's restaurants in Barcelona, Spain.
 
 mc <- arc_geo_multi(
   "McDonalds",
@@ -26,11 +25,11 @@ mc <- arc_geo_multi(
   custom_query = list(outFields = c("LongLabel", "Type", "StAddr"))
 )
 
-# To sf
+# Convert to an **sf** object.
 mc_sf <- st_as_sf(
   mc,
   coords = c("lon", "lat"),
-  # here we have the wkid
+  # Use the WKID from the geocoding results.
   crs = mc$latestWkid[1]
 )
 
@@ -49,7 +48,7 @@ Spain
 
 ``` r
 
-# We can restrict the results to the bbox of BCN in the query
+# Restrict results to the Barcelona bounding box in the query.
 bbox <- st_bbox(bcn) |> paste0(collapse = ",")
 bbox
 #> [1] "2.0536216,41.3217545,2.227167,41.467717"
@@ -68,7 +67,6 @@ mc2_sf <- arc_geo_multi(
 ) |>
   st_as_sf(coords = c("lon", "lat"), crs = mc$latestWkid[1])
 
-
 ggplot(bcn) +
   geom_sf() +
   geom_sf(data = mc2_sf, color = "red")
@@ -80,16 +78,16 @@ A map showing the location of McDonald’s restaurants in Barcelona, Spain
 
 ## Example 2: terra objects
 
-We can add static map tiles thanks to **maptiles** package and tidyterra
-for plotting. The tiles themselves are represented here as **terra**
-objects:
+We can add static map tiles with the **maptiles** package and use the
+**tidyterra** package for plotting. The tiles themselves are represented
+here as **terra** objects:
 
 ``` r
 
 library(maptiles)
 library(tidyterra)
 
-# Usually use crs 3857 for getting tiles
+# Use CRS 3857 to retrieve tiles.
 bcn_3857 <- st_transform(bcn, 3857)
 
 osm_tiles <- get_tiles(bcn_3857, provider = "CartoDB.Positron", crop = TRUE)

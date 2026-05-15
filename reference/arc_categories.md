@@ -1,6 +1,6 @@
-# ArcGIS REST API category data base
+# ArcGIS REST API category database
 
-Database of available categories that can be used for filtering results
+Database of available categories that can be used to filter results
 provided by
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)
@@ -16,15 +16,15 @@ with 383 rows and fields:
 
 - level_1:
 
-  Top-level category
+  Top-level category.
 
 - level_2:
 
-  Second-level category
+  Second-level category.
 
 - level_3:
 
-  Child-level category
+  Child-level category.
 
 ## Source
 
@@ -38,14 +38,13 @@ filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-ca
 for details and examples.
 
 The geocoding service allows users to search for and geocode many types
-of addresses and places around the world. This simplifies the
-application building process, as developers don't need to know what
-types of places their users are searching for, because the service can
-decipher that. However, due to this flexibility, it is possible for
-ambiguous searches to match to many different places, and users may
-sometimes receive unexpected results. For example, a search for a city
-may match to a street name, or a search for an airport code may match to
-a country abbreviation.
+of addresses and places around the world. This simplifies application
+development because developers do not need to know what types of places
+their users are searching for; the service can decipher that. However,
+due to this flexibility, it is possible for ambiguous searches to match
+to many different places, and users may sometimes receive unexpected
+results. For example, a search for a city may match to a street name, or
+a search for an airport code may match to a country abbreviation.
 
 For such cases, the service provides the ability to filter out unwanted
 geocode results with the `category` argument. The `category` argument
@@ -55,7 +54,7 @@ search process.
 
 The results show a list of categories with three different hierarchy
 levels (`level_1`, `level_2`, `level_3`). If a `level_1` category is
-requested (i.e. `POI`) the child categories may be included also in the
+requested (i.e. `POI`), the child categories may also be included in the
 results.
 
 ## Note
@@ -75,7 +74,7 @@ Other datasets:
 
 ``` r
 # \donttest{
-# Get all possible values
+# Get all possible values.
 data("arc_categories")
 arc_categories
 #> # A tibble: 383 × 3
@@ -93,7 +92,7 @@ arc_categories
 #> 10 Postal  Postal Locality NA     
 #> # ℹ 373 more rows
 
-# Using categories
+# Use categories.
 
 sea_1 <- arc_geo("sea",
   custom_query = list(outFields = c("LongLabel", "Type")),
@@ -145,7 +144,7 @@ dplyr::glimpse(sea_2)
 #> $ wkid       <int> 4326, 4326
 #> $ latestWkid <int> 4326, 4326
 
-# We can use a list of categories
+# Use a list of categories.
 sea_3 <- arc_geo("sea",
   custom_query = list(outFields = c("LongLabel", "Type")),
   sourcecountry = "UK", limit = 5,

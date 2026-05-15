@@ -1,18 +1,18 @@
 # Reverse geocoding and feature types
 
-*Adapted from
+*Adapted from the
 <https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm>*
 
 ## Reverse geocoding details
 
-The purpose of reverse geocoding is to answer the question: What’s near
+The purpose of reverse geocoding is to answer the question: What is near
 this location? To answer this question, the `reverseGeocode` operation
 provided by the **ArcGIS REST API** returns the most relevant feature
 near an input location based on a prioritized hierarchy of feature
 types.
 
 The hierarchy is summarized in the table below, ordered by descending
-priority. Unless otherwise noted, each feature type is only returned
+priority. Unless otherwise noted, each feature type is returned only
 when the distance between the input location and the feature is within
 the tolerance specified in the *Search Tolerance* column.
 
@@ -53,14 +53,14 @@ As mentioned, it is possible to include several feature types. If more
 than one value is specified for the argument, the values must be
 separated by a comma, with no spaces after the comma.
 
-### single `featuretypes` value
+### Single `featuretypes` value
 
 ``` r
 
 arc_reverse_geo(..., featuretypes = "PointAddress")
 ```
 
-### multiple `featuretypes` value
+### Multiple `featuretypes` values
 
 ``` r
 
@@ -69,8 +69,7 @@ arc_reverse_geo(..., featuretypes = c("PointAddress", "StreetAddress"))
 
 ## Examples
 
-In the following examples, we provide different scenarios for better
-understanding.
+The following examples show different scenarios.
 
 ``` r
 
@@ -110,7 +109,7 @@ api_poi |>
 
 ### Example 2: `StreetAddress` match returned
 
-We specify here the type of feature we want to get using
+Here, we specify the type of feature to return using
 `featuretypes = "StreetAddress"`.
 
 ``` r
@@ -155,7 +154,7 @@ api_local |>
 |----------:|---------:|:------------------|----------:|---------:|:----------|
 | -117.1963 | 34.05922 | Redlands, CA, USA | -117.1963 | 34.05922 | Locality  |
 
-### Example 4: multiple values
+### Example 4: Multiple values
 
 When multiple values are included in the API call, the hierarchy
 explained in [Table 1](#tbl-hier) is still applied to the requested
@@ -183,10 +182,10 @@ api_multiple |>
 
 ### Example 5: No results for specific `featuretypes`
 
-In the following example we present a case where only certain
-`featuretypes` are near the requested location. In this case, when
-reverse geocoding the North Pole the API would return a `Locality` but
-no `StreetAddress` is found.
+The following example presents a case where only certain `featuretypes`
+are near the requested location. In this case, when reverse geocoding
+the North Pole, the API would return a `Locality`, but no
+`StreetAddress` is found.
 
 When it is not possible to return results,
 [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md)
@@ -209,7 +208,7 @@ npole |>
 
 ``` r
 
-# But no StreetAddress
+# But no `StreetAddress`.
 npole2 <- arc_reverse_geo(
   x = 0,
   y = 90,
@@ -228,10 +227,10 @@ npole2 |>
 
 ## Conclusion
 
-The API can return different results for the same `x,y` values depending
-on the value of `featuretypes`. When `featuretypes = NULL`, the feature
-type returned depends on the hierarchy shown in [Table 1](#tbl-hier).
+The API can return different results for the same `x` and `y` values
+depending on the value of `featuretypes`. When `featuretypes = NULL`,
+the feature type returned depends on the hierarchy shown in
+[Table 1](#tbl-hier).
 
 Depending on the location, the `featuretypes` filter may not return
-results, hence for general purposes using `featuretypes = NULL` is
-safer.
+results, so using `featuretypes = NULL` is safer for general purposes.

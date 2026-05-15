@@ -1,4 +1,4 @@
-# ESRI (ArcGIS) Spatial Reference data base
+# Esri (ArcGIS) spatial reference database
 
 Database of available spatial references (CRS) in
 [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
@@ -11,52 +11,51 @@ with 9,608 rows and fields:
 
 - projtype:
 
-  Projection type
-  (`"ProjectedCoordinateSystems", "GeographicCoordinateSystems","VerticalCoordinateSystems"`)
+  Projection type (`"ProjectedCoordinateSystems"`,
+  `"GeographicCoordinateSystems"` or `"VerticalCoordinateSystems"`).
 
 - wkid:
 
-  Well-Known ID
+  Well-Known ID.
 
 - latestWkid:
 
-  Most recent `wkid`, in case that `wkid` is deprecated
+  Most recent `wkid`, if `wkid` is deprecated.
 
 - authority:
 
-  `wkid` authority (Esri or EPSG)
+  `wkid` authority (Esri or EPSG).
 
 - deprecated:
 
-  Logical indicating if `wkid` is deprecated
+  Logical indicating whether `wkid` is deprecated.
 
 - description:
 
-  Human-readable description of the `wkid`
+  Human-readable description of the `wkid`.
 
 - areaname:
 
-  Use area of the `wkid`
+  Use area of the `wkid`.
 
 - wkt:
 
   Representation of `wkid` in Well-Known Text (WKT). Useful when working
   with [sf](https://CRAN.R-project.org/package=sf) or
-  [terra](https://CRAN.R-project.org/package=terra)
+  [terra](https://CRAN.R-project.org/package=terra).
 
 ## Source
 
-[ESRI Projection Engine
+[Esri Projection Engine
 factory](https://github.com/Esri/projection-engine-db-doc)
 
 ## Details
 
-This data base is useful when using the `outsr` argument of the
-functions.
+This database is useful when using the `outsr` argument.
 
-Some projections ids have changed over time, for example Web Mercator is
-`wkid = 102100` is deprecated and currently is `wkid = 3857`. However,
-both values would work, and they would return similar results.
+Some projection IDs have changed over time. For example, Web Mercator
+`wkid = 102100` is deprecated and is currently `wkid = 3857`. However,
+both values work and return similar results.
 
 ## Note
 
@@ -73,7 +72,7 @@ Other datasets:
 
 ``` r
 # \donttest{
-# Get all possible values
+# Get all possible values.
 data("arc_spatial_references")
 arc_spatial_references
 #> # A tibble: 9,608 × 8
@@ -91,7 +90,7 @@ arc_spatial_references
 #> 10 ProjectedCo…  2009       2009 EPSG      FALSE      NAD 1927 C… Canada … "PRO…
 #> # ℹ 9,598 more rows
 
-# Request with deprecated Web Mercator
+# Request with deprecated Web Mercator.
 library(dplyr)
 wkid <- arc_spatial_references |>
   filter(latestWkid == 3857 & deprecated) |>
@@ -111,7 +110,8 @@ glimpse(wkid)
 
 add <- arc_geo("London, United Kingdom", outsr = wkid$wkid)
 
-# Note values lat, lon and wkid. latestwkid give the current valid wkid
+# Note values for `lat`, `lon` and `wkid`. `latestWkid` gives the current
+# valid `wkid`.
 add |>
   select(lat, lon, wkid, latestWkid) |>
   glimpse()
@@ -122,13 +122,13 @@ add |>
 #> $ wkid       <int> 102100
 #> $ latestWkid <int> 3857
 
-# See with sf
+# Try with `sf`.
 
 try(sf::st_crs(wkid$wkid))
 #> Warning: GDAL Error 1: PROJ: proj_create_from_database: crs not found
 #> Coordinate Reference System: NA
 
-# But
+# Try the latest WKID.
 try(sf::st_crs(wkid$latestWkid))
 #> Coordinate Reference System:
 #>   User input: EPSG:3857 
@@ -177,7 +177,7 @@ try(sf::st_crs(wkid$latestWkid))
 #>         BBOX[-85.06,-180,85.06,180]],
 #>     ID["EPSG",3857]]
 
-# or
+# Or use WKT.
 try(sf::st_crs(wkid$wkt))
 #> Coordinate Reference System:
 #>   User input: PROJCS["WGS_1984_Web_Mercator_Auxiliary_Sphere",GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137.0,298.257223563]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Mercator_Auxiliary_Sphere"],PARAMETER["False_Easting",0.0],PARAMETER["False_Northing",0.0],PARAMETER["Central_Meridian",0.0],PARAMETER["Standard_Parallel_1",0.0],PARAMETER["Auxiliary_Sphere_Type",0.0],UNIT["Meter",1.0]] 

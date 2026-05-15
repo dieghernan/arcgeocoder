@@ -1,6 +1,11 @@
 # Articles
 
-### Explore arcgeocoder
+### Get started
+
+- [Get started with
+  arcgeocoder](https://dieghernan.github.io/arcgeocoder/articles/arcgeocoder.md):
+
+  Quick examples showing what arcgeocoder can do for you.
 
 - [Reverse geocoding and feature
   types](https://dieghernan.github.io/arcgeocoder/articles/feature-types.md):

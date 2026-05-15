@@ -35,8 +35,8 @@ arc_geo(
 - address:
 
   Single-line address text (e.g.
-  `"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses (
-  `c("Madrid", "Barcelona")`).
+  `"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
+  (e.g. `c("Madrid", "Barcelona")`).
 
 - lat:
 
@@ -53,26 +53,26 @@ arc_geo(
 
 - full_results:
 
-  Logical; if `TRUE` return all available API fields via `outFields=*`.
+  Logical. If `TRUE`, return all available API fields via `outFields=*`.
   Default is `FALSE`.
 
 - return_addresses:
 
-  Logical; if `TRUE` keep input query in output.
+  Logical. If `TRUE`, keep input query in output.
 
 - verbose:
 
-  Logical; if `TRUE` output process messages to console.
+  Logical. If `TRUE`, output process messages to the console.
 
 - progressbar:
 
-  Logical; if `TRUE` shows a progress bar for multiple points.
+  Logical. If `TRUE`, show a progress bar for multiple points.
 
 - outsr:
 
-  The spatial reference of the `x,y` coordinates returned by a geocode
-  request. By default is `NULL` (i.e. the argument won't be used in the
-  query). See **Details** and
+  The spatial reference of the `x` and `y` coordinates returned by a
+  geocode request. By default, it is `NULL` (i.e. the argument will not
+  be used in the query). See **Details** and
   [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md).
 
 - langcode:
@@ -97,21 +97,20 @@ arc_geo(
 ## Value
 
 A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-object with the results. See the details of the output in [ArcGIS REST
-API Service
+object with the results. See output details in [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 ## Details
 
 See the [ArcGIS REST
 docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
-for more info and valid values.
+for more information and valid values.
 
 ## `outsr`
 
-The spatial reference can be specified as either a well-known ID (WKID).
-If not specified, the spatial reference of the output locations is the
-same as that of the service (WGS84, i.e. WKID = 4326)).
+The spatial reference can be specified as a well-known ID (WKID). If not
+specified, the spatial reference of the output locations is the same as
+that of the service (WGS84, i.e. WKID = 4326).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
@@ -152,7 +151,7 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 
-# Several addresses with additional output fields
+# Several addresses with additional output fields.
 with_params <- arc_geo(c("Madrid", "Barcelona"),
   custom_query = list(outFields = c("LongLabel", "CntryName"))
 )
@@ -166,7 +165,7 @@ with_params |>
 #> 1  40.4 -3.70 España    Madrid, Comunidad de Madrid, ESP
 #> 2  41.4  2.17 España    Barcelona, Cataluña, ESP        
 
-# With options: restrict search to USA
+# With options: restrict search to the USA.
 with_params_usa <- arc_geo(c("Madrid", "Barcelona"),
   sourcecountry = "USA",
   custom_query = list(outFields = c("LongLabel", "CntryName"))
