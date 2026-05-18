@@ -33,7 +33,7 @@ test_that("Returning empty query", {
 
   expect_message(
     obj <- arc_reverse_geo(179.9999, 89.999999, featuretypes = "StreetInt"),
-    "No results for location="
+    "No results for location:"
   )
 
   expect_true(nrow(obj) == 1)
@@ -50,7 +50,7 @@ test_that("Returning empty query", {
       address = "adddata",
       featuretypes = "StreetInt"
     ),
-    "No results for location="
+    "No results for location:"
   )
 
   expect_identical(names(obj_renamed), c("x", "y", "adddata"))

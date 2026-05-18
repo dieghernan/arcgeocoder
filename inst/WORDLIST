@@ -14,7 +14,7 @@ Geocoding
 Mapbox
 Nominatim
 ORCID
-OpenStreetMaps
+OpenStreetMap
 Ozero
 POIs
 Possenriede
@@ -26,7 +26,6 @@ WKID
 WKT
 al
 api
-browsable
 codecov
 crosstalk
 doi
@@ -43,11 +42,12 @@ maptiles
 nominatimlite
 pkgdown
 reactable
+subregion
+subunit
 terra
 tibble
 tidygeocoder
 tidyterra
-viewbox
 wkid
 xmax
 xmin

@@ -11,7 +11,7 @@
          - maxLocations=1
          - location=-3.7242,40.39094
          - category=POI
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&category=POI
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&category=POI
 
 # Messages bbox
 
@@ -19,7 +19,7 @@
       out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, bbox = "uno",
         verbose = TRUE)
     Message
-      `bbox` has fewer than 4 values. The `bbox` argument will not be used
+      `bbox` has fewer than 4 values. The `bbox` argument will not be used.
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -28,7 +28,7 @@
          - maxLocations=1
          - location=-3.7242,40.39094
          - category=POI
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&category=POI
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&category=POI
 
 ---
 
@@ -36,7 +36,7 @@
       out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, bbox = c("uno", NA),
       verbose = TRUE)
     Message
-      `bbox` has NA values. The `bbox` argument will not be used
+      `bbox` has NA values. The `bbox` argument will not be used.
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -45,7 +45,7 @@
          - maxLocations=1
          - location=-3.7242,40.39094
          - category=POI
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&category=POI
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&category=POI
 
 ---
 
@@ -53,7 +53,7 @@
       out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, bbox = LETTERS[1:4],
       verbose = TRUE)
     Message
-      `bbox` is not numeric. The `bbox` argument will not be used
+      `bbox` is not numeric. The `bbox` argument will not be used.
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -62,7 +62,7 @@
          - maxLocations=1
          - location=-3.7242,40.39094
          - category=POI
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&category=POI
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&category=POI
 
 ---
 
@@ -71,7 +71,7 @@
         200, 89), verbose = TRUE)
     Message
       
-      `bbox` xmin and xmax have been restricted to [-180, 180]
+      `bbox` xmin and xmax have been restricted to [-180, 180].
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -81,7 +81,7 @@
          - location=-3.7242,40.39094
          - searchExtent=-180,-89,180,89
          - category=POI
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&searchExtent=-180,-89,180,89&category=POI
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&searchExtent=-180,-89,180,89&category=POI
 
 ---
 
@@ -90,7 +90,7 @@
         200, 89), verbose = TRUE)
     Message
       
-      `bbox` xmin and xmax have been restricted to [-180, 180]
+      `bbox` xmin and xmax have been restricted to [-180, 180].
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -100,7 +100,7 @@
          - location=-3.7242,40.39094
          - searchExtent=-180,-89,180,89
          - category=POI
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&searchExtent=-180,-89,180,89&category=POI
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&searchExtent=-180,-89,180,89&category=POI
 
 ---
 
@@ -109,7 +109,7 @@
         100, 95), verbose = TRUE)
     Message
       
-      `bbox` ymin and ymax have been restricted to [-90, 90]
+      `bbox` ymin and ymax have been restricted to [-90, 90].
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -119,7 +119,7 @@
          - location=-3.7242,40.39094
          - searchExtent=-100,-90,100,90
          - category=POI
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&searchExtent=-100,-90,100,90&category=POI
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&searchExtent=-100,-90,100,90&category=POI
 
 # Test with all params
 
@@ -142,7 +142,7 @@
          - outSR=102100
          - langCode=ES
          - category=POI
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=Bar&f=json&maxLocations=20&outFields=LongLabel&location=-3.7242,40.39094&searchExtent=-3.8,40.3,-3.65,40.5&sourceCountry=ES&outSR=102100&langCode=ES&category=POI
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=Bar&f=json&maxLocations=20&outFields=LongLabel&location=-3.7242,40.39094&searchExtent=-3.8,40.3,-3.65,40.5&sourceCountry=ES&outSR=102100&langCode=ES&category=POI
       
       Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
@@ -156,8 +156,8 @@
          - outSR=102100
          - langCode=ES
          - category=Address
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=Bar&f=json&maxLocations=20&outFields=LongLabel&location=-3.7242,40.39094&searchExtent=-3.8,40.3,-3.65,40.5&sourceCountry=ES&outSR=102100&langCode=ES&category=Address
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=Bar&f=json&maxLocations=20&outFields=LongLabel&location=-3.7242,40.39094&searchExtent=-3.8,40.3,-3.65,40.5&sourceCountry=ES&outSR=102100&langCode=ES&category=Address
       
-      No results for query Bar
+      No results for query: Bar
       (category: Address)
 

@@ -147,7 +147,7 @@ arc_geo_multi <- function(
 
   if (limit > 50) {
     message(paste(
-      "\nThe ArcGIS REST API provides a maximum of 50 results. ",
+      "\nThe ArcGIS REST API provides a maximum of 50 results.",
       "Your query may be incomplete."
     ))
     limit <- min(50, limit)
@@ -159,7 +159,7 @@ arc_geo_multi <- function(
   key <- key[!is.na(key)]
 
   if (length(key) == 0) {
-    stop("No address component provided. Provide at least one value")
+    stop("No address component provided. Provide at least one value.")
   }
 
   # Set progress bar.
@@ -238,10 +238,10 @@ input_multi <- function(
   getlen <- lengths(multi_list)
   nolens <- getlen[getlen != 0]
   if (length(nolens) == 0) {
-    stop("No address component provided. Provide at least one value")
+    stop("No address component provided. Provide at least one value.")
   }
   if (length(unique(nolens)) != 1) {
-    stop("When providing several components, their lengths must be the same")
+    stop("When providing several components, their lengths must be the same.")
   }
 
   the_df <- dplyr::bind_rows(multi_list[names(nolens)])

@@ -4,7 +4,7 @@
       out <- arc_geo_multi("Madrid", limit = 200)
     Message
       
-      The ArcGIS REST API provides a maximum of 50 results.  Your query may be incomplete.
+      The ArcGIS REST API provides a maximum of 50 results. Your query may be incomplete.
 
 ---
 
@@ -20,7 +20,7 @@
          - countryCode=ESP
          - f=json
          - maxLocations=1
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?address=Calle%20Mayor&city=Madrid&countryCode=ESP&f=json&maxLocations=1
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?address=Calle%20Mayor&city=Madrid&countryCode=ESP&f=json&maxLocations=1
 
 # Use categories multi
 
@@ -40,7 +40,7 @@
          - outFields=LongLabel,Type
          - location=-117.92712,33.81563
          - category=POI
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?address=Atocha&city=Madrid&countryCode=ESP&f=json&maxLocations=1&outFields=LongLabel,Type&location=-117.92712,33.81563&category=POI
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?address=Atocha&city=Madrid&countryCode=ESP&f=json&maxLocations=1&outFields=LongLabel,Type&location=-117.92712,33.81563&category=POI
 
 ---
 
@@ -60,5 +60,5 @@
          - outFields=LongLabel,Type
          - location=-117.92712,33.81563
          - category=Address
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?address=Atocha&city=Madrid&countryCode=ESP&f=json&maxLocations=1&outFields=LongLabel,Type&location=-117.92712,33.81563&category=Address
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?address=Atocha&city=Madrid&countryCode=ESP&f=json&maxLocations=1&outFields=LongLabel,Type&location=-117.92712,33.81563&category=Address
 

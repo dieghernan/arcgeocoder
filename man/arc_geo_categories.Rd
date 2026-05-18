@@ -21,7 +21,7 @@ arc_geo_categories(
 )
 }
 \arguments{
-\item{category}{A place or address type that can be used to filter results.
+\item{category}{A place or address type used to filter results.
 Several values can also be supplied as a vector (i.e.
 \code{c("Cinema", "Museum")}), which performs one call for each value. See
 \strong{Details}.}
@@ -75,16 +75,12 @@ of \code{\link[=arc_geo]{arc_geo()}}, but it is vectorized over \code{category}.
 
 See \link{arc_categories} for a detailed explanation and available values.
 
-\strong{Note:} to obtain results, provide one of the following:
-\itemize{
-\item A pair of coordinates (\code{x} and \code{y} arguments) used as a reference for
-geocoding.
-\item A bounding box via the \code{bbox} argument defining a desired extent for
-results.
-}
+\strong{Note:} to obtain results, provide either a pair of coordinates (\code{x} and
+\code{y} arguments) used as a reference for geocoding or a bounding box via the
+\code{bbox} argument defining a desired extent for results.
 
-It is possible to combine both approaches (i.e. providing \code{x}, \code{y} and
-\code{bbox} values) to improve the geocoding process. See \strong{Examples}.
+You can combine both approaches (i.e. providing \code{x}, \code{y} and \code{bbox} values)
+to improve the geocoding process. See \strong{Examples}.
 }
 \details{
 Bounding boxes can be located using online tools, such as

@@ -51,7 +51,7 @@ skip_if_api_server <- function() {
   }
 
   if (requireNamespace("testthat", quietly = TRUE)) {
-    testthat::skip("ArcGIS REST API not reachable")
+    testthat::skip("ArcGIS REST API not reachable.")
   }
   invisible()
   # nocov end
@@ -81,7 +81,7 @@ arc_api_call <- function(url, destfile, quiet) {
       decomp[1],
       "?\nParameters:\n",
       paste0("   - ", params, collapse = "\n"),
-      "\nurl: ",
+      "\nURL: ",
       url
     )
   }
@@ -102,7 +102,7 @@ arc_api_call <- function(url, destfile, quiet) {
   # nocov start
   if (isFALSE(dwn_res)) {
     if (isFALSE(quiet)) {
-      message("\nRetrying query")
+      message("\nRetrying query.")
     }
     Sys.sleep(1)
 

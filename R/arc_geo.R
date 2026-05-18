@@ -86,7 +86,7 @@ arc_geo <- function(
 ) {
   if (limit > 50) {
     message(paste(
-      "\nThe ArcGIS REST API provides a maximum of 50 results. ",
+      "\nThe ArcGIS REST API provides a maximum of 50 results.",
       "Your query may be incomplete."
     ))
     limit <- min(50, limit)
@@ -191,7 +191,7 @@ arc_geo_single <- function(
 
   # Handle empty queries.
   if (length(result_init$candidates) == 0) {
-    message("\nNo results for query ", address)
+    message("\nNo results for query: ", address)
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
@@ -205,7 +205,6 @@ arc_geo_single <- function(
   result_end$lon <- as.double(result_unn$x)
 
   # Keep names in the requested order.
-
   result_out <- keep_names(
     result_end,
     lat,

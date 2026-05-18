@@ -7,16 +7,14 @@
 #'
 #' See [arc_categories] for a detailed explanation and available values.
 #'
-#' **Note:** to obtain results, provide one of the following:
-#' - A pair of coordinates (`x` and `y` arguments) used as a reference for
-#'   geocoding.
-#' - A bounding box via the `bbox` argument defining a desired extent for
-#'   results.
+#' **Note:** to obtain results, provide either a pair of coordinates (`x` and
+#' `y` arguments) used as a reference for geocoding or a bounding box via the
+#' `bbox` argument defining a desired extent for results.
 #'
-#' It is possible to combine both approaches (i.e. providing `x`, `y` and
-#' `bbox` values) to improve the geocoding process. See **Examples**.
+#' You can combine both approaches (i.e. providing `x`, `y` and `bbox` values)
+#' to improve the geocoding process. See **Examples**.
 #'
-#' @param category A place or address type that can be used to filter results.
+#' @param category A place or address type used to filter results.
 #'   Several values can also be supplied as a vector (i.e.
 #'   `c("Cinema", "Museum")`), which performs one call for each value. See
 #'   **Details**.
@@ -158,7 +156,7 @@ arc_geo_categories <- function(
     stop(
       paste0(
         "Provide either a valid combination of x and y arguments or ",
-        "a valid `bbox`"
+        "a valid `bbox`."
       )
     )
   }
@@ -235,32 +233,32 @@ validate_location <- function(x = NULL, y = NULL) {
   # Return NAs with a message if either coordinate is missing.
   if (anyNA(c(x, y))) {
     message(
-      "Either x or y is missing. The `location` argument will not be used"
+      "Either x or y is missing. The `location` argument will not be used."
     )
     return(c(NA, NA))
   }
 
   # Check inputs.
   if (!is.numeric(x) || !is.numeric(y)) {
-    stop("x and y must be numeric")
+    stop("x and y must be numeric.")
   }
 
   # Use only the first coordinate pair.
   x <- x[1]
   y <- y[1]
 
-  # Lat
+  # Restrict latitude.
   y_cap <- pmax(pmin(y, 90), -90)
 
   if (!identical(y_cap, y)) {
-    message("\nLatitudes have been restricted to [-90, 90]")
+    message("\nLatitudes have been restricted to [-90, 90].")
   }
 
-  # Lon
+  # Restrict longitude.
   x_cap <- pmax(pmin(x, 180), -180)
 
   if (!all(x_cap == x)) {
-    message("\nLongitudes have been restricted to [-180, 180]")
+    message("\nLongitudes have been restricted to [-180, 180].")
   }
 
   c(x_cap, y_cap)
@@ -273,39 +271,39 @@ validate_bbox <- function(bbox = NULL) {
 
   # Return NAs with a message if any `bbox` value is missing.
   if (anyNA(bbox)) {
-    message("`bbox` has NA values. The `bbox` argument will not be used")
+    message("`bbox` has NA values. The `bbox` argument will not be used.")
     return(c(NA, NA, NA, NA))
   }
 
   if (length(bbox) < 4) {
     message(
-      "`bbox` has fewer than 4 values. The `bbox` argument will not be used"
+      "`bbox` has fewer than 4 values. The `bbox` argument will not be used."
     )
     return(c(NA, NA, NA, NA))
   }
 
   if (!is.numeric(bbox)) {
-    message("`bbox` is not numeric. The `bbox` argument will not be used")
+    message("`bbox` is not numeric. The `bbox` argument will not be used.")
     return(c(NA, NA, NA, NA))
   }
 
   # Use only the first four `bbox` values.
   bbox <- bbox[1:4]
 
-  # Lon
+  # Restrict longitude.
   xs <- bbox[c(1, 3)]
   xs_cap <- pmax(pmin(xs, 180), -180)
 
   if (!all(xs_cap == xs)) {
-    message("\n`bbox` xmin and xmax have been restricted to [-180, 180]")
+    message("\n`bbox` xmin and xmax have been restricted to [-180, 180].")
   }
 
-  # Lat
+  # Restrict latitude.
   ys <- bbox[c(2, 4)]
   ys_cap <- pmax(pmin(ys, 90), -90)
 
   if (!all(ys_cap == ys)) {
-    message("\n`bbox` ymin and ymax have been restricted to [-90, 90]")
+    message("\n`bbox` ymin and ymax have been restricted to [-90, 90].")
   }
 
   c(xs_cap[1], ys_cap[1], xs_cap[2], ys_cap[2])

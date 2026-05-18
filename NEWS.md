@@ -14,15 +14,15 @@
 
 - `arc_geo_categories()` is now vectorized over the `category` argument.
 - Fixed typos in documentation.
-- A vector can now be used in each named element of `custom_query`.
+- `custom_query` now accepts vectors in each named element.
 - Added **ggplot2** and **sf** to Suggests.
 
 # arcgeocoder 0.1.0
 
 - First **CRAN** release.
 - Added articles to the **pkgdown** site and included icons for examples.
-- Status changed to active.
-- Added the `?arc_spatial_references` data object.
+- Changed project status to active.
+- Added the `arc_spatial_references` data object.
 
 # arcgeocoder 0.0.1
 

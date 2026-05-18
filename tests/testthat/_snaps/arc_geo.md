@@ -4,7 +4,7 @@
       out <- arc_geo("Madrid", limit = 200)
     Message
       
-      The ArcGIS REST API provides a maximum of 50 results.  Your query may be incomplete.
+      The ArcGIS REST API provides a maximum of 50 results. Your query may be incomplete.
 
 ---
 
@@ -17,7 +17,7 @@
          - SingleLine=Madrid
          - f=json
          - maxLocations=1
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=Madrid&f=json&maxLocations=1
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=Madrid&f=json&maxLocations=1
 
 # Use categories single
 
@@ -34,7 +34,7 @@
          - outFields=LongLabel,Type
          - location=-117.92712,33.81563
          - category=Gas Station
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&outFields=LongLabel,Type&location=-117.92712,33.81563&category=Gas%20Station
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&outFields=LongLabel,Type&location=-117.92712,33.81563&category=Gas%20Station
 
 ---
 
@@ -51,5 +51,5 @@
          - outFields=LongLabel,Type
          - location=-117.92712,33.81563
          - category=Restaurant
-      url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&outFields=LongLabel,Type&location=-117.92712,33.81563&category=Restaurant
+      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&outFields=LongLabel,Type&location=-117.92712,33.81563&category=Restaurant
 

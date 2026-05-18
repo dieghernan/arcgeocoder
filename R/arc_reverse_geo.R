@@ -123,25 +123,25 @@ arc_reverse_geo <- function(
 ) {
   # Check inputs.
   if (!is.numeric(x) || !is.numeric(y)) {
-    stop("x and y must be numeric")
+    stop("x and y must be numeric.")
   }
 
   if (length(x) != length(y)) {
-    stop("x and y must have the same number of elements")
+    stop("x and y must have the same number of elements.")
   }
 
-  # Lat
+  # Restrict latitude.
   y_cap <- pmax(pmin(y, 90), -90)
 
   if (!identical(y_cap, y)) {
-    message("\nLatitudes have been restricted to [-90, 90]")
+    message("\nLatitudes have been restricted to [-90, 90].")
   }
 
-  # Lon
+  # Restrict longitude.
   x_cap <- pmax(pmin(x, 180), -180)
 
   if (!all(x_cap == x)) {
-    message("\nLongitudes have been restricted to [-180, 180]")
+    message("\nLongitudes have been restricted to [-180, 180].")
   }
 
   # Deduplicate coordinates before querying.
@@ -255,7 +255,7 @@ arc_reverse_geo_single <- function(
   if ("error" %in% names(result_init)) {
     message(
       "\n",
-      "No results for location=",
+      "No results for location: ",
       long_cap,
       ",",
       lat_cap,

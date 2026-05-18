@@ -2,8 +2,8 @@
 #'
 #' @description
 #'
-#' Database of available categories that can be used to filter results
-#' provided by [arc_geo()], [arc_geo_multi()] and [arc_geo_categories()] in
+#' Database of available categories used to filter results provided by
+#' [arc_geo()], [arc_geo_multi()] and [arc_geo_categories()] in
 #' [tibble][tibble::tbl_df] format.
 #'
 #' @note Data extracted on **15 January 2026**.

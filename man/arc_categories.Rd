@@ -19,8 +19,8 @@ fields:
 \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering}.
 }
 \description{
-Database of available categories that can be used to filter results
-provided by \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}} and \code{\link[=arc_geo_categories]{arc_geo_categories()}} in
+Database of available categories used to filter results provided by
+\code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}} and \code{\link[=arc_geo_categories]{arc_geo_categories()}} in
 \link[tibble:tbl_df]{tibble} format.
 }
 \details{
