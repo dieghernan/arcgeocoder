@@ -195,7 +195,7 @@ sev <- arc_reverse_geo(
 #>    - f=json
 #>    - outSR=102100
 #>    - featureTypes=POI,StreetInt
-#> url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-73.98586,40.75728&f=json&outSR=102100&featureTypes=POI,StreetInt
+#> URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-73.98586,40.75728&f=json&outSR=102100&featureTypes=POI,StreetInt
 #>   |                                                          |==================================================| 100%
 #> 
 #> Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?
@@ -204,7 +204,7 @@ sev <- arc_reverse_geo(
 #>    - f=json
 #>    - outSR=102100
 #>    - featureTypes=POI,StreetInt
-#> url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-3.188375,55.95335&f=json&outSR=102100&featureTypes=POI,StreetInt
+#> URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-3.188375,55.95335&f=json&outSR=102100&featureTypes=POI,StreetInt
 #> 
 
 dplyr::glimpse(sev)

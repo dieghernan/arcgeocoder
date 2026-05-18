@@ -3,10 +3,10 @@
 ## Example
 
 The following example shows how to create an interactive [leaflet
-map](https://rstudio.github.io/leaflet/) with data retrieved with
+map](https://rstudio.github.io/leaflet/) using data retrieved with
 **arcgeocoder**.
 
-This widget is browsable and filterable thanks to **crosstalk** and
+This widget can be browsed and filtered with **crosstalk** and
 **reactable**:
 
 ``` r
@@ -140,7 +140,7 @@ htmltools::browsable(
 
 ## Attributions
 
-- [Eiffel tower icons created by Freepik -
+- [Eiffel Tower icons created by Freepik -
   Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
 - [Mug icons created by Freepik -
   Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")

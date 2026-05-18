@@ -2,7 +2,7 @@
 
 ## Example 1: sf objects
 
-The following example shows how to create a static map with data
+The following example shows how to create a static map using data
 retrieved with **arcgeocoder** and converted to an **sf** object:
 
 ``` r
@@ -87,7 +87,7 @@ here as **terra** objects:
 library(maptiles)
 library(tidyterra)
 
-# Use CRS 3857 to retrieve tiles.
+# Use EPSG:3857 to retrieve tiles.
 bcn_3857 <- st_transform(bcn, 3857)
 
 osm_tiles <- get_tiles(bcn_3857, provider = "CartoDB.Positron", crop = TRUE)

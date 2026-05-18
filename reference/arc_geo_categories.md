@@ -10,16 +10,12 @@ See
 [arc_categories](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
 for a detailed explanation and available values.
 
-**Note:** to obtain results, provide one of the following:
+**Note:** to obtain results, provide either a pair of coordinates (`x`
+and `y` arguments) used as a reference for geocoding or a bounding box
+via the `bbox` argument defining a desired extent for results.
 
-- A pair of coordinates (`x` and `y` arguments) used as a reference for
-  geocoding.
-
-- A bounding box via the `bbox` argument defining a desired extent for
-  results.
-
-It is possible to combine both approaches (i.e. providing `x`, `y` and
-`bbox` values) to improve the geocoding process. See **Examples**.
+You can combine both approaches (i.e. providing `x`, `y` and `bbox`
+values) to improve the geocoding process. See **Examples**.
 
 ## Usage
 
@@ -44,10 +40,9 @@ arc_geo_categories(
 
 - category:
 
-  A place or address type that can be used to filter results. Several
-  values can also be supplied as a vector (i.e.
-  `c("Cinema", "Museum")`), which performs one call for each value. See
-  **Details**.
+  A place or address type used to filter results. Several values can
+  also be supplied as a vector (i.e. `c("Cinema", "Museum")`), which
+  performs one call for each value. See **Details**.
 
 - x:
 

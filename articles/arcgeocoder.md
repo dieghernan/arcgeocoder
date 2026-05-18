@@ -6,26 +6,24 @@ REST API Geocoding
 Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
 
 The full site with examples and vignettes is available at
-<https://dieghernan.github.io/arcgeocoder/>
+<https://dieghernan.github.io/arcgeocoder/>.
 
 ## Why arcgeocoder?
 
-**arcgeocoder** is a package that provides a lightweight interface for
-geocoding and reverse geocoding with the ArcGIS REST API service. The
-goal of **arcgeocoder** is to access the ArcGIS REST API with fewer
-dependencies, such as **curl**. In some situations, **curl** may not be
-available or accessible, so **arcgeocoder** uses base functions to
-overcome this limitation.
+**arcgeocoder** provides a lightweight interface for geocoding and
+reverse geocoding with the ArcGIS REST API service. It accesses the
+ArcGIS REST API with fewer dependencies, such as **curl**. In some
+situations, **curl** may not be available or accessible, so
+**arcgeocoder** uses base functions to overcome this limitation.
 
-The interface of **arcgeocoder** is designed to ease access to all the
-features provided by the API. The API endpoints used by **arcgeocoder**
-are `findAddressCandidates` and `reverseGeocode`, which can be accessed
-without the need for an API key.
+The interface of **arcgeocoder** is designed to make the API features
+easier to access. The API endpoints used by **arcgeocoder** are
+`findAddressCandidates` and `reverseGeocode`, which can be accessed
+without an API key.
 
 ## Recommended packages
 
-Other packages are more complete and mature and provide similar
-features:
+Other packages are more mature and provide similar features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)). Provides an interface to
@@ -44,8 +42,8 @@ features:
 
 In this first example, we geocode a few addresses using the
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md)
-function. Note that **arcgeocoder** works straight away, and you do not
-need to provide any API key to start geocoding!
+function. Note that **arcgeocoder** works without additional setup, and
+you do not need to provide an API key to start geocoding.
 
 ``` r
 
@@ -70,8 +68,8 @@ lat_longs <- arc_geo(
 ```
 
 Only a few fields are returned from the geocoding service in this
-example, but `full_results = TRUE` can be used to return all of the data
-from the geocoder service.
+example, but `full_results = TRUE` can be used to return all data from
+the geocoder service.
 
 | query | latitude | longitude | address | score | x | y | xmin | ymin | xmax | ymax | wkid | latestWkid |
 |:---|---:|---:|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -114,13 +112,13 @@ filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-ca
 See more information in the documentation for the `arc_categories` data
 object.
 
-In the following example, we look for POIs related to food
-(i.e. restaurants, coffee shops and bakeries) near the Eiffel Tower in
-France.
+In the following example, we look for food-related points of interest
+(POIs), such as restaurants, coffee shops and bakeries, near the Eiffel
+Tower in France.
 
 ``` r
 
-library(ggplot2) # For plotting
+library(ggplot2) # For plotting.
 
 # Step 1: Locate the Eiffel Tower using a multi-field query.
 
@@ -136,9 +134,9 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                                          
-#>   <dbl> <dbl> <chr>                                                                              
-#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-de-France…
+#>     lon   lat LongLabel                                                                   
+#>   <dbl> <dbl> <chr>                                                                       
+#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-de…
 
 # Use `lon` and `lat` to boost the search with `category = "Food"`.
 food_eiffel <- arc_geo_categories(

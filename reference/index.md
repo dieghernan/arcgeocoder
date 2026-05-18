@@ -2,7 +2,8 @@
 
 ## Geocoding and reverse geocoding
 
-Functions that perform requests to the ArcGIS REST API.
+Functions that send geocoding and reverse geocoding requests to the
+ArcGIS REST API.
 
 - [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md)
   : Geocoding using the ArcGIS REST API
@@ -15,7 +16,8 @@ Functions that perform requests to the ArcGIS REST API.
 
 ## Datasets
 
-Data objects included in the package.
+Reference data used to filter geocoding results and choose spatial
+references.
 
 - [`arc_categories`](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
   : ArcGIS REST API category database

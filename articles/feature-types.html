@@ -13,8 +13,8 @@
 <link rel="manifest" href="../site.webmanifest">
 <!-- katex math --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><script src="../katex-auto.js"></script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Inter-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Inter-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Inter_Tight-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Fira_Code-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
@@ -104,11 +104,11 @@
 
 
 
-    <!-- feature-types.qmd is generated from feature-types.qmd.orig. Please edit that file --><p><em>Adapted from the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link uri">https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm</a></em></p>
+    <!-- feature-types.qmd is generated from feature-types.qmd.orig. Please edit that file --><p><em>Adapted from the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link uri">https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm</a>.</em></p>
 <section class="level2"><h2 id="reverse-geocoding-details">Reverse geocoding details<a class="anchor" aria-label="anchor" href="#reverse-geocoding-details"></a>
 </h2>
 <p>The purpose of reverse geocoding is to answer the question: What is near this location? To answer this question, the <code>reverseGeocode</code> operation provided by the <strong>ArcGIS REST API</strong> returns the most relevant feature near an input location based on a prioritized hierarchy of feature types.</p>
-<p>The hierarchy is summarized in the table below, ordered by descending priority. Unless otherwise noted, each feature type is returned only when the distance between the input location and the feature is within the tolerance specified in the <em>Search Tolerance</em> column.</p>
+<p>The hierarchy is summarized in the table below, ordered by descending priority. Unless otherwise noted, each feature type is returned only when the distance between the input location and the feature is within the tolerance specified in the <em>Search tolerance</em> column.</p>
 <div id="tbl-hier" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-hier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -179,7 +179,7 @@ Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
 </figcaption></figure>
 </div>
 <p>In <strong>arcgeocoder</strong>, this hierarchy is implemented in <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code>, specifically through the <code>featuretypes</code> argument. The default value (<code>featuretypes = NULL</code>) does not include the argument in the API call. In this case, the hierarchy presented in the previous table would apply.</p>
-<p>It is possible to narrow down the output of the query to a specific feature type or a list of feature types. The possible values supported for this argument are:</p>
+<p>You can narrow the query output to a specific feature type or a list of feature types. The possible values supported for this argument are:</p>
 <ul>
 <li><code>"StreetInt"</code></li>
 <li><code>"DistanceMarker"</code></li>
@@ -191,7 +191,7 @@ Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
 <li><code>"Postal"</code></li>
 <li><code>"Locality"</code></li>
 </ul>
-<p>As mentioned, it is possible to include several feature types. If more than one value is specified for the argument, the values must be separated by a comma, with no spaces after the comma.</p>
+<p>You can include several feature types. If more than one value is specified for the argument, separate the values with commas and no spaces after each comma.</p>
 <section class="level3"><h3 id="single-featuretypes-value">Single <code>featuretypes</code> value<a class="anchor" aria-label="anchor" href="#single-featuretypes-value"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -202,13 +202,13 @@ Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span><span class="va">...</span>, featuretypes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PointAddress"</span>, <span class="st">"StreetAddress"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </section></section><section class="level2"><h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
-<p>The following examples show different scenarios.</p>
+<p>The following examples show how <code>featuretypes</code> changes reverse geocoding results.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/arcgeocoder/">arcgeocoder</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <section class="level3"><h3 id="example-1-match-to-poi-centroid-returned">Example 1: Match to <code>POI</code> centroid returned<a class="anchor" aria-label="anchor" href="#example-1-match-to-poi-centroid-returned"></a>
 </h3>
-<p>In this example, we do not provide any value to the <code>featuretypes</code> argument. This input location is within the search tolerance of both <code>POI</code> and <code>PointAddress</code> features, but a match to the <code>POI</code> centroid is returned because it has a higher priority (see <a href="#tbl-hier" class="quarto-xref">Table 1</a>). Note that the output field <code>Addr_type</code> indicates the type of feature.</p>
+<p>In this example, we do not provide any value to the <code>featuretypes</code> argument. The input location is within the search tolerance of both <code>POI</code> and <code>PointAddress</code> features, but a match to the <code>POI</code> centroid is returned because it has a higher priority (see <a href="#tbl-hier" class="quarto-xref">Table 1</a>). Note that the output field <code>Addr_type</code> indicates the type of feature.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">example_x</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">117.196324</span></span>
 <span><span class="va">example_y</span> <span class="op">&lt;-</span> <span class="fl">34.059217</span></span>
@@ -375,7 +375,7 @@ Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
 <a class="anchor" aria-label="anchor" href="#example-5-no-results-for-specific-featuretypes"></a>
 </h3>
 <p>The following example presents a case where only certain <code>featuretypes</code> are near the requested location. In this case, when reverse geocoding the North Pole, the API would return a <code>Locality</code>, but no <code>StreetAddress</code> is found.</p>
-<p>When it is not possible to return results, <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code> returns an empty <strong>tibble</strong>.</p>
+<p>When no results are available, <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code> returns an empty <strong>tibble</strong>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># North Pole</span></span>
 <span></span>
@@ -427,7 +427,7 @@ Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
 </tr></tbody>
 </table></section></section><section class="level2"><h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
 </h2>
-<p>The API can return different results for the same <code>x</code> and <code>y</code> values depending on the value of <code>featuretypes</code>. When <code>featuretypes = NULL</code>, the feature type returned depends on the hierarchy shown in <a href="#tbl-hier" class="quarto-xref">Table 1</a>.</p>
+<p>The API can return different results for the same <code>x</code> and <code>y</code> values depending on the <code>featuretypes</code> value. When <code>featuretypes = NULL</code>, the feature type returned depends on the hierarchy shown in <a href="#tbl-hier" class="quarto-xref">Table 1</a>.</p>
 <p>Depending on the location, the <code>featuretypes</code> filter may not return results, so using <code>featuretypes = NULL</code> is safer for general purposes.</p>
 </section><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

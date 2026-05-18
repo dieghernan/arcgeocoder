@@ -1,7 +1,6 @@
 # ArcGIS REST API category database
 
-Database of available categories that can be used to filter results
-provided by
+Database of available categories used to filter results provided by
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)
 and
