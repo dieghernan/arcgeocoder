@@ -4,7 +4,7 @@
 \encoding{UTF-8}
 \name{arc_spatial_references}
 \alias{arc_spatial_references}
-\title{Esri (ArcGIS) spatial reference database}
+\title{Esri (ArcGIS) spatial reference data}
 \format{
 A \link[tibble:tbl_df]{tibble} with
 9,608 rows
@@ -26,11 +26,11 @@ working with \CRANpkg{sf} or \CRANpkg{terra}.}
 \href{https://github.com/Esri/projection-engine-db-doc}{Esri Projection Engine factory}
 }
 \description{
-Database of available spatial references (CRS) in \link[tibble:tbl_df]{tibble}
+Data set of available spatial references (CRS) in \link[tibble:tbl_df]{tibble}
 format.
 }
 \details{
-This database is useful when using the \code{outsr} argument.
+This data set is useful when using the \code{outsr} argument.
 
 Some projection IDs have changed over time. For example, Web Mercator
 \code{wkid = 102100} is deprecated and is currently \code{wkid = 3857}. However, both

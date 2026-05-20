@@ -15,8 +15,8 @@ knitr:
 
 ## Example 1: sf objects
 
-The following example shows how to create a static map using data retrieved with
-**arcgeocoder** and converted to an **sf** object:
+The following example shows how to create a static map using data retrieved
+with **arcgeocoder** and converted to an **sf** object:
 
 ```{r}
 #| label: sf
@@ -86,8 +86,8 @@ ggplot(bcn) +
 ## Example 2: terra objects
 
 We can add static map tiles with the **maptiles** package and use the
-**tidyterra** package for plotting. The tiles themselves are represented here
-as **terra** objects:
+**tidyterra** package for plotting. The tiles are represented here as
+**terra** objects:
 
 ```{r}
 #| label: terra

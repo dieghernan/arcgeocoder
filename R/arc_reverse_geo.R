@@ -1,10 +1,10 @@
-#' Reverse geocoding using the ArcGIS REST API
+#' Reverse geocode coordinates with the ArcGIS REST API
 #'
 #' @description
 #' Generates an address from a latitude and longitude. Latitudes must be in the
 #' range \eqn{\left[-90, 90 \right]} and longitudes in the range
 #' \eqn{\left[-180, 180 \right]}. This function returns the
-#' [tibble][tibble::tbl_df] associated with the query.
+#' [tibble][tibble::tbl_df] associated with each query.
 #'
 #' @param x Longitude values in numeric format. Must be in the range
 #'   \eqn{\left[-180, 180 \right]}.
@@ -13,7 +13,7 @@
 #' @param address Output address column name (default `"address"`).
 #' @param full_results Logical. If `TRUE`, return all available API fields.
 #'   `FALSE` (default) returns latitude, longitude and address only.
-#' @param return_coords Logical. If `TRUE`, return input coordinates with
+#' @param return_coords Logical. If `TRUE`, return input coordinates with the
 #'   results.
 #' @param verbose Logical. If `TRUE`, output process messages to the console.
 #' @param progressbar Logical. If `TRUE`, show a progress bar for multiple
@@ -29,7 +29,8 @@
 #' @param locationtype Specifies whether the output geometry of
 #'   `featuretypes = "PointAddress"` or `featuretypes = "Subaddress"` matches
 #'   should be the rooftop point or street entrance location. Valid values are
-#'   `NULL` (i.e. not using the argument in the query), `rooftop` and `street`.
+#'   `NULL` (i.e. not using the argument in the query), `"rooftop"` and
+#'   `"street"`.
 #' @param custom_query API-specific arguments to be used, passed as a named
 #'   list.
 #'
@@ -55,17 +56,9 @@
 #' explanation of this argument.
 #'
 #' This argument may be used to filter the type of feature returned when
-#' geocoding. Possible values are:
-#'
-#' - `"StreetInt"`
-#' - `"DistanceMarker"`
-#' - `"StreetAddress"`
-#' - `"StreetName"`
-#' - `"POI"`
-#' - `"Subaddress"`
-#' - `"PointAddress"`
-#' - `"Postal"`
-#' - `"Locality"`
+#' geocoding. Possible values are `"StreetInt"`, `"DistanceMarker"`,
+#' `"StreetAddress"`, `"StreetName"`, `"POI"`, `"Subaddress"`,
+#' `"PointAddress"`, `"Postal"` and `"Locality"`.
 #'
 #' It is also possible to use several values as a vector
 #' (`featuretypes = c("PointAddress", "StreetAddress")`).
@@ -123,11 +116,11 @@ arc_reverse_geo <- function(
 ) {
   # Check inputs.
   if (!is.numeric(x) || !is.numeric(y)) {
-    stop("x and y must be numeric.")
+    stop("`x` and `y` must be numeric.")
   }
 
   if (length(x) != length(y)) {
-    stop("x and y must have the same number of elements.")
+    stop("`x` and `y` must have the same number of elements.")
   }
 
   # Restrict latitude.
@@ -165,7 +158,6 @@ arc_reverse_geo <- function(
   seql <- seq(1, ntot, 1)
 
   # Add API arguments to the custom query.
-
   custom_query$outSR <- outsr
   custom_query$langCode <- langcode
   custom_query$featureTypes <- featuretypes

@@ -1,8 +1,8 @@
-#' Geocoding using the ArcGIS REST API with a multi-field query
+#' Geocode addresses with a multi-field ArcGIS REST API query
 #'
 #' @description
-#' Geocodes addresses given specific address components. This function returns
-#' the [tibble][tibble::tbl_df] associated with the query.
+#' Geocodes addresses from specific address components and returns the
+#' [tibble][tibble::tbl_df] associated with each query.
 #'
 #' For geocoding with a single text string, use [arc_geo()].
 #'
@@ -19,8 +19,8 @@
 #' ```{r child = "man/chunks/out1.Rmd"}
 #' ```
 #'
-#' The resulting output will also include the input arguments (columns with
-#' prefix `q_`) to better track the results.
+#' The output also includes the input arguments as columns prefixed with `q_`
+#' to help track the results.
 #'
 #' @details
 #' See the [ArcGIS REST docs](`r arcurl("cand")`) for more information and
@@ -28,22 +28,22 @@
 #'
 #' # Address components
 #'
-#' This function allows performing structured queries by different components of
-#' an address. At least one field should be different from `NA` or `NULL`.
+#' This function performs structured queries by different components of an
+#' address. At least one field should be different from `NA` or `NULL`.
 #'
 #' A vector of values can be provided for each argument for multiple geocoding.
-#' When using vectors on different arguments, their lengths must be the same.
+#' When using vectors in different arguments, their lengths must be the same.
 #'
 #' The following list provides a brief description of each argument:
 #'
 #' - `address`: A string that represents the first line of a street address. In
 #'   most cases, it is the **street name and house number** input, but it can
-#'   also be used to input a building name or place-name.
+#'   also be used to input a building name or place name.
 #' - `address2`: A string that represents the second line of a street address.
-#'   This can include **street name/house number, building name, place-name or
+#'   This can include **street name/house number, building name, place name or
 #'   subunit**.
 #' - `address3`: A string that represents the third line of a street address.
-#'   This can include **street name/house number, building name, place-name or
+#'   This can include **street name/house number, building name, place name or
 #'   subunit**.
 #' - `neighborhood`: The smallest administrative division associated with an
 #'   address, typically a **neighborhood** or a section of a larger populated

@@ -4,7 +4,7 @@
 \encoding{UTF-8}
 \name{arc_categories}
 \alias{arc_categories}
-\title{ArcGIS REST API category database}
+\title{ArcGIS REST API category data}
 \format{
 A \link[tibble:tbl_df]{tibble} with
 383 rows and
@@ -19,7 +19,7 @@ fields:
 \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering}.
 }
 \description{
-Database of available categories used to filter results provided by
+Data set of available categories used to filter results provided by
 \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}} and \code{\link[=arc_geo_categories]{arc_geo_categories()}} in
 \link[tibble:tbl_df]{tibble} format.
 }
@@ -30,7 +30,7 @@ examples.
 The geocoding service allows users to search for and geocode many types of
 addresses and places around the world. This simplifies application
 development because developers do not need to know what types of places
-their users are searching for; the service can decipher that.
+their users are searching for.
 However, due to this flexibility, it is possible for ambiguous searches to
 match to many different places, and users may sometimes receive unexpected
 results. For example, a search for a city may match to a street name, or a
@@ -39,7 +39,7 @@ search for an airport code may match to a country abbreviation.
 For such cases, the service provides the ability to filter out unwanted
 geocode results with the \code{category} argument. The \code{category} argument
 limits the types of places for which the service searches, thus eliminating
-false positive matches and potentially speeding up the search process.
+false-positive matches and potentially speeding up the search process.
 
 The results show a list of categories with three different hierarchy levels
 (\code{level_1}, \code{level_2}, \code{level_3}). If a \code{level_1} category is requested

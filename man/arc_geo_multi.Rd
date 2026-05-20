@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{arc_geo_multi}
 \alias{arc_geo_multi}
-\title{Geocoding using the ArcGIS REST API with a multi-field query}
+\title{Geocode addresses with a multi-field ArcGIS REST API query}
 \usage{
 arc_geo_multi(
   address = NULL,
@@ -46,7 +46,8 @@ query has a hard API limit of 50 results.}
 \item{full_results}{Logical. If \code{TRUE}, return all available API fields
 via \verb{outFields=*}. Default is \code{FALSE}.}
 
-\item{return_addresses}{Logical. If \code{TRUE}, keep input query in output.}
+\item{return_addresses}{Logical. If \code{TRUE}, keep the input query in the
+output.}
 
 \item{verbose}{Logical. If \code{TRUE}, output process messages to the console.}
 
@@ -68,12 +69,12 @@ accepted (e.g. \code{c("Cinema", "Museum")}). See \link{arc_categories}.}
 \value{
 A \link[tibble:tbl_df]{tibble} object with the results. See output details in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 
-The resulting output will also include the input arguments (columns with
-prefix \code{q_}) to better track the results.
+The output also includes the input arguments as columns prefixed with \code{q_}
+to help track the results.
 }
 \description{
-Geocodes addresses given specific address components. This function returns
-the \link[tibble:tbl_df]{tibble} associated with the query.
+Geocodes addresses from specific address components and returns the
+\link[tibble:tbl_df]{tibble} associated with each query.
 
 For geocoding with a single text string, use \code{\link[=arc_geo]{arc_geo()}}.
 }
@@ -82,22 +83,22 @@ See the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding
 valid values.
 }
 \section{Address components}{
-This function allows performing structured queries by different components of
-an address. At least one field should be different from \code{NA} or \code{NULL}.
+This function performs structured queries by different components of an
+address. At least one field should be different from \code{NA} or \code{NULL}.
 
 A vector of values can be provided for each argument for multiple geocoding.
-When using vectors on different arguments, their lengths must be the same.
+When using vectors in different arguments, their lengths must be the same.
 
 The following list provides a brief description of each argument:
 \itemize{
 \item \code{address}: A string that represents the first line of a street address. In
 most cases, it is the \strong{street name and house number} input, but it can
-also be used to input a building name or place-name.
+also be used to input a building name or place name.
 \item \code{address2}: A string that represents the second line of a street address.
-This can include \strong{street name/house number, building name, place-name or
+This can include \strong{street name/house number, building name, place name or
 subunit}.
 \item \code{address3}: A string that represents the third line of a street address.
-This can include \strong{street name/house number, building name, place-name or
+This can include \strong{street name/house number, building name, place name or
 subunit}.
 \item \code{neighborhood}: The smallest administrative division associated with an
 address, typically a \strong{neighborhood} or a section of a larger populated

@@ -2,8 +2,8 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "arcgeocoder",
-  "description": "Lightweight interface for geocoding addresses and reverse geocoding locations around the world using the 'ArcGIS' REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and coordinates can be converted into addresses. No API key is required.",
-  "name": "arcgeocoder: Geocoding with the 'ArcGIS' REST API Service",
+  "description": "Lightweight interface for geocoding addresses and reverse geocoding locations around the world with the 'ArcGIS' REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and coordinates can be converted into addresses. No API key is required.",
+  "name": "arcgeocoder: Geocode with the 'ArcGIS' REST API Service",
   "relatedLink": ["https://dieghernan.github.io/arcgeocoder/", "https://CRAN.R-project.org/package=arcgeocoder"],
   "codeRepository": "https://github.com/dieghernan/arcgeocoder",
   "issueTracker": "https://github.com/dieghernan/arcgeocoder/issues",
@@ -172,7 +172,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "geocoding", "arcgis", "address", "reverse-geocoding", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "cran-r", "gis", "cran"],
-  "fileSize": "418.485KB",
+  "fileSize": "418.233KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -184,7 +184,7 @@
           "familyName": "Hernangómez"
         }
       ],
-      "name": "{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service",
+      "name": "{arcgeocoder}: Geocode with the {ArcGIS} {REST} {API} Service",
       "identifier": "10.32614/CRAN.package.arcgeocoder",
       "url": "https://dieghernan.github.io/arcgeocoder/",
       "@id": "https://doi.org/10.32614/CRAN.package.arcgeocoder",

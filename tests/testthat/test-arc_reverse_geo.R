@@ -5,7 +5,7 @@ test_that("Errors", {
 
   expect_error(
     arc_reverse_geo(0, c(2, 3)),
-    "x and y must have the same number"
+    "`x` and `y` must have the same number"
   )
   expect_error(arc_reverse_geo("a", "a"), "must be numeric")
 })

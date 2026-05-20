@@ -1,8 +1,8 @@
-#' Geocoding using the ArcGIS REST API
+#' Geocode addresses with the ArcGIS REST API
 #'
 #' @description
-#' Geocodes addresses given as character values. This function returns the
-#' [tibble][tibble::tbl_df] object associated with the query.
+#' Geocodes addresses given as character values and returns the
+#' [tibble][tibble::tbl_df] associated with each query.
 #'
 #' This function uses the `SingleLine` approach detailed in the
 #' [ArcGIS REST docs](`r arcurl("cand")`). For multi-field queries (i.e.
@@ -17,9 +17,10 @@
 #'   query has a hard API limit of 50 results.
 #' @param full_results Logical. If `TRUE`, return all available API fields
 #'   via `outFields=*`. Default is `FALSE`.
-#' @param return_addresses Logical. If `TRUE`, keep input query in output.
+#' @param return_addresses Logical. If `TRUE`, keep the input query in the
+#'   output.
 #' @param sourcecountry Country filter using ISO codes (e.g. `"USA"`).
-#'   Multiple values can be specified (comma-separated).
+#'   Multiple values can be supplied as a comma-separated string.
 #' @param category Place or address type used as a filter. Multiple values are
 #'   accepted (e.g. `c("Cinema", "Museum")`). See [arc_categories].
 #' @param custom_query Additional API parameters as named list values.
@@ -54,7 +55,7 @@
 #' with_params |>
 #'   select(lat, lon, CntryName, LongLabel)
 #'
-#' # With options: restrict search to the USA.
+#' # With options: restrict the search to the USA.
 #' with_params_usa <- arc_geo(c("Madrid", "Barcelona"),
 #'   sourcecountry = "USA",
 #'   custom_query = list(outFields = c("LongLabel", "CntryName"))

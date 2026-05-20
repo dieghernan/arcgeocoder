@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{arc_geo_categories}
 \alias{arc_geo_categories}
-\title{Geocode places in a given area by category}
+\title{Geocode places by category in a given area}
 \usage{
 arc_geo_categories(
   category,
@@ -22,7 +22,7 @@ arc_geo_categories(
 }
 \arguments{
 \item{category}{A place or address type used to filter results.
-Several values can also be supplied as a vector (i.e.
+Several values can also be supplied as a vector (for example,
 \code{c("Cinema", "Museum")}), which performs one call for each value. See
 \strong{Details}.}
 
@@ -32,7 +32,7 @@ Several values can also be supplied as a vector (i.e.
 \item{y}{Latitude values in numeric format. Must be in the range
 \eqn{\left[-90, 90 \right]}.}
 
-\item{bbox}{A numeric vector of longitude and latitude
+\item{bbox}{A numeric vector of longitude and latitude values
 \code{c(minX, minY, maxX, maxY)} that restricts the search area.
 See \strong{Details}.}
 
@@ -57,7 +57,7 @@ via \verb{outFields=*}. Default is \code{FALSE}.}
   Arguments passed on to \code{\link{arc_geo}}
   \describe{
     \item{\code{sourcecountry}}{Country filter using ISO codes (e.g. \code{"USA"}).
-Multiple values can be specified (comma-separated).}
+Multiple values can be supplied as a comma-separated string.}
     \item{\code{outsr}}{The spatial reference of the \code{x} and \code{y} coordinates returned
 by a geocode request. By default, it is \code{NULL} (i.e. the argument will not
 be used in the query). See \strong{Details} and \link{arc_spatial_references}.}
@@ -69,24 +69,24 @@ returned.}
 A \link[tibble:tbl_df]{tibble} object with the results. See output details in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 }
 \description{
-This function is useful for extracting places with a given category (or list
-of categories) near or within a given location or area. This is a wrapper
-of \code{\link[=arc_geo]{arc_geo()}}, but it is vectorized over \code{category}.
+This function extracts places with a given category or list of categories
+near or within a given location or area. It wraps \code{\link[=arc_geo]{arc_geo()}} and is
+vectorized over \code{category}.
 
 See \link{arc_categories} for a detailed explanation and available values.
 
-\strong{Note:} to obtain results, provide either a pair of coordinates (\code{x} and
+\strong{Note:} To obtain results, provide either a pair of coordinates (\code{x} and
 \code{y} arguments) used as a reference for geocoding or a bounding box via the
 \code{bbox} argument defining a desired extent for results.
 
-You can combine both approaches (i.e. providing \code{x}, \code{y} and \code{bbox} values)
+You can combine both approaches (providing \code{x}, \code{y} and \code{bbox} values)
 to improve the geocoding process. See \strong{Examples}.
 }
 \details{
 Bounding boxes can be located using online tools, such as
 \href{https://boundingbox.klokantech.com/}{Bounding Box Tool}.
 
-For a full list of valid categories see \link{arc_categories}. This function is
+For a full list of valid categories, see \link{arc_categories}. This function is
 vectorized over \code{category}, which means it performs one independent call
 to \code{\link[=arc_geo]{arc_geo()}} for each \code{category} value.
 

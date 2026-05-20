@@ -3,7 +3,7 @@
 #' @family api_management
 #'
 #' @description
-#' Check whether **R** has access to resources at the ArcGIS REST API
+#' Checks whether **R** has access to resources at the ArcGIS REST API
 #' <`r arcurl("over")`>.
 #'
 #' @return A logical value.
@@ -57,16 +57,16 @@ skip_if_api_server <- function() {
   # nocov end
 }
 
-#' Helper function to centralize API queries
+#' Centralize API queries
 #'
 #' @description
-#' A wrapper of [utils::download.file()]. On warning or error, it retries the
-#' call.
+#' A wrapper around [utils::download.file()]. On warning or error, it retries
+#' the call.
 #'
 #' @family api_management
 #'
 #' @inheritParams utils::download.file
-#' @return A logical `TRUE/FALSE`
+#' @return A logical `TRUE` or `FALSE`.
 #'
 #' @keywords internal
 #'

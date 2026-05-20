@@ -1,8 +1,8 @@
-#' ArcGIS REST API category database
+#' ArcGIS REST API category data
 #'
 #' @description
 #'
-#' Database of available categories used to filter results provided by
+#' Data set of available categories used to filter results provided by
 #' [arc_geo()], [arc_geo_multi()] and [arc_geo_categories()] in
 #' [tibble][tibble::tbl_df] format.
 #'
@@ -34,7 +34,7 @@
 #' The geocoding service allows users to search for and geocode many types of
 #' addresses and places around the world. This simplifies application
 #' development because developers do not need to know what types of places
-#' their users are searching for; the service can decipher that.
+#' their users are searching for.
 #' However, due to this flexibility, it is possible for ambiguous searches to
 #' match to many different places, and users may sometimes receive unexpected
 #' results. For example, a search for a city may match to a street name, or a
@@ -43,7 +43,7 @@
 #' For such cases, the service provides the ability to filter out unwanted
 #' geocode results with the `category` argument. The `category` argument
 #' limits the types of places for which the service searches, thus eliminating
-#' false positive matches and potentially speeding up the search process.
+#' false-positive matches and potentially speeding up the search process.
 #'
 #' The results show a list of categories with three different hierarchy levels
 #' (`level_1`, `level_2`, `level_3`). If a `level_1` category is requested
@@ -88,11 +88,11 @@
 #' }
 NULL
 
-#' Esri (ArcGIS) spatial reference database
+#' Esri (ArcGIS) spatial reference data
 #'
 #' @description
 #'
-#' Database of available spatial references (CRS) in [tibble][tibble::tbl_df]
+#' Data set of available spatial references (CRS) in [tibble][tibble::tbl_df]
 #' format.
 #'
 #' @note Data extracted on **15 January 2026**.
@@ -124,7 +124,7 @@ NULL
 #' }
 #' @details
 #'
-#' This database is useful when using the `outsr` argument.
+#' This data set is useful when using the `outsr` argument.
 #'
 #' Some projection IDs have changed over time. For example, Web Mercator
 #' `wkid = 102100` is deprecated and is currently `wkid = 3857`. However, both

@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{arc_geo}
 \alias{arc_geo}
-\title{Geocoding using the ArcGIS REST API}
+\title{Geocode addresses with the ArcGIS REST API}
 \usage{
 arc_geo(
   address,
@@ -36,7 +36,8 @@ query has a hard API limit of 50 results.}
 \item{full_results}{Logical. If \code{TRUE}, return all available API fields
 via \verb{outFields=*}. Default is \code{FALSE}.}
 
-\item{return_addresses}{Logical. If \code{TRUE}, keep input query in output.}
+\item{return_addresses}{Logical. If \code{TRUE}, keep the input query in the
+output.}
 
 \item{verbose}{Logical. If \code{TRUE}, output process messages to the console.}
 
@@ -51,7 +52,7 @@ be used in the query). See \strong{Details} and \link{arc_spatial_references}.}
 returned.}
 
 \item{sourcecountry}{Country filter using ISO codes (e.g. \code{"USA"}).
-Multiple values can be specified (comma-separated).}
+Multiple values can be supplied as a comma-separated string.}
 
 \item{category}{Place or address type used as a filter. Multiple values are
 accepted (e.g. \code{c("Cinema", "Museum")}). See \link{arc_categories}.}
@@ -62,8 +63,8 @@ accepted (e.g. \code{c("Cinema", "Museum")}). See \link{arc_categories}.}
 A \link[tibble:tbl_df]{tibble} object with the results. See output details in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 }
 \description{
-Geocodes addresses given as character values. This function returns the
-\link[tibble:tbl_df]{tibble} object associated with the query.
+Geocodes addresses given as character values and returns the
+\link[tibble:tbl_df]{tibble} associated with each query.
 
 This function uses the \code{SingleLine} approach detailed in the
 \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}. For multi-field queries (i.e.
@@ -96,7 +97,7 @@ with_params <- arc_geo(c("Madrid", "Barcelona"),
 with_params |>
   select(lat, lon, CntryName, LongLabel)
 
-# With options: restrict search to the USA.
+# With options: restrict the search to the USA.
 with_params_usa <- arc_geo(c("Madrid", "Barcelona"),
   sourcecountry = "USA",
   custom_query = list(outFields = c("LongLabel", "CntryName"))

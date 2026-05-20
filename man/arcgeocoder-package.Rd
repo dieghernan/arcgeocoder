@@ -4,11 +4,11 @@
 \name{arcgeocoder-package}
 \alias{arcgeocoder}
 \alias{arcgeocoder-package}
-\title{arcgeocoder: Geocoding with the 'ArcGIS' REST API Service}
+\title{arcgeocoder: Geocode with the 'ArcGIS' REST API Service}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Lightweight interface for geocoding addresses and reverse geocoding locations around the world using the 'ArcGIS' REST API service \url{https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm}. Address text can be converted to location candidates and coordinates can be converted into addresses. No API key is required.
+Lightweight interface for geocoding addresses and reverse geocoding locations around the world with the 'ArcGIS' REST API service \url{https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm}. Address text can be converted to location candidates and coordinates can be converted into addresses. No API key is required.
 }
 \seealso{
 Useful links:

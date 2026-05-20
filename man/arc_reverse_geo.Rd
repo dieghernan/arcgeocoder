@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{arc_reverse_geo}
 \alias{arc_reverse_geo}
-\title{Reverse geocoding using the ArcGIS REST API}
+\title{Reverse geocode coordinates with the ArcGIS REST API}
 \usage{
 arc_reverse_geo(
   x,
@@ -32,7 +32,7 @@ arc_reverse_geo(
 \item{full_results}{Logical. If \code{TRUE}, return all available API fields.
 \code{FALSE} (default) returns latitude, longitude and address only.}
 
-\item{return_coords}{Logical. If \code{TRUE}, return input coordinates with
+\item{return_coords}{Logical. If \code{TRUE}, return input coordinates with the
 results.}
 
 \item{verbose}{Logical. If \code{TRUE}, output process messages to the console.}
@@ -54,7 +54,8 @@ See \strong{Details}.}
 \item{locationtype}{Specifies whether the output geometry of
 \code{featuretypes = "PointAddress"} or \code{featuretypes = "Subaddress"} matches
 should be the rooftop point or street entrance location. Valid values are
-\code{NULL} (i.e. not using the argument in the query), \code{rooftop} and \code{street}.}
+\code{NULL} (i.e. not using the argument in the query), \code{"rooftop"} and
+\code{"street"}.}
 
 \item{custom_query}{API-specific arguments to be used, passed as a named
 list.}
@@ -72,7 +73,7 @@ See the details of the output in
 Generates an address from a latitude and longitude. Latitudes must be in the
 range \eqn{\left[-90, 90 \right]} and longitudes in the range
 \eqn{\left[-180, 180 \right]}. This function returns the
-\link[tibble:tbl_df]{tibble} associated with the query.
+\link[tibble:tbl_df]{tibble} associated with each query.
 }
 \details{
 See the \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm}{ArcGIS REST docs} for more information and
@@ -91,18 +92,9 @@ See \code{vignette("featuretypes", package = "arcgeocoder")} for a detailed
 explanation of this argument.
 
 This argument may be used to filter the type of feature returned when
-geocoding. Possible values are:
-\itemize{
-\item \code{"StreetInt"}
-\item \code{"DistanceMarker"}
-\item \code{"StreetAddress"}
-\item \code{"StreetName"}
-\item \code{"POI"}
-\item \code{"Subaddress"}
-\item \code{"PointAddress"}
-\item \code{"Postal"}
-\item \code{"Locality"}
-}
+geocoding. Possible values are \code{"StreetInt"}, \code{"DistanceMarker"},
+\code{"StreetAddress"}, \code{"StreetName"}, \code{"POI"}, \code{"Subaddress"},
+\code{"PointAddress"}, \code{"Postal"} and \code{"Locality"}.
 
 It is also possible to use several values as a vector
 (\code{featuretypes = c("PointAddress", "StreetAddress")}).
