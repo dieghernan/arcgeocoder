@@ -1,6 +1,6 @@
-# ArcGIS REST API category database
+# ArcGIS REST API category data
 
-Database of available categories used to filter results provided by
+Data set of available categories used to filter results provided by
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)
 and
@@ -39,16 +39,16 @@ for details and examples.
 The geocoding service allows users to search for and geocode many types
 of addresses and places around the world. This simplifies application
 development because developers do not need to know what types of places
-their users are searching for; the service can decipher that. However,
-due to this flexibility, it is possible for ambiguous searches to match
-to many different places, and users may sometimes receive unexpected
-results. For example, a search for a city may match to a street name, or
-a search for an airport code may match to a country abbreviation.
+their users are searching for. However, due to this flexibility, it is
+possible for ambiguous searches to match to many different places, and
+users may sometimes receive unexpected results. For example, a search
+for a city may match to a street name, or a search for an airport code
+may match to a country abbreviation.
 
 For such cases, the service provides the ability to filter out unwanted
 geocode results with the `category` argument. The `category` argument
 limits the types of places for which the service searches, thus
-eliminating false positive matches and potentially speeding up the
+eliminating false-positive matches and potentially speeding up the
 search process.
 
 The results show a list of categories with three different hierarchy

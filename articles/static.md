@@ -79,8 +79,8 @@ A map showing the location of McDonald’s restaurants in Barcelona, Spain
 ## Example 2: terra objects
 
 We can add static map tiles with the **maptiles** package and use the
-**tidyterra** package for plotting. The tiles themselves are represented
-here as **terra** objects:
+**tidyterra** package for plotting. The tiles are represented here as
+**terra** objects:
 
 ``` r
 

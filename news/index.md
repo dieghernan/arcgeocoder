@@ -4,30 +4,30 @@
 
 CRAN release: 2026-03-20
 
-- Migrated documentation to Quarto
+- Migrated the documentation to Quarto
   ([\#24](https://github.com/dieghernan/arcgeocoder/issues/24)).
 
 ## arcgeocoder 0.3.0
 
 CRAN release: 2026-01-15
 
-- The minimum **R** version is now `4.1.0`.
+- The minimum required **R** version is now `4.1.0`.
 
 ## arcgeocoder 0.2.1
 
 CRAN release: 2024-12-17
 
-- Updated documentation.
+- Updated the documentation.
 
 ## arcgeocoder 0.2.0
 
 CRAN release: 2024-03-21
 
+- Added **ggplot2** and **sf** to Suggests.
+- Fixed typos in the documentation.
 - [`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md)
   is now vectorized over the `category` argument.
-- Fixed typos in documentation.
 - `custom_query` now accepts vectors in each named element.
-- Added **ggplot2** and **sf** to Suggests.
 
 ## arcgeocoder 0.1.0
 

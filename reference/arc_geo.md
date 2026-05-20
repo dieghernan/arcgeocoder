@@ -1,8 +1,8 @@
-# Geocoding using the ArcGIS REST API
+# Geocode addresses with the ArcGIS REST API
 
-Geocodes addresses given as character values. This function returns the
+Geocodes addresses given as character values and returns the
 [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-object associated with the query.
+associated with each query.
 
 This function uses the `SingleLine` approach detailed in the [ArcGIS
 REST
@@ -58,7 +58,7 @@ arc_geo(
 
 - return_addresses:
 
-  Logical. If `TRUE`, keep input query in output.
+  Logical. If `TRUE`, keep the input query in the output.
 
 - verbose:
 
@@ -82,7 +82,7 @@ arc_geo(
 - sourcecountry:
 
   Country filter using ISO codes (e.g. `"USA"`). Multiple values can be
-  specified (comma-separated).
+  supplied as a comma-separated string.
 
 - category:
 
@@ -165,7 +165,7 @@ with_params |>
 #> 1  40.4 -3.70 España    Madrid, Comunidad de Madrid, ESP
 #> 2  41.4  2.17 España    Barcelona, Cataluña, ESP        
 
-# With options: restrict search to the USA.
+# With options: restrict the search to the USA.
 with_params_usa <- arc_geo(c("Madrid", "Barcelona"),
   sourcecountry = "USA",
   custom_query = list(outFields = c("LongLabel", "CntryName"))

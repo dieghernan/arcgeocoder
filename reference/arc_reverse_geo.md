@@ -1,10 +1,10 @@
-# Reverse geocoding using the ArcGIS REST API
+# Reverse geocode coordinates with the ArcGIS REST API
 
 Generates an address from a latitude and longitude. Latitudes must be in
 the range \\\left\[-90, 90 \right\]\\ and longitudes in the range
 \\\left\[-180, 180 \right\]\\. This function returns the
 [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-associated with the query.
+associated with each query.
 
 ## Usage
 
@@ -48,7 +48,7 @@ arc_reverse_geo(
 
 - return_coords:
 
-  Logical. If `TRUE`, return input coordinates with results.
+  Logical. If `TRUE`, return input coordinates with the results.
 
 - verbose:
 
@@ -81,7 +81,7 @@ arc_reverse_geo(
   `featuretypes = "PointAddress"` or `featuretypes = "Subaddress"`
   matches should be the rooftop point or street entrance location. Valid
   values are `NULL` (i.e. not using the argument in the query),
-  `rooftop` and `street`.
+  `"rooftop"` and `"street"`.
 
 - custom_query:
 
@@ -120,25 +120,9 @@ See `vignette("featuretypes", package = "arcgeocoder")` for a detailed
 explanation of this argument.
 
 This argument may be used to filter the type of feature returned when
-geocoding. Possible values are:
-
-- `"StreetInt"`
-
-- `"DistanceMarker"`
-
-- `"StreetAddress"`
-
-- `"StreetName"`
-
-- `"POI"`
-
-- `"Subaddress"`
-
-- `"PointAddress"`
-
-- `"Postal"`
-
-- `"Locality"`
+geocoding. Possible values are `"StreetInt"`, `"DistanceMarker"`,
+`"StreetAddress"`, `"StreetName"`, `"POI"`, `"Subaddress"`,
+`"PointAddress"`, `"Postal"` and `"Locality"`.
 
 It is also possible to use several values as a vector
 (`featuretypes = c("PointAddress", "StreetAddress")`).

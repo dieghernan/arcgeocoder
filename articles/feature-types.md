@@ -1,17 +1,16 @@
 # Reverse geocoding and feature types
 
-*Adapted from the
+*Adapted from
 <https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm>.*
 
 ## Reverse geocoding details
 
-The purpose of reverse geocoding is to answer the question: What is near
-this location? To answer this question, the `reverseGeocode` operation
-provided by the **ArcGIS REST API** returns the most relevant feature
-near an input location based on a prioritized hierarchy of feature
-types.
+The purpose of reverse geocoding is to answer the question: what is near
+this location? The `reverseGeocode` operation provided by the **ArcGIS
+REST API** returns the most relevant feature near an input location
+based on a prioritized hierarchy of feature types.
 
-The hierarchy is summarized in the table below, ordered by descending
+The hierarchy is summarized in the table below and ordered by descending
 priority. Unless otherwise noted, each feature type is returned only
 when the distance between the input location and the feature is within
 the tolerance specified in the *Search tolerance* column.
@@ -33,7 +32,7 @@ In **arcgeocoder**, this hierarchy is implemented in
 [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md),
 specifically through the `featuretypes` argument. The default value
 (`featuretypes = NULL`) does not include the argument in the API call.
-In this case, the hierarchy presented in the previous table would apply.
+In this case, the hierarchy presented in the previous table applies.
 
 You can narrow the query output to a specific feature type or a list of
 feature types. The possible values supported for this argument are:
@@ -184,8 +183,8 @@ api_multiple |>
 
 The following example presents a case where only certain `featuretypes`
 are near the requested location. In this case, when reverse geocoding
-the North Pole, the API would return a `Locality`, but no
-`StreetAddress` is found.
+the North Pole, the API returns a `Locality`, but no `StreetAddress` is
+found.
 
 When no results are available,
 [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md)
@@ -233,4 +232,4 @@ feature type returned depends on the hierarchy shown in
 [Table 1](#tbl-hier).
 
 Depending on the location, the `featuretypes` filter may not return
-results, so using `featuretypes = NULL` is safer for general purposes.
+results, so `featuretypes = NULL` is safer for general-purpose queries.

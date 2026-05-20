@@ -2,17 +2,17 @@
 
 ## Geocoding and reverse geocoding
 
-Functions that send geocoding and reverse geocoding requests to the
+Functions for sending geocoding and reverse geocoding requests to the
 ArcGIS REST API.
 
 - [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md)
-  : Geocoding using the ArcGIS REST API
+  : Geocode addresses with the ArcGIS REST API
 - [`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md)
-  : Geocode places in a given area by category
+  : Geocode places by category in a given area
 - [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)
-  : Geocoding using the ArcGIS REST API with a multi-field query
+  : Geocode addresses with a multi-field ArcGIS REST API query
 - [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md)
-  : Reverse geocoding using the ArcGIS REST API
+  : Reverse geocode coordinates with the ArcGIS REST API
 
 ## Datasets
 
@@ -20,9 +20,9 @@ Reference data used to filter geocoding results and choose spatial
 references.
 
 - [`arc_categories`](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
-  : ArcGIS REST API category database
+  : ArcGIS REST API category data
 - [`arc_spatial_references`](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
-  : Esri (ArcGIS) spatial reference database
+  : Esri (ArcGIS) spatial reference data
 
 ## About the package
 
@@ -30,4 +30,4 @@ Package-level documentation and metadata.
 
 - [`arcgeocoder`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder-package.md)
   [`arcgeocoder-package`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder-package.md)
-  : arcgeocoder: Geocoding with the 'ArcGIS' REST API Service
+  : arcgeocoder: Geocode with the 'ArcGIS' REST API Service

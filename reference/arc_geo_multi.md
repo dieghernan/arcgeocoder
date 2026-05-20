@@ -1,9 +1,8 @@
-# Geocoding using the ArcGIS REST API with a multi-field query
+# Geocode addresses with a multi-field ArcGIS REST API query
 
-Geocodes addresses given specific address components. This function
-returns the
+Geocodes addresses from specific address components and returns the
 [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-associated with the query.
+associated with each query.
 
 For geocoding with a single text string, use
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md).
@@ -66,7 +65,7 @@ arc_geo_multi(
 
 - return_addresses:
 
-  Logical. If `TRUE`, keep input query in output.
+  Logical. If `TRUE`, keep the input query in the output.
 
 - verbose:
 
@@ -103,8 +102,8 @@ A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
 object with the results. See output details in [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
-The resulting output will also include the input arguments (columns with
-prefix `q_`) to better track the results.
+The output also includes the input arguments as columns prefixed with
+`q_` to help track the results.
 
 ## Details
 
@@ -114,27 +113,26 @@ for more information and valid values.
 
 ## Address components
 
-This function allows performing structured queries by different
-components of an address. At least one field should be different from
-`NA` or `NULL`.
+This function performs structured queries by different components of an
+address. At least one field should be different from `NA` or `NULL`.
 
 A vector of values can be provided for each argument for multiple
-geocoding. When using vectors on different arguments, their lengths must
+geocoding. When using vectors in different arguments, their lengths must
 be the same.
 
 The following list provides a brief description of each argument:
 
 - `address`: A string that represents the first line of a street
   address. In most cases, it is the **street name and house number**
-  input, but it can also be used to input a building name or place-name.
+  input, but it can also be used to input a building name or place name.
 
 - `address2`: A string that represents the second line of a street
   address. This can include **street name/house number, building name,
-  place-name or subunit**.
+  place name or subunit**.
 
 - `address3`: A string that represents the third line of a street
   address. This can include **street name/house number, building name,
-  place-name or subunit**.
+  place name or subunit**.
 
 - `neighborhood`: The smallest administrative division associated with
   an address, typically a **neighborhood** or a section of a larger

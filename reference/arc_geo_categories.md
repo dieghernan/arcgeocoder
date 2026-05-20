@@ -1,21 +1,20 @@
-# Geocode places in a given area by category
+# Geocode places by category in a given area
 
-This function is useful for extracting places with a given category (or
-list of categories) near or within a given location or area. This is a
-wrapper of
-[`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),
-but it is vectorized over `category`.
+This function extracts places with a given category or list of
+categories near or within a given location or area. It wraps
+[`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md)
+and is vectorized over `category`.
 
 See
 [arc_categories](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
 for a detailed explanation and available values.
 
-**Note:** to obtain results, provide either a pair of coordinates (`x`
+**Note:** To obtain results, provide either a pair of coordinates (`x`
 and `y` arguments) used as a reference for geocoding or a bounding box
 via the `bbox` argument defining a desired extent for results.
 
-You can combine both approaches (i.e. providing `x`, `y` and `bbox`
-values) to improve the geocoding process. See **Examples**.
+You can combine both approaches (providing `x`, `y` and `bbox` values)
+to improve the geocoding process. See **Examples**.
 
 ## Usage
 
@@ -41,8 +40,8 @@ arc_geo_categories(
 - category:
 
   A place or address type used to filter results. Several values can
-  also be supplied as a vector (i.e. `c("Cinema", "Museum")`), which
-  performs one call for each value. See **Details**.
+  also be supplied as a vector (for example, `c("Cinema", "Museum")`),
+  which performs one call for each value. See **Details**.
 
 - x:
 
@@ -56,8 +55,9 @@ arc_geo_categories(
 
 - bbox:
 
-  A numeric vector of longitude and latitude `c(minX, minY, maxX, maxY)`
-  that restricts the search area. See **Details**.
+  A numeric vector of longitude and latitude values
+  `c(minX, minY, maxX, maxY)` that restricts the search area. See
+  **Details**.
 
 - name:
 
@@ -98,7 +98,7 @@ arc_geo_categories(
   `sourcecountry`
 
   :   Country filter using ISO codes (e.g. `"USA"`). Multiple values can
-      be specified (comma-separated).
+      be supplied as a comma-separated string.
 
   `outsr`
 
@@ -123,7 +123,7 @@ output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-servi
 Bounding boxes can be located using online tools, such as [Bounding Box
 Tool](https://boundingbox.klokantech.com/).
 
-For a full list of valid categories see
+For a full list of valid categories, see
 [arc_categories](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md).
 This function is vectorized over `category`, which means it performs one
 independent call to

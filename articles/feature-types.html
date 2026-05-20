@@ -62,7 +62,7 @@
     </h6></li>
     <li><a class="dropdown-item" href="../articles/feature-types.html">Reverse geocoding and feature types</a></li>
     <li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Mapping with arcgeocoder</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Mapping</h6></li>
     <li><a class="dropdown-item" href="../articles/static.html">arcgeocoder and static maps</a></li>
     <li><a class="dropdown-item" href="../articles/leaflet.html">arcgeocoder and leaflet maps</a></li>
   </ul>
@@ -104,11 +104,11 @@
 
 
 
-    <!-- feature-types.qmd is generated from feature-types.qmd.orig. Please edit that file --><p><em>Adapted from the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link uri">https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm</a>.</em></p>
+    <!-- feature-types.qmd is generated from feature-types.qmd.orig. Please edit that file --><p><em>Adapted from <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link uri">https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm</a>.</em></p>
 <section class="level2"><h2 id="reverse-geocoding-details">Reverse geocoding details<a class="anchor" aria-label="anchor" href="#reverse-geocoding-details"></a>
 </h2>
-<p>The purpose of reverse geocoding is to answer the question: What is near this location? To answer this question, the <code>reverseGeocode</code> operation provided by the <strong>ArcGIS REST API</strong> returns the most relevant feature near an input location based on a prioritized hierarchy of feature types.</p>
-<p>The hierarchy is summarized in the table below, ordered by descending priority. Unless otherwise noted, each feature type is returned only when the distance between the input location and the feature is within the tolerance specified in the <em>Search tolerance</em> column.</p>
+<p>The purpose of reverse geocoding is to answer the question: what is near this location? The <code>reverseGeocode</code> operation provided by the <strong>ArcGIS REST API</strong> returns the most relevant feature near an input location based on a prioritized hierarchy of feature types.</p>
+<p>The hierarchy is summarized in the table below and ordered by descending priority. Unless otherwise noted, each feature type is returned only when the distance between the input location and the feature is within the tolerance specified in the <em>Search tolerance</em> column.</p>
 <div id="tbl-hier" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-hier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
@@ -178,7 +178,7 @@
 Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
 </figcaption></figure>
 </div>
-<p>In <strong>arcgeocoder</strong>, this hierarchy is implemented in <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code>, specifically through the <code>featuretypes</code> argument. The default value (<code>featuretypes = NULL</code>) does not include the argument in the API call. In this case, the hierarchy presented in the previous table would apply.</p>
+<p>In <strong>arcgeocoder</strong>, this hierarchy is implemented in <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code>, specifically through the <code>featuretypes</code> argument. The default value (<code>featuretypes = NULL</code>) does not include the argument in the API call. In this case, the hierarchy presented in the previous table applies.</p>
 <p>You can narrow the query output to a specific feature type or a list of feature types. The possible values supported for this argument are:</p>
 <ul>
 <li><code>"StreetInt"</code></li>
@@ -374,7 +374,7 @@ Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
 </table></section><section class="level3"><h3 id="example-5-no-results-for-specific-featuretypes">Example 5: No results for specific <code>featuretypes</code>
 <a class="anchor" aria-label="anchor" href="#example-5-no-results-for-specific-featuretypes"></a>
 </h3>
-<p>The following example presents a case where only certain <code>featuretypes</code> are near the requested location. In this case, when reverse geocoding the North Pole, the API would return a <code>Locality</code>, but no <code>StreetAddress</code> is found.</p>
+<p>The following example presents a case where only certain <code>featuretypes</code> are near the requested location. In this case, when reverse geocoding the North Pole, the API returns a <code>Locality</code>, but no <code>StreetAddress</code> is found.</p>
 <p>When no results are available, <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code> returns an empty <strong>tibble</strong>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># North Pole</span></span>
@@ -428,7 +428,7 @@ Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
 </table></section></section><section class="level2"><h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
 </h2>
 <p>The API can return different results for the same <code>x</code> and <code>y</code> values depending on the <code>featuretypes</code> value. When <code>featuretypes = NULL</code>, the feature type returned depends on the hierarchy shown in <a href="#tbl-hier" class="quarto-xref">Table 1</a>.</p>
-<p>Depending on the location, the <code>featuretypes</code> filter may not return results, so using <code>featuretypes = NULL</code> is safer for general purposes.</p>
+<p>Depending on the location, the <code>featuretypes</code> filter may not return results, so <code>featuretypes = NULL</code> is safer for general-purpose queries.</p>
 </section><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
