@@ -3,7 +3,7 @@
 #' @family api_management
 #'
 #' @description
-#' Checks whether **R** has access to resources at the ArcGIS REST API
+#' Checks whether \R has access to resources at the ArcGIS REST API
 #' <`r arcurl("over")`>.
 #'
 #' @return A logical value.

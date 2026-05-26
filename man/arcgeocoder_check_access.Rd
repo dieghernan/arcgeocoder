@@ -11,7 +11,7 @@ arcgeocoder_check_access()
 A logical value.
 }
 \description{
-Checks whether \strong{R} has access to resources at the ArcGIS REST API
+Checks whether \R has access to resources at the ArcGIS REST API
 \url{https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm}.
 }
 \examples{
