@@ -295,7 +295,7 @@ A BibTeX entry for LaTeX users is
       doi = {10.32614/CRAN.package.arcgeocoder},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.4.0},
+      version = {0.4.0.9000},
       url = {https://dieghernan.github.io/arcgeocoder/},
       abstract = {Lightweight interface for geocoding addresses and reverse geocoding locations around the world with the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and coordinates can be converted into addresses. No API key is required.},
     }
