@@ -41,20 +41,21 @@ results.}
 points.}
 
 \item{outsr}{The spatial reference of the \code{x} and \code{y} coordinates returned
-by a geocode request. By default, it is \code{NULL} (i.e. the argument will not
-be used in the query). See \strong{Details} and \link{arc_spatial_references}.}
+by a geocode request. By default, it is \code{NULL} (that is, the argument
+will not be used in the query). See \strong{Details} and
+\link{arc_spatial_references}.}
 
 \item{langcode}{Sets the language in which reverse-geocoded addresses are
 returned.}
 
 \item{featuretypes}{This argument limits the possible match types returned.
-By default, it is \code{NULL} (i.e. the argument will not be used in the query).
-See \strong{Details}.}
+By default, it is \code{NULL} (that is, the argument will not be used in the
+query). See \strong{Details}.}
 
 \item{locationtype}{Specifies whether the output geometry of
 \code{featuretypes = "PointAddress"} or \code{featuretypes = "Subaddress"} matches
 should be the rooftop point or street entrance location. Valid values are
-\code{NULL} (i.e. not using the argument in the query), \code{"rooftop"} and
+\code{NULL} (that is, not using the argument in the query), \code{"rooftop"} and
 \code{"street"}.}
 
 \item{custom_query}{API-specific arguments to be used, passed as a named
@@ -70,7 +71,7 @@ See the details of the output in
 \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 }
 \description{
-Generates an address from a latitude and longitude. Latitudes must be in the
+Generates an address from a longitude and latitude. Latitudes must be in the
 range \eqn{\left[-90, 90 \right]} and longitudes in the range
 \eqn{\left[-180, 180 \right]}. This function returns the
 \link[tibble:tbl_df]{tibble} associated with each query.
@@ -82,7 +83,7 @@ valid values.
 \section{\code{outsr}}{
 The spatial reference can be specified as a well-known ID (WKID). If not
 specified, the spatial reference of the output locations is the same as that
-of the service (WGS84, i.e. WKID = 4326).
+of the service (WGS84, that is, WKID = 4326).
 
 See \link{arc_spatial_references} for values and examples.
 }
@@ -103,7 +104,6 @@ It is also possible to use several values as a vector
 \examples{
 \dontshow{if (arcgeocoder_check_access()) withAutoprint(\{ # examplesIf}
 \donttest{
-
 arc_reverse_geo(x = -73.98586, y = 40.75728)
 
 # Several coordinates.

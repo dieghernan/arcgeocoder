@@ -16,7 +16,7 @@ knitr:
 ## Example 1: sf objects
 
 The following example shows how to create a static map using data retrieved
-with **arcgeocoder** and converted to an **sf** object:
+with **arcgeocoder** and converted to an **sf** object.
 
 ```{r}
 #| label: sf
@@ -40,7 +40,7 @@ mc <- arc_geo_multi(
   custom_query = list(outFields = c("LongLabel", "Type", "StAddr"))
 )
 
-# Convert to an **sf** object.
+# Convert to an sf object.
 mc_sf <- st_as_sf(
   mc,
   coords = c("lon", "lat"),
@@ -87,7 +87,7 @@ ggplot(bcn) +
 
 We can add static map tiles with the **maptiles** package and use the
 **tidyterra** package for plotting. The tiles are represented here as
-**terra** objects:
+**terra** objects.
 
 ```{r}
 #| label: terra

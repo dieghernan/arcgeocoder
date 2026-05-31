@@ -1,12 +1,12 @@
 #' Check access to ArcGIS REST
 #'
-#' @family api_management
-#'
 #' @description
-#' Checks whether \R has access to resources at the ArcGIS REST API
+#' Checks whether \R can access resources at the ArcGIS REST API
 #' <`r arcurl("over")`>.
 #'
 #' @return A logical value.
+#'
+#' @family api_management
 #'
 #' @examples
 #' \donttest{
@@ -16,10 +16,7 @@
 #' @export
 #' @encoding UTF-8
 arcgeocoder_check_access <- function() {
-  api <- paste0(
-    "https://geocode.arcgis.com/arcgis/rest/services/",
-    "World/GeocodeServer/reverseGeocode?"
-  )
+  api <- arc_endpoint_url("reverseGeocode")
 
   # Compose URL.
   url <- paste0(api, "location=0,0&f=json")
@@ -35,12 +32,7 @@ arcgeocoder_check_access <- function() {
   result_json <- jsonlite::fromJSON(destfile)
 
   # nocov start
-  if (result_json$location$x == 0) {
-    res <- TRUE
-  } else {
-    res <- FALSE
-  }
-  res
+  result_json$location$x == 0
   # nocov end
 }
 
@@ -63,40 +55,22 @@ skip_if_api_server <- function() {
 #' A wrapper around [utils::download.file()]. On warning or error, it retries
 #' the call.
 #'
-#' @family api_management
-#'
 #' @inheritParams utils::download.file
+#'
 #' @return A logical `TRUE` or `FALSE`.
 #'
-#' @keywords internal
+#' @family api_management
 #'
+#' @keywords internal
 #' @noRd
 arc_api_call <- function(url, destfile, quiet) {
   if (!quiet) {
-    decomp <- unlist(strsplit(url, "?", fixed = TRUE))
-    params <- unlist(strsplit(decomp[2], "&"))
-    url <- URLencode(url)
-    message(
-      "\nEntry point: ",
-      decomp[1],
-      "?\nParameters:\n",
-      paste0("   - ", params, collapse = "\n"),
-      "\nURL: ",
-      url
-    )
+    message_api_call(url)
   }
 
   url <- URLencode(url)
   # nocov start
-  dwn_res <- tryCatch(
-    download.file(url, destfile = destfile, quiet = TRUE, mode = "wb"),
-    warning = function(e) {
-      FALSE
-    },
-    error = function(e) {
-      FALSE
-    }
-  )
+  dwn_res <- arc_download_file(url, destfile)
   # nocov end
 
   # nocov start
@@ -106,21 +80,12 @@ arc_api_call <- function(url, destfile, quiet) {
     }
     Sys.sleep(1)
 
-    dwn_res <- tryCatch(
-      download.file(url, destfile = destfile, quiet = TRUE, mode = "wb"),
-      warning = function(e) {
-        FALSE
-      },
-      error = function(e) {
-        FALSE
-      }
-    )
+    dwn_res <- arc_download_file(url, destfile)
   }
 
   if (isFALSE(dwn_res)) {
     return(FALSE)
   }
-  res <- TRUE
-  res
+  TRUE
   # nocov end
 }

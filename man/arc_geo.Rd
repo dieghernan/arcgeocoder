@@ -45,8 +45,9 @@ output.}
 points.}
 
 \item{outsr}{The spatial reference of the \code{x} and \code{y} coordinates returned
-by a geocode request. By default, it is \code{NULL} (i.e. the argument will not
-be used in the query). See \strong{Details} and \link{arc_spatial_references}.}
+by a geocode request. By default, it is \code{NULL} (that is, the argument
+will not be used in the query). See \strong{Details} and
+\link{arc_spatial_references}.}
 
 \item{langcode}{Sets the language in which reverse-geocoded addresses are
 returned.}
@@ -60,14 +61,14 @@ accepted (e.g. \code{c("Cinema", "Museum")}). See \link{arc_categories}.}
 \item{custom_query}{Additional API parameters as named list values.}
 }
 \value{
-A \link[tibble:tbl_df]{tibble} object with the results. See output details in  \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
+A \link[tibble:tbl_df]{tibble} object with the results. See output details in \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 }
 \description{
-Geocodes addresses given as character values and returns the
+Geocodes addresses supplied as character values and returns the
 \link[tibble:tbl_df]{tibble} associated with each query.
 
 This function uses the \code{SingleLine} approach detailed in the
-\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}. For multi-field queries (i.e.
+\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST docs}. For multi-field queries (that is,
 using specific address components), use \code{\link[=arc_geo_multi]{arc_geo_multi()}}.
 }
 \details{
@@ -77,7 +78,7 @@ valid values.
 \section{\code{outsr}}{
 The spatial reference can be specified as a well-known ID (WKID). If not
 specified, the spatial reference of the output locations is the same as that
-of the service (WGS84, i.e. WKID = 4326).
+of the service (WGS84, that is, WKID = 4326).
 
 See \link{arc_spatial_references} for values and examples.
 }

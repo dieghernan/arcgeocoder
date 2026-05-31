@@ -41,7 +41,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 <!-- badges: end -->
 
 The goal of **arcgeocoder** is to provide a lightweight interface for
-geocoding addresses and reverse geocoding locations through the
+geocoding addresses and reverse geocoding coordinates through the
 [ArcGIS REST API geocoding service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
 
 The full site with examples and vignettes is available at
@@ -55,9 +55,10 @@ depending on additional HTTP packages such as **curl**. In some situations,
 **curl** may not be available or accessible, so **arcgeocoder** uses base
 functions to avoid this limitation.
 
-The interface of **arcgeocoder** is designed to make the API features easier to
-access. The API endpoints used by **arcgeocoder** are `findAddressCandidates`
-and `reverseGeocode`, which can be accessed [**without**]{.underline} an
+The interface of **arcgeocoder** is designed to make ArcGIS geocoding features
+easier to access. The API endpoints used by **arcgeocoder** are
+`findAddressCandidates` and `reverseGeocode`, which can be accessed
+[**without**]{.underline} an
 [**API key**]{.underline}.
 
 ## Recommended packages
@@ -205,7 +206,7 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower |>
   select(lon, lat, LongLabel)
 
-# Use `lon` and `lat` to boost the search with `category = "Food"`.
+# Use `lon` and `lat` as a reference location for `category = "Food"`.
 food_eiffel <- arc_geo_categories(
   "Food",
   x = eiffel_tower$lon,
@@ -228,7 +229,7 @@ ggplot(eiffel_tower, aes(x, y)) +
   )
 ```
 
-### arcgeocoder and r-spatial
+### arcgeocoder and spatial data
 
 It is straightforward to convert **arcgeocoder** results to an **sf** object:
 

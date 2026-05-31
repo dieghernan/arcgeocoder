@@ -1,11 +1,11 @@
 Package: arcgeocoder
 Title: Geocode with the 'ArcGIS' REST API Service
-Version: 0.4.0
+Version: 0.4.0.9000
 Authors@R:
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
 Description: Lightweight interface for geocoding addresses and reverse
-    geocoding locations around the world with the 'ArcGIS' REST API
+    geocoding coordinates around the world with the 'ArcGIS' REST API
     service
     <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
     Address text can be converted to location candidates and coordinates

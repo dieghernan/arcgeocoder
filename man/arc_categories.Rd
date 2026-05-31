@@ -19,7 +19,7 @@ fields:
 \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering}.
 }
 \description{
-Data set of available categories used to filter results provided by
+Dataset of available categories used to filter results provided by
 \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}} and \code{\link[=arc_geo_categories]{arc_geo_categories()}} in
 \link[tibble:tbl_df]{tibble} format.
 }
@@ -43,7 +43,7 @@ false-positive matches and potentially speeding up the search process.
 
 The results show a list of categories with three different hierarchy levels
 (\code{level_1}, \code{level_2}, \code{level_3}). If a \code{level_1} category is requested
-(i.e. \code{POI}), the child categories may also be included in the results.
+(that is, \code{POI}), the child categories may also be included in the results.
 }
 \note{
 Data extracted on \strong{15 January 2026}.
@@ -64,7 +64,7 @@ sea_1 <- arc_geo("sea",
 
 dplyr::glimpse(sea_1)
 
-# An airport, but if we use categories...
+# Categories can disambiguate the result.
 
 sea_2 <- arc_geo("sea",
   custom_query = list(outFields = c("LongLabel", "Type")),

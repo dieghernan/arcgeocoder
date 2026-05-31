@@ -1,11 +1,11 @@
 #' Geocode addresses with the ArcGIS REST API
 #'
 #' @description
-#' Geocodes addresses given as character values and returns the
+#' Geocodes addresses supplied as character values and returns the
 #' [tibble][tibble::tbl_df] associated with each query.
 #'
 #' This function uses the `SingleLine` approach detailed in the
-#' [ArcGIS REST docs](`r arcurl("cand")`). For multi-field queries (i.e.
+#' [ArcGIS REST docs](`r arcurl("cand")`). For multi-field queries (that is,
 #' using specific address components), use [arc_geo_multi()].
 #'
 #' @param address Single-line address text (e.g.
@@ -27,19 +27,22 @@
 #'
 #' @inheritParams arc_reverse_geo
 #'
-#' @references
-#' [ArcGIS REST `findAddressCandidates`](`r arcurl("cand")`).
-#'
-#' @return
-#'
-#' ```{r child = "man/chunks/out1.Rmd"}
-#' ```
-#'
 #' @details
 #' See the [ArcGIS REST docs](`r arcurl("cand")`) for more information and
 #' valid values.
 #'
 #' @inheritSection arc_reverse_geo `outsr`
+#'
+#' @return
+#' ```{r child = "man/chunks/out1.Rmd"}
+#' ```
+#'
+#' @references
+#' [ArcGIS REST `findAddressCandidates`](`r arcurl("cand")`).
+#'
+#' @family geocoding
+#'
+#' @seealso [tidygeocoder::geo()]
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
@@ -66,10 +69,6 @@
 #' }
 #' @export
 #' @encoding UTF-8
-#'
-#' @seealso [tidygeocoder::geo()]
-#' @family geocoding
-#'
 arc_geo <- function(
   address,
   lat = "lat",
@@ -85,64 +84,35 @@ arc_geo <- function(
   category = NULL,
   custom_query = list()
 ) {
-  if (limit > 50) {
-    message(paste(
-      "\nThe ArcGIS REST API provides a maximum of 50 results.",
-      "Your query may be incomplete."
-    ))
-    limit <- min(50, limit)
-  }
+  limit <- restrict_arc_limit(limit)
 
   # Deduplicate addresses before querying.
   init_key <- dplyr::tibble(query = address)
   key <- unique(address)
 
-  # Set progress bar.
-  ntot <- length(key)
-  # Show progress bar only for multiple addresses.
-  progressbar <- all(progressbar, ntot > 1)
-  if (progressbar) {
-    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
-  }
-  seql <- seq(1, ntot, 1)
-
   # Add API arguments to the custom query.
-  if (isTRUE(full_results)) {
-    # Override any `outFields` parameter provided in `custom_query`.
-    custom_query$outFields <- "*"
-  }
+  custom_query <- add_find_address_params(
+    custom_query,
+    full_results = full_results,
+    sourcecountry = sourcecountry,
+    outsr = outsr,
+    langcode = langcode,
+    category = category
+  )
 
-  custom_query$sourceCountry <- sourcecountry
-  custom_query$outSR <- outsr
-  custom_query$langCode <- langcode
-  custom_query$category <- category
-
-  all_res <- lapply(seql, function(x) {
-    ad <- key[x]
-    if (progressbar) {
-      setTxtProgressBar(pb, x)
-    }
-    arc_geo_single(
-      address = ad,
-      lat,
-      long,
-      limit,
-      full_results,
-      return_addresses,
-      verbose,
-      custom_query,
-      singleline = TRUE
-    )
-  })
-  if (progressbar) {
-    close(pb)
-  }
-
-  all_res <- dplyr::bind_rows(all_res)
-  all_res <- dplyr::left_join(init_key, all_res, by = "query")
-
-  all_res[all_res == ""] <- NA
-  all_res
+  arc_geo_bulk(
+    key = key,
+    init_key = init_key,
+    lat = lat,
+    long = long,
+    limit = limit,
+    full_results = full_results,
+    return_addresses = return_addresses,
+    verbose = verbose,
+    custom_query = custom_query,
+    singleline = TRUE,
+    progressbar = progressbar
+  )
 }
 
 arc_geo_single <- function(
@@ -157,10 +127,7 @@ arc_geo_single <- function(
   singleline = TRUE
 ) {
   # Step 1: Download ----
-  api <- paste0(
-    "https://geocode.arcgis.com/arcgis/rest/",
-    "services/World/GeocodeServer/findAddressCandidates?"
-  )
+  api <- arc_endpoint_url("findAddressCandidates")
 
   # Compose URL.
   if (singleline) {

@@ -24,8 +24,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 <!-- badges: end -->
 
 The goal of **arcgeocoder** is to provide a lightweight interface for
-geocoding addresses and reverse geocoding locations through the [ArcGIS
-REST API geocoding
+geocoding addresses and reverse geocoding coordinates through the
+[ArcGIS REST API geocoding
 service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
 
 The full site with examples and vignettes is available at
@@ -39,8 +39,8 @@ without depending on additional HTTP packages such as **curl**. In some
 situations, **curl** may not be available or accessible, so
 **arcgeocoder** uses base functions to avoid this limitation.
 
-The interface of **arcgeocoder** is designed to make the API features
-easier to access. The API endpoints used by **arcgeocoder** are
+The interface of **arcgeocoder** is designed to make ArcGIS geocoding
+features easier to access. The API endpoints used by **arcgeocoder** are
 `findAddressCandidates` and `reverseGeocode`, which can be accessed
 <u>**without**</u> an <u>**API key**</u>.
 
@@ -202,7 +202,7 @@ eiffel_tower |>
 #>   <dbl> <dbl> <chr>                                                             
 #> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…
 
-# Use `lon` and `lat` to boost the search with `category = "Food"`.
+# Use `lon` and `lat` as a reference location for `category = "Food"`.
 food_eiffel <- arc_geo_categories(
   "Food",
   x = eiffel_tower$lon,
@@ -228,7 +228,7 @@ ggplot(eiffel_tower, aes(x, y)) +
 <img src="man/figures/README-eiffel-1.png" style="width:100.0%"
 alt="Example: Food places near the Eiffel Tower" />
 
-### arcgeocoder and r-spatial
+### arcgeocoder and spatial data
 
 It is straightforward to convert **arcgeocoder** results to an **sf**
 object:
@@ -295,9 +295,9 @@ A BibTeX entry for LaTeX users is
       doi = {10.32614/CRAN.package.arcgeocoder},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.4.0},
+      version = {0.4.0.9000},
       url = {https://dieghernan.github.io/arcgeocoder/},
-      abstract = {Lightweight interface for geocoding addresses and reverse geocoding locations around the world with the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and coordinates can be converted into addresses. No API key is required.},
+      abstract = {Lightweight interface for geocoding addresses and reverse geocoding coordinates around the world with the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and coordinates can be converted into addresses. No API key is required.},
     }
 
 ## References
