@@ -41,10 +41,10 @@ ggplot(bcn) +
   geom_sf(data = mc_sf, color = "red")
 ```
 
-![](static_files/figure-html/sf-1.png)
+![](static_files/figure-html/fig-sf-1.png)
 
-A map showing the location of McDonald’s restaurants around Barcelona,
-Spain
+Figure 1: A map showing the location of McDonald’s restaurants around
+Barcelona, Spain
 
 ``` r
 
@@ -72,9 +72,10 @@ ggplot(bcn) +
   geom_sf(data = mc2_sf, color = "red")
 ```
 
-![](static_files/figure-html/sf2-1.png)
+![](static_files/figure-html/fig-sf2-1.png)
 
-A map showing the location of McDonald’s restaurants in Barcelona, Spain
+Figure 2: A map showing the location of McDonald’s restaurants in
+Barcelona, Spain
 
 ## Example 2: terra objects
 
@@ -100,7 +101,7 @@ ggplot() +
   labs(caption = get_credit("CartoDB.Positron"))
 ```
 
-![](static_files/figure-html/terra-1.png)
+![](static_files/figure-html/fig-terra-1.png)
 
-A map showing the location of McDonald’s restaurants in Barcelona,
-Spain, over an image provided by CARTO
+Figure 3: A map showing the location of McDonald’s restaurants in
+Barcelona, Spain, over an image provided by CARTO
