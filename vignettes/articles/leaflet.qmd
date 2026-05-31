@@ -1,6 +1,6 @@
 ---
 title: arcgeocoder and leaflet maps
-description: Combine arcgeocoder and leaflet maps.
+description: Combine arcgeocoder with leaflet maps.
 knitr:
   opts_chunk:
     collapse: true
@@ -16,10 +16,10 @@ knitr:
 ## Example
 
 The following example shows how to create an interactive
-[leaflet map](https://rstudio.github.io/leaflet/) using data retrieved with
+[**leaflet** map](https://rstudio.github.io/leaflet/) using data retrieved with
 **arcgeocoder**.
 
-This widget can be browsed and filtered with **crosstalk** and **reactable**:
+This widget can be browsed and filtered with **crosstalk** and **reactable**.
 
 ```{r}
 #| label: example

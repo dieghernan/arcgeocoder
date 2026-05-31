@@ -1,22 +1,12 @@
 #' ArcGIS REST API category data
 #'
 #' @description
-#'
-#' Data set of available categories used to filter results provided by
+#' Dataset of available categories used to filter results provided by
 #' [arc_geo()], [arc_geo_multi()] and [arc_geo_categories()] in
 #' [tibble][tibble::tbl_df] format.
 #'
-#' @note Data extracted on **15 January 2026**.
-#'
-#' @source
-#' [ArcGIS REST Category filtering](`r arcurl("filt")`).
-#'
-#' @encoding UTF-8
-#'
 #' @name arc_categories
-#'
 #' @docType data
-#'
 #' @format
 #' A [tibble][tibble::tbl_df] with
 #' `r prettyNum(nrow(arcgeocoder::arc_categories), big.mark=",")` rows and
@@ -47,7 +37,12 @@
 #'
 #' The results show a list of categories with three different hierarchy levels
 #' (`level_1`, `level_2`, `level_3`). If a `level_1` category is requested
-#' (i.e. `POI`), the child categories may also be included in the results.
+#' (that is, `POI`), the child categories may also be included in the results.
+#'
+#' @source
+#' [ArcGIS REST Category filtering](`r arcurl("filt")`).
+#'
+#' @note Data extracted on **15 January 2026**.
 #'
 #' @family datasets
 #'
@@ -68,7 +63,7 @@
 #'
 #' dplyr::glimpse(sea_1)
 #'
-#' # An airport, but if we use categories...
+#' # Categories can disambiguate the result.
 #'
 #' sea_2 <- arc_geo("sea",
 #'   custom_query = list(outFields = c("LongLabel", "Type")),
@@ -86,27 +81,17 @@
 #'
 #' dplyr::glimpse(sea_3)
 #' }
+#' @encoding UTF-8
 NULL
 
 #' Esri (ArcGIS) spatial reference data
 #'
 #' @description
-#'
-#' Data set of available spatial references (CRS) in [tibble][tibble::tbl_df]
+#' Dataset of available spatial references (CRS) in [tibble][tibble::tbl_df]
 #' format.
 #'
-#' @note Data extracted on **15 January 2026**.
-#'
-#' @source
-#' [Esri Projection Engine
-#' factory](https://github.com/Esri/projection-engine-db-doc)
-#'
-#' @encoding UTF-8
-#'
 #' @name arc_spatial_references
-#'
 #' @docType data
-#'
 #' @format A [tibble][tibble::tbl_df] with
 #' `r prettyNum(nrow(arcgeocoder::arc_spatial_references), big.mark=",")` rows
 #' and fields:
@@ -124,11 +109,17 @@ NULL
 #' }
 #' @details
 #'
-#' This data set is useful when using the `outsr` argument.
+#' This dataset is useful when using the `outsr` argument.
 #'
 #' Some projection IDs have changed over time. For example, Web Mercator
 #' `wkid = 102100` is deprecated and is currently `wkid = 3857`. However, both
 #' values work and return similar results.
+#'
+#' @source
+#' [Esri Projection Engine
+#' factory](https://github.com/Esri/projection-engine-db-doc)
+#'
+#' @note Data extracted on **15 January 2026**.
 #'
 #' @family datasets
 #'
@@ -167,4 +158,5 @@ NULL
 #' # Or use WKT.
 #' try(sf::st_crs(wkid$wkt))
 #' }
+#' @encoding UTF-8
 NULL

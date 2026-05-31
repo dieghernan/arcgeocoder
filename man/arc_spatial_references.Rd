@@ -26,11 +26,11 @@ working with \CRANpkg{sf} or \CRANpkg{terra}.}
 \href{https://github.com/Esri/projection-engine-db-doc}{Esri Projection Engine factory}
 }
 \description{
-Data set of available spatial references (CRS) in \link[tibble:tbl_df]{tibble}
+Dataset of available spatial references (CRS) in \link[tibble:tbl_df]{tibble}
 format.
 }
 \details{
-This data set is useful when using the \code{outsr} argument.
+This dataset is useful when using the \code{outsr} argument.
 
 Some projection IDs have changed over time. For example, Web Mercator
 \code{wkid = 102100} is deprecated and is currently \code{wkid = 3857}. However, both

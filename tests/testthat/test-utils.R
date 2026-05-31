@@ -33,3 +33,21 @@ test_that("names", {
   l <- list(NA)
   expect_false(is_named(l))
 })
+
+test_that("multi-field query rows", {
+  row <- dplyr::tibble(
+    address = "Calle Mayor",
+    city = NA_character_,
+    countryCode = "ESP"
+  )
+  expect_identical(
+    multi_row_query(row),
+    "address=Calle Mayor&countryCode=ESP"
+  )
+
+  empty_row <- dplyr::tibble(
+    address = NA_character_,
+    city = NA_character_
+  )
+  expect_identical(multi_row_query(empty_row), NA_character_)
+})

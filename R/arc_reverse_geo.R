@@ -1,7 +1,7 @@
 #' Reverse geocode coordinates with the ArcGIS REST API
 #'
 #' @description
-#' Generates an address from a latitude and longitude. Latitudes must be in the
+#' Generates an address from a longitude and latitude. Latitudes must be in the
 #' range \eqn{\left[-90, 90 \right]} and longitudes in the range
 #' \eqn{\left[-180, 180 \right]}. This function returns the
 #' [tibble][tibble::tbl_df] associated with each query.
@@ -19,26 +19,23 @@
 #' @param progressbar Logical. If `TRUE`, show a progress bar for multiple
 #'   points.
 #' @param outsr The spatial reference of the `x` and `y` coordinates returned
-#'   by a geocode request. By default, it is `NULL` (i.e. the argument will not
-#'   be used in the query). See **Details** and [arc_spatial_references].
+#'   by a geocode request. By default, it is `NULL` (that is, the argument
+#'   will not be used in the query). See **Details** and
+#'   [arc_spatial_references].
 #' @param langcode Sets the language in which reverse-geocoded addresses are
 #'   returned.
 #' @param featuretypes This argument limits the possible match types returned.
-#'   By default, it is `NULL` (i.e. the argument will not be used in the query).
-#'   See **Details**.
+#'   By default, it is `NULL` (that is, the argument will not be used in the
+#'   query). See **Details**.
 #' @param locationtype Specifies whether the output geometry of
 #'   `featuretypes = "PointAddress"` or `featuretypes = "Subaddress"` matches
 #'   should be the rooftop point or street entrance location. Valid values are
-#'   `NULL` (i.e. not using the argument in the query), `"rooftop"` and
+#'   `NULL` (that is, not using the argument in the query), `"rooftop"` and
 #'   `"street"`.
 #' @param custom_query API-specific arguments to be used, passed as a named
 #'   list.
 #'
-#' @references
-#' [ArcGIS REST `reverseGeocode`](`r arcurl("rev")`).
-#'
 #' @details
-#'
 #' See the [ArcGIS REST docs](`r arcurl("rev")`) for more information and
 #' valid values.
 #'
@@ -46,7 +43,7 @@
 #'
 #' The spatial reference can be specified as a well-known ID (WKID). If not
 #' specified, the spatial reference of the output locations is the same as that
-#' of the service (WGS84, i.e. WKID = 4326).
+#' of the service (WGS84, that is, WKID = 4326).
 #'
 #' See [arc_spatial_references] for values and examples.
 #'
@@ -72,9 +69,15 @@
 #' See the details of the output in
 #' [ArcGIS REST API service output](`r arcurl("out")`).
 #'
+#' @references
+#' [ArcGIS REST `reverseGeocode`](`r arcurl("rev")`).
+#'
+#' @family geocoding
+#'
+#' @seealso [tidygeocoder::reverse_geo()]
+#'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
-#'
 #' arc_reverse_geo(x = -73.98586, y = 40.75728)
 #'
 #' # Several coordinates.
@@ -93,13 +96,8 @@
 #'
 #' dplyr::glimpse(sev)
 #' }
-#'
 #' @export
 #' @encoding UTF-8
-#'
-#' @family geocoding
-#' @seealso [tidygeocoder::reverse_geo()]
-#'
 arc_reverse_geo <- function(
   x,
   y,
@@ -123,19 +121,8 @@ arc_reverse_geo <- function(
     stop("`x` and `y` must have the same number of elements.")
   }
 
-  # Restrict latitude.
-  y_cap <- pmax(pmin(y, 90), -90)
-
-  if (!identical(y_cap, y)) {
-    message("\nLatitudes have been restricted to [-90, 90].")
-  }
-
-  # Restrict longitude.
-  x_cap <- pmax(pmin(x, 180), -180)
-
-  if (!all(x_cap == x)) {
-    message("\nLongitudes have been restricted to [-180, 180].")
-  }
+  y_cap <- restrict_lat(y)
+  x_cap <- restrict_lon(x)
 
   # Deduplicate coordinates before querying.
   init_key <- dplyr::tibble(
@@ -147,26 +134,16 @@ arc_reverse_geo <- function(
 
   key <- dplyr::distinct(init_key)
 
-  # Set progress bar.
-  ntot <- nrow(key)
-  # Show progress bar only for multiple coordinates.
-  progressbar <- all(progressbar, ntot > 1)
-  if (progressbar) {
-    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
-  }
-
-  seql <- seq(1, ntot, 1)
-
   # Add API arguments to the custom query.
-  custom_query$outSR <- outsr
-  custom_query$langCode <- langcode
-  custom_query$featureTypes <- featuretypes
-  custom_query$locationType <- locationtype
+  custom_query <- add_reverse_params(
+    custom_query,
+    outsr = outsr,
+    langcode = langcode,
+    featuretypes = featuretypes,
+    locationtype = locationtype
+  )
 
-  all_res <- lapply(seql, function(x) {
-    if (progressbar) {
-      setTxtProgressBar(pb, x)
-    }
+  all_res <- map_with_progress(seq_len(nrow(key)), progressbar, function(x, i) {
     rw <- key[x, ]
     res_single <- arc_reverse_geo_single(
       as.double(rw$y_cap_int),
@@ -181,9 +158,6 @@ arc_reverse_geo <- function(
 
     res_single
   })
-  if (progressbar) {
-    close(pb)
-  }
 
   all_res <- dplyr::bind_rows(all_res)
   all_res <- dplyr::left_join(
@@ -202,8 +176,7 @@ arc_reverse_geo <- function(
     all_res <- all_res[, !nm %in% c("x", "y")]
   }
 
-  all_res[all_res == ""] <- NA
-  all_res
+  empty_strings_to_na(all_res)
 }
 
 arc_reverse_geo_single <- function(
@@ -215,10 +188,7 @@ arc_reverse_geo_single <- function(
   custom_query = list()
 ) {
   # Step 1: Download ----
-  api <- paste0(
-    "https://geocode.arcgis.com/arcgis/rest/",
-    "services/World/GeocodeServer/reverseGeocode?"
-  )
+  api <- arc_endpoint_url("reverseGeocode")
 
   # Compose URL.
   url <- paste0(api, "location=", long_cap, ",", lat_cap, "&f=json")
@@ -249,7 +219,7 @@ arc_reverse_geo_single <- function(
       "\n",
       "No results for location: ",
       long_cap,
-      ",",
+      ", ",
       lat_cap,
       "\n",
       result_init$error$message,

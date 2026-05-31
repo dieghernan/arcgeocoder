@@ -18,8 +18,8 @@
 #'   Several values can also be supplied as a vector (for example,
 #'   `c("Cinema", "Museum")`), which performs one call for each value. See
 #'   **Details**.
-#' @param limit Maximum number of results per query. ArcGIS API limits a single
-#'   request to 50 results.
+#' @param limit Maximum number of results per query. The ArcGIS REST API limits
+#'   a single request to 50 results.
 #' @inheritParams arc_geo
 #' @inheritParams arc_reverse_geo
 #' @inheritDotParams arc_geo -address -return_addresses -progressbar
@@ -45,20 +45,17 @@
 #'
 #' @inheritSection arc_reverse_geo `outsr`
 #'
+#' @return
+#' ```{r child = "man/chunks/out1.Rmd"}
+#' ```
+#'
+#' @family geocoding
+#'
 #' @seealso
 #' [ArcGIS REST Category filtering](`r arcurl("filt")`).
 #'
 #' [arc_categories]
 #'
-#' @family geocoding
-#'
-#' @return
-#'
-#' ```{r child = "man/chunks/out1.Rmd"}
-#' ```
-#'
-#' @export
-#' @encoding UTF-8
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
 #' # Full workflow: gas stations near Carabanchel, Madrid.
@@ -132,6 +129,8 @@
 #'     subtitle = "Search near with name and bounding box"
 #'   )
 #' }
+#' @export
+#' @encoding UTF-8
 arc_geo_categories <- function(
   category,
   x = NULL,
@@ -161,27 +160,9 @@ arc_geo_categories <- function(
     )
   }
 
-  # Prepare query.
-  # Vectorize categories.
-  cats <- unlist(strsplit(paste0(category, collapse = ","), ","))
-
-  base_tbl <- dplyr::tibble(
-    q_category = cats,
-    q_x = locs[1],
-    q_y = locs[2],
-    q_bbox_xmin = bbox[1],
-    q_bbox_ymin = bbox[2],
-    q_bbox_xmax = bbox[3],
-    q_bbox_ymax = bbox[4]
-  )
-
-  if (!anyNA(locs)) {
-    custom_query$location <- paste0(locs, collapse = ",")
-  }
-
-  if (!anyNA(bbox)) {
-    custom_query$searchExtent <- paste0(bbox, collapse = ",")
-  }
+  cats <- category_values(category)
+  base_tbl <- category_query_tbl(cats, locs, bbox)
+  custom_query <- add_category_query_params(custom_query, locs, bbox)
 
   if (is.null(name)) {
     name <- ""
@@ -208,11 +189,7 @@ arc_geo_categories <- function(
       message("(category: ", bs$q_category, ")")
     }
     end <- dplyr::bind_cols(bs, qry)
-
-    # Remove helper fields.
-    end <- end[, setdiff(names(end), "query")]
-
-    end
+    remove_query_col(end)
   })
 
   dplyr::bind_rows(api_res)
@@ -227,15 +204,14 @@ validate_location <- function(x = NULL, y = NULL) {
   }
   # Return NAs if both coordinates are missing.
   if (all(is.na(x), is.na(y))) {
-    return(c(NA, NA))
+    return(missing_location())
   }
 
   # Return NAs with a message if either coordinate is missing.
   if (anyNA(c(x, y))) {
-    message(
+    return(missing_location(
       "Either `x` or `y` is missing. The `location` argument will not be used."
-    )
-    return(c(NA, NA))
+    ))
   }
 
   # Check inputs.
@@ -247,64 +223,44 @@ validate_location <- function(x = NULL, y = NULL) {
   x <- x[1]
   y <- y[1]
 
-  # Restrict latitude.
-  y_cap <- pmax(pmin(y, 90), -90)
-
-  if (!identical(y_cap, y)) {
-    message("\nLatitudes have been restricted to [-90, 90].")
-  }
-
-  # Restrict longitude.
-  x_cap <- pmax(pmin(x, 180), -180)
-
-  if (!all(x_cap == x)) {
-    message("\nLongitudes have been restricted to [-180, 180].")
-  }
+  y_cap <- restrict_lat(y)
+  x_cap <- restrict_lon(x)
 
   c(x_cap, y_cap)
 }
 
 validate_bbox <- function(bbox = NULL) {
   if (is.null(bbox)) {
-    return(c(NA, NA, NA, NA))
+    return(missing_bbox())
   }
 
   # Return NAs with a message if any `bbox` value is missing.
   if (anyNA(bbox)) {
-    message("`bbox` has NA values. The `bbox` argument will not be used.")
-    return(c(NA, NA, NA, NA))
+    return(missing_bbox(
+      "`bbox` has NA values. The `bbox` argument will not be used."
+    ))
   }
 
   if (length(bbox) < 4) {
-    message(
+    return(missing_bbox(
       "`bbox` has fewer than 4 values. The `bbox` argument will not be used."
-    )
-    return(c(NA, NA, NA, NA))
+    ))
   }
 
   if (!is.numeric(bbox)) {
-    message("`bbox` is not numeric. The `bbox` argument will not be used.")
-    return(c(NA, NA, NA, NA))
+    return(missing_bbox(
+      "`bbox` is not numeric. The `bbox` argument will not be used."
+    ))
   }
 
   # Use only the first four `bbox` values.
   bbox <- bbox[1:4]
 
-  # Restrict longitude.
   xs <- bbox[c(1, 3)]
-  xs_cap <- pmax(pmin(xs, 180), -180)
+  xs_cap <- restrict_bbox_lon(xs)
 
-  if (!all(xs_cap == xs)) {
-    message("\n`bbox` xmin and xmax have been restricted to [-180, 180].")
-  }
-
-  # Restrict latitude.
   ys <- bbox[c(2, 4)]
-  ys_cap <- pmax(pmin(ys, 90), -90)
-
-  if (!all(ys_cap == ys)) {
-    message("\n`bbox` ymin and ymax have been restricted to [-90, 90].")
-  }
+  ys_cap <- restrict_bbox_lat(ys)
 
   c(xs_cap[1], ys_cap[1], xs_cap[2], ys_cap[2])
 }

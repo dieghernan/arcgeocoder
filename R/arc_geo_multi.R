@@ -12,16 +12,6 @@
 #'   See **Details**.
 #' @inheritParams arc_geo
 #'
-#' @references
-#' [ArcGIS REST `findAddressCandidates`](`r arcurl("cand")`)
-#'
-#' @return
-#' ```{r child = "man/chunks/out1.Rmd"}
-#' ```
-#'
-#' The output also includes the input arguments as columns prefixed with `q_`
-#' to help track the results.
-#'
 #' @details
 #' See the [ArcGIS REST docs](`r arcurl("cand")`) for more information and
 #' valid values.
@@ -66,11 +56,19 @@
 #'
 #' @inheritSection arc_reverse_geo `outsr`
 #'
-#' @export
-#' @encoding UTF-8
+#' @return
+#' ```{r child = "man/chunks/out1.Rmd"}
+#' ```
+#'
+#' The output also includes the input arguments as columns prefixed with `q_`
+#' to help track the results.
+#'
+#' @references
+#' [ArcGIS REST `findAddressCandidates`](`r arcurl("cand")`).
+#'
+#' @family geocoding
 #'
 #' @seealso [tidygeocoder::geo()]
-#' @family geocoding
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
@@ -108,6 +106,8 @@
 #'   select(lat, lon, CntryName, Region, LongLabel) |>
 #'   slice_head(n = 10)
 #' }
+#' @export
+#' @encoding UTF-8
 arc_geo_multi <- function(
   address = NULL,
   address2 = NULL,
@@ -145,13 +145,7 @@ arc_geo_multi <- function(
     countrycode
   )
 
-  if (limit > 50) {
-    message(paste(
-      "\nThe ArcGIS REST API provides a maximum of 50 results.",
-      "Your query may be incomplete."
-    ))
-    limit <- min(50, limit)
-  }
+  limit <- restrict_arc_limit(limit)
 
   # Deduplicate queries.
   init_key <- init_df
@@ -159,57 +153,35 @@ arc_geo_multi <- function(
   key <- key[!is.na(key)]
 
   if (length(key) == 0) {
-    stop("No address component provided. Provide at least one value.")
+    stop("No address component provided. Provide at least one non-NA value.")
   }
-
-  # Set progress bar.
-  ntot <- length(key)
-  # Show progress bar only for multiple queries.
-  progressbar <- all(progressbar, ntot > 1)
-  if (progressbar) {
-    pb <- txtProgressBar(min = 0, max = ntot, width = 50, style = 3)
-  }
-  seql <- seq(1, ntot, 1)
 
   # Add API arguments to the custom query.
-  if (isTRUE(full_results)) {
-    # Override any `outFields` parameter provided in `custom_query`.
-    custom_query$outFields <- "*"
-  }
+  custom_query <- add_find_address_params(
+    custom_query,
+    full_results = full_results,
+    outsr = outsr,
+    langcode = langcode,
+    category = category,
+    include_sourcecountry = FALSE
+  )
 
-  custom_query$outSR <- outsr
-  custom_query$langCode <- langcode
-  custom_query$category <- category
-
-  all_res <- lapply(seql, function(x) {
-    ad <- key[x]
-    if (progressbar) {
-      setTxtProgressBar(pb, x)
-    }
-    arc_geo_single(
-      address = ad,
-      lat,
-      long,
-      limit,
-      full_results,
-      return_addresses,
-      verbose,
-      custom_query,
-      singleline = FALSE
-    )
-  })
-  if (progressbar) {
-    close(pb)
-  }
-
-  all_res <- dplyr::bind_rows(all_res)
-  all_res <- dplyr::left_join(init_key, all_res, by = "query")
-
-  all_res[all_res == ""] <- NA
-  all_res
+  arc_geo_bulk(
+    key = key,
+    init_key = init_key,
+    lat = lat,
+    long = long,
+    limit = limit,
+    full_results = full_results,
+    return_addresses = return_addresses,
+    verbose = verbose,
+    custom_query = custom_query,
+    singleline = FALSE,
+    progressbar = progressbar
+  )
 }
 
-# Helper function.
+# Prepare multi-field input.
 input_multi <- function(
   address = NULL,
   address2 = NULL,
@@ -238,33 +210,29 @@ input_multi <- function(
   getlen <- lengths(multi_list)
   nolens <- getlen[getlen != 0]
   if (length(nolens) == 0) {
-    stop("No address component provided. Provide at least one value.")
+    stop("No address component provided. Provide at least one non-NA value.")
   }
   if (length(unique(nolens)) != 1) {
-    stop("When providing several components, their lengths must be the same.")
+    stop(paste0(
+      "When providing several address components, ",
+      "their lengths must be the same."
+    ))
   }
 
   the_df <- dplyr::bind_rows(multi_list[names(nolens)])
 
   # Build a query for each row.
-  nr <- seq_len(nrow(the_df))
-
-  query <- lapply(nr, function(x) {
-    id_row <- the_df[x, ]
-    id_row <- id_row[, as.logical(!is.na(id_row))]
-    if (ncol(id_row) == 0) {
-      qq <- NA
-    } else {
-      ll <- as.list(id_row)
-      qq <- paste0(names(ll), "=", ll, collapse = "&")
-    }
-
-    qq
-  })
+  query <- vapply(
+    seq_len(nrow(the_df)),
+    function(x) {
+      multi_row_query(the_df[x, ])
+    },
+    FUN.VALUE = character(1)
+  )
 
   names(the_df) <- paste0("q_", tolower(names(the_df)))
 
-  the_df$query <- unlist(query)
+  the_df$query <- query
 
   the_df
 }

@@ -18,6 +18,7 @@ OpenStreetMap
 Ozero
 POIs
 Possenriede
+README
 Redlands
 Shybyndy
 StreetAddress
@@ -32,9 +33,7 @@ doi
 et
 geocode
 geocoded
-geocoder
 geocoding
-geospatial
 ggplot
 latestWkid
 lon
@@ -42,6 +41,7 @@ maptiles
 nominatimlite
 pkgdown
 reactable
+roxygen
 subregion
 subunit
 terra
