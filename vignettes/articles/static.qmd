@@ -19,7 +19,7 @@ The following example shows how to create a static map using data retrieved
 with **arcgeocoder** and converted to an **sf** object.
 
 ```{r}
-#| label: sf
+#| label: fig-sf
 #| fig-cap: A map showing the location of McDonald's restaurants around
 #|   Barcelona, Spain
 library(arcgeocoder)
@@ -57,7 +57,7 @@ ggplot(bcn) +
 ```
 
 ```{r}
-#| label: sf2
+#| label: fig-sf2
 #| fig-cap: A map showing the location of McDonald's restaurants in Barcelona,
 #|   Spain
 # Restrict results to the Barcelona bounding box in the query.
@@ -90,7 +90,7 @@ We can add static map tiles with the **maptiles** package and use the
 **terra** objects.
 
 ```{r}
-#| label: terra
+#| label: fig-terra
 #| fig-cap: A map showing the location of McDonald's restaurants in Barcelona,
 #|   Spain, over an image provided by CARTO
 library(maptiles)
