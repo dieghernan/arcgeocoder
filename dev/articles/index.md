@@ -1,6 +1,11 @@
 # Articles
 
-### Explore arcgeocoder
+### Get started
+
+- [Get started with
+  arcgeocoder](https://dieghernan.github.io/arcgeocoder/dev/articles/arcgeocoder.md):
+
+  Quick examples showing what arcgeocoder can do for you.
 
 - [Reverse geocoding and feature
   types](https://dieghernan.github.io/arcgeocoder/dev/articles/feature-types.md):
@@ -17,4 +22,4 @@
 - [arcgeocoder and leaflet
   maps](https://dieghernan.github.io/arcgeocoder/dev/articles/leaflet.md):
 
-  Combine arcgeocoder and leaflet maps.
+  Combine arcgeocoder with leaflet maps.

@@ -1,25 +1,20 @@
-# Geocode places on a given area by category
+# Geocode places by category in a given area
 
-This function is useful for extracting places with a given category (or
-list of categories) near or within a given location or area. This is a
-wrapper of
-[`arc_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo.md),
-but it is vectorized over `category`.
+This function extracts places with a given category or list of
+categories near or within a given location or area. It wraps
+[`arc_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo.md)
+and is vectorized over `category`.
 
 See
 [arc_categories](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_categories.md)
 for a detailed explanation and available values.
 
-**Note:** to obtain results, provide one of the following:
+**Note:** To obtain results, provide either a pair of coordinates (`x`
+and `y` arguments) used as a reference for geocoding or a bounding box
+via the `bbox` argument defining a desired extent for results.
 
-- A pair of coordinates (`x,y` arguments) used as a reference for
-  geocoding.
-
-- A viewbox (aka bounding box) via the `bbox` argument defining a
-  desired extent for results.
-
-It is possible to combine both approaches (i.e. providing `x,y,bbox`
-values) to improve the geocoding process. See **Examples**.
+You can combine both approaches (providing `x`, `y` and `bbox` values)
+to improve the geocoding process. See **Examples**.
 
 ## Usage
 
@@ -44,24 +39,25 @@ arc_geo_categories(
 
 - category:
 
-  A place or address type that can be used to filter results. Several
-  values can be used as well as a vector (i.e. `c("Cinema", "Museum")`),
-  performing one call for each value. See **Details**.
+  A place or address type used to filter results. Several values can
+  also be supplied as a vector (for example, `c("Cinema", "Museum")`),
+  which performs one call for each value. See **Details**.
 
 - x:
 
-  longitude values in numeric format. Must be in the range
+  Longitude values in numeric format. Must be in the range
   \\\left\[-180, 180 \right\]\\.
 
 - y:
 
-  latitude values in numeric format. Must be in the range \\\left\[-90,
+  Latitude values in numeric format. Must be in the range \\\left\[-90,
   90 \right\]\\.
 
 - bbox:
 
-  A numeric vector of latitude and longitude `c(minX, minY, maxX, maxY)`
-  that restrict the search area. See **Details**.
+  A numeric vector of longitude and latitude values
+  `c(minX, minY, maxX, maxY)` that restricts the search area. See
+  **Details**.
 
 - name:
 
@@ -78,17 +74,17 @@ arc_geo_categories(
 
 - limit:
 
-  Maximum number of results per query. ArcGIS API limits a single
-  request to 50 results.
+  Maximum number of results per query. The ArcGIS REST API limits a
+  single request to 50 results.
 
 - full_results:
 
-  Logical; if `TRUE` return all available API fields via `outFields=*`.
+  Logical. If `TRUE`, return all available API fields via `outFields=*`.
   Default is `FALSE`.
 
 - verbose:
 
-  Logical; if `TRUE` output process messages to console.
+  Logical. If `TRUE`, output process messages to the console.
 
 - custom_query:
 
@@ -102,13 +98,13 @@ arc_geo_categories(
   `sourcecountry`
 
   :   Country filter using ISO codes (e.g. `"USA"`). Multiple values can
-      be specified (comma-separated).
+      be supplied as a comma-separated string.
 
   `outsr`
 
-  :   The spatial reference of the `x,y` coordinates returned by a
-      geocode request. By default is `NULL` (i.e. the argument won't be
-      used in the query). See **Details** and
+  :   The spatial reference of the `x` and `y` coordinates returned by a
+      geocode request. By default, it is `NULL` (that is, the argument
+      will not be used in the query). See **Details** and
       [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_spatial_references.md).
 
   `langcode`
@@ -119,16 +115,15 @@ arc_geo_categories(
 ## Value
 
 A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-object with the results. See the details of the output in [ArcGIS REST
-API Service
+object with the results. See output details in [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 ## Details
 
-Bounding boxes can be located using different online tools, as [Bounding
-Box Tool](https://boundingbox.klokantech.com/).
+Bounding boxes can be located using online tools, such as [Bounding Box
+Tool](https://boundingbox.klokantech.com/).
 
-For a full list of valid categories see
+For a full list of valid categories, see
 [arc_categories](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_categories.md).
 This function is vectorized over `category`, which means it performs one
 independent call to
@@ -136,14 +131,14 @@ independent call to
 for each `category` value.
 
 `arc_geo_categories()` also understands a single string of categories
-separated by commas (`"Cinema,Museum"`), that would be internally
-treated as `c("Cinema", "Museum")`.
+separated by commas (`"Cinema,Museum"`), which is treated internally as
+`c("Cinema", "Museum")`.
 
 ## `outsr`
 
-The spatial reference can be specified as either a well-known ID (WKID).
-If not specified, the spatial reference of the output locations is the
-same as that of the service (WGS84, i.e. WKID = 4326)).
+The spatial reference can be specified as a well-known ID (WKID). If not
+specified, the spatial reference of the output locations is the same as
+that of the service (WGS84, that is, WKID = 4326).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_spatial_references.md)
@@ -165,12 +160,12 @@ Other functions for geocoding:
 
 ``` r
 # \donttest{
-# Full workflow: Gas Stations near Carabanchel, Madrid
+# Full workflow: gas stations near Carabanchel, Madrid.
 
-# Get Carabanchel
+# Get Carabanchel.
 carab <- arc_geo("Carabanchel, Madrid, Spain")
 
-# CRS
+# CRS.
 carab_crs <- unique(carab$latestWkid)
 
 library(ggplot2)
@@ -183,14 +178,14 @@ base_map <- ggplot(carab) +
   ) +
   coord_sf(crs = carab_crs)
 
-# Ex1: Search near Carabanchel (not restricted)
+# Example 1: Search near Carabanchel (not restricted).
 ex1 <- arc_geo_categories("Gas Station",
-  # Location
+  # Location.
   x = carab$lon, y = carab$lat,
   limit = 50, full_results = TRUE
 )
 
-# Reduce number of labels to most common ones
+# Reduce labels to the most common ones.
 library(dplyr)
 
 labs <- ex1 |>
@@ -207,11 +202,11 @@ base_map +
   )
 
 
-# Example 2: Include part of the name, different results
+# Example 2: Include part of the name for different results.
 ex2 <- arc_geo_categories("Gas Station",
-  # Name
+  # Name.
   name = "Repsol",
-  # Location
+  # Location.
   x = carab$lon, y = carab$lat,
   limit = 50, full_results = TRUE
 )
@@ -224,7 +219,7 @@ base_map +
   )
 
 
-# Example 3: Near within a extent
+# Example 3: Search within a bounding box.
 ex3 <- arc_geo_categories("Gas Station",
   name = "Repsol",
   bbox = c(carab$xmin, carab$ymin, carab$xmax, carab$ymax),
@@ -235,7 +230,7 @@ base_map +
   geom_point(data = ex3, aes(lon, lat, color = ShortLabel)) +
   labs(
     title = "Example 3",
-    subtitle = "Search near with name and bbox"
+    subtitle = "Search near with name and bounding box"
   )
 
 # }

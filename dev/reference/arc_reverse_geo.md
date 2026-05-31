@@ -1,10 +1,10 @@
-# Reverse Geocoding using the ArcGIS REST API
+# Reverse geocode coordinates with the ArcGIS REST API
 
-Generates an address from a latitude and longitude. Latitudes must be in
+Generates an address from a longitude and latitude. Latitudes must be in
 the range \\\left\[-90, 90 \right\]\\ and longitudes in the range
 \\\left\[-180, 180 \right\]\\. This function returns the
 [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-associated with the query.
+associated with each query.
 
 ## Usage
 
@@ -29,12 +29,12 @@ arc_reverse_geo(
 
 - x:
 
-  longitude values in numeric format. Must be in the range
+  Longitude values in numeric format. Must be in the range
   \\\left\[-180, 180 \right\]\\.
 
 - y:
 
-  latitude values in numeric format. Must be in the range \\\left\[-90,
+  Latitude values in numeric format. Must be in the range \\\left\[-90,
   90 \right\]\\.
 
 - address:
@@ -43,26 +43,26 @@ arc_reverse_geo(
 
 - full_results:
 
-  Logical; if `TRUE` return all available API fields. `FALSE` (default)
+  Logical. If `TRUE`, return all available API fields. `FALSE` (default)
   returns latitude, longitude and address only.
 
 - return_coords:
 
-  Logical; if `TRUE` return input coordinates with results.
+  Logical. If `TRUE`, return input coordinates with the results.
 
 - verbose:
 
-  Logical; if `TRUE` output process messages to console.
+  Logical. If `TRUE`, output process messages to the console.
 
 - progressbar:
 
-  Logical; if `TRUE` shows a progress bar for multiple points.
+  Logical. If `TRUE`, show a progress bar for multiple points.
 
 - outsr:
 
-  The spatial reference of the `x,y` coordinates returned by a geocode
-  request. By default is `NULL` (i.e. the argument won't be used in the
-  query). See **Details** and
+  The spatial reference of the `x` and `y` coordinates returned by a
+  geocode request. By default, it is `NULL` (that is, the argument will
+  not be used in the query). See **Details** and
   [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_spatial_references.md).
 
 - langcode:
@@ -71,8 +71,8 @@ arc_reverse_geo(
 
 - featuretypes:
 
-  This argument limits the possible match types returned. By default is
-  `NULL` (i.e. the argument won't be used in the query). See
+  This argument limits the possible match types returned. By default, it
+  is `NULL` (that is, the argument will not be used in the query). See
   **Details**.
 
 - locationtype:
@@ -80,8 +80,8 @@ arc_reverse_geo(
   Specifies whether the output geometry of
   `featuretypes = "PointAddress"` or `featuretypes = "Subaddress"`
   matches should be the rooftop point or street entrance location. Valid
-  values are `NULL` (i.e. not using the argument in the query),
-  `rooftop` and `street`.
+  values are `NULL` (that is, not using the argument in the query),
+  `"rooftop"` and `"street"`.
 
 - custom_query:
 
@@ -90,24 +90,25 @@ arc_reverse_geo(
 ## Value
 
 A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-with the corresponding results. The `x,y` values returned by the API are
-named `lon,lat`. Note that these coordinates correspond to the geocoded
-feature, and may be different from the `x,y` values provided as inputs.
+with the corresponding results. The `x` and `y` values returned by the
+API are named `lon` and `lat`. Note that these coordinates correspond to
+the geocoded feature and may differ from the `x` and `y` values provided
+as inputs.
 
-See the details of the output in [ArcGIS REST API Service
+See the details of the output in [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 ## Details
 
 See the [ArcGIS REST
 docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm)
-for more info and valid values.
+for more information and valid values.
 
 ## `outsr`
 
-The spatial reference can be specified as either a well-known ID (WKID).
-If not specified, the spatial reference of the output locations is the
-same as that of the service (WGS84, i.e. WKID = 4326)).
+The spatial reference can be specified as a well-known ID (WKID). If not
+specified, the spatial reference of the output locations is the same as
+that of the service (WGS84, that is, WKID = 4326).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_spatial_references.md)
@@ -118,26 +119,10 @@ for values and examples.
 See `vignette("featuretypes", package = "arcgeocoder")` for a detailed
 explanation of this argument.
 
-This argument may be used for filtering the type of feature to be
-returned when geocoding. Possible values are:
-
-- `"StreetInt"`
-
-- `"DistanceMarker"`
-
-- `"StreetAddress"`
-
-- `"StreetName"`
-
-- `"POI"`
-
-- `"Subaddress"`
-
-- `"PointAddress"`
-
-- `"Postal"`
-
-- `"Locality"`
+This argument may be used to filter the type of feature returned when
+geocoding. Possible values are `"StreetInt"`, `"DistanceMarker"`,
+`"StreetAddress"`, `"StreetName"`, `"POI"`, `"Subaddress"`,
+`"PointAddress"`, `"Postal"` and `"Locality"`.
 
 It is also possible to use several values as a vector
 (`featuretypes = c("PointAddress", "StreetAddress")`).
@@ -160,29 +145,28 @@ Other functions for geocoding:
 
 ``` r
 # \donttest{
-
 arc_reverse_geo(x = -73.98586, y = 40.75728)
 #> # A tibble: 1 × 3
 #>       x     y address                                    
 #>   <dbl> <dbl> <chr>                                      
 #> 1 -74.0  40.8 178-198 W 44th St, New York, NY, 10036, USA
 
-# Several coordinates
+# Several coordinates.
 arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
 #>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
 #> # A tibble: 2 × 3
 #>        x     y address                                                          
 #>    <dbl> <dbl> <chr>                                                            
 #> 1 -74.0   40.8 178-198 W 44th St, New York, NY, 10036, USA                      
-#> 2  -3.19  56.0 Microsoft, 3 Waterloo Place, Canongate, Edinburgh, Midlothian, S…
+#> 2  -3.19  56.0 Thistle & Churn Ice Cream, 1 Waterloo Place, Canongate, Edinburg…
 
-# With options: using some additional arguments
+# With options: use additional arguments.
 sev <- arc_reverse_geo(
   x = c(-73.98586, -3.188375),
   y = c(40.75728, 55.95335),
-  # Restrict to these features
+  # Restrict to these features.
   featuretypes = "POI,StreetInt",
-  # Result on this WKID
+  # Return results in this WKID.
   outsr = 102100,
   verbose = TRUE, full_results = TRUE
 )
@@ -194,7 +178,7 @@ sev <- arc_reverse_geo(
 #>    - f=json
 #>    - outSR=102100
 #>    - featureTypes=POI,StreetInt
-#> url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-73.98586,40.75728&f=json&outSR=102100&featureTypes=POI,StreetInt
+#> URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-73.98586,40.75728&f=json&outSR=102100&featureTypes=POI,StreetInt
 #>   |                                                          |==================================================| 100%
 #> 
 #> Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?
@@ -203,7 +187,7 @@ sev <- arc_reverse_geo(
 #>    - f=json
 #>    - outSR=102100
 #>    - featureTypes=POI,StreetInt
-#> url: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-3.188375,55.95335&f=json&outSR=102100&featureTypes=POI,StreetInt
+#> URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-3.188375,55.95335&f=json&outSR=102100&featureTypes=POI,StreetInt
 #> 
 
 dplyr::glimpse(sev)
@@ -211,20 +195,20 @@ dplyr::glimpse(sev)
 #> Columns: 39
 #> $ x            <dbl> -73.985860, -3.188375
 #> $ y            <dbl> 40.75728, 55.95335
-#> $ address      <chr> "W 44th St & Broadway, New York, NY, 10036, USA", "Micros…
-#> $ lat          <dbl> 4976603, 7549135
-#> $ lon          <dbl> -8236060.8, -354915.4
-#> $ Match_addr   <chr> "W 44th St & Broadway, New York, New York, 10036", "Micro…
-#> $ LongLabel    <chr> "W 44th St & Broadway, New York, NY, 10036, USA", "Micros…
-#> $ ShortLabel   <chr> "W 44th St & Broadway", "Microsoft"
+#> $ address      <chr> "W 44th St & Broadway, New York, NY, 10036, USA", "Thistl…
+#> $ lat          <dbl> 4976603, 7549116
+#> $ lon          <dbl> -8236060.8, -354916.9
+#> $ Match_addr   <chr> "W 44th St & Broadway, New York, New York, 10036", "Thist…
+#> $ LongLabel    <chr> "W 44th St & Broadway, New York, NY, 10036, USA", "Thistl…
+#> $ ShortLabel   <chr> "W 44th St & Broadway", "Thistle & Churn Ice Cream"
 #> $ Addr_type    <chr> "StreetInt", "POI"
-#> $ Type         <chr> NA, "Consumer Electronics Store"
-#> $ PlaceName    <chr> NA, "Microsoft"
-#> $ AddNum       <chr> NA, "3"
-#> $ Address      <chr> "W 44th St & Broadway", "3 Waterloo Place"
+#> $ Type         <chr> NA, "Restaurant"
+#> $ PlaceName    <chr> NA, "Thistle & Churn Ice Cream"
+#> $ AddNum       <chr> NA, "1"
+#> $ Address      <chr> "W 44th St & Broadway", "1 Waterloo Place"
 #> $ Block        <chr> NA, NA
 #> $ Sector       <chr> NA, NA
-#> $ Neighborhood <chr> "Midtown", "Canongate"
+#> $ Neighborhood <chr> "Times Square", "Canongate"
 #> $ District     <chr> "Manhattan", NA
 #> $ City         <chr> "New York", "Edinburgh"
 #> $ MetroArea    <chr> NA, "Edinburgh"
@@ -236,8 +220,8 @@ dplyr::glimpse(sev)
 #> $ PostalExt    <chr> "4011", NA
 #> $ CntryName    <chr> "United States", "United Kingdom"
 #> $ CountryCode  <chr> "USA", "GBR"
-#> $ X            <dbl> -73.985793, -3.188259
-#> $ Y            <dbl> 40.75726, 55.95335
+#> $ X            <dbl> -73.985793, -3.188273
+#> $ Y            <dbl> 40.75726, 55.95325
 #> $ InputX       <dbl> -73.985860, -3.188375
 #> $ InputY       <dbl> 40.75728, 55.95335
 #> $ StrucType    <chr> NA, NA

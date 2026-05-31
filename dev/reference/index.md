@@ -1,29 +1,40 @@
 # Package index
 
-## Geocoding and Reverse Geocoding
+## Geocoding and reverse geocoding
 
-These functions performs requests to the ArcGIS REST API.
+Functions for sending geocoding and reverse geocoding requests to the
+ArcGIS REST API.
 
 - [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo.md)
-  : Geocoding using the ArcGIS REST API
+  : Geocode addresses with the ArcGIS REST API
 - [`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo_categories.md)
-  : Geocode places on a given area by category
+  : Geocode places by category in a given area
 - [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo_multi.md)
-  : Geocoding using the ArcGIS REST API with multi-field query
+  : Geocode addresses with a multi-field ArcGIS REST API query
 - [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_reverse_geo.md)
-  : Reverse Geocoding using the ArcGIS REST API
+  : Reverse geocode coordinates with the ArcGIS REST API
 
 ## Datasets
 
-Extra objects included within the package.
+Reference data used to filter geocoding results and choose spatial
+references.
 
 - [`arc_categories`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_categories.md)
-  : ArcGIS REST API category data base
+  : ArcGIS REST API category data
 - [`arc_spatial_references`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_spatial_references.md)
-  : ESRI (ArcGIS) Spatial Reference data base
+  : Esri (ArcGIS) spatial reference data
+
+## API management
+
+Helpers for checking access to the ArcGIS REST API.
+
+- [`arcgeocoder_check_access()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arcgeocoder_check_access.md)
+  : Check access to ArcGIS REST
 
 ## About the package
 
+Package-level documentation and metadata.
+
 - [`arcgeocoder`](https://dieghernan.github.io/arcgeocoder/dev/reference/arcgeocoder-package.md)
   [`arcgeocoder-package`](https://dieghernan.github.io/arcgeocoder/dev/reference/arcgeocoder-package.md)
-  : arcgeocoder: Geocoding with the 'ArcGIS' REST API Service
+  : arcgeocoder: Geocode with the 'ArcGIS' REST API Service

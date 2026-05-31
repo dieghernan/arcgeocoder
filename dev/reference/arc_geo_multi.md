@@ -1,13 +1,11 @@
-# Geocoding using the ArcGIS REST API with multi-field query
+# Geocode addresses with a multi-field ArcGIS REST API query
 
-Geocodes addresses given specific address components. This function
-returns the
+Geocodes addresses from specific address components and returns the
 [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-associated with the query.
+associated with each query.
 
-For geocoding using a single text string use
-[`arc_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo.md)
-function.
+For geocoding with a single text string, use
+[`arc_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo.md).
 
 ## Usage
 
@@ -62,26 +60,26 @@ arc_geo_multi(
 
 - full_results:
 
-  Logical; if `TRUE` return all available API fields via `outFields=*`.
+  Logical. If `TRUE`, return all available API fields via `outFields=*`.
   Default is `FALSE`.
 
 - return_addresses:
 
-  Logical; if `TRUE` keep input query in output.
+  Logical. If `TRUE`, keep the input query in the output.
 
 - verbose:
 
-  Logical; if `TRUE` output process messages to console.
+  Logical. If `TRUE`, output process messages to the console.
 
 - progressbar:
 
-  Logical; if `TRUE` shows a progress bar for multiple points.
+  Logical. If `TRUE`, show a progress bar for multiple points.
 
 - outsr:
 
-  The spatial reference of the `x,y` coordinates returned by a geocode
-  request. By default is `NULL` (i.e. the argument won't be used in the
-  query). See **Details** and
+  The spatial reference of the `x` and `y` coordinates returned by a
+  geocode request. By default, it is `NULL` (that is, the argument will
+  not be used in the query). See **Details** and
   [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_spatial_references.md).
 
 - langcode:
@@ -101,58 +99,56 @@ arc_geo_multi(
 ## Value
 
 A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-object with the results. See the details of the output in [ArcGIS REST
-API Service
+object with the results. See output details in [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
-The resulting output will include also the input arguments (columns with
-prefix `q_`) for better tracking the results.
+The output also includes the input arguments as columns prefixed with
+`q_` to help track the results.
 
 ## Details
 
 See the [ArcGIS REST
 docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
-for more info and valid values.
+for more information and valid values.
 
 ## Address components
 
-This function allows performing structured queries by different
-components of an address. At least one field should be different than
-`NA` or `NULL`.
+This function performs structured queries by different components of an
+address. At least one field should be different from `NA` or `NULL`.
 
 A vector of values can be provided for each argument for multiple
-geocoding. When using vectors on different arguments, their lengths
-should be the same.
+geocoding. When using vectors in different arguments, their lengths must
+be the same.
 
 The following list provides a brief description of each argument:
 
 - `address`: A string that represents the first line of a street
-  address. In most cases it will be the **street name and house number**
-  input, but it can also be used to input building name or place-name.
+  address. In most cases, it is the **street name and house number**
+  input, but it can also be used to input a building name or place name.
 
 - `address2`: A string that represents the second line of a street
   address. This can include **street name/house number, building name,
-  place-name, or sub unit**.
+  place name or subunit**.
 
 - `address3`: A string that represents the third line of a street
   address. This can include **street name/house number, building name,
-  place-name, or sub unit**.
+  place name or subunit**.
 
 - `neighborhood`: The smallest administrative division associated with
-  an address, typically, a **neighborhood** or a section of a larger
+  an address, typically a **neighborhood** or a section of a larger
   populated place.
 
 - `city`: The next largest administrative division associated with an
-  address, typically, a **city or municipality**.
+  address, typically a **city or municipality**.
 
 - `subregion`: The next largest administrative division associated with
-  an address. Depending on the country, a sub region can represent a
-  **county, state, or province**.
+  an address. Depending on the country, a subregion can represent a
+  **county, state or province**.
 
 - `region`: The largest administrative division associated with an
-  address, typically, a **state or province**.
+  address, typically a **state or province**.
 
-- `postal`: The **standard postal code** for an address, typically, a
+- `postal`: The **standard postal code** for an address, typically a
   three– to six-digit alphanumeric code.
 
 - `postalext`: A **postal code extension**, such as the United States
@@ -161,13 +157,13 @@ The following list provides a brief description of each argument:
 - `countrycode`: A value representing the **country**. Providing this
   value **increases geocoding speed**. Acceptable values include the
   full country name in English or the official language of the country,
-  the two-character country code, or the three-character country code.
+  the two-character country code or the three-character country code.
 
 ## `outsr`
 
-The spatial reference can be specified as either a well-known ID (WKID).
-If not specified, the spatial reference of the output locations is the
-same as that of the service (WGS84, i.e. WKID = 4326)).
+The spatial reference can be specified as a well-known ID (WKID). If not
+specified, the spatial reference of the output locations is the same as
+that of the service (WGS84, that is, WKID = 4326).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_spatial_references.md)
@@ -176,7 +172,7 @@ for values and examples.
 ## References
 
 [ArcGIS REST
-`findAddressCandidates`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
+`findAddressCandidates`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
 
 ## See also
 
@@ -202,20 +198,20 @@ simple |>
   select(lat, lon, CntryName, Region, LongLabel) |>
   slice_head(n = 10)
 #> # A tibble: 10 × 5
-#>      lat     lon CntryName Region          LongLabel                            
-#>    <dbl>   <dbl> <chr>     <chr>           <chr>                                
-#>  1 41.7   -4.73  España    Castilla y León Plaza Mayor, Valladolid, Castilla y …
-#>  2 39.5   -6.37  España    Extremadura     Plaza Mayor, Cáceres, Extremadura, E…
-#>  3 36.7   -4.48  España    Andalucía       Plaza Mayor, Calle Alfonso Ponce de …
-#>  4  6.24 -75.6   Colombia  Antioquia       Plaza Mayor, Calle Nueva, Medellín, …
-#>  5  5.63 -73.5   Colombia  Boyacá          Plaza Mayor, Villa de Leyva, Boyacá,…
-#>  6 21.8  -80.0   Cuba      Sancti Spíritus Plaza Mayor, Trinidad, Sancti Spírit…
-#>  7 37.0   -2.95  España    Andalucía       Plaza Mayor, Plaza Mayor 9, 04479, P…
-#>  8 42.0    0.258 España    Aragón          Plaza Mayor, 22422, Fonz, Huesca, Ar…
-#>  9 42.5    0.135 España    Aragón          Plaza Mayor, 22360, Labuerda, Huesca…
-#> 10 41.8   -0.360 España    Aragón          Plaza Mayor, 22216, Poleñino, Huesca…
+#>      lat    lon CntryName Region          LongLabel                             
+#>    <dbl>  <dbl> <chr>     <chr>           <chr>                                 
+#>  1 41.7   -4.73 España    Castilla y León Plaza Mayor, Valladolid, Castilla y L…
+#>  2 39.5   -6.37 España    Extremadura     Plaza Mayor, Cáceres, Extremadura, ESP
+#>  3 36.7   -4.48 España    Andalucía       Plaza Mayor, Calle Alfonso Ponce de L…
+#>  4  6.24 -75.6  Colombia  Antioquia       Plaza Mayor, Calle Nueva, Medellín, A…
+#>  5  5.63 -73.5  Colombia  Boyacá          Plaza Mayor, Villa de Leyva, Boyacá, …
+#>  6 21.8  -80.0  Cuba      Sancti Spíritus Plaza Mayor, Trinidad, Sancti Spíritu…
+#>  7 37.1   -2.78 España    Andalucía       Plaza Mayor, Plaza Mayor 3, 04510, Ab…
+#>  8 37.0   -2.95 España    Andalucía       Plaza Mayor, Plaza Mayor 9, 04479, Pa…
+#>  9 37.2   -1.87 España    Andalucía       Plaza Mayor, Calle de Juan Anglada 5,…
+#> 10 38.2   -3.77 España    Andalucía       Plaza Mayor, Calle de la Conquista 3,…
 
-# Restrict search to Spain
+# Restrict search to Spain.
 simple2 <- arc_geo_multi(
   address = "Plaza Mayor", countrycode = "ESP",
   limit = 10,
@@ -231,15 +227,15 @@ simple2 |>
 #>  1  41.7 -4.73  España    Castilla y León Plaza Mayor, Valladolid, Castilla y L…
 #>  2  39.5 -6.37  España    Extremadura     Plaza Mayor, Cáceres, Extremadura, ESP
 #>  3  36.7 -4.48  España    Andalucía       Plaza Mayor, Calle Alfonso Ponce de L…
-#>  4  37.0 -2.95  España    Andalucía       Plaza Mayor, Plaza Mayor 9, 04479, Pa…
-#>  5  42.0  0.258 España    Aragón          Plaza Mayor, 22422, Fonz, Huesca, Ara…
-#>  6  42.5  0.135 España    Aragón          Plaza Mayor, 22360, Labuerda, Huesca,…
-#>  7  41.8 -0.360 España    Aragón          Plaza Mayor, 22216, Poleñino, Huesca,…
-#>  8  40.4 -1.44  España    Aragón          Plaza Mayor, 44100, Albarracín, Terue…
-#>  9  40.3 -5.48  España    Castilla y León Plaza Mayor, 05690, Bohoyo, Ávila, Ca…
-#> 10  40.3 -5.41  España    Castilla y León Plaza Mayor, 05630, Bohoyo, Ávila, Ca…
+#>  4  37.1 -2.78  España    Andalucía       Plaza Mayor, Plaza Mayor 3, 04510, Ab…
+#>  5  37.0 -2.95  España    Andalucía       Plaza Mayor, Plaza Mayor 9, 04479, Pa…
+#>  6  37.2 -1.87  España    Andalucía       Plaza Mayor, Calle de Juan Anglada 5,…
+#>  7  38.2 -3.77  España    Andalucía       Plaza Mayor, Calle de la Conquista 3,…
+#>  8  42.4  0.139 España    Aragón          Plaza Mayor, Plaza Mayor 6, 22330, Aí…
+#>  9  42.0  0.258 España    Aragón          Plaza Mayor, 22422, Fonz, Huesca, Ara…
+#> 10  42.5  0.135 España    Aragón          Plaza Mayor, 22360, Labuerda, Huesca,…
 
-# Restrict to a region
+# Restrict to a region.
 simple3 <- arc_geo_multi(
   address = "Plaza Mayor", region = "Segovia",
   countrycode = "ESP",
@@ -253,15 +249,15 @@ simple3 |>
 #> # A tibble: 10 × 5
 #>      lat   lon CntryName Region          LongLabel                              
 #>    <dbl> <dbl> <chr>     <chr>           <chr>                                  
-#>  1  41.2 -4.56 España    Castilla y León Plaza Mayor, Carretera de Estación de …
-#>  2  41.1 -3.81 España    Castilla y León Plaza Mayor, Plaza Mayor 6, 40173, Ped…
-#>  3  41.3 -3.34 España    Castilla y León Plaza Mayor, Travesía Mayor 1, 40510, …
-#>  4  41.1 -4.00 España    Castilla y León Plaza Mayor, Camino de Turégano, 40181…
-#>  5  41.0 -4.12 España    Castilla y León Plaza Mayor, Calle del Cronista Lecea …
-#>  6  40.9 -4.27 España    Castilla y León Plaza Mayor, 40141, Abades, Segovia, C…
-#>  7  41.4 -4.11 España    Castilla y León Plaza Mayor, 40354, Adrados, Segovia, …
-#>  8  41.2 -4.17 España    Castilla y León Plaza Mayor, 40292, Aldea Real, Segovi…
-#>  9  41.5 -3.47 España    Castilla y León Plaza Mayor, 40555, Aldealengua de San…
-#> 10  41.1 -4.54 España    Castilla y León Plaza Mayor, 40462, Aldehuela del Codo…
+#>  1  41.2 -4.52 España    Castilla y León Plaza Mayor, Plaza Mayor 5, 40480, Coc…
+#>  2  41.2 -4.56 España    Castilla y León Plaza Mayor, Carretera de Estación de …
+#>  3  41.4 -4.31 España    Castilla y León Plaza Mayor, Calle del Colegio 4, 4020…
+#>  4  41.1 -4.38 España    Castilla y León Plaza Mayor, Calle Migueláñez 1, 40495…
+#>  5  40.9 -4.35 España    Castilla y León Plaza Mayor, Camino de Marugán, 40142,…
+#>  6  41.0 -4.60 España    Castilla y León Plaza Mayor, Plaza Mayor 20, 40446, Ma…
+#>  7  41.1 -3.81 España    Castilla y León Plaza Mayor, Plaza Mayor 6, 40173, Ped…
+#>  8  41.3 -3.34 España    Castilla y León Plaza Mayor, Travesía Mayor 1, 40510, …
+#>  9  41.0 -4.12 España    Castilla y León Plaza Mayor, Plaza Mayor 1, 40001, Seg…
+#> 10  41.1 -4.00 España    Castilla y León Plaza Mayor, Camino de Turégano, 40181…
 # }
 ```

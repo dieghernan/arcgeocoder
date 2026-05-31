@@ -11,17 +11,17 @@
 Source:
 [`inst/CITATION`](https://github.com/dieghernan/arcgeocoder/blob/main/inst/CITATION)
 
-Hernangómez D (2026). *arcgeocoder: Geocoding with the ArcGIS REST API
+Hernangómez D (2026). *arcgeocoder: Geocode with the ArcGIS REST API
 Service*.
-[doi:10.32614/CRAN.package.arcgeocoder](https://doi.org/10.32614/CRAN.package.arcgeocoder),
+[doi:10.32614/CRAN.package.arcgeocoder](https://doi.org/10.32614/CRAN.package.arcgeocoder).
 <https://dieghernan.github.io/arcgeocoder/>.
 
     @Manual{R-arcgeocoder,
-      title = {{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service},
+      title = {{arcgeocoder}: Geocode with the {ArcGIS} {REST} {API} Service},
       doi = {10.32614/CRAN.package.arcgeocoder},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.3.0.9000},
+      version = {0.4.0.9000},
       url = {https://dieghernan.github.io/arcgeocoder/},
-      abstract = {Lite interface for finding locations of addresses or businesses around the world using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and a location can be converted into an address. No API key required.},
+      abstract = {Lightweight interface for geocoding addresses and reverse geocoding coordinates around the world with the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and coordinates can be converted into addresses. No API key is required.},
     }

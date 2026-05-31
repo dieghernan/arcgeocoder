@@ -2,15 +2,16 @@
 
 ## Example
 
-The following example shows how it is possible to create a nice [leaflet
-map](https://rstudio.github.io/leaflet/) with data retrieved with
+The following example shows how to create an interactive [**leaflet**
+map](https://rstudio.github.io/leaflet/) using data retrieved with
 **arcgeocoder**.
 
-This widget is browsable and filterable thanks to **crosstalk** and
-**reactable**:
+This widget can be browsed and filtered with **crosstalk** and
+**reactable**.
 
 ``` r
-# Coffee Shops and Bakeries around the Eiffel Tower
+
+# Coffee shops and bakeries around the Eiffel Tower.
 
 library(arcgeocoder)
 library(leaflet)
@@ -18,13 +19,13 @@ library(dplyr)
 library(reactable)
 library(crosstalk)
 
-# Step 1: Eiffel Tower
+# Step 1: Locate the Eiffel Tower.
 eiffel_tower <- arc_geo_multi("Eiffel Tower",
   city = "Paris", countrycode = "FR",
   category = "POI"
 )
 
-# Base url for icons
+# Base URL for icons.
 icon_url <- paste0(
   "https://raw.githubusercontent.com/dieghernan/arcgeocoder/",
   "main/vignettes/articles/"
@@ -36,7 +37,7 @@ eiffel_icon <- makeIcon(
   iconAnchorX = 25, iconAnchorY = 25
 )
 
-# Step 2: Coffee Shops and Bakeries nearby
+# Step 2: Find nearby coffee shops and bakeries.
 cf_bk <- arc_geo_categories(
   category = c("Coffee Shop", "Bakery"),
   x = eiffel_tower$lon, y = eiffel_tower$lat,
@@ -44,10 +45,10 @@ cf_bk <- arc_geo_categories(
   full_results = TRUE
 )
 
-# Labels and icons
+# Create labels and icons.
 labs <- paste0("<strong>", cf_bk$PlaceName, "</strong><br>", cf_bk$StAddr)
 
-# Assign icons
+# Assign icons.
 leaf_icons <- icons(
   ifelse(cf_bk$Type == "Coffee Shop",
     paste0(icon_url, "coffee-cup.png"),
@@ -57,14 +58,13 @@ leaf_icons <- icons(
   iconAnchorX = 10, iconAnchorY = 10
 )
 
-# Step 3: Crosstalk object
+# Step 3: Create a crosstalk object.
 cf_bk_data <- cf_bk |>
   select(Place = ShortLabel, Type, Address = Place_addr, City, URL, Phone) |>
   SharedData$new(group = "Food")
 
-
-# Step 4: Leaflet map with crosstalk
-# Init leaflet map
+# Step 4: Create a leaflet map with crosstalk.
+# Initialize the leaflet map.
 lmend <- leaflet(
   data = cf_bk_data,
   elementId = "EiffelTower", width = "100%", height = "60vh",
@@ -86,8 +86,7 @@ lmend <- leaflet(
     options = layersControlOptions(collapsed = FALSE)
   )
 
-
-# Step 5: Reactable for filtering
+# Step 5: Create a reactable for filtering.
 tb <- reactable(cf_bk_data,
   selection = "multiple",
   onClick = "select",
@@ -107,15 +106,15 @@ tb <- reactable(cf_bk_data,
       }
     ),
     URL = colDef(cell = function(value) {
-      # Render as a link
-      if (is.null(value) | is.na(value)) {
+      # Render as a link.
+      if (any(is.null(value), is.na(value))) {
         return("")
       }
       htmltools::a(href = value, target = "_blank", as.character(value))
     }),
     Phone = colDef(cell = function(value) {
-      # Render as a link
-      if (is.null(value) | is.na(value)) {
+      # Render as a link.
+      if (any(is.null(value), is.na(value))) {
         return("")
       }
       clearphone <- gsub("-", "", value)
@@ -132,7 +131,8 @@ tb <- reactable(cf_bk_data,
 ## Widget
 
 ``` r
-# Last step: Display all
+
+# Last step: Display all components.
 htmltools::browsable(
   htmltools::tagList(lmend, tb)
 )
@@ -140,7 +140,7 @@ htmltools::browsable(
 
 ## Attributions
 
-- [Eiffel tower icons created by Freepik -
+- [Eiffel Tower icons created by Freepik -
   Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
 - [Mug icons created by Freepik -
   Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
