@@ -22,4 +22,4 @@
 - [arcgeocoder and leaflet
   maps](https://dieghernan.github.io/arcgeocoder/articles/leaflet.md):
 
-  Combine arcgeocoder and leaflet maps.
+  Combine arcgeocoder with leaflet maps.

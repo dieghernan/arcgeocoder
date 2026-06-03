@@ -24,10 +24,17 @@ references.
 - [`arc_spatial_references`](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
   : Esri (ArcGIS) spatial reference data
 
+## API management
+
+Helpers for checking access to the ArcGIS REST API.
+
+- [`arcgeocoder_check_access()`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder_check_access.md)
+  : Check access to ArcGIS REST
+
 ## About the package
 
 Package-level documentation and metadata.
 
 - [`arcgeocoder`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder-package.md)
   [`arcgeocoder-package`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder-package.md)
-  : arcgeocoder: Geocode with the 'ArcGIS' REST API Service
+  : arcgeocoder: Geocoding with the 'ArcGIS' REST API Service

@@ -1,13 +1,14 @@
 # Geocode addresses with the ArcGIS REST API
 
-Geocodes addresses given as character values and returns the
+Geocodes addresses supplied as character values and returns the
 [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
 associated with each query.
 
 This function uses the `SingleLine` approach detailed in the [ArcGIS
 REST
 docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
-For multi-field queries (i.e. using specific address components), use
+For multi-field queries (that is, using specific address components),
+use
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md).
 
 ## Usage
@@ -71,8 +72,8 @@ arc_geo(
 - outsr:
 
   The spatial reference of the `x` and `y` coordinates returned by a
-  geocode request. By default, it is `NULL` (i.e. the argument will not
-  be used in the query). See **Details** and
+  geocode request. By default, it is `NULL` (that is, the argument will
+  not be used in the query). See **Details** and
   [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md).
 
 - langcode:
@@ -110,7 +111,7 @@ for more information and valid values.
 
 The spatial reference can be specified as a well-known ID (WKID). If not
 specified, the spatial reference of the output locations is the same as
-that of the service (WGS84, i.e. WKID = 4326).
+that of the service (WGS84, that is, WKID = 4326).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)

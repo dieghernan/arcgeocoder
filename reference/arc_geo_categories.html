@@ -29,7 +29,7 @@ to improve the geocoding process. See Examples."><meta property="og:image" conte
 
     <a class="navbar-brand me-2" href="../index.html"><img src="../apple-touch-icon.png" alt="arcgeocoder logo" height="34" width="34" class="d-inline-block me-1">arcgeocoder</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -143,8 +143,8 @@ desired results.</p></dd>
 
 
 <dt id="arg-limit">limit<a class="anchor" aria-label="anchor" href="#arg-limit"></a></dt>
-<dd><p>Maximum number of results per query. ArcGIS API limits a single
-request to 50 results.</p></dd>
+<dd><p>Maximum number of results per query. The ArcGIS REST API limits
+a single request to 50 results.</p></dd>
 
 
 <dt id="arg-full-results">full_results<a class="anchor" aria-label="anchor" href="#arg-full-results"></a></dt>
@@ -167,8 +167,9 @@ Multiple values can be supplied as a comma-separated string.</p></dd>
 
     <dt><code>outsr</code></dt>
 <dd><p>The spatial reference of the <code>x</code> and <code>y</code> coordinates returned
-by a geocode request. By default, it is <code>NULL</code> (i.e. the argument will not
-be used in the query). See <strong>Details</strong> and <a href="arc_spatial_references.html">arc_spatial_references</a>.</p></dd>
+by a geocode request. By default, it is <code>NULL</code> (that is, the argument
+will not be used in the query). See <strong>Details</strong> and
+<a href="arc_spatial_references.html">arc_spatial_references</a>.</p></dd>
 
     <dt><code>langcode</code></dt>
 <dd><p>Sets the language in which reverse-geocoded addresses are
@@ -180,7 +181,7 @@ returned.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble</a> object with the results. See output details in  <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API service output</a>.</p>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble</a> object with the results. See output details in <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API service output</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -197,7 +198,7 @@ separated by commas (<code>"Cinema,Museum"</code>), which is treated internally 
     <h2 id="outsr"><code>outsr</code><a class="anchor" aria-label="anchor" href="#outsr"></a></h2>
     <p>The spatial reference can be specified as a well-known ID (WKID). If not
 specified, the spatial reference of the output locations is the same as that
-of the service (WGS84, i.e. WKID = 4326).</p>
+of the service (WGS84, that is, WKID = 4326).</p>
 <p>See <a href="arc_spatial_references.html">arc_spatial_references</a> for values and examples.</p>
     </div>
     <div class="section level2">

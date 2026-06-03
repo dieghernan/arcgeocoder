@@ -1,6 +1,6 @@
 # Check access to ArcGIS REST
 
-Checks whether R has access to resources at the ArcGIS REST API
+Checks whether R can access resources at the ArcGIS REST API
 <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
 
 ## Usage

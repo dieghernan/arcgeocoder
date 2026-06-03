@@ -2,12 +2,12 @@
 
 ## Example
 
-The following example shows how to create an interactive [leaflet
+The following example shows how to create an interactive [**leaflet**
 map](https://rstudio.github.io/leaflet/) using data retrieved with
 **arcgeocoder**.
 
 This widget can be browsed and filtered with **crosstalk** and
-**reactable**:
+**reactable**.
 
 ``` r
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## arcgeocoder 0.4.1
+
+- Reviewed and aligned documentation terminology across **roxygen2**,
+  README and vignettes with AI assistance.
+- Refactored internal geocoding helpers for simpler maintenance,
+  including shared query, progress, validation and API-call utilities.
+  The refactor was developed with AI assistance and does not change the
+  public API.
+
 ## arcgeocoder 0.4.0
 
 CRAN release: 2026-03-20

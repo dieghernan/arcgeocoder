@@ -1,6 +1,6 @@
 # Esri (ArcGIS) spatial reference data
 
-Data set of available spatial references (CRS) in
+Dataset of available spatial references (CRS) in
 [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
 format.
 
@@ -51,7 +51,7 @@ factory](https://github.com/Esri/projection-engine-db-doc)
 
 ## Details
 
-This data set is useful when using the `outsr` argument.
+This dataset is useful when using the `outsr` argument.
 
 Some projection IDs have changed over time. For example, Web Mercator
 `wkid = 102100` is deprecated and is currently `wkid = 3857`. However,

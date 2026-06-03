@@ -6,9 +6,9 @@
 ## Reverse geocoding details
 
 The purpose of reverse geocoding is to answer the question: what is near
-this location? The `reverseGeocode` operation provided by the **ArcGIS
-REST API** returns the most relevant feature near an input location
-based on a prioritized hierarchy of feature types.
+this location? The `reverseGeocode` operation provided by the ArcGIS
+REST API returns the most relevant feature near an input location based
+on a prioritized hierarchy of feature types.
 
 The hierarchy is summarized in the table below and ordered by descending
 priority. Unless otherwise noted, each feature type is returned only
@@ -18,7 +18,7 @@ the tolerance specified in the *Search tolerance* column.
 | Feature type | Search tolerance | Comments |
 |----|----|----|
 | `StreetInt` | 10 meters | Intersections are only returned when `featuretypes = "StreetInt"` is included in the request. |
-| `StreetAddress` (near), `DistanceMarker`, or `StreetName` | 3 meters | Candidates of type `StreetName` are only returned if `featureTypes = "streetName"` is included in the request. |
+| `StreetAddress` (near), `DistanceMarker`, or `StreetName` | 3 meters | Candidates of type `StreetName` are only returned if `featuretypes = "StreetName"` is included in the request. |
 | `POI` centroid | 25 meters | A business or landmark that can be represented by a point. |
 | `Subaddress` | 10 meters | `Subaddress` candidates, which can be features such as apartments or floors in a building, may not be returned under certain conditions. |
 | `PointAddress` | 50 meters | A `PointAddress` match is not returned if it is on the opposite side of the street as the input location, even if it is within 50 meters of the location. |
@@ -188,7 +188,7 @@ found.
 
 When no results are available,
 [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md)
-returns an empty **tibble**.
+returns a **tibble** with the requested address column set to `NA`.
 
 ``` r
 

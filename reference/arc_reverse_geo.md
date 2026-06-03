@@ -1,6 +1,6 @@
 # Reverse geocode coordinates with the ArcGIS REST API
 
-Generates an address from a latitude and longitude. Latitudes must be in
+Generates an address from a longitude and latitude. Latitudes must be in
 the range \\\left\[-90, 90 \right\]\\ and longitudes in the range
 \\\left\[-180, 180 \right\]\\. This function returns the
 [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
@@ -61,8 +61,8 @@ arc_reverse_geo(
 - outsr:
 
   The spatial reference of the `x` and `y` coordinates returned by a
-  geocode request. By default, it is `NULL` (i.e. the argument will not
-  be used in the query). See **Details** and
+  geocode request. By default, it is `NULL` (that is, the argument will
+  not be used in the query). See **Details** and
   [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md).
 
 - langcode:
@@ -72,7 +72,7 @@ arc_reverse_geo(
 - featuretypes:
 
   This argument limits the possible match types returned. By default, it
-  is `NULL` (i.e. the argument will not be used in the query). See
+  is `NULL` (that is, the argument will not be used in the query). See
   **Details**.
 
 - locationtype:
@@ -80,7 +80,7 @@ arc_reverse_geo(
   Specifies whether the output geometry of
   `featuretypes = "PointAddress"` or `featuretypes = "Subaddress"`
   matches should be the rooftop point or street entrance location. Valid
-  values are `NULL` (i.e. not using the argument in the query),
+  values are `NULL` (that is, not using the argument in the query),
   `"rooftop"` and `"street"`.
 
 - custom_query:
@@ -108,7 +108,7 @@ for more information and valid values.
 
 The spatial reference can be specified as a well-known ID (WKID). If not
 specified, the spatial reference of the output locations is the same as
-that of the service (WGS84, i.e. WKID = 4326).
+that of the service (WGS84, that is, WKID = 4326).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
@@ -145,7 +145,6 @@ Other functions for geocoding:
 
 ``` r
 # \donttest{
-
 arc_reverse_geo(x = -73.98586, y = 40.75728)
 #> # A tibble: 1 × 3
 #>       x     y address                                    

@@ -1,6 +1,6 @@
 # ArcGIS REST API category data
 
-Data set of available categories used to filter results provided by
+Dataset of available categories used to filter results provided by
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)
 and
@@ -53,8 +53,8 @@ search process.
 
 The results show a list of categories with three different hierarchy
 levels (`level_1`, `level_2`, `level_3`). If a `level_1` category is
-requested (i.e. `POI`), the child categories may also be included in the
-results.
+requested (that is, `POI`), the child categories may also be included in
+the results.
 
 ## Note
 
@@ -117,7 +117,7 @@ dplyr::glimpse(sea_1)
 #> $ wkid       <int> 4326, 4326
 #> $ latestWkid <int> 4326, 4326
 
-# An airport, but if we use categories...
+# Categories can disambiguate the result.
 
 sea_2 <- arc_geo("sea",
   custom_query = list(outFields = c("LongLabel", "Type")),

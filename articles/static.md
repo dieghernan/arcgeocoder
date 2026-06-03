@@ -3,7 +3,7 @@
 ## Example 1: sf objects
 
 The following example shows how to create a static map using data
-retrieved with **arcgeocoder** and converted to an **sf** object:
+retrieved with **arcgeocoder** and converted to an **sf** object.
 
 ``` r
 
@@ -25,7 +25,7 @@ mc <- arc_geo_multi(
   custom_query = list(outFields = c("LongLabel", "Type", "StAddr"))
 )
 
-# Convert to an **sf** object.
+# Convert to an sf object.
 mc_sf <- st_as_sf(
   mc,
   coords = c("lon", "lat"),
@@ -41,10 +41,10 @@ ggplot(bcn) +
   geom_sf(data = mc_sf, color = "red")
 ```
 
-![](static_files/figure-html/sf-1.png)
+![](static_files/figure-html/fig-sf-1.png)
 
-A map showing the location of McDonald’s restaurants around Barcelona,
-Spain
+Figure 1: A map showing the location of McDonald’s restaurants around
+Barcelona, Spain
 
 ``` r
 
@@ -72,15 +72,16 @@ ggplot(bcn) +
   geom_sf(data = mc2_sf, color = "red")
 ```
 
-![](static_files/figure-html/sf2-1.png)
+![](static_files/figure-html/fig-sf2-1.png)
 
-A map showing the location of McDonald’s restaurants in Barcelona, Spain
+Figure 2: A map showing the location of McDonald’s restaurants in
+Barcelona, Spain
 
 ## Example 2: terra objects
 
 We can add static map tiles with the **maptiles** package and use the
 **tidyterra** package for plotting. The tiles are represented here as
-**terra** objects:
+**terra** objects.
 
 ``` r
 
@@ -100,7 +101,7 @@ ggplot() +
   labs(caption = get_credit("CartoDB.Positron"))
 ```
 
-![](static_files/figure-html/terra-1.png)
+![](static_files/figure-html/fig-terra-1.png)
 
-A map showing the location of McDonald’s restaurants in Barcelona,
-Spain, over an image provided by CARTO
+Figure 3: A map showing the location of McDonald’s restaurants in
+Barcelona, Spain, over an image provided by CARTO
