@@ -14,9 +14,9 @@
         "familyName": "Hernangómez",
         "givenName": "Diego"
       },
-      "description": "Lightweight interface for geocoding addresses and reverse geocoding coordinates around the world with the 'ArcGIS' REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and coordinates can be converted into addresses. No API key is required.",
+      "description": "Lightweight interface for converting addresses into geographic coordinates and coordinates into addresses using the 'ArcGIS' REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and locations can be converted into addresses. No API key is required.",
       "license": "https://spdx.org/licenses/MIT",
-      "name": "arcgeocoder: Geocode with the 'ArcGIS' REST API Service",
+      "name": "arcgeocoder: Geocoding with the 'ArcGIS' REST API Service",
       "programmingLanguage": {
         "type": "ComputerLanguage",
         "name": "R",
@@ -29,7 +29,7 @@
         "url": "https://cran.r-project.org"
       },
       "runtimePlatform": "R version 4.6.0 (2026-04-24 ucrt)",
-      "version": "0.4.0.9000"
+      "version": "0.4.1"
     },
     {
       "id": "https://doi.org/10.32614/CRAN.package.arcgeocoder",
@@ -39,7 +39,7 @@
         "familyName": "Hernangómez",
         "givenName": "Diego"
       },
-      "name": "{arcgeocoder}: Geocode with the {ArcGIS} {REST} {API} Service"
+      "name": "{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service"
     }
   ]
 }

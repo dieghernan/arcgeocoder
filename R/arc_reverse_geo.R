@@ -203,13 +203,11 @@ arc_reverse_geo_single <- function(
   # Step 2: Read and parse results ----
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
-  # nocov start
   if (isFALSE(res)) {
     message("\n", url, " is not reachable.")
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
-  # nocov end
 
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)
 

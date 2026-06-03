@@ -53,3 +53,4 @@
 ^\.positai$
 ^\.claude$
 ^\.gitattributes$
+^dev$

@@ -147,13 +147,11 @@ arc_geo_single <- function(
   # Step 2: Read and parse results ----
   tbl_query <- dplyr::tibble(query = address)
 
-  # nocov start
   if (isFALSE(res)) {
     message("\n", url, " is not reachable.")
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
-  # nocov end
 
   result_init <- jsonlite::fromJSON(json, flatten = FALSE)
 

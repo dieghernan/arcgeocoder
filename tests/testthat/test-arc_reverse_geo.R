@@ -207,3 +207,33 @@ test_that("Progress bar", {
   # Not
   expect_silent(aa <- arc_reverse_geo(long, lat, progressbar = FALSE))
 })
+
+test_that("Mock arc_api_call", {
+  skip_on_cran()
+  skip_if_api_server()
+
+  my_fn <- arc_api_call
+  local_mocked_bindings(
+    arc_api_call = function(...) {
+      FALSE
+    }
+  )
+
+  expect_message(
+    obj <- arc_reverse_geo(-3.6687109, 40.4207414),
+    "is not reachable"
+  )
+
+  expect_identical(
+    obj,
+    tibble::tibble(x = -3.6687109, y = 40.4207414, address = NA_character_)
+  )
+  expect_true(anyNA(obj))
+
+  # Restore mocked binding.
+  local_mocked_bindings(arc_api_call = my_fn)
+
+  expect_identical(my_fn, arc_api_call)
+  expect_silent(obj <- arc_reverse_geo(-3.6687109, 40.4207414))
+  expect_false(anyNA(obj))
+})

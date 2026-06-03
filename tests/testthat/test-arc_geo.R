@@ -215,3 +215,33 @@ test_that("Use categories single", {
 
   expect_equal(out2$Type, "Restaurant")
 })
+
+test_that("Mock arc_api_call", {
+  skip_on_cran()
+  skip_if_api_server()
+
+  my_fn <- arc_api_call
+  local_mocked_bindings(
+    arc_api_call = function(...) {
+      FALSE
+    }
+  )
+
+  expect_message(
+    obj <- arc_geo("Madrid"),
+    "is not reachable"
+  )
+
+  expect_identical(
+    obj,
+    tibble::tibble(query = "Madrid", lat = NA_real_, lon = NA_real_)
+  )
+  expect_true(anyNA(obj))
+
+  # Restore mocked binding.
+  local_mocked_bindings(arc_api_call = my_fn)
+
+  expect_identical(my_fn, arc_api_call)
+  expect_silent(obj <- arc_geo("Madrid"))
+  expect_false(anyNA(obj))
+})

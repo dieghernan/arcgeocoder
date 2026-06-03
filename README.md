@@ -282,8 +282,8 @@ alt="Example: Food places near the Eiffel Tower using the sf package." />
 
 <p>
 
-Hernangómez D (2026). <em>arcgeocoder: Geocode with the ArcGIS REST API
-Service</em>.
+Hernangómez D (2026). <em>arcgeocoder: Geocoding with the ArcGIS REST
+API Service</em>.
 <a href="https://doi.org/10.32614/CRAN.package.arcgeocoder">doi:10.32614/CRAN.package.arcgeocoder</a>.
 <a href="https://dieghernan.github.io/arcgeocoder/">https://dieghernan.github.io/arcgeocoder/</a>.
 </p>
@@ -291,13 +291,13 @@ Service</em>.
 A BibTeX entry for LaTeX users is
 
     @Manual{R-arcgeocoder,
-      title = {{arcgeocoder}: Geocode with the {ArcGIS} {REST} {API} Service},
+      title = {{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service},
       doi = {10.32614/CRAN.package.arcgeocoder},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.4.0.9000},
+      version = {0.4.1},
       url = {https://dieghernan.github.io/arcgeocoder/},
-      abstract = {Lightweight interface for geocoding addresses and reverse geocoding coordinates around the world with the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and coordinates can be converted into addresses. No API key is required.},
+      abstract = {Lightweight interface for converting addresses into geographic coordinates and coordinates into addresses using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and locations can be converted into addresses. No API key is required.},
     }
 
 ## References

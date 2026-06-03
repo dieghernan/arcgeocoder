@@ -1,4 +1,4 @@
-# arcgeocoder (development version)
+# arcgeocoder 0.4.1
 
 - Reviewed and aligned documentation terminology across **roxygen2**, README and
   vignettes with AI assistance.

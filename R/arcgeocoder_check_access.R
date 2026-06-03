@@ -24,29 +24,13 @@ arcgeocoder_check_access <- function() {
 
   api_res <- arc_api_call(url, destfile, TRUE)
 
-  # nocov start
   if (isFALSE(api_res)) {
     return(FALSE)
   }
-  # nocov end
+
   result_json <- jsonlite::fromJSON(destfile)
 
-  # nocov start
   result_json$location$x == 0
-  # nocov end
-}
-
-skip_if_api_server <- function() {
-  # nocov start
-  if (arcgeocoder_check_access()) {
-    return(invisible(TRUE))
-  }
-
-  if (requireNamespace("testthat", quietly = TRUE)) {
-    testthat::skip("ArcGIS REST API not reachable.")
-  }
-  invisible()
-  # nocov end
 }
 
 #' Centralize API queries
@@ -69,11 +53,9 @@ arc_api_call <- function(url, destfile, quiet) {
   }
 
   url <- URLencode(url)
-  # nocov start
-  dwn_res <- arc_download_file(url, destfile)
-  # nocov end
 
-  # nocov start
+  dwn_res <- arc_download_file(url, destfile)
+
   if (isFALSE(dwn_res)) {
     if (isFALSE(quiet)) {
       message("\nRetrying query.")
@@ -87,5 +69,4 @@ arc_api_call <- function(url, destfile, quiet) {
     return(FALSE)
   }
   TRUE
-  # nocov end
 }

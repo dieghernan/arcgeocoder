@@ -7,15 +7,15 @@ cff-version: 1.2.0
 message: 'To cite package "arcgeocoder" in publications use:'
 type: software
 license: MIT
-title: 'arcgeocoder: Geocode with the ''ArcGIS'' REST API Service'
-version: 0.4.0.9000
+title: 'arcgeocoder: Geocoding with the ''ArcGIS'' REST API Service'
+version: 0.4.1
 doi: 10.32614/CRAN.package.arcgeocoder
 identifiers:
 - type: doi
   value: 10.32614/CRAN.package.arcgeocoder
-abstract: Lightweight interface for geocoding addresses and reverse geocoding coordinates
-  around the world with the 'ArcGIS' REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
-  Address text can be converted to location candidates and coordinates can be converted
+abstract: Lightweight interface for converting addresses into geographic coordinates
+  and coordinates into addresses using the 'ArcGIS' REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
+  Address text can be converted to location candidates and locations can be converted
   into addresses. No API key is required.
 authors:
 - family-names: Hernangómez
@@ -24,7 +24,7 @@ authors:
   orcid: https://orcid.org/0000-0001-8457-4658
 preferred-citation:
   type: manual
-  title: 'arcgeocoder: Geocode with the ArcGIS REST API Service'
+  title: 'arcgeocoder: Geocoding with the ArcGIS REST API Service'
   authors:
   - family-names: Hernangómez
     given-names: Diego
@@ -32,11 +32,11 @@ preferred-citation:
     orcid: https://orcid.org/0000-0001-8457-4658
   doi: 10.32614/CRAN.package.arcgeocoder
   year: '2026'
-  version: 0.4.0.9000
+  version: 0.4.1
   url: https://dieghernan.github.io/arcgeocoder/
-  abstract: Lightweight interface for geocoding addresses and reverse geocoding coordinates
-    around the world with the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
-    Address text can be converted to location candidates and coordinates can be converted
+  abstract: Lightweight interface for converting addresses into geographic coordinates
+    and coordinates into addresses using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
+    Address text can be converted to location candidates and locations can be converted
     into addresses. No API key is required.
 repository: https://CRAN.R-project.org/package=arcgeocoder
 repository-code: https://github.com/dieghernan/arcgeocoder
@@ -60,6 +60,8 @@ keywords:
 - cran-r
 - gis
 - cran
+- geocoder
+- reverse-geocoder
 references:
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
@@ -115,6 +117,19 @@ references:
   year: '2026'
   doi: 10.32614/CRAN.package.jsonlite
   version: '>= 1.7.0'
+- type: software
+  title: utils
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+    website: https://ror.org/02zz1nj61
+  institution:
+    name: R Foundation for Statistical Computing
+    website: https://ror.org/05qewa988
+    address: Vienna, Austria
+  year: '2026'
+  doi: 10.32614/R.manuals
 - type: software
   title: ggplot2
   abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
