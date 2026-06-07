@@ -7,7 +7,7 @@ test_that("Custom query", {
 
 test_that("urls", {
   s <- arcurl("cand")
-  expect_true(is.character(s))
+  expect_type(s, "character")
 })
 
 

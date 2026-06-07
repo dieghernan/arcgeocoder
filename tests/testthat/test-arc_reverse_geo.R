@@ -40,7 +40,7 @@ test_that("Returning empty query", {
   expect_true(obj$y == 89.999999)
   expect_true(obj$x == 179.9999)
   expect_s3_class(obj, "tbl")
-  expect_identical(names(obj), c("x", "y", "address"))
+  expect_named(obj, c("x", "y", "address"))
   expect_true(is.na(obj$address))
 
   expect_message(
@@ -53,7 +53,7 @@ test_that("Returning empty query", {
     "No results for location:"
   )
 
-  expect_identical(names(obj_renamed), c("x", "y", "adddata"))
+  expect_named(obj_renamed, c("x", "y", "adddata"))
 
   names(obj_renamed) <- names(obj)
 
@@ -79,7 +79,7 @@ test_that("Checking query", {
   expect_s3_class(obj, "tbl")
   expect_equal(nrow(obj), 1)
 
-  expect_identical(names(obj), c("x", "y", "address"))
+  expect_named(obj, c("x", "y", "address"))
 
   # Same with option
   obj_zoom <- arc_reverse_geo(
@@ -107,7 +107,7 @@ test_that("Checking query", {
   expect_s3_class(obj, "tbl")
   expect_equal(nrow(obj), 1)
 
-  expect_identical(names(obj), c("x", "y", "addrs"))
+  expect_named(obj, c("x", "y", "addrs"))
 
   # Check opts
   obj <- arc_reverse_geo(
@@ -118,7 +118,7 @@ test_that("Checking query", {
   )
 
   expect_s3_class(obj, "tbl")
-  expect_identical(names(obj), "addrs")
+  expect_named(obj, "addrs")
 
   obj <- arc_reverse_geo(
     -3.6687109,

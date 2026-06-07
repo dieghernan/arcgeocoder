@@ -64,8 +64,8 @@ test_that("Checking query", {
     full_results = FALSE,
     return_addresses = FALSE
   )
-  expect_identical(
-    names(obj),
+  expect_named(
+    obj,
     c("q_address", "q_city", "q_countrycode", "query", "at", "ong")
   )
 
