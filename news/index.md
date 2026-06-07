@@ -2,6 +2,8 @@
 
 ## arcgeocoder 0.4.1
 
+CRAN release: 2026-06-03
+
 - Reviewed and aligned documentation terminology across **roxygen2**,
   README and vignettes with AI assistance.
 - Refactored internal geocoding helpers for simpler maintenance,
