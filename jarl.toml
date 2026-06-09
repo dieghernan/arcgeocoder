@@ -1,5 +1,5 @@
 [lint]
-ignore = ["implicit_assignment", "duplicated_arguments"]
+ignore = ["implicit_assignment", "internal_function"]
 exclude = ["data-raw/"]
 extend-select = ["TESTTHAT", "DPLYR", "unnecessary_nesting", "nzchar", "quotes", "fixed_regex"]
 check-roxygen = true

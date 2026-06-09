@@ -17,7 +17,7 @@ add_custom_query <- function(custom_query = list(), url) {
 is_named <- function(x) {
   nm <- names(x)
 
-  test_names <- c(is.null(nm), is.na(nm), nm == "")
+  test_names <- c(is.null(nm), is.na(nm), !nzchar(nm))
 
   if (any(test_names)) {
     return(FALSE)
@@ -227,7 +227,7 @@ select_unique_cols <- function(x, cols) {
 }
 
 empty_strings_to_na <- function(x) {
-  x[x == ""] <- NA
+  x[!nzchar(x)] <- NA
   x
 }
 
