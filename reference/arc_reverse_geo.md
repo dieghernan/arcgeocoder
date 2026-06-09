@@ -202,34 +202,34 @@ dplyr::glimpse(sev)
 #> $ LongLabel    <chr> "W 44th St & Broadway, New York, NY, 10036, USA", "Thistl…
 #> $ ShortLabel   <chr> "W 44th St & Broadway", "Thistle & Churn Ice Cream"
 #> $ Addr_type    <chr> "StreetInt", "POI"
-#> $ Type         <chr> NA, "Restaurant"
-#> $ PlaceName    <chr> NA, "Thistle & Churn Ice Cream"
-#> $ AddNum       <chr> NA, "1"
+#> $ Type         <chr> "", "Restaurant"
+#> $ PlaceName    <chr> "", "Thistle & Churn Ice Cream"
+#> $ AddNum       <chr> "", "1"
 #> $ Address      <chr> "W 44th St & Broadway", "1 Waterloo Place"
-#> $ Block        <chr> NA, NA
-#> $ Sector       <chr> NA, NA
+#> $ Block        <chr> "", ""
+#> $ Sector       <chr> "", ""
 #> $ Neighborhood <chr> "Times Square", "Canongate"
-#> $ District     <chr> "Manhattan", NA
+#> $ District     <chr> "Manhattan", ""
 #> $ City         <chr> "New York", "Edinburgh"
-#> $ MetroArea    <chr> NA, "Edinburgh"
+#> $ MetroArea    <chr> "", "Edinburgh"
 #> $ Subregion    <chr> "New York County", "Midlothian"
 #> $ Region       <chr> "New York", "Scotland"
 #> $ RegionAbbr   <chr> "NY", "SCT"
-#> $ Territory    <chr> NA, NA
+#> $ Territory    <chr> "", ""
 #> $ Postal       <chr> "10036", "EH1 3EG"
-#> $ PostalExt    <chr> "4011", NA
+#> $ PostalExt    <chr> "4011", ""
 #> $ CntryName    <chr> "United States", "United Kingdom"
 #> $ CountryCode  <chr> "USA", "GBR"
 #> $ X            <dbl> -73.985793, -3.188273
 #> $ Y            <dbl> 40.75726, 55.95325
 #> $ InputX       <dbl> -73.985860, -3.188375
 #> $ InputY       <dbl> 40.75728, 55.95335
-#> $ StrucType    <chr> NA, NA
-#> $ StrucDet     <chr> NA, NA
-#> $ StrucType1   <chr> NA, NA
-#> $ StrucType2   <chr> NA, NA
-#> $ StrucDet1    <chr> NA, NA
-#> $ StrucDet2    <chr> NA, NA
+#> $ StrucType    <chr> "", ""
+#> $ StrucDet     <chr> "", ""
+#> $ StrucType1   <chr> "", NA
+#> $ StrucType2   <chr> "", NA
+#> $ StrucDet1    <chr> "", NA
+#> $ StrucDet2    <chr> "", NA
 #> $ wkid         <int> 102100, 102100
 #> $ latestWkid   <int> 3857, 3857
 # }

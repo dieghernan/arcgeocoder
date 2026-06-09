@@ -117,8 +117,8 @@ tb <- reactable(cf_bk_data,
       if (any(is.null(value), is.na(value))) {
         return("")
       }
-      clearphone <- gsub("-", "", value)
-      clearphone <- gsub(" ", "", clearphone)
+      clearphone <- gsub("-", "", value, fixed = TRUE)
+      clearphone <- gsub(" ", "", clearphone, fixed = TRUE)
       htmltools::a(
         href = paste0("tel:", clearphone), target = "_blank",
         as.character(value)
