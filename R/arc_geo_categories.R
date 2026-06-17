@@ -49,7 +49,7 @@
 #' ```{r child = "man/chunks/out1.Rmd"}
 #' ```
 #'
-#' @family geocoding
+#' @family geocoders
 #'
 #' @seealso
 #' [ArcGIS REST Category filtering](`r arcurl("filt")`).

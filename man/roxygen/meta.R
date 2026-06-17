@@ -1,5 +1,6 @@
 list(
   rd_family_title = list(
-    geocoding = "Other functions for geocoding: "
+    geocoders = "Geocoding and reverse geocoding functions:",
+    api_management = "API management functions:"
   )
 )

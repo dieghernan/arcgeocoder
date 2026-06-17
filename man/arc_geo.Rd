@@ -120,4 +120,4 @@ Other functions for geocoding:
 \code{\link[=arc_geo_multi]{arc_geo_multi()}},
 \code{\link[=arc_reverse_geo]{arc_reverse_geo()}}
 }
-\concept{geocoding}
+\concept{geocoders}

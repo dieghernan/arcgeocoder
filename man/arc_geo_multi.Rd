@@ -180,4 +180,4 @@ Other functions for geocoding:
 \code{\link[=arc_geo_categories]{arc_geo_categories()}},
 \code{\link[=arc_reverse_geo]{arc_reverse_geo()}}
 }
-\concept{geocoding}
+\concept{geocoders}

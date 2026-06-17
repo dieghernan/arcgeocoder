@@ -40,7 +40,7 @@
 #' @references
 #' [ArcGIS REST `findAddressCandidates`](`r arcurl("cand")`).
 #'
-#' @family geocoding
+#' @family geocoders
 #'
 #' @seealso [tidygeocoder::geo()]
 #'

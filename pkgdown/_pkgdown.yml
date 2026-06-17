@@ -31,7 +31,7 @@ reference:
     Core functions for geocoding addresses, places and categories, and for
     reverse geocoding coordinates with the ArcGIS REST API.
 - contents:
-  - has_concept("geocoding")
+  - has_concept("geocoders")
 
 - title: Reference data
   desc: >

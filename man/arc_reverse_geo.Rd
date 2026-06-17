@@ -135,4 +135,4 @@ Other functions for geocoding:
 \code{\link[=arc_geo_categories]{arc_geo_categories()}},
 \code{\link[=arc_geo_multi]{arc_geo_multi()}}
 }
-\concept{geocoding}
+\concept{geocoders}

@@ -72,7 +72,7 @@
 #' @references
 #' [ArcGIS REST `reverseGeocode`](`r arcurl("rev")`).
 #'
-#' @family geocoding
+#' @family geocoders
 #'
 #' @seealso [tidygeocoder::reverse_geo()]
 #'
