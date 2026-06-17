@@ -136,7 +136,7 @@ It is also possible to use several values as a vector
 
 [`tidygeocoder::reverse_geo()`](https://jessecambon.github.io/tidygeocoder/reference/reverse_geo.html)
 
-Other functions for geocoding:
+Geocoding and reverse geocoding functions:
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),
 [`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md),
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)

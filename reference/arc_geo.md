@@ -126,7 +126,7 @@ for values and examples.
 
 [`tidygeocoder::geo()`](https://jessecambon.github.io/tidygeocoder/reference/geo.html)
 
-Other functions for geocoding:
+Geocoding and reverse geocoding functions:
 [`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md),
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md),
 [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md)

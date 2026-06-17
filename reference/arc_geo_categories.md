@@ -151,7 +151,7 @@ filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-ca
 
 [arc_categories](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
 
-Other functions for geocoding:
+Geocoding and reverse geocoding functions:
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md),
 [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md)
