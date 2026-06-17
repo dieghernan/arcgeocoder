@@ -2,8 +2,8 @@
 
 ## Geocoding and reverse geocoding
 
-Functions for sending geocoding and reverse geocoding requests to the
-ArcGIS REST API.
+Core functions for geocoding addresses, places and categories, and for
+reverse geocoding coordinates with the ArcGIS REST API.
 
 - [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md)
   : Geocode addresses with the ArcGIS REST API
@@ -14,24 +14,17 @@ ArcGIS REST API.
 - [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md)
   : Reverse geocode coordinates with the ArcGIS REST API
 
-## Datasets
+## Reference data
 
-Reference data used to filter geocoding results and choose spatial
-references.
+Built-in datasets used to filter geocoding requests and work with ArcGIS
+spatial references.
 
 - [`arc_categories`](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
   : ArcGIS REST API category data
 - [`arc_spatial_references`](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
   : Esri (ArcGIS) spatial reference data
 
-## API management
-
-Helpers for checking access to the ArcGIS REST API.
-
-- [`arcgeocoder_check_access()`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder_check_access.md)
-  : Check access to ArcGIS REST
-
-## About the package
+## Package documentation
 
 Package-level documentation and metadata.
 

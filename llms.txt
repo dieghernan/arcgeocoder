@@ -260,8 +260,8 @@ Service*. Version 0.2.1. <https://doi.org/10.5281/zenodo.5113195>.
 
 ## Geocoding and reverse geocoding
 
-Functions for sending geocoding and reverse geocoding requests to the
-ArcGIS REST API.
+Core functions for geocoding addresses, places and categories, and for
+reverse geocoding coordinates with the ArcGIS REST API.
 
 - [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md)
   : Geocode addresses with the ArcGIS REST API
@@ -272,24 +272,17 @@ ArcGIS REST API.
 - [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md)
   : Reverse geocode coordinates with the ArcGIS REST API
 
-## Datasets
+## Reference data
 
-Reference data used to filter geocoding results and choose spatial
-references.
+Built-in datasets used to filter geocoding requests and work with ArcGIS
+spatial references.
 
 - [`arc_categories`](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
   : ArcGIS REST API category data
 - [`arc_spatial_references`](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
   : Esri (ArcGIS) spatial reference data
 
-## API management
-
-Helpers for checking access to the ArcGIS REST API.
-
-- [`arcgeocoder_check_access()`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder_check_access.md)
-  : Check access to ArcGIS REST
-
-## About the package
+## Package documentation
 
 Package-level documentation and metadata.
 
@@ -301,17 +294,27 @@ Package-level documentation and metadata.
 
 ### Get started
 
+Introduction to arcgeocoder.
+
 - [Get started with
   arcgeocoder](https://dieghernan.github.io/arcgeocoder/articles/arcgeocoder.md):
 
   Quick examples showing what arcgeocoder can do for you.
+
+### Reverse geocoding
+
+Learn how reverse geocoding works in the ArcGIS REST API and how feature
+types can be used to control the returned results.
 
 - [Reverse geocoding and feature
   types](https://dieghernan.github.io/arcgeocoder/articles/feature-types.md):
 
   Efficient reverse geocoding with arcgeocoder.
 
-### Mapping with arcgeocoder
+### Mapping
+
+Examples showing how to use arcgeocoder results in static and
+interactive maps.
 
 - [arcgeocoder and static
   maps](https://dieghernan.github.io/arcgeocoder/articles/static.md):
