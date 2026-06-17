@@ -30,33 +30,29 @@ reference:
   desc: >
     Functions for sending geocoding and reverse geocoding requests to the
     ArcGIS REST API.
-  contents:
+- contents:
   - has_concept("geocoding")
 
 - title: Datasets
   desc: >
     Reference data used to filter geocoding results and choose spatial
     references.
-  contents:
+- contents:
   - has_concept("datasets")
-
-- title: API management
-  desc: >
-    Helpers for checking access to the ArcGIS REST API.
-  contents:
-  - arcgeocoder_check_access
 
 - title: About the package
   desc: Package-level documentation and metadata.
-  contents:
+- contents:
   - arcgeocoder-package
 
 articles:
 - title: Get started
-  navbar: >
-    Get started
   contents:
   - arcgeocoder
+
+- title: Understanding reverse geocoding
+  navbar: Reverse geocoding
+  contents:
   - feature-types
 
 - title: Mapping with arcgeocoder
