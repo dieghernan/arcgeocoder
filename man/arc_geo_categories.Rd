@@ -184,7 +184,7 @@ base_map +
 
 \link{arc_categories}
 
-Other functions for geocoding:
+Geocoding and reverse geocoding functions:
 \code{\link[=arc_geo]{arc_geo()}},
 \code{\link[=arc_geo_multi]{arc_geo_multi()}},
 \code{\link[=arc_reverse_geo]{arc_reverse_geo()}}

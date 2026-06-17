@@ -130,7 +130,7 @@ dplyr::glimpse(sev)
 \seealso{
 \code{\link[tidygeocoder:reverse_geo]{tidygeocoder::reverse_geo()}}
 
-Other functions for geocoding:
+Geocoding and reverse geocoding functions:
 \code{\link[=arc_geo]{arc_geo()}},
 \code{\link[=arc_geo_categories]{arc_geo_categories()}},
 \code{\link[=arc_geo_multi]{arc_geo_multi()}}

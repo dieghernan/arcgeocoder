@@ -175,7 +175,7 @@ simple3 |>
 \seealso{
 \code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
 
-Other functions for geocoding:
+Geocoding and reverse geocoding functions:
 \code{\link[=arc_geo]{arc_geo()}},
 \code{\link[=arc_geo_categories]{arc_geo_categories()}},
 \code{\link[=arc_reverse_geo]{arc_reverse_geo()}}
