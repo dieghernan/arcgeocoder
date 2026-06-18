@@ -2,34 +2,34 @@
 
 ### Get started
 
-Introduction to arcgeocoder.
+Geocode addresses, reverse geocode coordinates and find places by
+category.
 
 - [Get started with
   arcgeocoder](https://dieghernan.github.io/arcgeocoder/articles/arcgeocoder.md):
 
-  Quick examples showing what arcgeocoder can do for you.
+  Geocode addresses, reverse geocode coordinates and find places.
 
 ### Reverse geocoding
 
-Learn how reverse geocoding works in the ArcGIS REST API and how feature
-types can be used to control the returned results.
+Understand the ArcGIS feature hierarchy and control the types of
+features returned by reverse geocoding requests.
 
 - [Reverse geocoding and feature
   types](https://dieghernan.github.io/arcgeocoder/articles/feature-types.md):
 
-  Efficient reverse geocoding with arcgeocoder.
+  Control the feature types returned by reverse geocoding requests.
 
 ### Mapping
 
-Examples showing how to use arcgeocoder results in static and
-interactive maps.
+Display geocoding results on static and interactive maps.
 
-- [arcgeocoder and static
-  maps](https://dieghernan.github.io/arcgeocoder/articles/static.md):
+- [Static maps with
+  arcgeocoder](https://dieghernan.github.io/arcgeocoder/articles/static.md):
 
-  Combine arcgeocoder with sf, terra and ggplot2.
+  Map geocoding results with **sf**, **terra** and **ggplot2**.
 
-- [arcgeocoder and leaflet
-  maps](https://dieghernan.github.io/arcgeocoder/articles/leaflet.md):
+- [Interactive maps with
+  arcgeocoder](https://dieghernan.github.io/arcgeocoder/articles/leaflet.md):
 
-  Combine arcgeocoder with leaflet maps.
+  Map and filter geocoding results with **leaflet** and **crosstalk**.

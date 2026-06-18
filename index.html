@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>arcgeocoder | Geocoding with the ArcGIS REST API service • arcgeocoder</title>
+<title>arcgeocoder | Geocoding with the ArcGIS REST API • arcgeocoder</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -20,10 +20,10 @@
 <link href="deps/Roboto-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="arcgeocoder | Geocoding with the ArcGIS REST API service">
-<meta name="description" content="Lightweight interface for geocoding addresses and reverse geocoding coordinates with the ArcGIS REST API service, with no API key required.
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="arcgeocoder | Geocoding with the ArcGIS REST API">
+<meta name="description" content="Geocode addresses, reverse geocode coordinates and find places by category with the ArcGIS REST API. No API key is required.
 ">
-<meta property="og:description" content="Lightweight interface for geocoding addresses and reverse geocoding coordinates with the ArcGIS REST API service, with no API key required.
+<meta property="og:description" content="Geocode addresses, reverse geocode coordinates and find places by category with the ArcGIS REST API. No API key is required.
 ">
 <meta property="og:image" content="https://dieghernan.github.io/arcgeocoder/logo.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -64,8 +64,8 @@
     <li><a class="dropdown-item" href="articles/feature-types.html">Reverse geocoding and feature types</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Mapping</h6></li>
-    <li><a class="dropdown-item" href="articles/static.html">arcgeocoder and static maps</a></li>
-    <li><a class="dropdown-item" href="articles/leaflet.html">arcgeocoder and leaflet maps</a></li>
+    <li><a class="dropdown-item" href="articles/static.html">Static maps with arcgeocoder</a></li>
+    <li><a class="dropdown-item" href="articles/leaflet.html">Interactive maps with arcgeocoder</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="articles/index.html">More articles...</a></li>
   </ul>
@@ -101,23 +101,23 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>The goal of <strong>arcgeocoder</strong> is to provide a lightweight interface for geocoding addresses and reverse geocoding coordinates through the <a href="https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm" class="external-link">ArcGIS REST API geocoding service</a>.</p>
+<p><strong>arcgeocoder</strong> provides a lightweight interface to the <a href="https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm" class="external-link">ArcGIS REST API</a>. It converts addresses into geographic coordinates, converts coordinates into addresses and finds places by category.</p>
 <p>The full site with examples and vignettes is available at <a href="https://dieghernan.github.io/arcgeocoder/" class="uri">https://dieghernan.github.io/arcgeocoder/</a>.</p>
 <div class="section level2">
 <h2 id="why-arcgeocoder">Why arcgeocoder?<a class="anchor" aria-label="anchor" href="#why-arcgeocoder"></a>
 </h2>
-<p><strong>arcgeocoder</strong> provides a lightweight interface for geocoding and reverse geocoding with the ArcGIS REST API service. It accesses the API without depending on additional HTTP packages such as <strong>curl</strong>. In some situations, <strong>curl</strong> may not be available or accessible, so <strong>arcgeocoder</strong> uses base functions to avoid this limitation.</p>
-<p>The interface of <strong>arcgeocoder</strong> is designed to make ArcGIS geocoding features easier to access. The API endpoints used by <strong>arcgeocoder</strong> are <code>findAddressCandidates</code> and <code>reverseGeocode</code>, which can be accessed <u><strong>without</strong></u> an <u><strong>API key</strong></u>.</p>
+<p><strong>arcgeocoder</strong> accesses the ArcGIS REST API without requiring an API key or an additional HTTP package such as <strong>curl</strong>. It uses base R download functions, which keeps its dependency footprint small.</p>
+<p>The package provides focused interfaces to the <code>findAddressCandidates</code> and <code>reverseGeocode</code> endpoints. These interfaces support single-line addresses, structured address components, category filters and reverse geocoding.</p>
 </div>
 <div class="section level2">
 <h2 id="recommended-packages">Recommended packages<a class="anchor" aria-label="anchor" href="#recommended-packages"></a>
 </h2>
-<p>Other packages are more mature and provide similar features:</p>
+<p>The following packages provide related geocoding features:</p>
 <ul>
 <li>
-<a href="https://jessecambon.github.io/tidygeocoder/" class="external-link"><strong>tidygeocoder</strong></a> (<a href="#ref-R-tidygeocoder">Cambon et al. 2021</a>) provides an interface to ArcGIS, Nominatim (OpenStreetMap), Google, TomTom, Mapbox and other services for geocoding and reverse geocoding.</li>
+<a href="https://jessecambon.github.io/tidygeocoder/" class="external-link"><strong>tidygeocoder</strong></a> (<a href="#ref-R-tidygeocoder">Cambon et al. 2021</a>) provides an interface to ArcGIS, Nominatim (OpenStreetMap), Google, TomTom, Mapbox and other geocoding services.</li>
 <li>
-<a href="https://dieghernan.github.io/nominatimlite/" class="external-link"><strong>nominatimlite</strong></a> (<a href="#ref-R-nominatimlite">Hernangómez 2024</a>) is similar to <strong>arcgeocoder</strong> but uses data from OpenStreetMap through the <a href="https://nominatim.org/release-docs/latest/" class="external-link">Nominatim API</a> service.</li>
+<a href="https://dieghernan.github.io/nominatimlite/" class="external-link"><strong>nominatimlite</strong></a> (<a href="#ref-R-nominatimlite">Hernangómez 2024</a>) is similar to <strong>arcgeocoder</strong> but uses data from OpenStreetMap through the <a href="https://nominatim.org/release-docs/latest/" class="external-link">Nominatim API</a>.</li>
 </ul>
 </div>
 <div class="section level2">
@@ -136,8 +136,8 @@
 <div class="section level3">
 <h3 id="geocoding-and-reverse-geocoding">Geocoding and reverse geocoding<a class="anchor" aria-label="anchor" href="#geocoding-and-reverse-geocoding"></a>
 </h3>
-<p><em>Note: examples adapted from the <strong>tidygeocoder</strong> package.</em></p>
-<p>In this first example, we geocode a few addresses using the <code><a href="reference/arc_geo.html">arc_geo()</a></code> function. Note that <strong>arcgeocoder</strong> works without additional setup, and you do not need to provide an API key to start geocoding.</p>
+<p><em>The examples in this section are adapted from the <strong>tidygeocoder</strong> package.</em></p>
+<p>The <code><a href="reference/arc_geo.html">arc_geo()</a></code> function converts single-line addresses into geographic coordinates. It requires no API key or additional setup.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/arcgeocoder/">arcgeocoder</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
@@ -157,7 +157,7 @@
 <span>  long <span class="op">=</span> <span class="st">"longitude"</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>Only a few fields are returned from the geocoding service in this example, but <code>full_results = TRUE</code> can be used to return all data from the service.</p>
+<p>By default, <code><a href="reference/arc_geo.html">arc_geo()</a></code> returns a small set of fields. Set <code>full_results = TRUE</code> to return all available API fields.</p>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="7%">
@@ -240,7 +240,7 @@
 <p class="caption">
 Table 1: Example: geocoding addresses.
 </p>
-<p>To perform reverse geocoding (obtaining addresses from geographic coordinates), we can use the <code><a href="reference/arc_reverse_geo.html">arc_reverse_geo()</a></code> function. The arguments are similar to those in <code><a href="reference/arc_geo.html">arc_geo()</a></code>, but now we specify the input data columns with the <code>x</code> and <code>y</code> arguments. The data used here comes from the geocoding query above. The single-line address is returned in the column named by <code>address</code>.</p>
+<p>The <code><a href="reference/arc_reverse_geo.html">arc_reverse_geo()</a></code> function converts longitude and latitude values into addresses. Supply longitude values to <code>x</code> and latitude values to <code>y</code>. The following example uses the coordinates returned by the previous query. The <code>address</code> argument sets the name of the address column in the output.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reverse</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">lat_longs</span><span class="op">$</span><span class="va">longitude</span>,</span>
@@ -280,8 +280,8 @@ Table 1: Example: geocoding addresses.
 <p class="caption">
 Table 2: Example: reverse geocoding addresses.
 </p>
-<p>It is also possible to search for specific locations within or near a reference area or location using <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">category filtering</a>. See the documentation for the <code>arc_categories</code> data object for more information.</p>
-<p>In the following example, we look for food-related points of interest (POIs), such as restaurants, coffee shops and bakeries, near the Eiffel Tower in France.</p>
+<p>The <code><a href="reference/arc_geo_categories.html">arc_geo_categories()</a></code> function finds places by category near a location or within a bounding box. Available categories are documented in <code>arc_categories</code> and in the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">ArcGIS category filtering documentation</a>.</p>
+<p>The following example finds food-related places, such as restaurants, coffee shops and bakeries, near the Eiffel Tower in France.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># For plotting.</span></span>
 <span></span>
@@ -322,14 +322,14 @@ Table 2: Example: reverse geocoding addresses.
 <span>    color <span class="op">=</span> <span class="st">"Type of place"</span>,</span>
 <span>    x <span class="op">=</span> <span class="st">""</span>,</span>
 <span>    y <span class="op">=</span> <span class="st">""</span>,</span>
-<span>    caption <span class="op">=</span> <span class="st">"Data from the ArcGIS REST API service"</span></span>
+<span>    caption <span class="op">=</span> <span class="st">"Data from the ArcGIS REST API"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-eiffel-1.png" style="width:100.0%" alt="Example: Food places near the Eiffel Tower"></p>
 </div>
 <div class="section level3">
-<h3 id="arcgeocoder-and-spatial-data">arcgeocoder and spatial data<a class="anchor" aria-label="anchor" href="#arcgeocoder-and-spatial-data"></a>
+<h3 id="convert-results-to-spatial-data">Convert results to spatial data<a class="anchor" aria-label="anchor" href="#convert-results-to-spatial-data"></a>
 </h3>
-<p>It is straightforward to convert <strong>arcgeocoder</strong> results to an <strong>sf</strong> object:</p>
+<p>Use the longitude and latitude columns returned by <strong>arcgeocoder</strong> to create an <strong>sf</strong> object:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
 <span></span>
@@ -357,17 +357,17 @@ Table 2: Example: reverse geocoding addresses.
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>
-Hernangómez D (2026). <em>arcgeocoder: Geocoding with the ArcGIS REST API Service</em>. <a href="https://doi.org/10.32614/CRAN.package.arcgeocoder" class="external-link">doi:10.32614/CRAN.package.arcgeocoder</a>. <a href="https://dieghernan.github.io/arcgeocoder/">https://dieghernan.github.io/arcgeocoder/</a>.
+Hernangómez D (2026). <em>arcgeocoder: Address and Coordinate Search with the ArcGIS REST API</em>. <a href="https://doi.org/10.32614/CRAN.package.arcgeocoder" class="external-link">doi:10.32614/CRAN.package.arcgeocoder</a>. <a href="https://dieghernan.github.io/arcgeocoder/">https://dieghernan.github.io/arcgeocoder/</a>.
 </p>
-<p>A BibTeX entry for LaTeX users is</p>
+<p>A BibTeX entry for LaTeX users is shown below.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>arcgeocoder,</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  title <span class="ot">=</span> {{arcgeocoder}<span class="sc">:</span> Geocoding with the {ArcGIS} {REST} {API} Service},</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  title <span class="ot">=</span> {{arcgeocoder}<span class="sc">:</span> Address and Coordinate Search with the {ArcGIS} {REST} {API}},</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.32614</span><span class="sc">/</span>CRAN.package.arcgeocoder},</span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2026</span>},</span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="fl">4.1</span>},</span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>arcgeocoder<span class="sc">/</span>},</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  abstract <span class="ot">=</span> {Lightweight interface <span class="cf">for</span> converting addresses into geographic coordinates and coordinates into addresses using the ArcGIS REST API service <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>developers.arcgis.com<span class="sc">/</span>rest<span class="sc">/</span>geocode<span class="sc">/</span>api<span class="sc">-</span>reference<span class="sc">/</span>overview<span class="sc">-</span>world<span class="sc">-</span>geocoding<span class="sc">-</span>service.htm<span class="sc">&gt;</span>. Address text can be converted to location candidates and locations can be converted into addresses. No API key is required.},</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  abstract <span class="ot">=</span> {Provides a lightweight interface to the ArcGIS REST API <span class="cf">for</span> converting addresses and structured address components into geographic coordinates, finding places by category and converting coordinates into addresses. It uses the ArcGIS service documented at <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>developers.arcgis.com<span class="sc">/</span>rest<span class="sc">/</span>geocode<span class="sc">/</span>api<span class="sc">-</span>reference<span class="sc">/</span>overview<span class="sc">-</span>world<span class="sc">-</span>geocoding<span class="sc">-</span>service.htm<span class="sc">&gt;</span>. No API key is required.},</span>
 <span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level2">

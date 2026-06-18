@@ -1,10 +1,9 @@
-# Geocode addresses with a multi-field ArcGIS REST API query
+# Geocode addresses with a structured ArcGIS REST API query
 
-Geocodes addresses from specific address components and returns the
-[tibble](https://tibble.tidyverse.org/reference/tibble.html) associated
-with each query.
+Converts structured address components into geographic coordinates and
+returns one or more matches for each query.
 
-For geocoding with a single text string, use
+For a single-line address, use
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md).
 
 ## Usage
@@ -47,11 +46,13 @@ arc_geo_multi(
 
 - lat:
 
-  Latitude column name in the output data (default `"lat"`).
+  Name of the latitude or y-coordinate column in the output. The default
+  is `"lat"`.
 
 - long:
 
-  Longitude column name in the output data (default `"lon"`).
+  Name of the longitude or x-coordinate column in the output. The
+  default is `"lon"`.
 
 - limit:
 
@@ -60,46 +61,47 @@ arc_geo_multi(
 
 - full_results:
 
-  Logical. If `TRUE`, return all available API fields via `outFields=*`.
-  Default is `FALSE`.
+  A logical value. If `TRUE`, returns all available API fields via
+  `outFields = "*"`. The default is `FALSE`.
 
 - return_addresses:
 
-  Logical. If `TRUE`, keep the input query in the output.
+  A logical value. If `TRUE`, includes the input query in the output.
 
 - verbose:
 
-  Logical. If `TRUE`, output process messages to the console.
+  A logical value. If `TRUE`, displays API request details.
 
 - progressbar:
 
-  Logical. If `TRUE`, show a progress bar for multiple points.
+  A logical value. If `TRUE`, displays a progress bar for multiple
+  queries.
 
 - outsr:
 
-  The spatial reference of the `x` and `y` coordinates returned by a
-  geocode request. By default, it is `NULL` (that is, the argument will
-  not be used in the query). See **Details** and
+  Spatial reference of the output coordinates. The default is `NULL`,
+  which uses the service default. See **Details** and
   [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md).
 
 - langcode:
 
-  Sets the language in which reverse-geocoded addresses are returned.
+  Language of the returned addresses.
 
 - category:
 
-  Place or address type used as a filter. Multiple values are accepted
-  (e.g. `c("Cinema", "Museum")`). See
+  Place or address type used to filter results. Multiple values are
+  accepted (for example, `c("Cinema", "Museum")`). See
   [arc_categories](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md).
 
 - custom_query:
 
-  Additional API parameters as named list values.
+  A named list with additional API parameters.
 
 ## Value
 
-A [tibble](https://tibble.tidyverse.org/reference/tibble.html) object
-with the results. See output details in [ArcGIS REST API service
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+or more matches for each query. For details about the available fields,
+see [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 The output also includes the input arguments as columns prefixed with
@@ -107,63 +109,62 @@ The output also includes the input arguments as columns prefixed with
 
 ## Details
 
-See the [ArcGIS REST
-docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
+See the [ArcGIS REST API
+documentation](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
 for more information and valid values.
 
 ## Address components
 
-This function performs structured queries by different components of an
-address. At least one field should be different from `NA` or `NULL`.
+This function performs structured queries using separate address
+components. At least one component must not be `NA` or `NULL`.
 
-A vector of values can be provided for each argument for multiple
-geocoding. When using vectors in different arguments, their lengths must
-be the same.
+Each argument can be a vector to geocode multiple addresses. Vectors
+supplied to different arguments must have the same length.
 
 The following list provides a brief description of each argument:
 
-- `address`: A string that represents the first line of a street
-  address. In most cases, it is the **street name and house number**
-  input, but it can also be used to input a building name or place name.
+- `address`: A string representing the first line of a street address.
+  It usually contains the street name and house number, but can also
+  contain a building or place name.
 
 - `address2`: A string that represents the second line of a street
-  address. This can include **street name/house number, building name,
-  place name or subunit**.
+  address. It can include a street name and house number, building name,
+  place name or subunit.
 
 - `address3`: A string that represents the third line of a street
-  address. This can include **street name/house number, building name,
-  place name or subunit**.
+  address. It can include a street name and house number, building name,
+  place name or subunit.
 
 - `neighborhood`: The smallest administrative division associated with
-  an address, typically a **neighborhood** or a section of a larger
+  an address, typically a neighborhood or a section of a larger
   populated place.
 
 - `city`: The next largest administrative division associated with an
-  address, typically a **city or municipality**.
+  address, typically a city or municipality.
 
 - `subregion`: The next largest administrative division associated with
   an address. Depending on the country, a subregion can represent a
-  **county, state or province**.
+  county, state or province.
 
 - `region`: The largest administrative division associated with an
-  address, typically a **state or province**.
+  address, typically a state or province.
 
-- `postal`: The **standard postal code** for an address, typically a
-  three– to six-digit alphanumeric code.
+- `postal`: The standard postal code for an address, typically a three–
+  to six-digit alphanumeric code.
 
-- `postalext`: A **postal code extension**, such as the United States
-  Postal Service ZIP+4 code.
+- `postalext`: A postal code extension, such as the United States Postal
+  Service ZIP+4 code.
 
-- `countrycode`: A value representing the **country**. Providing this
-  value **increases geocoding speed**. Acceptable values include the
-  full country name in English or the official language of the country,
-  the two-character country code or the three-character country code.
+- `countrycode`: A value representing the country. Providing this value
+  can increase search speed. Acceptable values include the full country
+  name in English or the official language of the country, the
+  two-character country code or the three-character country code.
 
 ## `outsr`
 
 The spatial reference can be specified as a well-known ID (WKID). If not
 specified, the spatial reference of the output locations is the same as
-that of the service (WGS84, that is, WKID = 4326).
+that of the service (WGS 84, that is, WKID 4326).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
@@ -171,7 +172,7 @@ for values and examples.
 
 ## References
 
-[ArcGIS REST
+[ArcGIS REST API
 `findAddressCandidates`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
 
 ## See also

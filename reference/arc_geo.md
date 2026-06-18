@@ -1,14 +1,12 @@
 # Geocode addresses with the ArcGIS REST API
 
-Geocodes addresses supplied as character values and returns the
-[tibble](https://tibble.tidyverse.org/reference/tibble.html) associated
-with each query.
+Converts single-line addresses into geographic coordinates and returns
+one or more matches for each query.
 
 This function uses the `SingleLine` approach detailed in the [ArcGIS
-REST
-docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
-For multi-field queries (that is, using specific address components),
-use
+REST API
+documentation](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
+For structured queries that use specific address components, use
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md).
 
 ## Usage
@@ -35,17 +33,19 @@ arc_geo(
 
 - address:
 
-  Single-line address text (e.g.
+  Single-line address text (for example,
   `"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
-  (e.g. `c("Madrid", "Barcelona")`).
+  (for example, `c("Madrid", "Barcelona")`).
 
 - lat:
 
-  Latitude column name in the output data (default `"lat"`).
+  Name of the latitude or y-coordinate column in the output. The default
+  is `"lat"`.
 
 - long:
 
-  Longitude column name in the output data (default `"lon"`).
+  Name of the longitude or x-coordinate column in the output. The
+  default is `"lon"`.
 
 - limit:
 
@@ -54,64 +54,65 @@ arc_geo(
 
 - full_results:
 
-  Logical. If `TRUE`, return all available API fields via `outFields=*`.
-  Default is `FALSE`.
+  A logical value. If `TRUE`, returns all available API fields via
+  `outFields = "*"`. The default is `FALSE`.
 
 - return_addresses:
 
-  Logical. If `TRUE`, keep the input query in the output.
+  A logical value. If `TRUE`, includes the input query in the output.
 
 - verbose:
 
-  Logical. If `TRUE`, output process messages to the console.
+  A logical value. If `TRUE`, displays API request details.
 
 - progressbar:
 
-  Logical. If `TRUE`, show a progress bar for multiple points.
+  A logical value. If `TRUE`, displays a progress bar for multiple
+  queries.
 
 - outsr:
 
-  The spatial reference of the `x` and `y` coordinates returned by a
-  geocode request. By default, it is `NULL` (that is, the argument will
-  not be used in the query). See **Details** and
+  Spatial reference of the output coordinates. The default is `NULL`,
+  which uses the service default. See **Details** and
   [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md).
 
 - langcode:
 
-  Sets the language in which reverse-geocoded addresses are returned.
+  Language of the returned addresses.
 
 - sourcecountry:
 
-  Country filter using ISO codes (e.g. `"USA"`). Multiple values can be
-  supplied as a comma-separated string.
+  Country filter using ISO codes (for example, `"USA"`). Multiple values
+  can be supplied as a comma-separated string.
 
 - category:
 
-  Place or address type used as a filter. Multiple values are accepted
-  (e.g. `c("Cinema", "Museum")`). See
+  Place or address type used to filter results. Multiple values are
+  accepted (for example, `c("Cinema", "Museum")`). See
   [arc_categories](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md).
 
 - custom_query:
 
-  Additional API parameters as named list values.
+  A named list with additional API parameters.
 
 ## Value
 
-A [tibble](https://tibble.tidyverse.org/reference/tibble.html) object
-with the results. See output details in [ArcGIS REST API service
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+or more matches for each query. For details about the available fields,
+see [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 ## Details
 
-See the [ArcGIS REST
-docs](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
+See the [ArcGIS REST API
+documentation](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
 for more information and valid values.
 
 ## `outsr`
 
 The spatial reference can be specified as a well-known ID (WKID). If not
 specified, the spatial reference of the output locations is the same as
-that of the service (WGS84, that is, WKID = 4326).
+that of the service (WGS 84, that is, WKID 4326).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
@@ -119,7 +120,7 @@ for values and examples.
 
 ## References
 
-[ArcGIS REST
+[ArcGIS REST API
 `findAddressCandidates`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
 
 ## See also
@@ -164,7 +165,7 @@ with_params |>
 #> 1  40.4 -3.70 España    Madrid, Comunidad de Madrid, ESP
 #> 2  41.4  2.17 España    Barcelona, Cataluña, ESP        
 
-# With options: restrict the search to the USA.
+# Restrict the search to the USA.
 with_params_usa <- arc_geo(c("Madrid", "Barcelona"),
   sourcecountry = "USA",
   custom_query = list(outFields = c("LongLabel", "CntryName"))

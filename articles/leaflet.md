@@ -1,13 +1,11 @@
-# arcgeocoder and leaflet maps
+# Interactive maps with arcgeocoder
 
-## Example
+## Build the interactive map
 
-The following example shows how to create an interactive [**leaflet**
-map](https://rstudio.github.io/leaflet/) using data retrieved with
-**arcgeocoder**.
+This example displays results from **arcgeocoder** on an interactive
+[**leaflet** map](https://rstudio.github.io/leaflet/).
 
-This widget can be browsed and filtered with **crosstalk** and
-**reactable**.
+**crosstalk** links the map to a filterable **reactable** table.
 
 ``` r
 
@@ -128,11 +126,11 @@ tb <- reactable(cf_bk_data,
 )
 ```
 
-## Widget
+## Display the widget
 
 ``` r
 
-# Last step: Display all components.
+# Display all components.
 htmltools::browsable(
   htmltools::tagList(lmend, tb)
 )
@@ -140,9 +138,9 @@ htmltools::browsable(
 
 ## Attributions
 
-- [Eiffel Tower icons created by Freepik -
+- [Eiffel Tower icons by Freepik -
   Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
-- [Mug icons created by Freepik -
+- [Mug icons by Freepik -
   Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
-- [Croissant icons created by Freepik -
+- [Croissant icons by Freepik -
   Flaticon](https://www.flaticon.com/free-icons/croissant "croissant icons")

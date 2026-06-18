@@ -1,20 +1,17 @@
-# Geocode places by category in a given area
+# Geocode places by category in an area
 
-This function extracts places with a given category or list of
-categories near or within a given location or area. It wraps
-[`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md)
-and is vectorized over `category`.
+Finds places that match one or more categories near a location or within
+a bounding box.
 
 See
 [arc_categories](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
 for a detailed explanation and available values.
 
-**Note:** To obtain results, provide either a pair of coordinates (`x`
-and `y` arguments) used as a reference for geocoding or a bounding box
-via the `bbox` argument defining a desired extent for results.
+To obtain results, provide either a pair of coordinates, `x` and `y`, as
+a search origin or a bounding box in `bbox` to define the search extent.
 
-You can combine both approaches (providing `x`, `y` and `bbox` values)
-to improve the geocoding process. See **Examples**.
+You can combine both approaches by providing `x`, `y` and `bbox`. See
+**Examples**.
 
 ## Usage
 
@@ -39,38 +36,39 @@ arc_geo_categories(
 
 - category:
 
-  A place or address type used to filter results. Several values can
-  also be supplied as a vector (for example, `c("Cinema", "Museum")`),
-  which performs one call for each value. See **Details**.
+  A place or address type used to filter results. Multiple values can be
+  supplied as a vector (for example, `c("Cinema", "Museum")`), which
+  performs one call for each value. See **Details**.
 
 - x:
 
-  Longitude values in numeric format. Must be in the range
-  \\\left\[-180, 180 \right\]\\.
+  A numeric vector of longitude values in the range \\\left\[-180, 180
+  \right\]\\.
 
 - y:
 
-  Latitude values in numeric format. Must be in the range \\\left\[-90,
-  90 \right\]\\.
+  A numeric vector of latitude values in the range \\\left\[-90, 90
+  \right\]\\.
 
 - bbox:
 
   A numeric vector of longitude and latitude values
-  `c(minX, minY, maxX, maxY)` that restricts the search area. See
+  `c(xmin, ymin, xmax, ymax)` that restricts the search area. See
   **Details**.
 
 - name:
 
-  Optionally, a string indicating the name or address of the desired
-  results.
+  An optional string containing the name or address to match.
 
 - lat:
 
-  Latitude column name in the output data (default `"lat"`).
+  Name of the latitude or y-coordinate column in the output. The default
+  is `"lat"`.
 
 - long:
 
-  Longitude column name in the output data (default `"lon"`).
+  Name of the longitude or x-coordinate column in the output. The
+  default is `"lon"`.
 
 - limit:
 
@@ -79,16 +77,16 @@ arc_geo_categories(
 
 - full_results:
 
-  Logical. If `TRUE`, return all available API fields via `outFields=*`.
-  Default is `FALSE`.
+  A logical value. If `TRUE`, returns all available API fields via
+  `outFields = "*"`. The default is `FALSE`.
 
 - verbose:
 
-  Logical. If `TRUE`, output process messages to the console.
+  A logical value. If `TRUE`, displays API request details.
 
 - custom_query:
 
-  Additional API parameters as named list values.
+  A named list with additional API parameters.
 
 - ...:
 
@@ -97,25 +95,24 @@ arc_geo_categories(
 
   `sourcecountry`
 
-  :   Country filter using ISO codes (e.g. `"USA"`). Multiple values can
-      be supplied as a comma-separated string.
+  :   Country filter using ISO codes (for example, `"USA"`). Multiple
+      values can be supplied as a comma-separated string.
 
   `outsr`
 
-  :   The spatial reference of the `x` and `y` coordinates returned by a
-      geocode request. By default, it is `NULL` (that is, the argument
-      will not be used in the query). See **Details** and
+  :   Spatial reference of the output coordinates. The default is
+      `NULL`, which uses the service default. See **Details** and
       [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md).
 
   `langcode`
 
-  :   Sets the language in which reverse-geocoded addresses are
-      returned.
+  :   Language of the returned addresses.
 
 ## Value
 
-A [tibble](https://tibble.tidyverse.org/reference/tibble.html) object
-with the results. See output details in [ArcGIS REST API service
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+or more matches for each query. For details about the available fields,
+see [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 ## Details
@@ -138,7 +135,7 @@ separated by commas (`"Cinema,Museum"`), which is treated internally as
 
 The spatial reference can be specified as a well-known ID (WKID). If not
 specified, the spatial reference of the output locations is the same as
-that of the service (WGS84, that is, WKID = 4326).
+that of the service (WGS 84, that is, WKID 4326).
 
 See
 [arc_spatial_references](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
@@ -146,10 +143,10 @@ for values and examples.
 
 ## See also
 
-[ArcGIS REST Category
-filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
-
 [arc_categories](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
+for supported values and [ArcGIS REST API category
+filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm)
+for API details.
 
 Geocoding and reverse geocoding functions:
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),
@@ -162,10 +159,10 @@ Geocoding and reverse geocoding functions:
 # \donttest{
 # Full workflow: gas stations near Carabanchel, Madrid.
 
-# Get Carabanchel.
+# Geocode Carabanchel.
 carab <- arc_geo("Carabanchel, Madrid, Spain")
 
-# CRS.
+# Extract the CRS.
 carab_crs <- unique(carab$latestWkid)
 
 library(ggplot2)
@@ -180,7 +177,7 @@ base_map <- ggplot(carab) +
 
 # Example 1: Search near Carabanchel (not restricted).
 ex1 <- arc_geo_categories("Gas Station",
-  # Location.
+  # Use Carabanchel as the search origin.
   x = carab$lon, y = carab$lat,
   limit = 50, full_results = TRUE
 )
@@ -204,9 +201,9 @@ base_map +
 
 # Example 2: Include part of the name for different results.
 ex2 <- arc_geo_categories("Gas Station",
-  # Name.
+  # Match this name.
   name = "Repsol",
-  # Location.
+  # Use Carabanchel as the search origin.
   x = carab$lon, y = carab$lat,
   limit = 50, full_results = TRUE
 )

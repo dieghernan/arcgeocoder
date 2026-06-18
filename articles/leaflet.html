@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>arcgeocoder and leaflet maps • arcgeocoder</title>
+<title>Interactive maps with arcgeocoder • arcgeocoder</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -31,7 +31,7 @@
 <link href="leaflet_files/libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
 <script src="leaflet_files/libs/crosstalk-1.2.2/js/crosstalk.min.js"></script><script src="leaflet_files/libs/leaflet-providers-3.0.0/leaflet-providers.js"></script><script src="leaflet_files/libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script><script src="leaflet_files/libs/core-js-2.5.3/shim.min.js"></script><script src="leaflet_files/libs/react-18.2.0/react.min.js"></script><script src="leaflet_files/libs/react-18.2.0/react-dom.min.js"></script><script src="leaflet_files/libs/reactwidget-2.0.0/react-tools.js"></script><link href="leaflet_files/libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <link href="leaflet_files/libs/reactable-0.4.5/reactable.css" rel="stylesheet">
-<script src="leaflet_files/libs/reactable-binding-0.4.5/reactable.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="arcgeocoder and leaflet maps">
+<script src="leaflet_files/libs/reactable-binding-0.4.5/reactable.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Interactive maps with arcgeocoder">
 <meta property="og:image" content="https://dieghernan.github.io/arcgeocoder/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@dhernangomez">
@@ -71,8 +71,8 @@
     <li><a class="dropdown-item" href="../articles/feature-types.html">Reverse geocoding and feature types</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Mapping</h6></li>
-    <li><a class="dropdown-item" href="../articles/static.html">arcgeocoder and static maps</a></li>
-    <li><a class="dropdown-item" href="../articles/leaflet.html">arcgeocoder and leaflet maps</a></li>
+    <li><a class="dropdown-item" href="../articles/static.html">Static maps with arcgeocoder</a></li>
+    <li><a class="dropdown-item" href="../articles/leaflet.html">Interactive maps with arcgeocoder</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="../articles/index.html">More articles...</a></li>
   </ul>
@@ -100,7 +100,7 @@
 </nav><div class="container template-quarto">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>arcgeocoder and leaflet maps</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Interactive maps with arcgeocoder</h1>
 
 
 
@@ -114,10 +114,10 @@
 
 
 
-    <section class="level2"><h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+    <section class="level2"><h2 id="build-the-interactive-map">Build the interactive map<a class="anchor" aria-label="anchor" href="#build-the-interactive-map"></a>
 </h2>
-<p>The following example shows how to create an interactive <a href="https://rstudio.github.io/leaflet/" class="external-link"><strong>leaflet</strong> map</a> using data retrieved with <strong>arcgeocoder</strong>.</p>
-<p>This widget can be browsed and filtered with <strong>crosstalk</strong> and <strong>reactable</strong>.</p>
+<p>This example displays results from <strong>arcgeocoder</strong> on an interactive <a href="https://rstudio.github.io/leaflet/" class="external-link"><strong>leaflet</strong> map</a>.</p>
+<p><strong>crosstalk</strong> links the map to a filterable <strong>reactable</strong> table.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Coffee shops and bakeries around the Eiffel Tower.</span></span>
@@ -236,11 +236,11 @@
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
-</section><section class="level2"><h2 id="widget">Widget<a class="anchor" aria-label="anchor" href="#widget"></a>
+</section><section class="level2"><h2 id="display-the-widget">Display the widget<a class="anchor" aria-label="anchor" href="#display-the-widget"></a>
 </h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Last step: Display all components.</span></span>
+<code class="sourceCode R"><span><span class="co"># Display all components.</span></span>
 <span><span class="fu">htmltools</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/htmltools/reference/browsable.html" class="external-link">browsable</a></span><span class="op">(</span></span>
 <span>  <span class="fu">htmltools</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/htmltools/reference/tagList.html" class="external-link">tagList</a></span><span class="op">(</span><span class="va">lmend</span>, <span class="va">tb</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -253,9 +253,9 @@
 </section><section class="level2"><h2 id="attributions">Attributions<a class="anchor" aria-label="anchor" href="#attributions"></a>
 </h2>
 <ul>
-<li><a href="https://www.flaticon.com/free-icons/eiffel-tower" title="eiffel tower icons" class="external-link">Eiffel Tower icons created by Freepik - Flaticon</a></li>
-<li><a href="https://www.flaticon.com/free-icons/mug" title="mug icons" class="external-link">Mug icons created by Freepik - Flaticon</a></li>
-<li><a href="https://www.flaticon.com/free-icons/croissant" title="croissant icons" class="external-link">Croissant icons created by Freepik - Flaticon</a></li>
+<li><a href="https://www.flaticon.com/free-icons/eiffel-tower" title="eiffel tower icons" class="external-link">Eiffel Tower icons by Freepik - Flaticon</a></li>
+<li><a href="https://www.flaticon.com/free-icons/mug" title="mug icons" class="external-link">Mug icons by Freepik - Flaticon</a></li>
+<li><a href="https://www.flaticon.com/free-icons/croissant" title="croissant icons" class="external-link">Croissant icons by Freepik - Flaticon</a></li>
 </ul></section><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);

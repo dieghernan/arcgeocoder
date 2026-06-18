@@ -1,6 +1,6 @@
-# Check access to ArcGIS REST
+# Check access to the ArcGIS REST API
 
-Checks whether R can access resources at the ArcGIS REST API
+Checks whether the current R session can access the ArcGIS REST API at
 <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
 
 ## Usage
@@ -11,7 +11,7 @@ arcgeocoder_check_access()
 
 ## Value
 
-A logical value.
+`TRUE` if the service is accessible, otherwise `FALSE`.
 
 ## Examples
 

@@ -2,32 +2,32 @@
 
 ## Geocoding and reverse geocoding
 
-Core functions for geocoding addresses, places and categories, and for
-reverse geocoding coordinates with the ArcGIS REST API.
+Geocode single-line and structured addresses, find places by category
+and reverse geocode coordinates.
 
 - [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md)
   : Geocode addresses with the ArcGIS REST API
 - [`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md)
-  : Geocode places by category in a given area
+  : Geocode places by category in an area
 - [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)
-  : Geocode addresses with a multi-field ArcGIS REST API query
+  : Geocode addresses with a structured ArcGIS REST API query
 - [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md)
   : Reverse geocode coordinates with the ArcGIS REST API
 
 ## Reference data
 
-Built-in datasets used to filter geocoding requests and work with ArcGIS
-spatial references.
+Browse supported place categories and ArcGIS spatial references.
 
 - [`arc_categories`](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
-  : ArcGIS REST API category data
+  : Place categories supported by the ArcGIS REST API
 - [`arc_spatial_references`](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
-  : Esri (ArcGIS) spatial reference data
+  : Spatial references supported by the ArcGIS REST API
 
 ## Package documentation
 
-Package-level documentation and metadata.
+Learn about the package and its metadata.
 
 - [`arcgeocoder`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder-package.md)
   [`arcgeocoder-package`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder-package.md)
-  : arcgeocoder: Geocoding with the 'ArcGIS' REST API Service
+  : arcgeocoder: Address and Coordinate Search with the 'ArcGIS' REST
+  API

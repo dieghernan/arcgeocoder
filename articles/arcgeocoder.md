@@ -1,49 +1,48 @@
 # Get started with arcgeocoder
 
-The goal of **arcgeocoder** is to provide a lightweight interface for
-geocoding addresses and reverse geocoding coordinates through the
-[ArcGIS REST API geocoding
-service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
+**arcgeocoder** provides a lightweight interface to the [ArcGIS REST
+API](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
+It converts addresses into geographic coordinates, converts coordinates
+into addresses and finds places by category.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/arcgeocoder/>.
 
 ## Why arcgeocoder?
 
-**arcgeocoder** provides a lightweight interface for geocoding and
-reverse geocoding with the ArcGIS REST API service. It accesses the API
-without depending on additional HTTP packages such as **curl**. In some
-situations, **curl** may not be available or accessible, so
-**arcgeocoder** uses base functions to avoid this limitation.
+**arcgeocoder** accesses the ArcGIS REST API without requiring an API
+key or an additional HTTP package such as **curl**. It uses base R
+download functions, which keeps its dependency footprint small.
 
-The interface of **arcgeocoder** is designed to make ArcGIS geocoding
-features easier to access. The API endpoints used by **arcgeocoder** are
-`findAddressCandidates` and `reverseGeocode`, which can be accessed
-without an API key.
+The package provides focused interfaces to the `findAddressCandidates`
+and `reverseGeocode` endpoints. These interfaces support single-line
+addresses, structured address components, category filters and reverse
+geocoding.
 
 ## Recommended packages
 
-Other packages are more mature and provide similar features:
+The following packages provide related geocoding features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)) provides an interface to
   ArcGIS, Nominatim (OpenStreetMap), Google, TomTom, Mapbox and other
-  services for geocoding and reverse geocoding.
+  geocoding services.
 - [**nominatimlite**](https://dieghernan.github.io/nominatimlite/)
   ([Hernangómez 2024](#ref-R-nominatimlite)) is similar to
   **arcgeocoder** but uses data from OpenStreetMap through the
-  [Nominatim API](https://nominatim.org/release-docs/latest/) service.
+  [Nominatim API](https://nominatim.org/release-docs/latest/).
 
 ## Usage
 
 ### Geocoding and reverse geocoding
 
-*Note: examples adapted from the **tidygeocoder** package.*
+*The examples in this section are adapted from the **tidygeocoder**
+package.*
 
-In this first example, we geocode a few addresses using the
+The
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md)
-function. Note that **arcgeocoder** works without additional setup, and
-you do not need to provide an API key to start geocoding.
+function converts single-line addresses into geographic coordinates. It
+requires no API key or additional setup.
 
 ``` r
 
@@ -67,9 +66,10 @@ lat_longs <- arc_geo(
 )
 ```
 
-Only a few fields are returned from the geocoding service in this
-example, but `full_results = TRUE` can be used to return all data from
-the service.
+By default,
+[`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md)
+returns a small set of fields. Set `full_results = TRUE` to return all
+available API fields.
 
 | query | latitude | longitude | address | score | x | y | xmin | ymin | xmax | ymax | wkid | latestWkid |
 |:---|---:|---:|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -77,16 +77,14 @@ the service.
 | 600 Montgomery St, San Francisco, CA 94111 | 37.79516 | -122.40273 | 600 Montgomery St, San Francisco, California, 94111 | 100 | -122.40273 | 37.79516 | -122.40373 | 37.79416 | -122.40173 | 37.79616 | 4326 | 4326 |
 | 233 S Wacker Dr, Chicago, IL 60606 | 41.87867 | -87.63587 | 233 S Wacker Dr, Chicago, Illinois, 60606 | 100 | -87.63587 | 41.87867 | -87.63687 | 41.87767 | -87.63487 | 41.87967 | 4326 | 4326 |
 
-Table 1: Example: geocoding addresses
+Table 1: Example: geocoding addresses.
 
-To perform reverse geocoding (obtaining addresses from geographic
-coordinates), we can use the
+The
 [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md)
-function. The arguments are similar to those in
-[`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),
-but now we specify the input data columns with the `x` and `y`
-arguments. The data used here comes from the geocoding query above. The
-single-line address is returned in the column named by `address`.
+function converts longitude and latitude values into addresses. Supply
+longitude values to `x` and latitude values to `y`. The following
+example uses the coordinates returned by the previous query. The
+`address` argument sets the name of the address column in the output.
 
 ``` r
 
@@ -106,15 +104,15 @@ reverse <- arc_reverse_geo(
 
 Table 2: Example: reverse geocoding addresses.
 
-It is also possible to search for specific locations within or near a
-reference area or location using [category
-filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
-See the documentation for the `arc_categories` data object for more
-information.
+The
+[`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md)
+function finds places by category near a location or within a bounding
+box. Available categories are documented in `arc_categories` and in the
+[ArcGIS category filtering
+documentation](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
 
-In the following example, we look for food-related points of interest
-(POIs), such as restaurants, coffee shops and bakeries, near the Eiffel
-Tower in France.
+The following example finds food-related places, such as restaurants,
+coffee shops and bakeries, near the Eiffel Tower in France.
 
 ``` r
 
@@ -134,9 +132,9 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                                      
-#>   <dbl> <dbl> <chr>                                                                          
-#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-de-Fr…
+#>     lon   lat LongLabel                                                                              
+#>   <dbl> <dbl> <chr>                                                                                  
+#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-de-France, FRA
 
 # Use `lon` and `lat` as a reference location for `category = "Food"`.
 food_eiffel <- arc_geo_categories(
@@ -157,7 +155,7 @@ ggplot(eiffel_tower, aes(x, y)) +
     color = "Type of place",
     x = "",
     y = "",
-    caption = "Data from the ArcGIS REST API service"
+    caption = "Data from the ArcGIS REST API"
   )
 ```
 

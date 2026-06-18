@@ -1,17 +1,17 @@
-# arcgeocoder and static maps
+# Static maps with arcgeocoder
 
-## Example 1: sf objects
+## Example 1: Map **sf** objects
 
-The following example shows how to create a static map using data
-retrieved with **arcgeocoder** and converted to an **sf** object.
+This example converts results from **arcgeocoder** into an **sf** object
+and displays them on a static map.
 
 ``` r
 
 library(arcgeocoder)
 library(dplyr)
-library(sf) # Spatial objects.
+library(sf) # Work with spatial objects.
 library(ggplot2)
-library(mapSpain) # **sf** objects of Spain.
+library(mapSpain) # Get sf objects for Spain.
 
 # McDonald's restaurants in Barcelona, Spain.
 
@@ -77,11 +77,11 @@ ggplot(bcn) +
 Figure 2: A map showing the location of McDonald’s restaurants in
 Barcelona, Spain
 
-## Example 2: terra objects
+## Example 2: Add map tiles
 
-We can add static map tiles with the **maptiles** package and use the
-**tidyterra** package for plotting. The tiles are represented here as
-**terra** objects.
+The **maptiles** package retrieves static map tiles as **terra**
+objects. The **tidyterra** package then adds the tiles to a **ggplot2**
+map.
 
 ``` r
 

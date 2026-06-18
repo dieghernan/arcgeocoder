@@ -1,16 +1,15 @@
-# ArcGIS REST API category data
+# Place categories supported by the ArcGIS REST API
 
-Dataset of available categories used to filter results provided by
+A dataset of categories that can be used to filter results from
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)
 and
-[`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md)
-in [tibble](https://tibble.tidyverse.org/reference/tibble.html) format.
+[`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md).
 
 ## Format
 
 A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with 383
-rows and fields:
+rows and three variables:
 
 - level_1:
 
@@ -26,34 +25,31 @@ rows and fields:
 
 ## Source
 
-[ArcGIS REST Category
+[ArcGIS REST API category
 filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
 
 ## Details
 
-See [ArcGIS REST Category
+See [ArcGIS REST API category
 filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm)
 for details and examples.
 
-The geocoding service allows users to search for and geocode many types
-of addresses and places around the world. This simplifies application
+The ArcGIS geocoding service supports searches for many types of
+addresses and places around the world. This simplifies application
 development because developers do not need to know what types of places
-their users are searching for. However, due to this flexibility, it is
-possible for ambiguous searches to match to many different places, and
-users may sometimes receive unexpected results. For example, a search
-for a city may match to a street name, or a search for an airport code
-may match to a country abbreviation.
+their users are searching for. However, ambiguous searches can match
+many different places and produce unexpected results. For example, a
+search for a city may match a street name, or an airport code may match
+a country abbreviation.
 
-For such cases, the service provides the ability to filter out unwanted
-geocode results with the `category` argument. The `category` argument
-limits the types of places for which the service searches, thus
-eliminating false-positive matches and potentially speeding up the
-search process.
+In these cases, the `category` argument can filter out unwanted results.
+It limits the types of places that the service searches for, which can
+eliminate false-positive matches and speed up the search.
 
-The results show a list of categories with three different hierarchy
-levels (`level_1`, `level_2`, `level_3`). If a `level_1` category is
-requested (that is, `POI`), the child categories may also be included in
-the results.
+The dataset lists categories at three hierarchy levels (`level_1`,
+`level_2` and `level_3`). If a `level_1` category is requested (for
+example, `POI`), its child categories may also be included in the
+results.
 
 ## Note
 
