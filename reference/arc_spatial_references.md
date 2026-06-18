@@ -1,13 +1,12 @@
 # Esri (ArcGIS) spatial reference data
 
 Dataset of available spatial references (CRS) in
-[tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-format.
+[tibble](https://tibble.tidyverse.org/reference/tibble.html) format.
 
 ## Format
 
-A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-with 9,608 rows and fields:
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with
+9,608 rows and fields:
 
 - projtype:
 

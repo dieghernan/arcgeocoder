@@ -5,13 +5,12 @@ Dataset of available categories used to filter results provided by
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)
 and
 [`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md)
-in [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-format.
+in [tibble](https://tibble.tidyverse.org/reference/tibble.html) format.
 
 ## Format
 
-A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-with 383 rows and fields:
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with 383
+rows and fields:
 
 - level_1:
 

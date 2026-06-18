@@ -159,7 +159,7 @@ food_eiffel <- arc_geo_categories(
 
 # Plot by food type.
 ggplot(eiffel_tower, aes(x, y)) +
-  geom_point(shape = 17, color = "red", size = 4) +
+  geom_point(shape = 15, color = "blue", size = 4) +
   geom_point(data = food_eiffel, aes(x, y, color = Type)) +
   labs(
     title = "Food near the Eiffel Tower",
@@ -183,42 +183,22 @@ object:
 
 library(sf)
 
-food_eiffel_sf <- st_as_sf(
-  food_eiffel,
+eiffel_tower_sf <- eiffel_tower |>
+  select(lon, lat, LongLabel) |>
+  st_as_sf(
+    coords = c("lon", "lat"),
+    # Set the CRS of the resulting coordinates.
+    crs = eiffel_tower$wkid
+  )
+
+food_eiffel_sf <- st_as_sf(food_eiffel,
   coords = c("lon", "lat"),
-  # Set the CRS of the resulting coordinates.
   crs = eiffel_tower$wkid
 )
 
-food_eiffel_sf
-#> Simple feature collection with 50 features and 85 fields
-#> Geometry type: POINT
-#> Dimension:     XY
-#> Bounding box:  xmin: 2.2899 ymin: 48.8565 xmax: 2.299326 ymax: 48.86134
-#> Geodetic CRS:  WGS 84
-#> # A tibble: 50 × 86
-#>    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax
-#>  * <chr>      <dbl> <dbl> <lgl>       <lgl>       <lgl>       <lgl>      
-#>  1 Food        2.29  48.9 NA          NA          NA          NA         
-#>  2 Food        2.29  48.9 NA          NA          NA          NA         
-#>  3 Food        2.29  48.9 NA          NA          NA          NA         
-#>  4 Food        2.29  48.9 NA          NA          NA          NA         
-#>  5 Food        2.29  48.9 NA          NA          NA          NA         
-#>  6 Food        2.29  48.9 NA          NA          NA          NA         
-#>  7 Food        2.29  48.9 NA          NA          NA          NA         
-#>  8 Food        2.29  48.9 NA          NA          NA          NA         
-#>  9 Food        2.29  48.9 NA          NA          NA          NA         
-#> 10 Food        2.29  48.9 NA          NA          NA          NA         
-#> # ℹ 40 more rows
-#> # ℹ 79 more variables: address <chr>, score <int>, x <dbl>, y <dbl>,
-#> #   Loc_name <chr>, Status <chr>, Score <int>, Match_addr <chr>,
-#> #   LongLabel <chr>, ShortLabel <chr>, Addr_type <chr>, Type <chr>,
-#> #   PlaceName <chr>, Place_addr <chr>, Phone <chr>, URL <chr>, Rank <int>,
-#> #   AddBldg <chr>, AddNum <chr>, AddNumFrom <chr>, AddNumTo <chr>,
-#> #   AddRange <chr>, Side <chr>, StPreDir <chr>, StPreType <chr>, …
-
-ggplot(food_eiffel_sf) +
-  geom_sf(aes(color = Type)) +
+ggplot(eiffel_tower_sf) +
+  geom_sf(shape = 15, color = "blue", size = 4) +
+  geom_sf(data = food_eiffel_sf, aes(color = Type)) +
   coord_sf(crs = 3035)
 ```
 

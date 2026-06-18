@@ -1,8 +1,8 @@
 # Geocode addresses with a multi-field ArcGIS REST API query
 
 Geocodes addresses from specific address components and returns the
-[tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-associated with each query.
+[tibble](https://tibble.tidyverse.org/reference/tibble.html) associated
+with each query.
 
 For geocoding with a single text string, use
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md).
@@ -98,8 +98,8 @@ arc_geo_multi(
 
 ## Value
 
-A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-object with the results. See output details in [ArcGIS REST API service
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) object
+with the results. See output details in [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 The output also includes the input arguments as columns prefixed with
@@ -175,8 +175,6 @@ for values and examples.
 `findAddressCandidates`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
 
 ## See also
-
-[`tidygeocoder::geo()`](https://jessecambon.github.io/tidygeocoder/reference/geo.html)
 
 Geocoding and reverse geocoding functions:
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),

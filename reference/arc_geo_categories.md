@@ -114,8 +114,8 @@ arc_geo_categories(
 
 ## Value
 
-A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-object with the results. See output details in [ArcGIS REST API service
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) object
+with the results. See output details in [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 ## Details

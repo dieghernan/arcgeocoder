@@ -3,8 +3,8 @@
 Generates an address from a longitude and latitude. Latitudes must be in
 the range \\\left\[-90, 90 \right\]\\ and longitudes in the range
 \\\left\[-180, 180 \right\]\\. This function returns the
-[tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-associated with each query.
+[tibble](https://tibble.tidyverse.org/reference/tibble.html) associated
+with each query.
 
 ## Usage
 
@@ -89,11 +89,11 @@ arc_reverse_geo(
 
 ## Value
 
-A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-with the corresponding results. The `x` and `y` values returned by the
-API are named `lon` and `lat`. Note that these coordinates correspond to
-the geocoded feature and may differ from the `x` and `y` values provided
-as inputs.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with the
+corresponding results. The `x` and `y` values returned by the API are
+named `lon` and `lat`. Note that these coordinates correspond to the
+geocoded feature and may differ from the `x` and `y` values provided as
+inputs.
 
 See the details of the output in [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
@@ -133,8 +133,6 @@ It is also possible to use several values as a vector
 `reverseGeocode`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm).
 
 ## See also
-
-[`tidygeocoder::reverse_geo()`](https://jessecambon.github.io/tidygeocoder/reference/reverse_geo.html)
 
 Geocoding and reverse geocoding functions:
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),

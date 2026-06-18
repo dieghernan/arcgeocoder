@@ -314,7 +314,7 @@ Table 2: Example: reverse geocoding addresses.
 <span></span>
 <span><span class="co"># Plot by food type.</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">eiffel_tower</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">17</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">15</span>, color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">food_eiffel</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, color <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
 <span>    title <span class="op">=</span> <span class="st">"Food near the Eiffel Tower"</span>,</span>
@@ -333,42 +333,22 @@ Table 2: Example: reverse geocoding addresses.
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">food_eiffel_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span></span>
-<span>  <span class="va">food_eiffel</span>,</span>
+<span><span class="va">eiffel_tower_sf</span> <span class="op">&lt;-</span> <span class="va">eiffel_tower</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">lon</span>, <span class="va">lat</span>, <span class="va">LongLabel</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span></span>
+<span>    coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lon"</span>, <span class="st">"lat"</span><span class="op">)</span>,</span>
+<span>    <span class="co"># Set the CRS of the resulting coordinates.</span></span>
+<span>    crs <span class="op">=</span> <span class="va">eiffel_tower</span><span class="op">$</span><span class="va">wkid</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">food_eiffel_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">food_eiffel</span>,</span>
 <span>  coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lon"</span>, <span class="st">"lat"</span><span class="op">)</span>,</span>
-<span>  <span class="co"># Set the CRS of the resulting coordinates.</span></span>
 <span>  crs <span class="op">=</span> <span class="va">eiffel_tower</span><span class="op">$</span><span class="va">wkid</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">food_eiffel_sf</span></span>
-<span><span class="co">#&gt; Simple feature collection with 50 features and 85 fields</span></span>
-<span><span class="co">#&gt; Geometry type: POINT</span></span>
-<span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: 2.2899 ymin: 48.8565 xmax: 2.299326 ymax: 48.86134</span></span>
-<span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span><span class="co">#&gt; # A tibble: 50 × 86</span></span>
-<span><span class="co">#&gt;    q_category   q_x   q_y q_bbox_xmin q_bbox_ymin q_bbox_xmax q_bbox_ymax</span></span>
-<span><span class="co">#&gt;  * &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;       &lt;lgl&gt;       &lt;lgl&gt;       &lt;lgl&gt;      </span></span>
-<span><span class="co">#&gt;  1 Food        2.29  48.9 NA          NA          NA          NA         </span></span>
-<span><span class="co">#&gt;  2 Food        2.29  48.9 NA          NA          NA          NA         </span></span>
-<span><span class="co">#&gt;  3 Food        2.29  48.9 NA          NA          NA          NA         </span></span>
-<span><span class="co">#&gt;  4 Food        2.29  48.9 NA          NA          NA          NA         </span></span>
-<span><span class="co">#&gt;  5 Food        2.29  48.9 NA          NA          NA          NA         </span></span>
-<span><span class="co">#&gt;  6 Food        2.29  48.9 NA          NA          NA          NA         </span></span>
-<span><span class="co">#&gt;  7 Food        2.29  48.9 NA          NA          NA          NA         </span></span>
-<span><span class="co">#&gt;  8 Food        2.29  48.9 NA          NA          NA          NA         </span></span>
-<span><span class="co">#&gt;  9 Food        2.29  48.9 NA          NA          NA          NA         </span></span>
-<span><span class="co">#&gt; 10 Food        2.29  48.9 NA          NA          NA          NA         </span></span>
-<span><span class="co">#&gt; # ℹ 40 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 79 more variables: address &lt;chr&gt;, score &lt;int&gt;, x &lt;dbl&gt;, y &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   Loc_name &lt;chr&gt;, Status &lt;chr&gt;, Score &lt;int&gt;, Match_addr &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   LongLabel &lt;chr&gt;, ShortLabel &lt;chr&gt;, Addr_type &lt;chr&gt;, Type &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   PlaceName &lt;chr&gt;, Place_addr &lt;chr&gt;, Phone &lt;chr&gt;, URL &lt;chr&gt;, Rank &lt;int&gt;,</span></span>
-<span><span class="co">#&gt; #   AddBldg &lt;chr&gt;, AddNum &lt;chr&gt;, AddNumFrom &lt;chr&gt;, AddNumTo &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   AddRange &lt;chr&gt;, Side &lt;chr&gt;, StPreDir &lt;chr&gt;, StPreType &lt;chr&gt;, …</span></span>
-<span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">food_eiffel_sf</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">eiffel_tower_sf</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">15</span>, color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">food_eiffel_sf</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="fl">3035</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-eiffel_sf-1.png" style="width:100.0%" alt="Example: Food places near the Eiffel Tower using the sf package."></p>
 </div>

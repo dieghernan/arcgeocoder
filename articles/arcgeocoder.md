@@ -134,9 +134,9 @@ eiffel_tower <- arc_geo_multi(
 eiffel_tower |>
   select(lon, lat, LongLabel)
 #> # A tibble: 1 × 3
-#>     lon   lat LongLabel                                                         
-#>   <dbl> <dbl> <chr>                                                             
-#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Par…
+#>     lon   lat LongLabel                                                                      
+#>   <dbl> <dbl> <chr>                                                                          
+#> 1  2.29  48.9 Tour Eiffel, 3 Rue de l'Université, 75007, 7e Arrondissement, Paris, Île-de-Fr…
 
 # Use `lon` and `lat` as a reference location for `category = "Food"`.
 food_eiffel <- arc_geo_categories(
@@ -149,7 +149,7 @@ food_eiffel <- arc_geo_categories(
 
 # Plot by food type.
 ggplot(eiffel_tower, aes(x, y)) +
-  geom_point(shape = 17, color = "red", size = 4) +
+  geom_point(shape = 15, color = "blue", size = 4) +
   geom_point(data = food_eiffel, aes(x, y, color = Type)) +
   labs(
     title = "Food near the Eiffel Tower",

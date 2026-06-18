@@ -1,8 +1,8 @@
 # Geocode addresses with the ArcGIS REST API
 
 Geocodes addresses supplied as character values and returns the
-[tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-associated with each query.
+[tibble](https://tibble.tidyverse.org/reference/tibble.html) associated
+with each query.
 
 This function uses the `SingleLine` approach detailed in the [ArcGIS
 REST
@@ -97,8 +97,8 @@ arc_geo(
 
 ## Value
 
-A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-object with the results. See output details in [ArcGIS REST API service
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) object
+with the results. See output details in [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 ## Details
@@ -123,8 +123,6 @@ for values and examples.
 `findAddressCandidates`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm).
 
 ## See also
-
-[`tidygeocoder::geo()`](https://jessecambon.github.io/tidygeocoder/reference/geo.html)
 
 Geocoding and reverse geocoding functions:
 [`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md),
