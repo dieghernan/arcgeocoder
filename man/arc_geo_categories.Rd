@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{arc_geo_categories}
 \alias{arc_geo_categories}
-\title{Geocode places by category in a given area}
+\title{Geocode places by category in an area}
 \usage{
 arc_geo_categories(
   category,
@@ -22,66 +22,63 @@ arc_geo_categories(
 }
 \arguments{
 \item{category}{A place or address type used to filter results.
-Several values can also be supplied as a vector (for example,
+Multiple values can be supplied as a vector (for example,
 \code{c("Cinema", "Museum")}), which performs one call for each value. See
 \strong{Details}.}
 
-\item{x}{Longitude values in numeric format. Must be in the range
+\item{x}{A numeric vector of longitude values in the range
 \eqn{\left[-180, 180 \right]}.}
 
-\item{y}{Latitude values in numeric format. Must be in the range
+\item{y}{A numeric vector of latitude values in the range
 \eqn{\left[-90, 90 \right]}.}
 
 \item{bbox}{A numeric vector of longitude and latitude values
-\code{c(minX, minY, maxX, maxY)} that restricts the search area.
+\code{c(xmin, ymin, xmax, ymax)} that restricts the search area.
 See \strong{Details}.}
 
-\item{name}{Optionally, a string indicating the name or address of the
-desired results.}
+\item{name}{An optional string containing the name or address to match.}
 
-\item{lat}{Latitude column name in the output data (default \code{"lat"}).}
+\item{lat}{Name of the latitude or y-coordinate column in the output. The
+default is \code{"lat"}.}
 
-\item{long}{Longitude column name in the output data (default \code{"lon"}).}
+\item{long}{Name of the longitude or x-coordinate column in the output. The
+default is \code{"lon"}.}
 
 \item{limit}{Maximum number of results per query. The ArcGIS REST API limits
 a single request to 50 results.}
 
-\item{full_results}{Logical. If \code{TRUE}, return all available API fields
-via \verb{outFields=*}. Default is \code{FALSE}.}
+\item{full_results}{A logical value. If \code{TRUE}, returns all available API
+fields via \code{outFields = "*"}. The default is \code{FALSE}.}
 
-\item{verbose}{Logical. If \code{TRUE}, output process messages to the console.}
+\item{verbose}{A logical value. If \code{TRUE}, displays API request details.}
 
-\item{custom_query}{Additional API parameters as named list values.}
+\item{custom_query}{A named list with additional API parameters.}
 
 \item{...}{
   Arguments passed on to \code{\link{arc_geo}}
   \describe{
-    \item{\code{sourcecountry}}{Country filter using ISO codes (e.g. \code{"USA"}).
+    \item{\code{sourcecountry}}{Country filter using ISO codes (for example, \code{"USA"}).
 Multiple values can be supplied as a comma-separated string.}
-    \item{\code{outsr}}{The spatial reference of the \code{x} and \code{y} coordinates returned
-by a geocode request. By default, it is \code{NULL} (that is, the argument
-will not be used in the query). See \strong{Details} and
+    \item{\code{outsr}}{Spatial reference of the output coordinates. The default is
+\code{NULL}, which uses the service default. See \strong{Details} and
 \link{arc_spatial_references}.}
-    \item{\code{langcode}}{Sets the language in which reverse-geocoded addresses are
-returned.}
+    \item{\code{langcode}}{Language of the returned addresses.}
   }}
 }
 \value{
-A \link[dplyr:tibble]{tibble} object with the results. See output details in \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
+A \link[dplyr:tibble]{tibble} with one or more matches for each query. For details about the available fields, see \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 }
 \description{
-This function extracts places with a given category or list of categories
-near or within a given location or area. It wraps \code{\link[=arc_geo]{arc_geo()}} and is
-vectorized over \code{category}.
+Finds places that match one or more categories near a location or within a
+bounding box.
 
 See \link{arc_categories} for a detailed explanation and available values.
 
-\strong{Note:} To obtain results, provide either a pair of coordinates (\code{x} and
-\code{y} arguments) used as a reference for geocoding or a bounding box via the
-\code{bbox} argument defining a desired extent for results.
+To obtain results, provide either a pair of coordinates, \code{x} and \code{y}, as a
+search origin or a bounding box in \code{bbox} to define the search extent.
 
-You can combine both approaches (providing \code{x}, \code{y} and \code{bbox} values)
-to improve the geocoding process. See \strong{Examples}.
+You can combine both approaches by providing \code{x}, \code{y} and \code{bbox}. See
+\strong{Examples}.
 }
 \details{
 Bounding boxes can be located using online tools, such as
@@ -98,7 +95,7 @@ separated by commas (\code{"Cinema,Museum"}), which is treated internally as
 \section{\code{outsr}}{
 The spatial reference can be specified as a well-known ID (WKID). If not
 specified, the spatial reference of the output locations is the same as that
-of the service (WGS84, that is, WKID = 4326).
+of the service (WGS 84, that is, WKID 4326).
 
 See \link{arc_spatial_references} for values and examples.
 }
@@ -108,10 +105,10 @@ See \link{arc_spatial_references} for values and examples.
 \donttest{
 # Full workflow: gas stations near Carabanchel, Madrid.
 
-# Get Carabanchel.
+# Geocode Carabanchel.
 carab <- arc_geo("Carabanchel, Madrid, Spain")
 
-# CRS.
+# Extract the CRS.
 carab_crs <- unique(carab$latestWkid)
 
 library(ggplot2)
@@ -126,7 +123,7 @@ base_map <- ggplot(carab) +
 
 # Example 1: Search near Carabanchel (not restricted).
 ex1 <- arc_geo_categories("Gas Station",
-  # Location.
+  # Use Carabanchel as the search origin.
   x = carab$lon, y = carab$lat,
   limit = 50, full_results = TRUE
 )
@@ -149,9 +146,9 @@ base_map +
 
 # Example 2: Include part of the name for different results.
 ex2 <- arc_geo_categories("Gas Station",
-  # Name.
+  # Match this name.
   name = "Repsol",
-  # Location.
+  # Use Carabanchel as the search origin.
   x = carab$lon, y = carab$lat,
   limit = 50, full_results = TRUE
 )
@@ -180,9 +177,8 @@ base_map +
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering}.
-
-\link{arc_categories}
+\link{arc_categories} for supported values and
+\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST API category filtering} for API details.
 
 Geocoding and reverse geocoding functions:
 \code{\link[=arc_geo]{arc_geo()}},

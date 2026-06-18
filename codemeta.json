@@ -2,8 +2,8 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "arcgeocoder",
-  "description": "Lightweight interface for converting addresses into geographic coordinates and coordinates into addresses using the 'ArcGIS' REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and locations can be converted into addresses. No API key is required.",
-  "name": "arcgeocoder: Geocoding with the 'ArcGIS' REST API Service",
+  "description": "Provides a lightweight interface to the 'ArcGIS' REST API for converting addresses and structured address components into geographic coordinates, finding places by category and converting coordinates into addresses. It uses the ArcGIS service documented at <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. No API key is required.",
+  "name": "arcgeocoder: Address and Coordinate Search with the 'ArcGIS' REST API",
   "relatedLink": ["https://dieghernan.github.io/arcgeocoder/", "https://CRAN.R-project.org/package=arcgeocoder"],
   "codeRepository": "https://github.com/dieghernan/arcgeocoder",
   "issueTracker": "https://github.com/dieghernan/arcgeocoder/issues",
@@ -164,8 +164,8 @@
     "SystemRequirements": null
   },
   "applicationCategory": "cartography",
-  "keywords": ["r", "geocoding", "arcgis", "address", "reverse-geocoding", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "cran-r", "gis", "cran", "geocoder", "reverse-geocoder"],
-  "fileSize": "422.546KB",
+  "keywords": ["r", "arcgis", "address", "coordinates", "location-search", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "cran-r", "gis", "cran", "spatial-search", "geocoder", "geocoding", "reverse-geocoder", "reverse-geocoding"],
+  "fileSize": "424.805KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -177,7 +177,7 @@
           "familyName": "Hernangómez"
         }
       ],
-      "name": "{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service",
+      "name": "{arcgeocoder}: Address and Coordinate Search with the {ArcGIS} {REST} {API}",
       "identifier": "10.32614/CRAN.package.arcgeocoder",
       "url": "https://dieghernan.github.io/arcgeocoder/",
       "@id": "https://doi.org/10.32614/CRAN.package.arcgeocoder",

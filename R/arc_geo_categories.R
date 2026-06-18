@@ -1,37 +1,34 @@
-#' Geocode places by category in a given area
+#' Geocode places by category in an area
 #'
 #' @description
-#' This function extracts places with a given category or list of categories
-#' near or within a given location or area. It wraps [arc_geo()] and is
-#' vectorized over `category`.
+#' Finds places that match one or more categories near a location or within a
+#' bounding box.
 #'
 #' See [arc_categories] for a detailed explanation and available values.
 #'
-#' **Note:** To obtain results, provide either a pair of coordinates (`x` and
-#' `y` arguments) used as a reference for geocoding or a bounding box via the
-#' `bbox` argument defining a desired extent for results.
+#' To obtain results, provide either a pair of coordinates, `x` and `y`, as a
+#' search origin or a bounding box in `bbox` to define the search extent.
 #'
-#' You can combine both approaches (providing `x`, `y` and `bbox` values)
-#' to improve the geocoding process. See **Examples**.
+#' You can combine both approaches by providing `x`, `y` and `bbox`. See
+#' **Examples**.
 #'
 #' @param category A place or address type used to filter results.
-#'   Several values can also be supplied as a vector (for example,
+#'   Multiple values can be supplied as a vector (for example,
 #'   `c("Cinema", "Museum")`), which performs one call for each value. See
 #'   **Details**.
 #' @param limit Maximum number of results per query. The ArcGIS REST API limits
 #'   a single request to 50 results.
-#' @inheritParams arc_geo
-#' @inheritParams arc_reverse_geo
-#' @inheritDotParams arc_geo -address -return_addresses -progressbar
 #' @param bbox A numeric vector of longitude and latitude values
-#'   `c(minX, minY, maxX, maxY)` that restricts the search area.
+#'   `c(xmin, ymin, xmax, ymax)` that restricts the search area.
 #'   See **Details**.
-#' @param name Optionally, a string indicating the name or address of the
-#'   desired results.
-#' @param custom_query Additional API parameters as named list values.
+#' @param name An optional string containing the name or address to match.
+#' @param custom_query A named list with additional API parameters.
+#'
+#' @inheritParams arc_geo lat long full_results verbose custom_query
+#' @inheritParams arc_reverse_geo
+#' @inheritDotParams arc_geo sourcecountry outsr langcode
 #'
 #' @details
-#'
 #' Bounding boxes can be located using online tools, such as
 #' [Bounding Box Tool](https://boundingbox.klokantech.com/).
 #'
@@ -45,25 +42,26 @@
 #'
 #' @inheritSection arc_reverse_geo `outsr`
 #'
-#' @return
+#' @returns
 #' ```{r child = "man/chunks/out1.Rmd"}
 #' ```
 #'
+#' @seealso [arc_categories] for supported values and
+#'   [ArcGIS REST API category filtering](`r arcurl("filt")`) for API details.
+#'
 #' @family geocoders
 #'
-#' @seealso
-#' [ArcGIS REST Category filtering](`r arcurl("filt")`).
-#'
-#' [arc_categories]
+#' @export
+#' @encoding UTF-8
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
 #' # Full workflow: gas stations near Carabanchel, Madrid.
 #'
-#' # Get Carabanchel.
+#' # Geocode Carabanchel.
 #' carab <- arc_geo("Carabanchel, Madrid, Spain")
 #'
-#' # CRS.
+#' # Extract the CRS.
 #' carab_crs <- unique(carab$latestWkid)
 #'
 #' library(ggplot2)
@@ -78,7 +76,7 @@
 #'
 #' # Example 1: Search near Carabanchel (not restricted).
 #' ex1 <- arc_geo_categories("Gas Station",
-#'   # Location.
+#'   # Use Carabanchel as the search origin.
 #'   x = carab$lon, y = carab$lat,
 #'   limit = 50, full_results = TRUE
 #' )
@@ -101,9 +99,9 @@
 #'
 #' # Example 2: Include part of the name for different results.
 #' ex2 <- arc_geo_categories("Gas Station",
-#'   # Name.
+#'   # Match this name.
 #'   name = "Repsol",
-#'   # Location.
+#'   # Use Carabanchel as the search origin.
 #'   x = carab$lon, y = carab$lat,
 #'   limit = 50, full_results = TRUE
 #' )
@@ -129,8 +127,6 @@
 #'     subtitle = "Search near with name and bounding box"
 #'   )
 #' }
-#' @export
-#' @encoding UTF-8
 arc_geo_categories <- function(
   category,
   x = NULL,
@@ -145,10 +141,10 @@ arc_geo_categories <- function(
   custom_query = list(),
   ...
 ) {
-  # Prepare location.
+  # Validate the search origin.
   locs <- validate_location(x, y)
 
-  # Prepare `bbox`.
+  # Validate the search extent.
   bbox <- validate_bbox(bbox)
 
   if (all(is.na(c(locs, bbox)))) {
@@ -168,7 +164,7 @@ arc_geo_categories <- function(
     name <- ""
   }
 
-  # Vectorize call over categories.
+  # Run one request per category.
   ncalls <- seq_len(nrow(base_tbl))
   api_res <- lapply(ncalls, function(x) {
     bs <- base_tbl[x, ]
@@ -186,7 +182,7 @@ arc_geo_categories <- function(
       ...
     )
     if (all(is.na(qry[, c(2, 3)]))) {
-      message("(category: ", bs$q_category, ")")
+      message("No results found for category: ", bs$q_category)
     }
     end <- dplyr::bind_cols(bs, qry)
     remove_query_col(end)
@@ -210,7 +206,7 @@ validate_location <- function(x = NULL, y = NULL) {
   # Return NAs with a message if either coordinate is missing.
   if (anyNA(c(x, y))) {
     return(missing_location(
-      "Either `x` or `y` is missing. The `location` argument will not be used."
+      "Either `x` or `y` is missing. The location will not be used."
     ))
   }
 
@@ -237,19 +233,19 @@ validate_bbox <- function(bbox = NULL) {
   # Return NAs with a message if any `bbox` value is missing.
   if (anyNA(bbox)) {
     return(missing_bbox(
-      "`bbox` has NA values. The `bbox` argument will not be used."
+      "`bbox` contains `NA` values and will not be used."
     ))
   }
 
   if (length(bbox) < 4) {
     return(missing_bbox(
-      "`bbox` has fewer than 4 values. The `bbox` argument will not be used."
+      "`bbox` has fewer than four values and will not be used."
     ))
   }
 
   if (!is.numeric(bbox)) {
     return(missing_bbox(
-      "`bbox` is not numeric. The `bbox` argument will not be used."
+      "`bbox` must be numeric and will not be used."
     ))
   }
 

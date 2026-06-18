@@ -1,6 +1,6 @@
 ---
-title: arcgeocoder and static maps
-description: Combine arcgeocoder with sf, terra and ggplot2.
+title: Static maps with arcgeocoder
+description: Map geocoding results with **sf**, **terra** and **ggplot2**.
 knitr:
   opts_chunk:
     collapse: true
@@ -13,10 +13,10 @@ knitr:
     out.width: "100%"
 ---
 
-## Example 1: sf objects
+## Example 1: Map **sf** objects
 
-The following example shows how to create a static map using data retrieved
-with **arcgeocoder** and converted to an **sf** object.
+This example converts results from **arcgeocoder** into an **sf** object and
+displays them on a static map.
 
 ```{r}
 #| label: fig-sf
@@ -24,9 +24,9 @@ with **arcgeocoder** and converted to an **sf** object.
 #|   Barcelona, Spain
 library(arcgeocoder)
 library(dplyr)
-library(sf) # Spatial objects.
+library(sf) # Work with spatial objects.
 library(ggplot2)
-library(mapSpain) # **sf** objects of Spain.
+library(mapSpain) # Get sf objects for Spain.
 
 # McDonald's restaurants in Barcelona, Spain.
 
@@ -83,11 +83,10 @@ ggplot(bcn) +
   geom_sf(data = mc2_sf, color = "red")
 ```
 
-## Example 2: terra objects
+## Example 2: Add map tiles
 
-We can add static map tiles with the **maptiles** package and use the
-**tidyterra** package for plotting. The tiles are represented here as
-**terra** objects.
+The **maptiles** package retrieves static map tiles as **terra** objects. The
+**tidyterra** package then adds the tiles to a **ggplot2** map.
 
 ```{r}
 #| label: fig-terra

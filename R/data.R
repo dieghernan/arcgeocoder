@@ -1,52 +1,49 @@
-#' ArcGIS REST API category data
+#' Place categories supported by the ArcGIS REST API
 #'
 #' @description
-#' Dataset of available categories used to filter results provided by
-#' [arc_geo()], [arc_geo_multi()] and [arc_geo_categories()] in
-#' [tibble][dplyr::tibble] format.
+#' A dataset of categories that can be used to filter results from [arc_geo()],
+#' [arc_geo_multi()] and [arc_geo_categories()].
 #'
 #' @name arc_categories
 #' @docType data
 #' @format
 #' A [tibble][dplyr::tibble] with
 #' `r prettyNum(nrow(arcgeocoder::arc_categories), big.mark=",")` rows and
-#' fields:
+#' three variables:
 #' \describe{
 #'   \item{level_1}{Top-level category.}
 #'   \item{level_2}{Second-level category.}
 #'   \item{level_3}{Child-level category.}
 #' }
 #' @details
-#'
-#' See [ArcGIS REST Category filtering](`r arcurl("filt")`) for details and
+#' See [ArcGIS REST API category filtering](`r arcurl("filt")`) for details and
 #' examples.
 #'
-#' The geocoding service allows users to search for and geocode many types of
-#' addresses and places around the world. This simplifies application
-#' development because developers do not need to know what types of places
-#' their users are searching for.
-#' However, due to this flexibility, it is possible for ambiguous searches to
-#' match to many different places, and users may sometimes receive unexpected
-#' results. For example, a search for a city may match to a street name, or a
-#' search for an airport code may match to a country abbreviation.
+#' The ArcGIS geocoding service supports searches for many types of addresses
+#' and places around the world. This simplifies application development because
+#' developers do not need to know what types of places their users are searching
+#' for. However, ambiguous searches can match many different places and produce
+#' unexpected results. For example, a search for a city may match a street name,
+#' or an airport code may match a country abbreviation.
 #'
-#' For such cases, the service provides the ability to filter out unwanted
-#' geocode results with the `category` argument. The `category` argument
-#' limits the types of places for which the service searches, thus eliminating
-#' false-positive matches and potentially speeding up the search process.
+#' In these cases, the `category` argument can filter out unwanted results. It
+#' limits the types of places that the service searches for, which can eliminate
+#' false-positive matches and speed up the search.
 #'
-#' The results show a list of categories with three different hierarchy levels
-#' (`level_1`, `level_2`, `level_3`). If a `level_1` category is requested
-#' (that is, `POI`), the child categories may also be included in the results.
+#' The dataset lists categories at three hierarchy levels (`level_1`, `level_2`
+#' and `level_3`). If a `level_1` category is requested (for example, `POI`),
+#' its child categories may also be included in the results.
 #'
 #' @source
-#' [ArcGIS REST Category filtering](`r arcurl("filt")`).
+#' [ArcGIS REST API category filtering](`r arcurl("filt")`).
 #'
 #' @note Data extracted on **15 January 2026**.
 #'
+#' @seealso [arc_geo_categories()], [arc_geo()], [arc_geo_multi()]
+#'
 #' @family datasets
 #'
-#' @seealso [arc_geo_categories()], [arc_geo()], [arc_geo_multi()]
+#' @encoding UTF-8
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
@@ -81,39 +78,37 @@
 #'
 #' dplyr::glimpse(sea_3)
 #' }
-#' @encoding UTF-8
 NULL
 
-#' Esri (ArcGIS) spatial reference data
+#' Spatial references supported by the ArcGIS REST API
 #'
 #' @description
-#' Dataset of available spatial references (CRS) in [tibble][dplyr::tibble]
-#' format.
+#' A dataset of coordinate reference systems (CRSs) supported by the ArcGIS
+#' REST API.
 #'
 #' @name arc_spatial_references
 #' @docType data
 #' @format A [tibble][dplyr::tibble] with
 #' `r prettyNum(nrow(arcgeocoder::arc_spatial_references), big.mark=",")` rows
-#' and fields:
+#' and eight variables:
 #' \describe{
 #'   \item{projtype}{Projection type (`"ProjectedCoordinateSystems"`,
 #'   `"GeographicCoordinateSystems"` or `"VerticalCoordinateSystems"`).}
-#'   \item{wkid}{Well-Known ID.}
-#'   \item{latestWkid}{Most recent `wkid`, if `wkid` is deprecated.}
-#'   \item{authority}{`wkid` authority (Esri or EPSG).}
-#'   \item{deprecated}{Logical indicating whether `wkid` is deprecated.}
-#'   \item{description}{Human-readable description of the `wkid`.}
-#'   \item{areaname}{Use area of the `wkid`.}
-#'   \item{wkt}{Representation of `wkid` in Well-Known Text (WKT). Useful when
-#'   working with \CRANpkg{sf} or \CRANpkg{terra}.}
+#'   \item{wkid}{Well-known ID (WKID).}
+#'   \item{latestWkid}{Current WKID if `wkid` is deprecated.}
+#'   \item{authority}{WKID authority (Esri or EPSG).}
+#'   \item{deprecated}{Whether `wkid` is deprecated.}
+#'   \item{description}{Human-readable description of the spatial reference.}
+#'   \item{areaname}{Area of use of the spatial reference.}
+#'   \item{wkt}{Well-known text (WKT) representation of the spatial reference.
+#'   Useful when working with \CRANpkg{sf} or \CRANpkg{terra}.}
 #' }
 #' @details
-#'
 #' This dataset is useful when using the `outsr` argument.
 #'
 #' Some projection IDs have changed over time. For example, Web Mercator
 #' `wkid = 102100` is deprecated and is currently `wkid = 3857`. However, both
-#' values work and return similar results.
+#' values work and return equivalent results.
 #'
 #' @source
 #' [Esri Projection Engine
@@ -121,10 +116,12 @@ NULL
 #'
 #' @note Data extracted on **15 January 2026**.
 #'
-#' @family datasets
-#'
 #' @seealso
 #' [sf::st_crs()]
+#'
+#' @family datasets
+#'
+#' @encoding UTF-8
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
@@ -132,7 +129,7 @@ NULL
 #' data("arc_spatial_references")
 #' arc_spatial_references
 #'
-#' # Request with deprecated Web Mercator.
+#' # Find the deprecated Web Mercator WKID.
 #' library(dplyr)
 #' wkid <- arc_spatial_references |>
 #'   filter(latestWkid == 3857 & deprecated) |>
@@ -142,21 +139,19 @@ NULL
 #'
 #' add <- arc_geo("London, United Kingdom", outsr = wkid$wkid)
 #'
-#' # Note values for `lat`, `lon` and `wkid`. `latestWkid` gives the current
-#' # valid `wkid`.
+#' # Compare `lat`, `lon`, `wkid` and the current ID in `latestWkid`.
 #' add |>
 #'   select(lat, lon, wkid, latestWkid) |>
 #'   glimpse()
 #'
-#' # Try with `sf`.
+#' # Look up the deprecated WKID with `sf`.
 #'
 #' try(sf::st_crs(wkid$wkid))
 #'
-#' # Try the latest WKID.
+#' # Look up the current WKID.
 #' try(sf::st_crs(wkid$latestWkid))
 #'
-#' # Or use WKT.
+#' # Look up the WKT definition.
 #' try(sf::st_crs(wkid$wkt))
 #' }
-#' @encoding UTF-8
 NULL

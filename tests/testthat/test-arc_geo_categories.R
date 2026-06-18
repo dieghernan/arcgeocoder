@@ -3,15 +3,21 @@ test_that("Errors", {
   skip_if_api_server()
   skip_if_offline()
 
-  expect_error(
-    arc_geo_categories("Food"),
-    "valid combination of `x` and `y` arguments or a valid"
+  expect_snapshot(error = TRUE, arc_geo_categories("Food"))
+  expect_snapshot(error = TRUE, arc_geo_categories("Food", "a", "a"))
+  expect_snapshot(
+    error = TRUE,
+    arc_geo_categories("Food", 0, 0, address = "Error")
   )
-  expect_error(arc_geo_categories("Food", "a", "a"), "must be numeric")
-  expect_error(arc_geo_categories("Food", 0, 0, address = "Error"))
 
-  expect_error(arc_geo_categories("Food", 0, 0, progressbar = TRUE))
-  expect_error(arc_geo_categories("Food", 0, 0, return_addresses = TRUE))
+  expect_snapshot(
+    error = TRUE,
+    arc_geo_categories("Food", 0, 0, progressbar = TRUE)
+  )
+  expect_snapshot(
+    error = TRUE,
+    arc_geo_categories("Food", 0, 0, return_addresses = TRUE)
+  )
 })
 
 test_that("Messages", {
@@ -19,35 +25,29 @@ test_that("Messages", {
   skip_if_api_server()
   skip_if_offline()
 
-  expect_message(
-    out <- arc_geo_categories("POI", 200, 0),
-    "Longitudes have been restricted"
-  )
-  expect_message(
-    out <- arc_geo_categories("Address,Postal,Coordinate System,POI", 0, 200),
-    "Latitudes have been restricted"
+  expect_snapshot(out <- arc_geo_categories("POI", 200, 0))
+  expect_snapshot(
+    out <- arc_geo_categories("Address,Postal,Coordinate System,POI", 0, 200)
   )
 
   expect_snapshot(
     out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, verbose = TRUE)
   )
 
-  expect_message(
+  expect_snapshot(
     out <- arc_geo_categories(
       "POI",
       x = 3.7242,
       bbox = c(-3.8, 40.3, -3.65, 40.5)
-    ),
-    "Either `x` or `y` is missing"
+    )
   )
 
-  expect_message(
+  expect_snapshot(
     out <- arc_geo_categories(
       "POI",
       y = 3.7242,
       bbox = c(-3.8, 40.3, -3.65, 40.5)
-    ),
-    "Either `x` or `y` is missing"
+    )
   )
 })
 

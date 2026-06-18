@@ -1,15 +1,15 @@
 Package: arcgeocoder
-Title: Geocoding with the 'ArcGIS' REST API Service
+Title: Address and Coordinate Search with the 'ArcGIS' REST API
 Version: 0.4.1
 Authors@R:
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
-Description: Lightweight interface for converting addresses into
-    geographic coordinates and coordinates into addresses using the
-    'ArcGIS' REST API service
+Description: Provides a lightweight interface to the 'ArcGIS' REST API for
+    converting addresses and structured address components into geographic
+    coordinates, finding places by category and converting coordinates
+    into addresses. It uses the ArcGIS service documented at
     <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
-    Address text can be converted to location candidates and locations can
-    be converted into addresses. No API key is required.
+    No API key is required.
 License: MIT + file LICENSE
 URL: https://dieghernan.github.io/arcgeocoder/,
     https://github.com/dieghernan/arcgeocoder
@@ -39,6 +39,7 @@ Config/testthat/parallel: true
 Encoding: UTF-8
 LazyData: true
 X-schema.org-applicationCategory: cartography
-X-schema.org-keywords: r, geocoding, arcgis, address, reverse-geocoding,
+X-schema.org-keywords: r, arcgis, address, coordinates, location-search,
     rstats, r-package, api-wrapper, api-rest, arcgis-api, cran-r, gis,
-    cran, geocoder, reverse-geocoder
+    cran, spatial-search, geocoder, geocoding, reverse-geocoder,
+    reverse-geocoding

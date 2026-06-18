@@ -4,11 +4,11 @@
 \encoding{UTF-8}
 \name{arc_categories}
 \alias{arc_categories}
-\title{ArcGIS REST API category data}
+\title{Place categories supported by the ArcGIS REST API}
 \format{
 A \link[dplyr:tibble]{tibble} with
 383 rows and
-fields:
+three variables:
 \describe{
 \item{level_1}{Top-level category.}
 \item{level_2}{Second-level category.}
@@ -16,34 +16,30 @@ fields:
 }
 }
 \source{
-\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering}.
+\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST API category filtering}.
 }
 \description{
-Dataset of available categories used to filter results provided by
-\code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}} and \code{\link[=arc_geo_categories]{arc_geo_categories()}} in
-\link[dplyr:tibble]{tibble} format.
+A dataset of categories that can be used to filter results from \code{\link[=arc_geo]{arc_geo()}},
+\code{\link[=arc_geo_multi]{arc_geo_multi()}} and \code{\link[=arc_geo_categories]{arc_geo_categories()}}.
 }
 \details{
-See \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST Category filtering} for details and
+See \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST API category filtering} for details and
 examples.
 
-The geocoding service allows users to search for and geocode many types of
-addresses and places around the world. This simplifies application
-development because developers do not need to know what types of places
-their users are searching for.
-However, due to this flexibility, it is possible for ambiguous searches to
-match to many different places, and users may sometimes receive unexpected
-results. For example, a search for a city may match to a street name, or a
-search for an airport code may match to a country abbreviation.
+The ArcGIS geocoding service supports searches for many types of addresses
+and places around the world. This simplifies application development because
+developers do not need to know what types of places their users are searching
+for. However, ambiguous searches can match many different places and produce
+unexpected results. For example, a search for a city may match a street name,
+or an airport code may match a country abbreviation.
 
-For such cases, the service provides the ability to filter out unwanted
-geocode results with the \code{category} argument. The \code{category} argument
-limits the types of places for which the service searches, thus eliminating
-false-positive matches and potentially speeding up the search process.
+In these cases, the \code{category} argument can filter out unwanted results. It
+limits the types of places that the service searches for, which can eliminate
+false-positive matches and speed up the search.
 
-The results show a list of categories with three different hierarchy levels
-(\code{level_1}, \code{level_2}, \code{level_3}). If a \code{level_1} category is requested
-(that is, \code{POI}), the child categories may also be included in the results.
+The dataset lists categories at three hierarchy levels (\code{level_1}, \code{level_2}
+and \code{level_3}). If a \code{level_1} category is requested (for example, \code{POI}),
+its child categories may also be included in the results.
 }
 \note{
 Data extracted on \strong{15 January 2026}.

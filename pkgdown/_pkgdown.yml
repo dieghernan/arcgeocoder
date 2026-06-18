@@ -17,10 +17,10 @@ development:
   mode: auto
 
 home:
-  title: arcgeocoder | Geocoding with the ArcGIS REST API service
+  title: arcgeocoder | Geocoding with the ArcGIS REST API
   description: >
-    Lightweight interface for geocoding addresses and reverse geocoding
-    coordinates with the ArcGIS REST API service, with no API key required.
+    Geocode addresses, reverse geocode coordinates and find places by category
+    with the ArcGIS REST API. No API key is required.
 authors:
   Diego Hernangómez:
     href: https://dieghernan.github.io/
@@ -28,43 +28,41 @@ authors:
 reference:
 - title: Geocoding and reverse geocoding
   desc: >
-    Core functions for geocoding addresses, places and categories, and for
-    reverse geocoding coordinates with the ArcGIS REST API.
+    Geocode single-line and structured addresses, find places by category and
+    reverse geocode coordinates.
 - contents:
   - has_concept("geocoders")
 
 - title: Reference data
   desc: >
-    Built-in datasets used to filter geocoding requests and work with ArcGIS
-    spatial references.
+    Browse supported place categories and ArcGIS spatial references.
 - contents:
   - has_concept("datasets")
 
 - title: Package documentation
   desc: >
-    Package-level documentation and metadata.
+    Learn about the package and its metadata.
 - contents:
   - arcgeocoder-package
 
 articles:
 - title: Get started
   desc: >
-    Introduction to arcgeocoder.
+    Geocode addresses, reverse geocode coordinates and find places by category.
   contents:
   - arcgeocoder
 
 - title: Reverse geocoding
   desc: >
-    Learn how reverse geocoding works in the ArcGIS REST API and how feature
-    types can be used to control the returned results.
+    Understand the ArcGIS feature hierarchy and control the types of features
+    returned by reverse geocoding requests.
   navbar: Reverse geocoding
   contents:
   - feature-types
 
 - title: Mapping
   desc: >
-    Examples showing how to use arcgeocoder results in static and interactive
-    maps.
+    Display geocoding results on static and interactive maps.
   navbar: Mapping
   contents:
   - articles/static

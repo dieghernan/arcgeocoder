@@ -1,20 +1,22 @@
-#' Check access to ArcGIS REST
+#' Check access to the ArcGIS REST API
 #'
 #' @description
-#' Checks whether \R can access resources at the ArcGIS REST API
+#' Checks whether the current \R session can access the ArcGIS REST API at
 #' <`r arcurl("over")`>.
 #'
-#' @return A logical value.
+#' @returns `TRUE` if the service is accessible, otherwise `FALSE`.
 #'
-#' @family api_management
+#' @family API management helpers
+#'
+#' @keywords internal
+#'
+#' @export
+#' @encoding UTF-8
 #'
 #' @examples
 #' \donttest{
 #' arcgeocoder_check_access()
 #' }
-#' @keywords internal
-#' @export
-#' @encoding UTF-8
 arcgeocoder_check_access <- function() {
   if (on_cran()) {
     return(FALSE)
@@ -37,17 +39,15 @@ arcgeocoder_check_access <- function() {
   result_json$location$x == 0
 }
 
-#' Centralize API queries
+#' Send API queries with one retry
 #'
 #' @description
-#' A wrapper around [utils::download.file()]. On warning or error, it retries
-#' the call.
+#' A wrapper around [utils::download.file()] that retries the request once after
+#' a warning or error.
 #'
-#' @inheritParams utils::download.file
+#' @returns `TRUE` if the file was downloaded, otherwise `FALSE`.
 #'
-#' @return A logical `TRUE` or `FALSE`.
-#'
-#' @family api_management
+#' @family API management helpers
 #'
 #' @keywords internal
 #' @noRd
@@ -62,7 +62,7 @@ arc_api_call <- function(url, destfile, quiet) {
 
   if (isFALSE(dwn_res)) {
     if (isFALSE(quiet)) {
-      message("\nRetrying query.")
+      message("\nRetrying request.")
     }
     Sys.sleep(1)
 
@@ -77,7 +77,7 @@ arc_api_call <- function(url, destfile, quiet) {
 
 #' Check whether the current session is running on CRAN
 #'
-#' @return A logical.
+#' @returns `TRUE` when running on CRAN, otherwise `FALSE`.
 #' @noRd
 on_cran <- function() {
   env <- Sys.getenv("NOT_CRAN")

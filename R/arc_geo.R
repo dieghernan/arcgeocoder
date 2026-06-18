@@ -1,46 +1,51 @@
 #' Geocode addresses with the ArcGIS REST API
 #'
 #' @description
-#' Geocodes addresses supplied as character values and returns the
-#' [tibble][dplyr::tibble] associated with each query.
+#' Converts single-line addresses into geographic coordinates and returns one
+#' or more matches for each query.
 #'
 #' This function uses the `SingleLine` approach detailed in the
-#' [ArcGIS REST docs](`r arcurl("cand")`). For multi-field queries (that is,
-#' using specific address components), use [arc_geo_multi()].
+#' [ArcGIS REST API documentation](`r arcurl("cand")`). For structured queries
+#' that use specific address components, use [arc_geo_multi()].
 #'
-#' @param address Single-line address text (e.g.
+#' @param address Single-line address text (for example,
 #'   `"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
-#'   (e.g. `c("Madrid", "Barcelona")`).
-#' @param lat Latitude column name in the output data (default `"lat"`).
-#' @param long Longitude column name in the output data (default `"lon"`).
+#'   (for example, `c("Madrid", "Barcelona")`).
+#' @param lat Name of the latitude or y-coordinate column in the output. The
+#'   default is `"lat"`.
+#' @param long Name of the longitude or x-coordinate column in the output. The
+#'   default is `"lon"`.
 #' @param limit Maximum number of results to return per input address. Each
 #'   query has a hard API limit of 50 results.
-#' @param full_results Logical. If `TRUE`, return all available API fields
-#'   via `outFields=*`. Default is `FALSE`.
-#' @param return_addresses Logical. If `TRUE`, keep the input query in the
-#'   output.
-#' @param sourcecountry Country filter using ISO codes (e.g. `"USA"`).
+#' @param full_results A logical value. If `TRUE`, returns all available API
+#'   fields via `outFields = "*"`. The default is `FALSE`.
+#' @param return_addresses A logical value. If `TRUE`, includes the input query
+#'   in the output.
+#' @param sourcecountry Country filter using ISO codes (for example, `"USA"`).
 #'   Multiple values can be supplied as a comma-separated string.
-#' @param category Place or address type used as a filter. Multiple values are
-#'   accepted (e.g. `c("Cinema", "Museum")`). See [arc_categories].
-#' @param custom_query Additional API parameters as named list values.
+#' @param category Place or address type used to filter results. Multiple values
+#'   are accepted (for example, `c("Cinema", "Museum")`). See [arc_categories].
+#' @param custom_query A named list with additional API parameters.
 #'
 #' @inheritParams arc_reverse_geo
 #'
 #' @details
-#' See the [ArcGIS REST docs](`r arcurl("cand")`) for more information and
-#' valid values.
+#' See the [ArcGIS REST API documentation](`r arcurl("cand")`) for more
+#' information and valid values.
 #'
 #' @inheritSection arc_reverse_geo `outsr`
 #'
-#' @return
+#' @returns
 #' ```{r child = "man/chunks/out1.Rmd"}
 #' ```
 #'
 #' @references
-#' [ArcGIS REST `findAddressCandidates`](`r arcurl("cand")`).
+#' [ArcGIS REST API `findAddressCandidates`](`r arcurl("cand")`).
 #'
 #' @family geocoders
+#'
+#' @export
+#' @encoding UTF-8
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
@@ -56,7 +61,7 @@
 #' with_params |>
 #'   select(lat, lon, CntryName, LongLabel)
 #'
-#' # With options: restrict the search to the USA.
+#' # Restrict the search to the USA.
 #' with_params_usa <- arc_geo(c("Madrid", "Barcelona"),
 #'   sourcecountry = "USA",
 #'   custom_query = list(outFields = c("LongLabel", "CntryName"))
@@ -65,8 +70,6 @@
 #' with_params_usa |>
 #'   select(lat, lon, CntryName, LongLabel)
 #' }
-#' @export
-#' @encoding UTF-8
 arc_geo <- function(
   address,
   lat = "lat",
@@ -146,7 +149,7 @@ arc_geo_single <- function(
   tbl_query <- dplyr::tibble(query = address)
 
   if (isFALSE(res)) {
-    message("\n", url, " is not reachable.")
+    message("\nURL is unreachable: ", url)
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
@@ -155,7 +158,7 @@ arc_geo_single <- function(
 
   # Handle empty queries.
   if (length(result_init$candidates) == 0) {
-    message("\nNo results for query: ", address)
+    message("\nNo results found for query: ", address)
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }

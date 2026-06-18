@@ -2,8 +2,8 @@
 #| echo: false
 #| results: asis
 cat(paste0(
-  "A [tibble][dplyr::tibble] object with the results. ",
-  "See output details in ",
+  "A [tibble][dplyr::tibble] with one or more matches for each query. ",
+  "For details about the available fields, see ",
   "[ArcGIS REST API service output](",
   arcgeocoder:::arcurl("out"), ")."
 ))

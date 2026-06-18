@@ -3,11 +3,8 @@ test_that("Errors", {
   skip_if_api_server()
   skip_if_offline()
 
-  expect_error(
-    arc_reverse_geo(0, c(2, 3)),
-    "`x` and `y` must have the same number"
-  )
-  expect_error(arc_reverse_geo("a", "a"), "must be numeric")
+  expect_snapshot(error = TRUE, arc_reverse_geo(0, c(2, 3)))
+  expect_snapshot(error = TRUE, arc_reverse_geo("a", "a"))
 })
 
 test_that("Messages", {
@@ -15,14 +12,8 @@ test_that("Messages", {
   skip_if_api_server()
   skip_if_offline()
 
-  expect_message(
-    out <- arc_reverse_geo(200, 0),
-    "Longitudes have been restricted"
-  )
-  expect_message(
-    out <- arc_reverse_geo(0, 200),
-    "Latitudes have been restricted"
-  )
+  expect_snapshot(out <- arc_reverse_geo(200, 0))
+  expect_snapshot(out <- arc_reverse_geo(0, 200))
 
   expect_snapshot(out <- arc_reverse_geo(0, 90, verbose = TRUE))
 })
@@ -31,9 +22,8 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(
-    obj <- arc_reverse_geo(179.9999, 89.999999, featuretypes = "StreetInt"),
-    "No results for location:"
+  expect_snapshot(
+    obj <- arc_reverse_geo(179.9999, 89.999999, featuretypes = "StreetInt")
   )
 
   expect_true(nrow(obj) == 1)
@@ -43,14 +33,13 @@ test_that("Returning empty query", {
   expect_named(obj, c("x", "y", "address"))
   expect_true(is.na(obj$address))
 
-  expect_message(
+  expect_snapshot(
     obj_renamed <- arc_reverse_geo(
       179.9999,
       89.999999,
       address = "adddata",
       featuretypes = "StreetInt"
-    ),
-    "No results for location:"
+    )
   )
 
   expect_named(obj_renamed, c("x", "y", "adddata"))
@@ -219,10 +208,7 @@ test_that("Mock arc_api_call", {
     }
   )
 
-  expect_message(
-    obj <- arc_reverse_geo(-3.6687109, 40.4207414),
-    "is not reachable"
-  )
+  expect_snapshot(obj <- arc_reverse_geo(-3.6687109, 40.4207414))
 
   expect_identical(
     obj,

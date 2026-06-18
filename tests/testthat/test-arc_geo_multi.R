@@ -3,14 +3,11 @@ test_that("Errors", {
   skip_if_api_server()
   skip_if_offline()
 
-  expect_error(arc_geo_multi(), "No address component provided")
+  expect_snapshot(error = TRUE, arc_geo_multi())
 
-  expect_error(
-    arc_geo_multi("a", c("a", "b")),
-    "their lengths must be the same"
-  )
+  expect_snapshot(error = TRUE, arc_geo_multi("a", c("a", "b")))
 
-  expect_error(arc_geo_multi(NA), "No address component provided")
+  expect_snapshot(error = TRUE, arc_geo_multi(NA))
 
   expect_s3_class(
     out <- arc_geo_multi(

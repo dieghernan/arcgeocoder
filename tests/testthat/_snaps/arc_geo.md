@@ -1,10 +1,26 @@
+# Returning empty query
+
+    Code
+      obj <- arc_geo("alsksjdhfg 561bata lorem ipsum")
+    Message
+      
+      No results found for query: alsksjdhfg 561bata lorem ipsum
+
+---
+
+    Code
+      obj_renamed <- arc_geo("alsksjdhfg 561bata lorem ipsum", lat = "lata", long = "longa")
+    Message
+      
+      No results found for query: alsksjdhfg 561bata lorem ipsum
+
 # Messages
 
     Code
       out <- arc_geo("Madrid", limit = 200)
     Message
       
-      The ArcGIS REST API provides a maximum of 50 results. Only the first 50 results will be requested.
+      The ArcGIS REST API returns at most 50 results per request. Only the first 50 results will be requested.
 
 ---
 
@@ -12,7 +28,7 @@
       out <- arc_geo("Madrid", verbose = TRUE)
     Message
       
-      Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
+      Endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
          - SingleLine=Madrid
          - f=json
@@ -26,7 +42,7 @@
         location = "-117.92712,33.81563"), verbose = TRUE)
     Message
       
-      Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
+      Endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
          - SingleLine=
          - f=json
@@ -43,7 +59,7 @@
         location = "-117.92712,33.81563"), verbose = TRUE)
     Message
       
-      Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
+      Endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
          - SingleLine=
          - f=json
@@ -52,4 +68,12 @@
          - location=-117.92712,33.81563
          - category=Restaurant
       URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&outFields=LongLabel,Type&location=-117.92712,33.81563&category=Restaurant
+
+# Mock arc_api_call
+
+    Code
+      obj <- arc_geo("Madrid")
+    Message
+      
+      URL is unreachable: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=Madrid&f=json&maxLocations=1
 

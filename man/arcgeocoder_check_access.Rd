@@ -3,15 +3,15 @@
 \encoding{UTF-8}
 \name{arcgeocoder_check_access}
 \alias{arcgeocoder_check_access}
-\title{Check access to ArcGIS REST}
+\title{Check access to the ArcGIS REST API}
 \usage{
 arcgeocoder_check_access()
 }
 \value{
-A logical value.
+\code{TRUE} if the service is accessible, otherwise \code{FALSE}.
 }
 \description{
-Checks whether \R can access resources at the ArcGIS REST API
+Checks whether the current \R session can access the ArcGIS REST API at
 \url{https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm}.
 }
 \examples{
@@ -19,5 +19,5 @@ Checks whether \R can access resources at the ArcGIS REST API
 arcgeocoder_check_access()
 }
 }
-\concept{api_management}
+\concept{API management helpers}
 \keyword{internal}

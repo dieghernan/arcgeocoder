@@ -29,7 +29,7 @@ is_named <- function(x) {
 restrict_arc_limit <- function(limit) {
   if (limit > 50) {
     message(paste0(
-      "\nThe ArcGIS REST API provides a maximum of 50 results.",
+      "\nThe ArcGIS REST API returns at most 50 results per request.",
       " Only the first 50 results will be requested."
     ))
     limit <- min(50, limit)
@@ -136,7 +136,7 @@ restrict_lat <- function(x) {
     x,
     min_value = -90,
     max_value = 90,
-    message_text = "\nLatitudes have been restricted to [-90, 90].",
+    message_text = "\nLatitudes were restricted to [-90, 90].",
     use_identical = TRUE
   )
 }
@@ -146,7 +146,7 @@ restrict_lon <- function(x) {
     x,
     min_value = -180,
     max_value = 180,
-    message_text = "\nLongitudes have been restricted to [-180, 180]."
+    message_text = "\nLongitudes were restricted to [-180, 180]."
   )
 }
 
@@ -155,7 +155,7 @@ restrict_bbox_lat <- function(x) {
     x,
     min_value = -90,
     max_value = 90,
-    message_text = "\n`bbox` ymin and ymax have been restricted to [-90, 90]."
+    message_text = "\n`bbox` ymin and ymax were restricted to [-90, 90]."
   )
 }
 
@@ -164,7 +164,7 @@ restrict_bbox_lon <- function(x) {
     x,
     min_value = -180,
     max_value = 180,
-    message_text = "\n`bbox` xmin and xmax have been restricted to [-180, 180]."
+    message_text = "\n`bbox` xmin and xmax were restricted to [-180, 180]."
   )
 }
 
@@ -213,7 +213,7 @@ message_api_call <- function(url) {
   encoded_url <- URLencode(url)
 
   message(
-    "\nEntry point: ",
+    "\nEndpoint: ",
     decomp[1],
     "?\nParameters:\n",
     paste0("   - ", params, collapse = "\n"),
@@ -449,7 +449,7 @@ empty_tbl <- function(x, lat, lon) {
   x
 }
 
-# Helper for URLs in documentation.
+# Generate URLs for documentation.
 arcurl <- function(x) {
   base <- "https://developers.arcgis.com/rest/geocode/api-reference"
 

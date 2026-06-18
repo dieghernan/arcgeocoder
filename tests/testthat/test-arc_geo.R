@@ -2,9 +2,8 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_message(
-    obj <- arc_geo("alsksjdhfg 561bata lorem ipsum"),
-    "No results for"
+  expect_snapshot(
+    obj <- arc_geo("alsksjdhfg 561bata lorem ipsum")
   )
 
   expect_true(nrow(obj) == 1)
@@ -18,13 +17,12 @@ test_that("Returning empty query", {
   expect_true(is.na(obj$lat))
   expect_true(is.na(obj$lon))
 
-  expect_message(
+  expect_snapshot(
     obj_renamed <- arc_geo(
       "alsksjdhfg 561bata lorem ipsum",
       lat = "lata",
       long = "longa"
-    ),
-    "No results for"
+    )
   )
 
   expect_named(obj_renamed, c("query", "lata", "longa"))
@@ -227,10 +225,7 @@ test_that("Mock arc_api_call", {
     }
   )
 
-  expect_message(
-    obj <- arc_geo("Madrid"),
-    "is not reachable"
-  )
+  expect_snapshot(obj <- arc_geo("Madrid"))
 
   expect_identical(
     obj,

@@ -4,37 +4,37 @@
 \encoding{UTF-8}
 \name{arc_spatial_references}
 \alias{arc_spatial_references}
-\title{Esri (ArcGIS) spatial reference data}
+\title{Spatial references supported by the ArcGIS REST API}
 \format{
 A \link[dplyr:tibble]{tibble} with
 9,608 rows
-and fields:
+and eight variables:
 \describe{
 \item{projtype}{Projection type (\code{"ProjectedCoordinateSystems"},
 \code{"GeographicCoordinateSystems"} or \code{"VerticalCoordinateSystems"}).}
-\item{wkid}{Well-Known ID.}
-\item{latestWkid}{Most recent \code{wkid}, if \code{wkid} is deprecated.}
-\item{authority}{\code{wkid} authority (Esri or EPSG).}
-\item{deprecated}{Logical indicating whether \code{wkid} is deprecated.}
-\item{description}{Human-readable description of the \code{wkid}.}
-\item{areaname}{Use area of the \code{wkid}.}
-\item{wkt}{Representation of \code{wkid} in Well-Known Text (WKT). Useful when
-working with \CRANpkg{sf} or \CRANpkg{terra}.}
+\item{wkid}{Well-known ID (WKID).}
+\item{latestWkid}{Current WKID if \code{wkid} is deprecated.}
+\item{authority}{WKID authority (Esri or EPSG).}
+\item{deprecated}{Whether \code{wkid} is deprecated.}
+\item{description}{Human-readable description of the spatial reference.}
+\item{areaname}{Area of use of the spatial reference.}
+\item{wkt}{Well-known text (WKT) representation of the spatial reference.
+Useful when working with \CRANpkg{sf} or \CRANpkg{terra}.}
 }
 }
 \source{
 \href{https://github.com/Esri/projection-engine-db-doc}{Esri Projection Engine factory}
 }
 \description{
-Dataset of available spatial references (CRS) in \link[dplyr:tibble]{tibble}
-format.
+A dataset of coordinate reference systems (CRSs) supported by the ArcGIS
+REST API.
 }
 \details{
 This dataset is useful when using the \code{outsr} argument.
 
 Some projection IDs have changed over time. For example, Web Mercator
 \code{wkid = 102100} is deprecated and is currently \code{wkid = 3857}. However, both
-values work and return similar results.
+values work and return equivalent results.
 }
 \note{
 Data extracted on \strong{15 January 2026}.
@@ -46,7 +46,7 @@ Data extracted on \strong{15 January 2026}.
 data("arc_spatial_references")
 arc_spatial_references
 
-# Request with deprecated Web Mercator.
+# Find the deprecated Web Mercator WKID.
 library(dplyr)
 wkid <- arc_spatial_references |>
   filter(latestWkid == 3857 & deprecated) |>
@@ -56,20 +56,19 @@ glimpse(wkid)
 
 add <- arc_geo("London, United Kingdom", outsr = wkid$wkid)
 
-# Note values for `lat`, `lon` and `wkid`. `latestWkid` gives the current
-# valid `wkid`.
+# Compare `lat`, `lon`, `wkid` and the current ID in `latestWkid`.
 add |>
   select(lat, lon, wkid, latestWkid) |>
   glimpse()
 
-# Try with `sf`.
+# Look up the deprecated WKID with `sf`.
 
 try(sf::st_crs(wkid$wkid))
 
-# Try the latest WKID.
+# Look up the current WKID.
 try(sf::st_crs(wkid$latestWkid))
 
-# Or use WKT.
+# Look up the WKT definition.
 try(sf::st_crs(wkid$wkt))
 }
 \dontshow{\}) # examplesIf}

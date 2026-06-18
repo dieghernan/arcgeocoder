@@ -1,10 +1,10 @@
-#' Geocode addresses with a multi-field ArcGIS REST API query
+#' Geocode addresses with a structured ArcGIS REST API query
 #'
 #' @description
-#' Geocodes addresses from specific address components and returns the
-#' [tibble][dplyr::tibble] associated with each query.
+#' Converts structured address components into geographic coordinates and
+#' returns one or more matches for each query.
 #'
-#' For geocoding with a single text string, use [arc_geo()].
+#' For a single-line address, use [arc_geo()].
 #'
 #' @param address,address2,address3,neighborhood,city,subregion Address
 #'   components. See **Details**.
@@ -13,50 +13,50 @@
 #' @inheritParams arc_geo
 #'
 #' @details
-#' See the [ArcGIS REST docs](`r arcurl("cand")`) for more information and
-#' valid values.
+#' See the [ArcGIS REST API documentation](`r arcurl("cand")`) for more
+#' information and valid values.
 #'
 #' # Address components
 #'
-#' This function performs structured queries by different components of an
-#' address. At least one field should be different from `NA` or `NULL`.
+#' This function performs structured queries using separate address components.
+#' At least one component must not be `NA` or `NULL`.
 #'
-#' A vector of values can be provided for each argument for multiple geocoding.
-#' When using vectors in different arguments, their lengths must be the same.
+#' Each argument can be a vector to geocode multiple addresses. Vectors supplied
+#' to different arguments must have the same length.
 #'
 #' The following list provides a brief description of each argument:
 #'
-#' - `address`: A string that represents the first line of a street address. In
-#'   most cases, it is the **street name and house number** input, but it can
-#'   also be used to input a building name or place name.
+#' - `address`: A string representing the first line of a street address. It
+#'   usually contains the street name and house number, but can also contain a
+#'   building or place name.
 #' - `address2`: A string that represents the second line of a street address.
-#'   This can include **street name/house number, building name, place name or
-#'   subunit**.
+#'   It can include a street name and house number, building name, place name or
+#'   subunit.
 #' - `address3`: A string that represents the third line of a street address.
-#'   This can include **street name/house number, building name, place name or
-#'   subunit**.
+#'   It can include a street name and house number, building name, place name or
+#'   subunit.
 #' - `neighborhood`: The smallest administrative division associated with an
-#'   address, typically a **neighborhood** or a section of a larger populated
+#'   address, typically a neighborhood or a section of a larger populated
 #'   place.
 #' - `city`: The next largest administrative division associated with an
-#'   address, typically a **city or municipality**.
+#'   address, typically a city or municipality.
 #' - `subregion`: The next largest administrative division associated with an
 #'   address. Depending on the country, a subregion can represent a
-#'   **county, state or province**.
+#'   county, state or province.
 #' - `region`: The largest administrative division associated with an address,
-#'   typically a **state or province**.
-#' - `postal`: The **standard postal code** for an address, typically a
+#'   typically a state or province.
+#' - `postal`: The standard postal code for an address, typically a
 #'   three– to six-digit alphanumeric code.
-#' - `postalext`: A **postal code extension**, such as the United States Postal
+#' - `postalext`: A postal code extension, such as the United States Postal
 #'   Service ZIP+4 code.
-#' - `countrycode`: A value representing the **country**. Providing this value
-#'   **increases geocoding speed**. Acceptable values include the full country
+#' - `countrycode`: A value representing the country. Providing this value can
+#'   increase search speed. Acceptable values include the full country
 #'   name in English or the official language of the country, the two-character
 #'   country code or the three-character country code.
 #'
 #' @inheritSection arc_reverse_geo `outsr`
 #'
-#' @return
+#' @returns
 #' ```{r child = "man/chunks/out1.Rmd"}
 #' ```
 #'
@@ -64,10 +64,12 @@
 #' to help track the results.
 #'
 #' @references
-#' [ArcGIS REST `findAddressCandidates`](`r arcurl("cand")`).
+#' [ArcGIS REST API `findAddressCandidates`](`r arcurl("cand")`).
 #'
 #' @family geocoders
 #'
+#' @export
+#' @encoding UTF-8
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{
@@ -105,8 +107,6 @@
 #'   select(lat, lon, CntryName, Region, LongLabel) |>
 #'   slice_head(n = 10)
 #' }
-#' @export
-#' @encoding UTF-8
 arc_geo_multi <- function(
   address = NULL,
   address2 = NULL,
@@ -152,7 +152,7 @@ arc_geo_multi <- function(
   key <- key[!is.na(key)]
 
   if (length(key) == 0) {
-    stop("No address component provided. Provide at least one non-NA value.")
+    stop("Provide at least one address component that is not `NA`.")
   }
 
   # Add API arguments to the custom query.
@@ -209,11 +209,11 @@ input_multi <- function(
   getlen <- lengths(multi_list)
   nolens <- getlen[getlen != 0]
   if (length(nolens) == 0) {
-    stop("No address component provided. Provide at least one non-NA value.")
+    stop("Provide at least one address component that is not `NA`.")
   }
   if (length(unique(nolens)) != 1) {
     stop(paste0(
-      "When providing several address components, ",
+      "When providing multiple address components, ",
       "their lengths must be the same."
     ))
   }

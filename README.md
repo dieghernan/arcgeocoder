@@ -24,39 +24,37 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-The goal of **arcgeocoder** is to provide a lightweight interface for
-geocoding addresses and reverse geocoding coordinates through the
-[ArcGIS REST API geocoding
-service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
+**arcgeocoder** provides a lightweight interface to the [ArcGIS REST
+API](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
+It converts addresses into geographic coordinates, converts coordinates
+into addresses and finds places by category.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/arcgeocoder/>.
 
 ## Why arcgeocoder?
 
-**arcgeocoder** provides a lightweight interface for geocoding and
-reverse geocoding with the ArcGIS REST API service. It accesses the API
-without depending on additional HTTP packages such as **curl**. In some
-situations, **curl** may not be available or accessible, so
-**arcgeocoder** uses base functions to avoid this limitation.
+**arcgeocoder** accesses the ArcGIS REST API without requiring an API
+key or an additional HTTP package such as **curl**. It uses base R
+download functions, which keeps its dependency footprint small.
 
-The interface of **arcgeocoder** is designed to make ArcGIS geocoding
-features easier to access. The API endpoints used by **arcgeocoder** are
-`findAddressCandidates` and `reverseGeocode`, which can be accessed
-<u>**without**</u> an <u>**API key**</u>.
+The package provides focused interfaces to the `findAddressCandidates`
+and `reverseGeocode` endpoints. These interfaces support single-line
+addresses, structured address components, category filters and reverse
+geocoding.
 
 ## Recommended packages
 
-Other packages are more mature and provide similar features:
+The following packages provide related geocoding features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)) provides an interface to
   ArcGIS, Nominatim (OpenStreetMap), Google, TomTom, Mapbox and other
-  services for geocoding and reverse geocoding.
+  geocoding services.
 - [**nominatimlite**](https://dieghernan.github.io/nominatimlite/)
   ([Hernangómez 2024](#ref-R-nominatimlite)) is similar to
   **arcgeocoder** but uses data from OpenStreetMap through the
-  [Nominatim API](https://nominatim.org/release-docs/latest/) service.
+  [Nominatim API](https://nominatim.org/release-docs/latest/).
 
 ## Installation
 
@@ -73,8 +71,8 @@ install.packages("arcgeocoder")
 
 <div class="pkgdown-devel">
 
-Check the documentation for the development version
-in <https://dieghernan.github.io/arcgeocoder/dev/>.
+Read the documentation for the development version at
+<https://dieghernan.github.io/arcgeocoder/dev/>.
 
 You can install the development version of **arcgeocoder** with:
 
@@ -87,7 +85,7 @@ Alternatively, you can install **arcgeocoder** using the
 [r-universe](https://dieghernan.r-universe.dev/arcgeocoder):
 
 ``` r
-# Install arcgeocoder in R:
+# Install arcgeocoder in R.
 install.packages(
   "arcgeocoder",
   repos = c(
@@ -103,11 +101,11 @@ install.packages(
 
 ### Geocoding and reverse geocoding
 
-*Note: examples adapted from the **tidygeocoder** package.*
+*The examples in this section are adapted from the **tidygeocoder**
+package.*
 
-In this first example, we geocode a few addresses using the `arc_geo()`
-function. Note that **arcgeocoder** works without additional setup, and
-you do not need to provide an API key to start geocoding.
+The `arc_geo()` function converts single-line addresses into geographic
+coordinates. It requires no API key or additional setup.
 
 ``` r
 library(arcgeocoder)
@@ -130,9 +128,8 @@ lat_longs <- arc_geo(
 )
 ```
 
-Only a few fields are returned from the geocoding service in this
-example, but `full_results = TRUE` can be used to return all data from
-the service.
+By default, `arc_geo()` returns a small set of fields. Set
+`full_results = TRUE` to return all available API fields.
 
 | query | latitude | longitude | address | score | x | y | xmin | ymin | xmax | ymax | wkid | latestWkid |
 |:---|---:|---:|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -145,12 +142,11 @@ the service.
 Table 1: Example: geocoding addresses.
 </p>
 
-To perform reverse geocoding (obtaining addresses from geographic
-coordinates), we can use the `arc_reverse_geo()` function. The arguments
-are similar to those in `arc_geo()`, but now we specify the input data
-columns with the `x` and `y` arguments. The data used here comes from
-the geocoding query above. The single-line address is returned in the
-column named by `address`.
+The `arc_reverse_geo()` function converts longitude and latitude values
+into addresses. Supply longitude values to `x` and latitude values to
+`y`. The following example uses the coordinates returned by the previous
+query. The `address` argument sets the name of the address column in the
+output.
 
 ``` r
 reverse <- arc_reverse_geo(
@@ -172,15 +168,13 @@ reverse <- arc_reverse_geo(
 Table 2: Example: reverse geocoding addresses.
 </p>
 
-It is also possible to search for specific locations within or near a
-reference area or location using [category
-filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
-See the documentation for the `arc_categories` data object for more
-information.
+The `arc_geo_categories()` function finds places by category near a
+location or within a bounding box. Available categories are documented
+in `arc_categories` and in the [ArcGIS category filtering
+documentation](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
 
-In the following example, we look for food-related points of interest
-(POIs), such as restaurants, coffee shops and bakeries, near the Eiffel
-Tower in France.
+The following example finds food-related places, such as restaurants,
+coffee shops and bakeries, near the Eiffel Tower in France.
 
 ``` r
 library(ggplot2) # For plotting.
@@ -222,17 +216,17 @@ ggplot(eiffel_tower, aes(x, y)) +
     color = "Type of place",
     x = "",
     y = "",
-    caption = "Data from the ArcGIS REST API service"
+    caption = "Data from the ArcGIS REST API"
   )
 ```
 
 <img src="man/figures/README-eiffel-1.png" style="width:100.0%"
 alt="Example: Food places near the Eiffel Tower" />
 
-### arcgeocoder and spatial data
+### Convert results to spatial data
 
-It is straightforward to convert **arcgeocoder** results to an **sf**
-object:
+Use the longitude and latitude columns returned by **arcgeocoder** to
+create an **sf** object:
 
 ``` r
 library(sf)
@@ -263,22 +257,22 @@ alt="Example: Food places near the Eiffel Tower using the sf package." />
 
 <p>
 
-Hernangómez D (2026). <em>arcgeocoder: Geocoding with the ArcGIS REST
-API Service</em>.
+Hernangómez D (2026). <em>arcgeocoder: Address and Coordinate Search
+with the ArcGIS REST API</em>.
 <a href="https://doi.org/10.32614/CRAN.package.arcgeocoder">doi:10.32614/CRAN.package.arcgeocoder</a>.
 <a href="https://dieghernan.github.io/arcgeocoder/">https://dieghernan.github.io/arcgeocoder/</a>.
 </p>
 
-A BibTeX entry for LaTeX users is
+A BibTeX entry for LaTeX users is shown below.
 
     @Manual{R-arcgeocoder,
-      title = {{arcgeocoder}: Geocoding with the {ArcGIS} {REST} {API} Service},
+      title = {{arcgeocoder}: Address and Coordinate Search with the {ArcGIS} {REST} {API}},
       doi = {10.32614/CRAN.package.arcgeocoder},
       author = {Diego Hernangómez},
       year = {2026},
       version = {0.4.1},
       url = {https://dieghernan.github.io/arcgeocoder/},
-      abstract = {Lightweight interface for converting addresses into geographic coordinates and coordinates into addresses using the ArcGIS REST API service <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. Address text can be converted to location candidates and locations can be converted into addresses. No API key is required.},
+      abstract = {Provides a lightweight interface to the ArcGIS REST API for converting addresses and structured address components into geographic coordinates, finding places by category and converting coordinates into addresses. It uses the ArcGIS service documented at <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. No API key is required.},
     }
 
 ## References

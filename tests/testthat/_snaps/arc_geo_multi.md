@@ -1,10 +1,34 @@
+# Errors
+
+    Code
+      arc_geo_multi()
+    Condition
+      Error in `input_multi()`:
+      ! Provide at least one address component that is not `NA`.
+
+---
+
+    Code
+      arc_geo_multi("a", c("a", "b"))
+    Condition
+      Error in `input_multi()`:
+      ! When providing multiple address components, their lengths must be the same.
+
+---
+
+    Code
+      arc_geo_multi(NA)
+    Condition
+      Error in `arc_geo_multi()`:
+      ! Provide at least one address component that is not `NA`.
+
 # Messages
 
     Code
       out <- arc_geo_multi("Madrid", limit = 200)
     Message
       
-      The ArcGIS REST API provides a maximum of 50 results. Only the first 50 results will be requested.
+      The ArcGIS REST API returns at most 50 results per request. Only the first 50 results will be requested.
 
 ---
 
@@ -13,7 +37,7 @@
         verbose = TRUE)
     Message
       
-      Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
+      Endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
          - address=Calle Mayor
          - city=Madrid
@@ -30,7 +54,7 @@
         verbose = TRUE)
     Message
       
-      Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
+      Endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
          - address=Atocha
          - city=Madrid
@@ -50,7 +74,7 @@
           location = "-117.92712,33.81563"), verbose = TRUE)
     Message
       
-      Entry point: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
+      Endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
       Parameters:
          - address=Atocha
          - city=Madrid
