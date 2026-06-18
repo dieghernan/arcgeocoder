@@ -68,14 +68,14 @@ accepted (e.g. \code{c("Cinema", "Museum")}). See \link{arc_categories}.}
 \item{custom_query}{Additional API parameters as named list values.}
 }
 \value{
-A \link[tibble:tbl_df]{tibble} object with the results. See output details in \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
+A \link[dplyr:tibble]{tibble} object with the results. See output details in \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 
 The output also includes the input arguments as columns prefixed with \code{q_}
 to help track the results.
 }
 \description{
 Geocodes addresses from specific address components and returns the
-\link[tibble:tbl_df]{tibble} associated with each query.
+\link[dplyr:tibble]{tibble} associated with each query.
 
 For geocoding with a single text string, use \code{\link[=arc_geo]{arc_geo()}}.
 }
@@ -173,8 +173,6 @@ simple3 |>
 \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm}{ArcGIS REST \code{findAddressCandidates}}.
 }
 \seealso{
-\code{\link[tidygeocoder:geo]{tidygeocoder::geo()}}
-
 Geocoding and reverse geocoding functions:
 \code{\link[=arc_geo]{arc_geo()}},
 \code{\link[=arc_geo_categories]{arc_geo_categories()}},

@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Geocodes addresses supplied as character values and returns the
-#' [tibble][tibble::tbl_df] associated with each query.
+#' [tibble][dplyr::tibble] associated with each query.
 #'
 #' This function uses the `SingleLine` approach detailed in the
 #' [ArcGIS REST docs](`r arcurl("cand")`). For multi-field queries (that is,
@@ -41,8 +41,6 @@
 #' [ArcGIS REST `findAddressCandidates`](`r arcurl("cand")`).
 #'
 #' @family geocoders
-#'
-#' @seealso [tidygeocoder::geo()]
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{

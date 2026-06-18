@@ -3,12 +3,12 @@
 #' @description
 #' Dataset of available categories used to filter results provided by
 #' [arc_geo()], [arc_geo_multi()] and [arc_geo_categories()] in
-#' [tibble][tibble::tbl_df] format.
+#' [tibble][dplyr::tibble] format.
 #'
 #' @name arc_categories
 #' @docType data
 #' @format
-#' A [tibble][tibble::tbl_df] with
+#' A [tibble][dplyr::tibble] with
 #' `r prettyNum(nrow(arcgeocoder::arc_categories), big.mark=",")` rows and
 #' fields:
 #' \describe{
@@ -87,12 +87,12 @@ NULL
 #' Esri (ArcGIS) spatial reference data
 #'
 #' @description
-#' Dataset of available spatial references (CRS) in [tibble][tibble::tbl_df]
+#' Dataset of available spatial references (CRS) in [tibble][dplyr::tibble]
 #' format.
 #'
 #' @name arc_spatial_references
 #' @docType data
-#' @format A [tibble][tibble::tbl_df] with
+#' @format A [tibble][dplyr::tibble] with
 #' `r prettyNum(nrow(arcgeocoder::arc_spatial_references), big.mark=",")` rows
 #' and fields:
 #' \describe{

@@ -41,9 +41,10 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-The goal of **arcgeocoder** is to provide a lightweight interface for
-geocoding addresses and reverse geocoding coordinates through the
-[ArcGIS REST API geocoding service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
+The goal of **arcgeocoder** is to provide a lightweight interface for geocoding
+addresses and reverse geocoding coordinates through the [ArcGIS REST API
+geocoding
+service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/arcgeocoder/>.
@@ -59,17 +60,15 @@ functions to avoid this limitation.
 The interface of **arcgeocoder** is designed to make ArcGIS geocoding features
 easier to access. The API endpoints used by **arcgeocoder** are
 `findAddressCandidates` and `reverseGeocode`, which can be accessed
-[**without**]{.underline} an
-[**API key**]{.underline}.
+[**without**]{.underline} an [**API key**]{.underline}.
 
 ## Recommended packages
 
 Other packages are more mature and provide similar features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
-  [@R-tidygeocoder] provides an interface to ArcGIS, Nominatim
-  (OpenStreetMap), Google, TomTom, Mapbox and other services for geocoding and
-  reverse geocoding.
+  [@R-tidygeocoder] provides an interface to ArcGIS, Nominatim (OpenStreetMap),
+  Google, TomTom, Mapbox and other services for geocoding and reverse geocoding.
 - [**nominatimlite**](https://dieghernan.github.io/nominatimlite/)
   [@R-nominatimlite] is similar to **arcgeocoder** but uses data from
   OpenStreetMap through the [Nominatim
@@ -182,8 +181,7 @@ cat("<p class=\"caption\">Table 2: Example: reverse geocoding addresses.</p>")
 It is also possible to search for specific locations within or near a reference
 area or location using [category
 filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
-See the documentation for the `arc_categories` data object for more
-information.
+See the documentation for the `arc_categories` data object for more information.
 
 In the following example, we look for food-related points of interest (POIs),
 such as restaurants, coffee shops and bakeries, near the Eiffel Tower in France.
@@ -218,7 +216,7 @@ food_eiffel <- arc_geo_categories(
 
 # Plot by food type.
 ggplot(eiffel_tower, aes(x, y)) +
-  geom_point(shape = 17, color = "red", size = 4) +
+  geom_point(shape = 15, color = "blue", size = 4) +
   geom_point(data = food_eiffel, aes(x, y, color = Type)) +
   labs(
     title = "Food near the Eiffel Tower",
@@ -239,17 +237,22 @@ It is straightforward to convert **arcgeocoder** results to an **sf** object:
 #| fig-cap: 'Example: Food places near the Eiffel Tower using the sf package.'
 library(sf)
 
-food_eiffel_sf <- st_as_sf(
-  food_eiffel,
+eiffel_tower_sf <- eiffel_tower |>
+  select(lon, lat, LongLabel) |>
+  st_as_sf(
+    coords = c("lon", "lat"),
+    # Set the CRS of the resulting coordinates.
+    crs = eiffel_tower$wkid
+  )
+
+food_eiffel_sf <- st_as_sf(food_eiffel,
   coords = c("lon", "lat"),
-  # Set the CRS of the resulting coordinates.
   crs = eiffel_tower$wkid
 )
 
-food_eiffel_sf
-
-ggplot(food_eiffel_sf) +
-  geom_sf(aes(color = Type)) +
+ggplot(eiffel_tower_sf) +
+  geom_sf(shape = 15, color = "blue", size = 4) +
+  geom_sf(data = food_eiffel_sf, aes(color = Type)) +
   coord_sf(crs = 3035)
 ```
 

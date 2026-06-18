@@ -16,6 +16,10 @@
 #' @export
 #' @encoding UTF-8
 arcgeocoder_check_access <- function() {
+  if (on_cran()) {
+    return(FALSE)
+  }
+
   api <- arc_endpoint_url("reverseGeocode")
 
   # Compose URL.
@@ -69,4 +73,17 @@ arc_api_call <- function(url, destfile, quiet) {
     return(FALSE)
   }
   TRUE
+}
+
+#' Check whether the current session is running on CRAN
+#'
+#' @return A logical.
+#' @noRd
+on_cran <- function() {
+  env <- Sys.getenv("NOT_CRAN")
+  if (identical(env, "")) {
+    !interactive()
+  } else {
+    !isTRUE(as.logical(env))
+  }
 }

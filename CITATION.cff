@@ -1,7 +1,7 @@
-# --------------------------------------------
-# CITATION file created with {cffr} R package
+# ------------------------------------------------
+# CITATION.cff file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
-# --------------------------------------------
+# ------------------------------------------------
  
 cff-version: 1.2.0
 message: 'To cite package "arcgeocoder" in publications use:'
@@ -131,6 +131,19 @@ references:
   year: '2026'
   doi: 10.32614/R.manuals
 - type: software
+  title: curl
+  abstract: 'curl: A Modern and Flexible Web Client for R'
+  notes: Suggests
+  url: https://jeroen.r-universe.dev/curl
+  repository: https://CRAN.R-project.org/package=curl
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroenooms@gmail.com
+    orcid: https://orcid.org/0000-0002-4035-0289
+  year: '2026'
+  doi: 10.32614/CRAN.package.curl
+- type: software
   title: ggplot2
   abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
   notes: Suggests
@@ -226,45 +239,4 @@ references:
   year: '2026'
   doi: 10.32614/CRAN.package.testthat
   version: '>= 3.0.0'
-- type: software
-  title: tibble
-  abstract: 'tibble: Simple Data Frames'
-  notes: Suggests
-  url: https://tibble.tidyverse.org/
-  repository: https://CRAN.R-project.org/package=tibble
-  authors:
-  - family-names: Müller
-    given-names: Kirill
-    email: kirill@cynkra.com
-    orcid: https://orcid.org/0000-0002-1416-3412
-  - family-names: Wickham
-    given-names: Hadley
-    email: hadley@rstudio.com
-  year: '2026'
-  doi: 10.32614/CRAN.package.tibble
-- type: software
-  title: tidygeocoder
-  abstract: 'tidygeocoder: Geocoding Made Easy'
-  notes: Suggests
-  url: https://jessecambon.github.io/tidygeocoder/
-  repository: https://CRAN.R-project.org/package=tidygeocoder
-  authors:
-  - family-names: Cambon
-    given-names: Jesse
-    email: jesse.cambon@gmail.com
-    orcid: https://orcid.org/0000-0001-6854-1514
-  - family-names: Hernangómez
-    given-names: Diego
-    email: diego.hernangomezherrero@gmail.com
-    orcid: https://orcid.org/0000-0001-8457-4658
-  - family-names: Belanger
-    given-names: Christopher
-    email: christopher.a.belanger@gmail.com
-    orcid: https://orcid.org/0000-0003-2070-5721
-  - family-names: Possenriede
-    given-names: Daniel
-    email: possenriede+r@gmail.com
-    orcid: https://orcid.org/0000-0002-6738-9845
-  year: '2026'
-  doi: 10.32614/CRAN.package.tidygeocoder
 

@@ -4,7 +4,7 @@
 #' Generates an address from a longitude and latitude. Latitudes must be in the
 #' range \eqn{\left[-90, 90 \right]} and longitudes in the range
 #' \eqn{\left[-180, 180 \right]}. This function returns the
-#' [tibble][tibble::tbl_df] associated with each query.
+#' [tibble][dplyr::tibble] associated with each query.
 #'
 #' @param x Longitude values in numeric format. Must be in the range
 #'   \eqn{\left[-180, 180 \right]}.
@@ -61,7 +61,7 @@
 #' (`featuretypes = c("PointAddress", "StreetAddress")`).
 #'
 #' @return
-#' A [tibble][tibble::tbl_df] with the corresponding results. The `x` and `y`
+#' A [tibble][dplyr::tibble] with the corresponding results. The `x` and `y`
 #' values returned by the API are named `lon` and `lat`. Note that these
 #' coordinates correspond to the geocoded feature and may differ from the `x`
 #' and `y` values provided as inputs.
@@ -74,7 +74,6 @@
 #'
 #' @family geocoders
 #'
-#' @seealso [tidygeocoder::reverse_geo()]
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{

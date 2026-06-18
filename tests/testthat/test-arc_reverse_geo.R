@@ -226,7 +226,7 @@ test_that("Mock arc_api_call", {
 
   expect_identical(
     obj,
-    tibble::tibble(x = -3.6687109, y = 40.4207414, address = NA_character_)
+    dplyr::tibble(x = -3.6687109, y = 40.4207414, address = NA_character_)
   )
   expect_true(anyNA(obj))
 

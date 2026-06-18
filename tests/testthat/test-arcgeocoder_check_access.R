@@ -29,3 +29,22 @@ test_that("Mock arc_download_file", {
   expect_identical(arc_download_file, my_fn)
   expect_true(arcgeocoder_check_access())
 })
+
+test_that("On CRAN", {
+  skip_on_cran()
+  skip_if_api_server()
+
+  # Imagine we are in CRAN
+  env_orig <- Sys.getenv("NOT_CRAN")
+  Sys.setenv("NOT_CRAN" = "false")
+  expect_true(on_cran())
+  expect_false(arcgeocoder_check_access())
+
+  Sys.setenv("NOT_CRAN" = "")
+  expect_identical(!interactive(), on_cran())
+
+  # Restore
+  Sys.setenv("NOT_CRAN" = env_orig)
+  expect_identical(Sys.getenv("NOT_CRAN"), env_orig)
+  expect_true(arcgeocoder_check_access())
+})

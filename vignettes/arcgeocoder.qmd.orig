@@ -167,7 +167,7 @@ food_eiffel <- arc_geo_categories(
 
 # Plot by food type.
 ggplot(eiffel_tower, aes(x, y)) +
-  geom_point(shape = 17, color = "red", size = 4) +
+  geom_point(shape = 15, color = "blue", size = 4) +
   geom_point(data = food_eiffel, aes(x, y, color = Type)) +
   labs(
     title = "Food near the Eiffel Tower",

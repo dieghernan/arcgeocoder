@@ -21,18 +21,17 @@ Imports:
     jsonlite (>= 1.7.0),
     utils
 Suggests:
+    curl,
     ggplot2,
     knitr,
     quarto,
     sf,
-    testthat (>= 3.0.0),
-    tibble,
-    tidygeocoder
+    testthat (>= 3.0.0)
 VignetteBuilder:
     quarto
-Config/Needs/website: dieghernan/gitdevr, lwgeom, leaflet, terra,
-    tidyterra, maptiles, styler, mapSpain, remotes, reactable, crosstalk,
-    sessioninfo
+Config/Needs/website: dieghernan/gitdevr, leaflet, terra, tidyterra,
+    maptiles, styler, mapSpain, remotes, reactable, crosstalk,
+    sessioninfo, tidygeocoder, nominatimlite, pak
 Config/roxygen2/markdown: TRUE
 Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3

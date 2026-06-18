@@ -67,7 +67,7 @@ returned.}
   }}
 }
 \value{
-A \link[tibble:tbl_df]{tibble} object with the results. See output details in \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
+A \link[dplyr:tibble]{tibble} object with the results. See output details in \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 }
 \description{
 This function extracts places with a given category or list of categories

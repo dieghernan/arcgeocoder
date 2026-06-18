@@ -6,7 +6,7 @@
 \alias{arc_spatial_references}
 \title{Esri (ArcGIS) spatial reference data}
 \format{
-A \link[tibble:tbl_df]{tibble} with
+A \link[dplyr:tibble]{tibble} with
 9,608 rows
 and fields:
 \describe{
@@ -26,7 +26,7 @@ working with \CRANpkg{sf} or \CRANpkg{terra}.}
 \href{https://github.com/Esri/projection-engine-db-doc}{Esri Projection Engine factory}
 }
 \description{
-Dataset of available spatial references (CRS) in \link[tibble:tbl_df]{tibble}
+Dataset of available spatial references (CRS) in \link[dplyr:tibble]{tibble}
 format.
 }
 \details{

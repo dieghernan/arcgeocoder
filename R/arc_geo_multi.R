@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Geocodes addresses from specific address components and returns the
-#' [tibble][tibble::tbl_df] associated with each query.
+#' [tibble][dplyr::tibble] associated with each query.
 #'
 #' For geocoding with a single text string, use [arc_geo()].
 #'
@@ -68,7 +68,6 @@
 #'
 #' @family geocoders
 #'
-#' @seealso [tidygeocoder::geo()]
 #'
 #' @examplesIf arcgeocoder_check_access()
 #' \donttest{

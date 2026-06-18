@@ -4,18 +4,17 @@ dir.r: R
 dir.v: vignettes
 dir.t: tests
 extra.suggests:
-   - tibble
-   - tidygeocoder
+  - curl
 pkg_ignore:
-  - tidyterra
-  - htmltools
+  - reactable
   - crosstalk
+  - htmltools
   - leaflet
+  - tidyterra
   - mapSpain
   - maptiles
-  - reactable
-document: no
+document: yes
 normalize: yes
-inside_rmd: ~
+inside_rmd: yes
 must.exist: yes
 check_if_suggests_is_installed: yes
