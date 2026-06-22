@@ -196,14 +196,12 @@ arc_endpoint_url <- function(endpoint) {
 arc_download_file <- function(url, destfile) {
   tryCatch(
     download.file(url, destfile = destfile, quiet = TRUE, mode = "wb"),
-    # nocov start
     warning = function(e) {
       FALSE
     },
     error = function(e) {
-      FALSE
+      FALSE # nocov
     }
-    # nocov end
   )
 }
 

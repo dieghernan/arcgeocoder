@@ -51,3 +51,35 @@ test_that("multi-field query rows", {
   )
   expect_identical(multi_row_query(empty_row), NA_character_)
 })
+
+test_that("arc_download_file", {
+  skip_on_cran()
+  skip_if_offline()
+  tmp <- tempfile()
+
+  expect_silent(arc_download_file(
+    "https://dieghernan.github.io/nominatimlite/",
+    tmp
+  ))
+  unlink(tmp, force = TRUE)
+
+  tmp <- tempfile()
+
+  expect_silent(
+    s <- arc_download_file(
+      "https://dieghernan.github.io/nominatimlite/random_name",
+      tmp
+    )
+  )
+  expect_false(s)
+  unlink(tmp, force = TRUE)
+
+  expect_silent(
+    s <- arc_download_file(
+      "aa/bb/random_name",
+      tmp
+    )
+  )
+  expect_false(s)
+  unlink(tmp, force = TRUE)
+})
