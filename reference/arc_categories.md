@@ -103,7 +103,7 @@ dplyr::glimpse(sea_1)
 #> $ score      <int> 100, 100
 #> $ x          <dbl> -122.3029, -122.3093
 #> $ y          <dbl> 47.44362, 47.44899
-#> $ LongLabel  <chr> "SEA, 17801 International Blvd, Seatac, WA, 98158, USA", "S…
+#> $ LongLabel  <chr> "SEA, 17801 International Blvd, Seattle, WA, 98158, USA", "…
 #> $ Type       <chr> "Airport", "Airport"
 #> $ xmin       <dbl> -122.3189, -122.3393
 #> $ ymin       <dbl> 47.42762, 47.41899
@@ -150,16 +150,16 @@ dplyr::glimpse(sea_3)
 #> Columns: 15
 #> $ query      <chr> "sea", "sea", "sea", "sea", "sea"
 #> $ lat        <dbl> 50.81961, 53.81288, 53.46756, 52.93494, 54.30120
-#> $ lon        <dbl> -0.1357540, -3.0548750, -2.3409094, 0.4834270, -0.4097964
+#> $ lon        <dbl> -0.135754, -3.054875, -2.340909, 0.483427, -0.409800
 #> $ address    <chr> "Sea Life Brighton", "Sea Life Blackpool", "Sea Life Manche…
-#> $ score      <dbl> 82.00, 81.88, 81.76, 81.76, 81.67
-#> $ x          <dbl> -0.1357540, -3.0548750, -2.3409094, 0.4834270, -0.4097964
+#> $ score      <dbl> 82.00, 81.88, 81.76, 81.76, 81.76
+#> $ x          <dbl> -0.135754, -3.054875, -2.340909, 0.483427, -0.409800
 #> $ y          <dbl> 50.81961, 53.81288, 53.46756, 52.93494, 54.30120
 #> $ LongLabel  <chr> "Sea Life Brighton, 1 Marine Parade, Queen's Park, Brighton…
 #> $ Type       <chr> "Aquarium", "Aquarium", "Aquarium", "Aquarium", "Aquarium"
-#> $ xmin       <dbl> -0.1407540, -3.0598750, -2.3459094, 0.4784270, -0.4147964
+#> $ xmin       <dbl> -0.140754, -3.059875, -2.345909, 0.478427, -0.414800
 #> $ ymin       <dbl> 50.81461, 53.80788, 53.46256, 52.92994, 54.29620
-#> $ xmax       <dbl> -0.1307540, -3.0498750, -2.3359094, 0.4884270, -0.4047964
+#> $ xmax       <dbl> -0.130754, -3.049875, -2.335909, 0.488427, -0.404800
 #> $ ymax       <dbl> 50.82461, 53.81788, 53.47256, 52.93994, 54.30620
 #> $ wkid       <int> 4326, 4326, 4326, 4326, 4326
 #> $ latestWkid <int> 4326, 4326, 4326, 4326, 4326

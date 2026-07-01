@@ -203,7 +203,7 @@ dplyr::glimpse(sev)
 #> $ Address      <chr> "W 44th St & Broadway", "1 Waterloo Place"
 #> $ Block        <chr> "", ""
 #> $ Sector       <chr> "", ""
-#> $ Neighborhood <chr> "Times Square", "Canongate"
+#> $ Neighborhood <chr> "Midtown", "Canongate"
 #> $ District     <chr> "Manhattan", ""
 #> $ City         <chr> "New York", "Edinburgh"
 #> $ MetroArea    <chr> "", "Edinburgh"
