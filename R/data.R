@@ -20,11 +20,11 @@
 #' examples.
 #'
 #' The ArcGIS geocoding service supports searches for many types of addresses
-#' and places around the world. This simplifies application development because
-#' developers do not need to know what types of places their users are searching
-#' for. However, ambiguous searches can match many different places and produce
-#' unexpected results. For example, a search for a city may match a street name,
-#' or an airport code may match a country abbreviation.
+#' and places around the world, so applications do not need to anticipate the
+#' types of places that users may search for. However, ambiguous searches can
+#' match many different places and produce unexpected results. For example, a
+#' search for a city may match a street name, or an airport code may match a
+#' country abbreviation.
 #'
 #' In these cases, the `category` argument can filter out unwanted results. It
 #' limits the types of places that the service searches for, which can eliminate
@@ -39,9 +39,9 @@
 #'
 #' @note Data extracted on **15 January 2026**.
 #'
-#' @seealso [arc_geo_categories()], [arc_geo()], [arc_geo_multi()]
+#' @seealso [arc_geo()], [arc_geo_multi()] and [arc_geo_categories()].
 #'
-#' @family datasets
+#' @keywords datasets
 #'
 #' @encoding UTF-8
 #'
@@ -69,7 +69,7 @@
 #'
 #' dplyr::glimpse(sea_2)
 #'
-#' # Use a list of categories.
+#' # Use multiple categories.
 #' sea_3 <- arc_geo("sea",
 #'   custom_query = list(outFields = c("LongLabel", "Type")),
 #'   sourcecountry = "UK", limit = 5,
@@ -88,12 +88,13 @@ NULL
 #'
 #' @name arc_spatial_references
 #' @docType data
-#' @format A [tibble][dplyr::tibble] with
+#' @format
+#' A [tibble][dplyr::tibble] with
 #' `r prettyNum(nrow(arcgeocoder::arc_spatial_references), big.mark=",")` rows
 #' and eight variables:
 #' \describe{
 #'   \item{projtype}{Projection type (`"ProjectedCoordinateSystems"`,
-#'   `"GeographicCoordinateSystems"` or `"VerticalCoordinateSystems"`).}
+#'     `"GeographicCoordinateSystems"` or `"VerticalCoordinateSystems"`).}
 #'   \item{wkid}{Well-known ID (WKID).}
 #'   \item{latestWkid}{Current WKID if `wkid` is deprecated.}
 #'   \item{authority}{WKID authority (Esri or EPSG).}
@@ -101,25 +102,27 @@ NULL
 #'   \item{description}{Human-readable description of the spatial reference.}
 #'   \item{areaname}{Area of use of the spatial reference.}
 #'   \item{wkt}{Well-known text (WKT) representation of the spatial reference.
-#'   Useful when working with \CRANpkg{sf} or \CRANpkg{terra}.}
+#'     Useful when working with \CRANpkg{sf} or \CRANpkg{terra}.}
 #' }
 #' @details
 #' This dataset is useful when using the `outsr` argument.
 #'
 #' Some projection IDs have changed over time. For example, Web Mercator
-#' `wkid = 102100` is deprecated and is currently `wkid = 3857`. However, both
-#' values work and return equivalent results.
+#' `wkid = 102100` is deprecated and its current equivalent is `wkid = 3857`.
+#' Both values work and return equivalent results.
 #'
 #' @source
 #' [Esri Projection Engine
-#' factory](https://github.com/Esri/projection-engine-db-doc)
+#' factory](https://github.com/Esri/projection-engine-db-doc).
 #'
 #' @note Data extracted on **15 January 2026**.
 #'
 #' @seealso
-#' [sf::st_crs()]
+#' - [sf::st_crs()] inspects coordinate reference systems.
+#' - [arc_geo()], [arc_geo_multi()], [arc_geo_categories()] and
+#'   [arc_reverse_geo()] accept spatial references.
 #'
-#' @family datasets
+#' @keywords datasets
 #'
 #' @encoding UTF-8
 #'
@@ -144,7 +147,7 @@ NULL
 #'   select(lat, lon, wkid, latestWkid) |>
 #'   glimpse()
 #'
-#' # Look up the deprecated WKID with `sf`.
+#' # Look up the deprecated WKID.
 #'
 #' try(sf::st_crs(wkid$wkid))
 #'

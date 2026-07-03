@@ -69,5 +69,5 @@
       obj <- arc_reverse_geo(-3.6687109, 40.4207414)
     Message
       
-      URL is unreachable: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-3.6687109,40.4207414&f=json
+      Unable to reach URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-3.6687109,40.4207414&f=json
 

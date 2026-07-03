@@ -21,10 +21,10 @@ arc_geo_categories(
 )
 }
 \arguments{
-\item{category}{A place or address type used to filter results.
-Multiple values can be supplied as a vector (for example,
-\code{c("Cinema", "Museum")}), which performs one call for each value. See
-\strong{Details}.}
+\item{category}{A place or address type used to filter results. Multiple
+values can be supplied as a vector (for example,
+\code{c("Cinema", "Museum")}), which performs one call for each value.
+See \strong{Details}.}
 
 \item{x}{A numeric vector of longitude values in the range
 \eqn{\left[-180, 180 \right]}.}
@@ -32,9 +32,9 @@ Multiple values can be supplied as a vector (for example,
 \item{y}{A numeric vector of latitude values in the range
 \eqn{\left[-90, 90 \right]}.}
 
-\item{bbox}{A numeric vector of longitude and latitude values
-\code{c(xmin, ymin, xmax, ymax)} that restricts the search area.
-See \strong{Details}.}
+\item{bbox}{A numeric vector specifying a bounding box used to limit the
+search. It must contain \strong{longitude} (\code{x}) and \strong{latitude} (\code{y}) values
+in the form \code{c(xmin, ymin, xmax, ymax)}. See \strong{Details}.}
 
 \item{name}{An optional string containing the name or address to match.}
 
@@ -47,10 +47,11 @@ default is \code{"lon"}.}
 \item{limit}{Maximum number of results per query. The ArcGIS REST API limits
 a single request to 50 results.}
 
-\item{full_results}{A logical value. If \code{TRUE}, returns all available API
-fields via \code{outFields = "*"}. The default is \code{FALSE}.}
+\item{full_results}{A logical value indicating whether to return all
+available API fields via \code{outFields = "*"}. The default is \code{FALSE}.}
 
-\item{verbose}{A logical value. If \code{TRUE}, displays API request details.}
+\item{verbose}{A logical value indicating whether to display API request
+details.}
 
 \item{custom_query}{A named list with additional API parameters.}
 
@@ -66,7 +67,7 @@ Multiple values can be supplied as a comma-separated string.}
   }}
 }
 \value{
-A \link[dplyr:tibble]{tibble} with one or more matches for each query. For details about the available fields, see \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
+A \link[dplyr:tibble]{tibble} with one or more matches for each query. For descriptions of the available fields, see \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 }
 \description{
 Finds places that match one or more categories near a location or within a
@@ -177,8 +178,11 @@ base_map +
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\link{arc_categories} for supported values and
-\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST API category filtering} for API details.
+\itemize{
+\item \link{arc_categories} lists supported values.
+\item \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm}{ArcGIS REST API category filtering} provides API
+details.
+}
 
 Geocoding and reverse geocoding functions:
 \code{\link[=arc_geo]{arc_geo()}},

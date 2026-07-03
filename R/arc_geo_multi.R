@@ -46,7 +46,7 @@
 #' - `region`: The largest administrative division associated with an address,
 #'   typically a state or province.
 #' - `postal`: The standard postal code for an address, typically a
-#'   three– to six-digit alphanumeric code.
+#'   three- to six-character alphanumeric code.
 #' - `postalext`: A postal code extension, such as the United States Postal
 #'   Service ZIP+4 code.
 #' - `countrycode`: A value representing the country. Providing this value can
@@ -130,7 +130,7 @@ arc_geo_multi <- function(
   category = NULL,
   custom_query = list()
 ) {
-  # Prepare multi-field input.
+  # Prepare structured input.
   init_df <- input_multi(
     address,
     address2,
@@ -180,7 +180,6 @@ arc_geo_multi <- function(
   )
 }
 
-# Prepare multi-field input.
 input_multi <- function(
   address = NULL,
   address2 = NULL,

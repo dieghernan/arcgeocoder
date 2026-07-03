@@ -9,11 +9,9 @@ test_that("Mock arc_download_file", {
   skip_if_api_server()
 
   my_fn <- arc_download_file
-  local_mocked_bindings(
-    arc_download_file = function(...) {
-      FALSE
-    }
-  )
+  local_mocked_bindings(arc_download_file = function(...) {
+    FALSE
+  })
 
   api <- arc_endpoint_url("reverseGeocode")
   url <- paste0(api, "location=0,0&f=json")

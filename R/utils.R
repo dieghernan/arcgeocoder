@@ -200,7 +200,7 @@ arc_download_file <- function(url, destfile) {
       FALSE
     },
     error = function(e) {
-      FALSE # nocov
+      FALSE
     }
   )
 }
@@ -221,11 +221,23 @@ message_api_call <- function(url) {
 }
 
 select_unique_cols <- function(x, cols) {
-  x[, unique(cols)]
+  x[, unique(cols), drop = FALSE]
 }
 
 empty_strings_to_na <- function(x) {
-  x[!nzchar(x)] <- NA
+  replace_empty <- function(value) {
+    if (is.character(value)) {
+      value[!is.na(value) & !nzchar(value)] <- NA_character_
+    }
+    value
+  }
+
+  if (is.data.frame(x)) {
+    x[] <- lapply(x, replace_empty)
+    return(x)
+  }
+
+  x <- replace_empty(x)
   x
 }
 
@@ -314,11 +326,7 @@ geo_output_cols <- function(
   out_cols
 }
 
-reverse_output_cols <- function(
-  x,
-  colstokeep,
-  full_results = FALSE
-) {
+reverse_output_cols <- function(x, colstokeep, full_results = FALSE) {
   out_cols <- colstokeep
 
   if (full_results) {

@@ -11,13 +11,15 @@
 #'   \eqn{\left[-90, 90 \right]}.
 #' @param address Name of the address column in the output. The default is
 #'   `"address"`.
-#' @param full_results A logical value. If `TRUE`, returns all available API
-#'   fields. The default, `FALSE`, returns latitude, longitude and address only.
-#' @param return_coords A logical value. If `TRUE`, returns input coordinates
-#'   with the results.
-#' @param verbose A logical value. If `TRUE`, displays API request details.
-#' @param progressbar A logical value. If `TRUE`, displays a progress bar for
-#'   multiple queries.
+#' @param full_results A logical value indicating whether to return all
+#'   available API fields. The default, `FALSE`, returns only latitude,
+#'   longitude and address.
+#' @param return_coords A logical value indicating whether to return the input
+#'   coordinates with the results.
+#' @param verbose A logical value indicating whether to display API request
+#'   details.
+#' @param progressbar A logical value indicating whether to display a progress
+#'   bar for multiple queries.
 #' @param outsr Spatial reference of the output coordinates. The default is
 #'   `NULL`, which uses the service default. See **Details** and
 #'   [arc_spatial_references].
@@ -25,10 +27,9 @@
 #' @param featuretypes A character vector that limits the possible match types.
 #'   The default is `NULL`, which does not filter by feature type. See
 #'   **Details**.
-#' @param locationtype Specifies whether the output geometry of
-#'   `featuretypes = "PointAddress"` or `featuretypes = "Subaddress"` matches
-#'   should be the rooftop point or street entrance location. The default is
-#'   `NULL`. Other valid values are `"rooftop"` and `"street"`.
+#' @param locationtype Location represented by the output geometry when
+#'   `featuretypes` is `"PointAddress"` or `"Subaddress"`. Valid values are
+#'   `"rooftop"` and `"street"`. The default is `NULL`.
 #' @param custom_query A named list with additional API parameters.
 #'
 #' @details
@@ -45,7 +46,7 @@
 #'
 #' # `featuretypes`
 #'
-#' See `vignette("featuretypes", package = "arcgeocoder")` for a detailed
+#' See `vignette("feature-types", package = "arcgeocoder")` for a detailed
 #' explanation of this argument.
 #'
 #' This argument restricts the feature types returned by a reverse geocoding
@@ -62,8 +63,7 @@
 #' correspond to the matched feature and may differ from the input `x` and `y`
 #' values.
 #'
-#' See the details of the output in
-#' [ArcGIS REST API output](`r arcurl("out")`).
+#' See [ArcGIS REST API output](`r arcurl("out")`) for field details.
 #'
 #' @references
 #' [ArcGIS REST API `reverseGeocode`](`r arcurl("rev")`).
@@ -84,7 +84,7 @@
 #' sev <- arc_reverse_geo(
 #'   x = c(-73.98586, -3.188375),
 #'   y = c(40.75728, 55.95335),
-#'   # Restrict to these features.
+#'   # Restrict results to specific feature types.
 #'   featuretypes = "POI,StreetInt",
 #'   # Return results in this WKID.
 #'   outsr = 102100,
@@ -199,7 +199,7 @@ arc_reverse_geo_single <- function(
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
   if (isFALSE(res)) {
-    message("\nURL is unreachable: ", url)
+    message("\nUnable to reach URL: ", url)
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }

@@ -1,10 +1,7 @@
 # arcgeocoder 0.4.1
 
-- Reviewed and aligned terminology across **roxygen2**, README and vignettes
-  with AI assistance.
-- Refactored internal geocoding helpers for simpler maintenance, including
-  shared query, progress, validation and API-call utilities. The refactor was
-  developed with AI assistance and does not change the public API.
+- Reviewed and aligned terminology across **roxygen2**, README and vignettes with AI assistance.
+- Refactored internal geocoding helpers for simpler maintenance, including shared query, progress, validation and API call utilities. The refactor was developed with AI assistance and does not change the public API.
 - Improved the clarity and consistency of user-facing messages.
 
 # arcgeocoder 0.4.0
@@ -29,9 +26,9 @@
 # arcgeocoder 0.1.0
 
 - First **CRAN** release.
-- Added articles to the **pkgdown** site and included icons for examples.
+- Added articles to the **pkgdown** site and included example icons.
 - Changed project status to active.
-- Added the `arc_spatial_references` data object.
+- Added the `arc_spatial_references` dataset.
 
 # arcgeocoder 0.0.1
 

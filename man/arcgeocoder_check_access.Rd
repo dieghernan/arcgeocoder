@@ -19,5 +19,4 @@ Checks whether the current \R session can access the ArcGIS REST API at
 arcgeocoder_check_access()
 }
 }
-\concept{API management helpers}
 \keyword{internal}

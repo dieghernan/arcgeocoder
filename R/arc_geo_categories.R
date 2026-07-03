@@ -12,17 +12,16 @@
 #' You can combine both approaches by providing `x`, `y` and `bbox`. See
 #' **Examples**.
 #'
-#' @param category A place or address type used to filter results.
-#'   Multiple values can be supplied as a vector (for example,
-#'   `c("Cinema", "Museum")`), which performs one call for each value. See
-#'   **Details**.
+#' @param category A place or address type used to filter results. Multiple
+#'   values can be supplied as a vector (for example,
+#'   `c("Cinema", "Museum")`), which performs one call for each value.
+#'   See **Details**.
 #' @param limit Maximum number of results per query. The ArcGIS REST API limits
 #'   a single request to 50 results.
-#' @param bbox A numeric vector of longitude and latitude values
-#'   `c(xmin, ymin, xmax, ymax)` that restricts the search area.
-#'   See **Details**.
+#' @param bbox A numeric vector specifying a bounding box used to limit the
+#'   search. It must contain **longitude** (`x`) and **latitude** (`y`) values
+#'   in the form `c(xmin, ymin, xmax, ymax)`. See **Details**.
 #' @param name An optional string containing the name or address to match.
-#' @param custom_query A named list with additional API parameters.
 #'
 #' @inheritParams arc_geo lat long full_results verbose custom_query
 #' @inheritParams arc_reverse_geo
@@ -46,8 +45,10 @@
 #' ```{r child = "man/chunks/out1.Rmd"}
 #' ```
 #'
-#' @seealso [arc_categories] for supported values and
-#'   [ArcGIS REST API category filtering](`r arcurl("filt")`) for API details.
+#' @seealso
+#' - [arc_categories] lists supported values.
+#' - [ArcGIS REST API category filtering](`r arcurl("filt")`) provides API
+#'   details.
 #'
 #' @family geocoders
 #'
@@ -148,12 +149,10 @@ arc_geo_categories <- function(
   bbox <- validate_bbox(bbox)
 
   if (all(is.na(c(locs, bbox)))) {
-    stop(
-      paste0(
-        "Provide either a valid combination of `x` and `y` arguments or ",
-        "a valid `bbox`."
-      )
-    )
+    stop(paste0(
+      "Provide either a valid combination of `x` and `y` arguments or ",
+      "a valid `bbox`."
+    ))
   }
 
   cats <- category_values(category)
@@ -232,9 +231,7 @@ validate_bbox <- function(bbox = NULL) {
 
   # Return NAs with a message if any `bbox` value is missing.
   if (anyNA(bbox)) {
-    return(missing_bbox(
-      "`bbox` contains `NA` values and will not be used."
-    ))
+    return(missing_bbox("`bbox` contains `NA` values and will not be used."))
   }
 
   if (length(bbox) < 4) {
@@ -244,9 +241,7 @@ validate_bbox <- function(bbox = NULL) {
   }
 
   if (!is.numeric(bbox)) {
-    return(missing_bbox(
-      "`bbox` must be numeric and will not be used."
-    ))
+    return(missing_bbox("`bbox` must be numeric and will not be used."))
   }
 
   # Use only the first four `bbox` values.

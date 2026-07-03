@@ -2,9 +2,7 @@ test_that("Returning empty query", {
   skip_on_cran()
   skip_if_api_server()
 
-  expect_snapshot(
-    obj <- arc_geo("alsksjdhfg 561bata lorem ipsum")
-  )
+  expect_snapshot(obj <- arc_geo("alsksjdhfg 561bata lorem ipsum"))
 
   expect_true(nrow(obj) == 1)
   expect_true(obj$query == "alsksjdhfg 561bata lorem ipsum")
@@ -219,11 +217,9 @@ test_that("Mock arc_api_call", {
   skip_if_api_server()
 
   my_fn <- arc_api_call
-  local_mocked_bindings(
-    arc_api_call = function(...) {
-      FALSE
-    }
-  )
+  local_mocked_bindings(arc_api_call = function(...) {
+    FALSE
+  })
 
   expect_snapshot(obj <- arc_geo("Madrid"))
 

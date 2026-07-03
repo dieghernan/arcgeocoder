@@ -27,11 +27,11 @@ See \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-cat
 examples.
 
 The ArcGIS geocoding service supports searches for many types of addresses
-and places around the world. This simplifies application development because
-developers do not need to know what types of places their users are searching
-for. However, ambiguous searches can match many different places and produce
-unexpected results. For example, a search for a city may match a street name,
-or an airport code may match a country abbreviation.
+and places around the world, so applications do not need to anticipate the
+types of places that users may search for. However, ambiguous searches can
+match many different places and produce unexpected results. For example, a
+search for a city may match a street name, or an airport code may match a
+country abbreviation.
 
 In these cases, the \code{category} argument can filter out unwanted results. It
 limits the types of places that the service searches for, which can eliminate
@@ -69,7 +69,7 @@ sea_2 <- arc_geo("sea",
 
 dplyr::glimpse(sea_2)
 
-# Use a list of categories.
+# Use multiple categories.
 sea_3 <- arc_geo("sea",
   custom_query = list(outFields = c("LongLabel", "Type")),
   sourcecountry = "UK", limit = 5,
@@ -81,9 +81,6 @@ dplyr::glimpse(sea_3)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=arc_geo_categories]{arc_geo_categories()}}, \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}}
-
-Other datasets:
-\code{\link{arc_spatial_references}}
+\code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}} and \code{\link[=arc_geo_categories]{arc_geo_categories()}}.
 }
-\concept{datasets}
+\keyword{datasets}

@@ -17,10 +17,10 @@
 #'   default is `"lon"`.
 #' @param limit Maximum number of results to return per input address. Each
 #'   query has a hard API limit of 50 results.
-#' @param full_results A logical value. If `TRUE`, returns all available API
-#'   fields via `outFields = "*"`. The default is `FALSE`.
-#' @param return_addresses A logical value. If `TRUE`, includes the input query
-#'   in the output.
+#' @param full_results A logical value indicating whether to return all
+#'   available API fields via `outFields = "*"`. The default is `FALSE`.
+#' @param return_addresses A logical value indicating whether to include the
+#'   input query in the output.
 #' @param sourcecountry Country filter using ISO codes (for example, `"USA"`).
 #'   Multiple values can be supplied as a comma-separated string.
 #' @param category Place or address type used to filter results. Multiple values
@@ -149,7 +149,7 @@ arc_geo_single <- function(
   tbl_query <- dplyr::tibble(query = address)
 
   if (isFALSE(res)) {
-    message("\nURL is unreachable: ", url)
+    message("\nUnable to reach URL: ", url)
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }

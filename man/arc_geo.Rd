@@ -35,16 +35,17 @@ default is \code{"lon"}.}
 \item{limit}{Maximum number of results to return per input address. Each
 query has a hard API limit of 50 results.}
 
-\item{full_results}{A logical value. If \code{TRUE}, returns all available API
-fields via \code{outFields = "*"}. The default is \code{FALSE}.}
+\item{full_results}{A logical value indicating whether to return all
+available API fields via \code{outFields = "*"}. The default is \code{FALSE}.}
 
-\item{return_addresses}{A logical value. If \code{TRUE}, includes the input query
-in the output.}
+\item{return_addresses}{A logical value indicating whether to include the
+input query in the output.}
 
-\item{verbose}{A logical value. If \code{TRUE}, displays API request details.}
+\item{verbose}{A logical value indicating whether to display API request
+details.}
 
-\item{progressbar}{A logical value. If \code{TRUE}, displays a progress bar for
-multiple queries.}
+\item{progressbar}{A logical value indicating whether to display a progress
+bar for multiple queries.}
 
 \item{outsr}{Spatial reference of the output coordinates. The default is
 \code{NULL}, which uses the service default. See \strong{Details} and
@@ -61,7 +62,7 @@ are accepted (for example, \code{c("Cinema", "Museum")}). See \link{arc_categori
 \item{custom_query}{A named list with additional API parameters.}
 }
 \value{
-A \link[dplyr:tibble]{tibble} with one or more matches for each query. For details about the available fields, see \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
+A \link[dplyr:tibble]{tibble} with one or more matches for each query. For descriptions of the available fields, see \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 }
 \description{
 Converts single-line addresses into geographic coordinates and returns one

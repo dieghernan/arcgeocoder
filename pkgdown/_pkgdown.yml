@@ -28,20 +28,20 @@ authors:
 reference:
 - title: Geocoding and reverse geocoding
   desc: >
-    Geocode single-line and structured addresses, find places by category and
-    reverse geocode coordinates.
+    Geocode single-line and structured addresses, reverse geocode coordinates
+    and find places by category.
 - contents:
   - has_concept("geocoders")
 
 - title: Reference data
   desc: >
-    Browse supported place categories and ArcGIS spatial references.
+    Browse supported place categories and coordinate reference systems.
 - contents:
-  - has_concept("datasets")
+  - has_keyword("datasets")
 
 - title: Package documentation
   desc: >
-    Learn about the package and its metadata.
+    View package-level documentation and useful links.
 - contents:
   - arcgeocoder-package
 

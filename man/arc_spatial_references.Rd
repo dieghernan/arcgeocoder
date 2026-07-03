@@ -23,7 +23,7 @@ Useful when working with \CRANpkg{sf} or \CRANpkg{terra}.}
 }
 }
 \source{
-\href{https://github.com/Esri/projection-engine-db-doc}{Esri Projection Engine factory}
+\href{https://github.com/Esri/projection-engine-db-doc}{Esri Projection Engine factory}.
 }
 \description{
 A dataset of coordinate reference systems (CRSs) supported by the ArcGIS
@@ -33,8 +33,8 @@ REST API.
 This dataset is useful when using the \code{outsr} argument.
 
 Some projection IDs have changed over time. For example, Web Mercator
-\code{wkid = 102100} is deprecated and is currently \code{wkid = 3857}. However, both
-values work and return equivalent results.
+\code{wkid = 102100} is deprecated and its current equivalent is \code{wkid = 3857}.
+Both values work and return equivalent results.
 }
 \note{
 Data extracted on \strong{15 January 2026}.
@@ -61,7 +61,7 @@ add |>
   select(lat, lon, wkid, latestWkid) |>
   glimpse()
 
-# Look up the deprecated WKID with `sf`.
+# Look up the deprecated WKID.
 
 try(sf::st_crs(wkid$wkid))
 
@@ -74,9 +74,10 @@ try(sf::st_crs(wkid$wkt))
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[sf:st_crs]{sf::st_crs()}}
-
-Other datasets:
-\code{\link{arc_categories}}
+\itemize{
+\item \code{\link[sf:st_crs]{sf::st_crs()}} inspects coordinate reference systems.
+\item \code{\link[=arc_geo]{arc_geo()}}, \code{\link[=arc_geo_multi]{arc_geo_multi()}}, \code{\link[=arc_geo_categories]{arc_geo_categories()}} and
+\code{\link[=arc_reverse_geo]{arc_reverse_geo()}} accept spatial references.
 }
-\concept{datasets}
+}
+\keyword{datasets}

@@ -82,10 +82,7 @@ test_that("Checking query", {
   expect_false(identical(obj, obj_zoom))
 
   # Several coordinates
-  sev <- arc_reverse_geo(
-    x = c(-73.98586, -3.188375),
-    y = c(40.75728, 55.95335)
-  )
+  sev <- arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
 
   expect_equal(nrow(sev), 2)
   expect_s3_class(sev, "tbl")
@@ -202,11 +199,9 @@ test_that("Mock arc_api_call", {
   skip_if_api_server()
 
   my_fn <- arc_api_call
-  local_mocked_bindings(
-    arc_api_call = function(...) {
-      FALSE
-    }
-  )
+  local_mocked_bindings(arc_api_call = function(...) {
+    FALSE
+  })
 
   expect_snapshot(obj <- arc_reverse_geo(-3.6687109, 40.4207414))
 

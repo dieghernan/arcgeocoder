@@ -75,5 +75,5 @@
       obj <- arc_geo("Madrid")
     Message
       
-      URL is unreachable: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=Madrid&f=json&maxLocations=1
+      Unable to reach URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=Madrid&f=json&maxLocations=1
 

@@ -30,16 +30,18 @@ arc_reverse_geo(
 \item{address}{Name of the address column in the output. The default is
 \code{"address"}.}
 
-\item{full_results}{A logical value. If \code{TRUE}, returns all available API
-fields. The default, \code{FALSE}, returns latitude, longitude and address only.}
+\item{full_results}{A logical value indicating whether to return all
+available API fields. The default, \code{FALSE}, returns only latitude,
+longitude and address.}
 
-\item{return_coords}{A logical value. If \code{TRUE}, returns input coordinates
-with the results.}
+\item{return_coords}{A logical value indicating whether to return the input
+coordinates with the results.}
 
-\item{verbose}{A logical value. If \code{TRUE}, displays API request details.}
+\item{verbose}{A logical value indicating whether to display API request
+details.}
 
-\item{progressbar}{A logical value. If \code{TRUE}, displays a progress bar for
-multiple queries.}
+\item{progressbar}{A logical value indicating whether to display a progress
+bar for multiple queries.}
 
 \item{outsr}{Spatial reference of the output coordinates. The default is
 \code{NULL}, which uses the service default. See \strong{Details} and
@@ -51,10 +53,9 @@ multiple queries.}
 The default is \code{NULL}, which does not filter by feature type. See
 \strong{Details}.}
 
-\item{locationtype}{Specifies whether the output geometry of
-\code{featuretypes = "PointAddress"} or \code{featuretypes = "Subaddress"} matches
-should be the rooftop point or street entrance location. The default is
-\code{NULL}. Other valid values are \code{"rooftop"} and \code{"street"}.}
+\item{locationtype}{Location represented by the output geometry when
+\code{featuretypes} is \code{"PointAddress"} or \code{"Subaddress"}. Valid values are
+\code{"rooftop"} and \code{"street"}. The default is \code{NULL}.}
 
 \item{custom_query}{A named list with additional API parameters.}
 }
@@ -64,8 +65,7 @@ output fields \code{x} and \code{y} are named \code{lon} and \code{lat}. These c
 correspond to the matched feature and may differ from the input \code{x} and \code{y}
 values.
 
-See the details of the output in
-\href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API output}.
+See \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API output} for field details.
 }
 \description{
 Converts longitude and latitude values into addresses. Latitudes must be in
@@ -85,7 +85,7 @@ See \link{arc_spatial_references} for values and examples.
 }
 
 \section{\code{featuretypes}}{
-See \code{vignette("featuretypes", package = "arcgeocoder")} for a detailed
+See \code{vignette("feature-types", package = "arcgeocoder")} for a detailed
 explanation of this argument.
 
 This argument restricts the feature types returned by a reverse geocoding
@@ -109,7 +109,7 @@ arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
 sev <- arc_reverse_geo(
   x = c(-73.98586, -3.188375),
   y = c(40.75728, 55.95335),
-  # Restrict to these features.
+  # Restrict results to specific feature types.
   featuretypes = "POI,StreetInt",
   # Return results in this WKID.
   outsr = 102100,

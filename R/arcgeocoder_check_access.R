@@ -6,8 +6,6 @@
 #'
 #' @returns `TRUE` if the service is accessible, otherwise `FALSE`.
 #'
-#' @family API management helpers
-#'
 #' @keywords internal
 #'
 #' @export
@@ -45,11 +43,12 @@ arcgeocoder_check_access <- function() {
 #' A wrapper around [utils::download.file()] that retries the request once after
 #' a warning or error.
 #'
+#' @param url URL to download.
+#' @param destfile Path where the downloaded file will be saved.
+#' @param quiet A logical value indicating whether to suppress request details.
+#'
 #' @returns `TRUE` if the file was downloaded, otherwise `FALSE`.
 #'
-#' @family API management helpers
-#'
-#' @keywords internal
 #' @noRd
 arc_api_call <- function(url, destfile, quiet) {
   if (!quiet) {
