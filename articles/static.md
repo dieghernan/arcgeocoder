@@ -11,7 +11,7 @@ library(arcgeocoder)
 library(dplyr)
 library(sf) # Work with spatial objects.
 library(ggplot2)
-library(mapSpain) # Get sf objects for Spain.
+library(mapSpain) # Get municipality boundaries for Spain.
 
 # McDonald's restaurants in Barcelona, Spain.
 

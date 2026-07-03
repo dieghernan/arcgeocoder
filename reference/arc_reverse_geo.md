@@ -42,22 +42,22 @@ arc_reverse_geo(
 
 - full_results:
 
-  A logical value. If `TRUE`, returns all available API fields. The
-  default, `FALSE`, returns latitude, longitude and address only.
+  A logical value indicating whether to return all available API fields.
+  The default, `FALSE`, returns only latitude, longitude and address.
 
 - return_coords:
 
-  A logical value. If `TRUE`, returns input coordinates with the
-  results.
+  A logical value indicating whether to return the input coordinates
+  with the results.
 
 - verbose:
 
-  A logical value. If `TRUE`, displays API request details.
+  A logical value indicating whether to display API request details.
 
 - progressbar:
 
-  A logical value. If `TRUE`, displays a progress bar for multiple
-  queries.
+  A logical value indicating whether to display a progress bar for
+  multiple queries.
 
 - outsr:
 
@@ -76,10 +76,9 @@ arc_reverse_geo(
 
 - locationtype:
 
-  Specifies whether the output geometry of
-  `featuretypes = "PointAddress"` or `featuretypes = "Subaddress"`
-  matches should be the rooftop point or street entrance location. The
-  default is `NULL`. Other valid values are `"rooftop"` and `"street"`.
+  Location represented by the output geometry when `featuretypes` is
+  `"PointAddress"` or `"Subaddress"`. Valid values are `"rooftop"` and
+  `"street"`. The default is `NULL`.
 
 - custom_query:
 
@@ -92,8 +91,9 @@ match for each coordinate pair. The API output fields `x` and `y` are
 named `lon` and `lat`. These coordinates correspond to the matched
 feature and may differ from the input `x` and `y` values.
 
-See the details of the output in [ArcGIS REST API
-output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
+See [ArcGIS REST API
+output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm)
+for field details.
 
 ## Details
 
@@ -113,8 +113,9 @@ for values and examples.
 
 ## `featuretypes`
 
-See `vignette("featuretypes", package = "arcgeocoder")` for a detailed
-explanation of this argument.
+See
+[`vignette("feature-types", package = "arcgeocoder")`](https://dieghernan.github.io/arcgeocoder/articles/feature-types.md)
+for a detailed explanation of this argument.
 
 This argument restricts the feature types returned by a reverse
 geocoding request. Possible values are `"StreetInt"`,
@@ -159,7 +160,7 @@ arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
 sev <- arc_reverse_geo(
   x = c(-73.98586, -3.188375),
   y = c(40.75728, 55.95335),
-  # Restrict to these features.
+  # Restrict results to specific feature types.
   featuretypes = "POI,StreetInt",
   # Return results in this WKID.
   outsr = 102100,
@@ -197,34 +198,34 @@ dplyr::glimpse(sev)
 #> $ LongLabel    <chr> "W 44th St & Broadway, New York, NY, 10036, USA", "Thistl…
 #> $ ShortLabel   <chr> "W 44th St & Broadway", "Thistle & Churn Ice Cream"
 #> $ Addr_type    <chr> "StreetInt", "POI"
-#> $ Type         <chr> "", "Restaurant"
-#> $ PlaceName    <chr> "", "Thistle & Churn Ice Cream"
-#> $ AddNum       <chr> "", "1"
+#> $ Type         <chr> NA, "Restaurant"
+#> $ PlaceName    <chr> NA, "Thistle & Churn Ice Cream"
+#> $ AddNum       <chr> NA, "1"
 #> $ Address      <chr> "W 44th St & Broadway", "1 Waterloo Place"
-#> $ Block        <chr> "", ""
-#> $ Sector       <chr> "", ""
+#> $ Block        <chr> NA, NA
+#> $ Sector       <chr> NA, NA
 #> $ Neighborhood <chr> "Midtown", "Canongate"
-#> $ District     <chr> "Manhattan", ""
+#> $ District     <chr> "Manhattan", NA
 #> $ City         <chr> "New York", "Edinburgh"
-#> $ MetroArea    <chr> "", "Edinburgh"
+#> $ MetroArea    <chr> NA, "Edinburgh"
 #> $ Subregion    <chr> "New York County", "Midlothian"
 #> $ Region       <chr> "New York", "Scotland"
 #> $ RegionAbbr   <chr> "NY", "SCT"
-#> $ Territory    <chr> "", ""
+#> $ Territory    <chr> NA, NA
 #> $ Postal       <chr> "10036", "EH1 3EG"
-#> $ PostalExt    <chr> "4011", ""
+#> $ PostalExt    <chr> "4011", NA
 #> $ CntryName    <chr> "United States", "United Kingdom"
 #> $ CountryCode  <chr> "USA", "GBR"
 #> $ X            <dbl> -73.985793, -3.188273
 #> $ Y            <dbl> 40.75726, 55.95325
 #> $ InputX       <dbl> -73.985860, -3.188375
 #> $ InputY       <dbl> 40.75728, 55.95335
-#> $ StrucType    <chr> "", ""
-#> $ StrucDet     <chr> "", ""
-#> $ StrucType1   <chr> "", NA
-#> $ StrucType2   <chr> "", NA
-#> $ StrucDet1    <chr> "", NA
-#> $ StrucDet2    <chr> "", NA
+#> $ StrucType    <chr> NA, NA
+#> $ StrucDet     <chr> NA, NA
+#> $ StrucType1   <chr> NA, NA
+#> $ StrucType2   <chr> NA, NA
+#> $ StrucDet1    <chr> NA, NA
+#> $ StrucDet2    <chr> NA, NA
 #> $ wkid         <int> 102100, 102100
 #> $ latestWkid   <int> 3857, 3857
 # }

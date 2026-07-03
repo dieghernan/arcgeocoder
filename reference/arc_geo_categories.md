@@ -52,9 +52,9 @@ arc_geo_categories(
 
 - bbox:
 
-  A numeric vector of longitude and latitude values
-  `c(xmin, ymin, xmax, ymax)` that restricts the search area. See
-  **Details**.
+  A numeric vector specifying a bounding box used to limit the search.
+  It must contain **longitude** (`x`) and **latitude** (`y`) values in
+  the form `c(xmin, ymin, xmax, ymax)`. See **Details**.
 
 - name:
 
@@ -77,12 +77,12 @@ arc_geo_categories(
 
 - full_results:
 
-  A logical value. If `TRUE`, returns all available API fields via
-  `outFields = "*"`. The default is `FALSE`.
+  A logical value indicating whether to return all available API fields
+  via `outFields = "*"`. The default is `FALSE`.
 
 - verbose:
 
-  A logical value. If `TRUE`, displays API request details.
+  A logical value indicating whether to display API request details.
 
 - custom_query:
 
@@ -111,8 +111,8 @@ arc_geo_categories(
 ## Value
 
 A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
-or more matches for each query. For details about the available fields,
-see [ArcGIS REST API service
+or more matches for each query. For descriptions of the available
+fields, see [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 ## Details
@@ -143,10 +143,12 @@ for values and examples.
 
 ## See also
 
-[arc_categories](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
-for supported values and [ArcGIS REST API category
-filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm)
-for API details.
+- [arc_categories](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
+  lists supported values.
+
+- [ArcGIS REST API category
+  filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm)
+  provides API details.
 
 Geocoding and reverse geocoding functions:
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),

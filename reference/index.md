@@ -2,8 +2,8 @@
 
 ## Geocoding and reverse geocoding
 
-Geocode single-line and structured addresses, find places by category
-and reverse geocode coordinates.
+Geocode single-line and structured addresses, reverse geocode
+coordinates and find places by category.
 
 - [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md)
   : Geocode addresses with the ArcGIS REST API
@@ -16,7 +16,7 @@ and reverse geocode coordinates.
 
 ## Reference data
 
-Browse supported place categories and ArcGIS spatial references.
+Browse supported place categories and coordinate reference systems.
 
 - [`arc_categories`](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
   : Place categories supported by the ArcGIS REST API
@@ -25,7 +25,7 @@ Browse supported place categories and ArcGIS spatial references.
 
 ## Package documentation
 
-Learn about the package and its metadata.
+View package-level documentation and useful links.
 
 - [`arcgeocoder`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder-package.md)
   [`arcgeocoder-package`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder-package.md)

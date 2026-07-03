@@ -102,10 +102,10 @@ search origin or a bounding box in <code>bbox</code> to define the search extent
 
 
 <dl><dt id="arg-category">category<a class="anchor" aria-label="anchor" href="#arg-category"></a></dt>
-<dd><p>A place or address type used to filter results.
-Multiple values can be supplied as a vector (for example,
-<code>c("Cinema", "Museum")</code>), which performs one call for each value. See
-<strong>Details</strong>.</p></dd>
+<dd><p>A place or address type used to filter results. Multiple
+values can be supplied as a vector (for example,
+<code>c("Cinema", "Museum")</code>), which performs one call for each value.
+See <strong>Details</strong>.</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
@@ -119,9 +119,9 @@ Multiple values can be supplied as a vector (for example,
 
 
 <dt id="arg-bbox">bbox<a class="anchor" aria-label="anchor" href="#arg-bbox"></a></dt>
-<dd><p>A numeric vector of longitude and latitude values
-<code>c(xmin, ymin, xmax, ymax)</code> that restricts the search area.
-See <strong>Details</strong>.</p></dd>
+<dd><p>A numeric vector specifying a bounding box used to limit the
+search. It must contain <strong>longitude</strong> (<code>x</code>) and <strong>latitude</strong> (<code>y</code>) values
+in the form <code>c(xmin, ymin, xmax, ymax)</code>. See <strong>Details</strong>.</p></dd>
 
 
 <dt id="arg-name">name<a class="anchor" aria-label="anchor" href="#arg-name"></a></dt>
@@ -144,12 +144,13 @@ a single request to 50 results.</p></dd>
 
 
 <dt id="arg-full-results">full_results<a class="anchor" aria-label="anchor" href="#arg-full-results"></a></dt>
-<dd><p>A logical value. If <code>TRUE</code>, returns all available API
-fields via <code>outFields = "*"</code>. The default is <code>FALSE</code>.</p></dd>
+<dd><p>A logical value indicating whether to return all
+available API fields via <code>outFields = "*"</code>. The default is <code>FALSE</code>.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>A logical value. If <code>TRUE</code>, displays API request details.</p></dd>
+<dd><p>A logical value indicating whether to display API request
+details.</p></dd>
 
 
 <dt id="arg-custom-query">custom_query<a class="anchor" aria-label="anchor" href="#arg-custom-query"></a></dt>
@@ -175,7 +176,7 @@ Multiple values can be supplied as a comma-separated string.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one or more matches for each query. For details about the available fields, see <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API service output</a>.</p>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one or more matches for each query. For descriptions of the available fields, see <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm" class="external-link">ArcGIS REST API service output</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -197,9 +198,11 @@ of the service (WGS 84, that is, WKID 4326).</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="arc_categories.html">arc_categories</a> for supported values and
-<a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">ArcGIS REST API category filtering</a> for API details.</p>
-<p>Geocoding and reverse geocoding functions:
+    <div class="dont-index">
+<ul><li><p><a href="arc_categories.html">arc_categories</a> lists supported values.</p></li>
+<li><p><a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">ArcGIS REST API category filtering</a> provides API
+details.</p></li>
+</ul><p>Geocoding and reverse geocoding functions:
 <code><a href="arc_geo.html">arc_geo()</a></code>,
 <code><a href="arc_geo_multi.html">arc_geo_multi()</a></code>,
 <code><a href="arc_reverse_geo.html">arc_reverse_geo()</a></code></p></div>

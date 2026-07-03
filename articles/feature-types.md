@@ -5,16 +5,17 @@
 
 ## How reverse geocoding selects a feature
 
-Reverse geocoding converts coordinates into an address. The ArcGIS REST
-API `reverseGeocode` operation selects the most relevant feature near
-the input location by using a prioritized hierarchy of feature types.
+Reverse geocoding converts longitude and latitude values into an
+address. The ArcGIS REST API `reverseGeocode` operation selects the most
+relevant feature near the input location by using a prioritized
+hierarchy of feature types.
 
 The following table lists this hierarchy in descending order of
 priority. Unless otherwise noted, a feature type is returned only when
 the distance between the input location and the feature is within the
 tolerance specified in the *Search tolerance* column.
 
-| Feature type | Search tolerance | Comments |
+| Feature type | Search tolerance | Details |
 |----|----|----|
 | `StreetInt` | 10 meters | Intersections are only returned when `featuretypes = "StreetInt"` is included in the request. |
 | `StreetAddress` (near), `DistanceMarker` or `StreetName` | 3 meters | Candidates of type `StreetName` are only returned if `featuretypes = "StreetName"` is included in the request. |
@@ -47,7 +48,7 @@ values:
 - `"Locality"`
 
 Supply multiple feature types as a character vector. **arcgeocoder**
-converts the vector to the comma-separated value required by the API.
+converts the vector into the comma-separated value required by the API.
 
 ### Single `featuretypes` value
 
@@ -74,13 +75,11 @@ library(arcgeocoder)
 library(dplyr)
 ```
 
-### Example 1: Return a `POI` centroid
+### Example 1: Use the default feature hierarchy
 
-This example uses the default `featuretypes = NULL`. The input location
-is within the search tolerance of both `POI` and `PointAddress`
-features, but the API returns the higher-priority `POI` centroid (see
-[Table 1](#tbl-hier)). The `Addr_type` field identifies the returned
-feature type.
+This example uses the default `featuretypes = NULL`, so the API selects
+a result from the full hierarchy in [Table 1](#tbl-hier). The
+`Addr_type` field identifies the returned feature type.
 
 ``` r
 
@@ -130,6 +129,9 @@ api_address |>
 | -117.1963 | 34.05922 | 1025-1141 W Park Ave, Redlands, CA, 92373, USA | -117.1963 | 34.05917 | StreetAddress |
 
 ### Example 3: Return a `Locality` match
+
+Set `featuretypes = "Locality"` to restrict the request to locality
+features.
 
 ``` r
 

@@ -46,15 +46,15 @@ A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with
 ## Source
 
 [Esri Projection Engine
-factory](https://github.com/Esri/projection-engine-db-doc)
+factory](https://github.com/Esri/projection-engine-db-doc).
 
 ## Details
 
 This dataset is useful when using the `outsr` argument.
 
 Some projection IDs have changed over time. For example, Web Mercator
-`wkid = 102100` is deprecated and is currently `wkid = 3857`. However,
-both values work and return equivalent results.
+`wkid = 102100` is deprecated and its current equivalent is
+`wkid = 3857`. Both values work and return equivalent results.
 
 ## Note
 
@@ -62,10 +62,15 @@ Data extracted on **15 January 2026**.
 
 ## See also
 
-[`sf::st_crs()`](https://r-spatial.github.io/sf/reference/st_crs.html)
+- [`sf::st_crs()`](https://r-spatial.github.io/sf/reference/st_crs.html)
+  inspects coordinate reference systems.
 
-Other datasets:
-[`arc_categories`](https://dieghernan.github.io/arcgeocoder/reference/arc_categories.md)
+- [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),
+  [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md),
+  [`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md)
+  and
+  [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md)
+  accept spatial references.
 
 ## Examples
 
@@ -120,7 +125,7 @@ add |>
 #> $ wkid       <int> 102100
 #> $ latestWkid <int> 3857
 
-# Look up the deprecated WKID with `sf`.
+# Look up the deprecated WKID.
 
 try(sf::st_crs(wkid$wkid))
 #> Warning: GDAL Error 1: PROJ: proj_create_from_database: crs not found

@@ -108,7 +108,7 @@
     <!-- feature-types.qmd is generated from feature-types.qmd.orig. Please edit that file --><p><em>Adapted from <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link uri">https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm</a>.</em></p>
 <section class="level2"><h2 id="how-reverse-geocoding-selects-a-feature">How reverse geocoding selects a feature<a class="anchor" aria-label="anchor" href="#how-reverse-geocoding-selects-a-feature"></a>
 </h2>
-<p>Reverse geocoding converts coordinates into an address. The ArcGIS REST API <code>reverseGeocode</code> operation selects the most relevant feature near the input location by using a prioritized hierarchy of feature types.</p>
+<p>Reverse geocoding converts longitude and latitude values into an address. The ArcGIS REST API <code>reverseGeocode</code> operation selects the most relevant feature near the input location by using a prioritized hierarchy of feature types.</p>
 <p>The following table lists this hierarchy in descending order of priority. Unless otherwise noted, a feature type is returned only when the distance between the input location and the feature is within the tolerance specified in the <em>Search tolerance</em> column.</p>
 <div id="tbl-hier" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-hier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -121,7 +121,7 @@
 <thead><tr class="header">
 <th>Feature type</th>
 <th>Search tolerance</th>
-<th>Comments</th>
+<th>Details</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -192,7 +192,7 @@ Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
 <li><code>"Postal"</code></li>
 <li><code>"Locality"</code></li>
 </ul>
-<p>Supply multiple feature types as a character vector. <strong>arcgeocoder</strong> converts the vector to the comma-separated value required by the API.</p>
+<p>Supply multiple feature types as a character vector. <strong>arcgeocoder</strong> converts the vector into the comma-separated value required by the API.</p>
 <section class="level3"><h3 id="single-featuretypes-value">Single <code>featuretypes</code> value<a class="anchor" aria-label="anchor" href="#single-featuretypes-value"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -207,9 +207,9 @@ Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/arcgeocoder/">arcgeocoder</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
-<section class="level3"><h3 id="example-1-return-a-poi-centroid">Example 1: Return a <code>POI</code> centroid<a class="anchor" aria-label="anchor" href="#example-1-return-a-poi-centroid"></a>
+<section class="level3"><h3 id="example-1-use-the-default-feature-hierarchy">Example 1: Use the default feature hierarchy<a class="anchor" aria-label="anchor" href="#example-1-use-the-default-feature-hierarchy"></a>
 </h3>
-<p>This example uses the default <code>featuretypes = NULL</code>. The input location is within the search tolerance of both <code>POI</code> and <code>PointAddress</code> features, but the API returns the higher-priority <code>POI</code> centroid (see <a href="#tbl-hier" class="quarto-xref">Table 1</a>). The <code>Addr_type</code> field identifies the returned feature type.</p>
+<p>This example uses the default <code>featuretypes = NULL</code>, so the API selects a result from the full hierarchy in <a href="#tbl-hier" class="quarto-xref">Table 1</a>. The <code>Addr_type</code> field identifies the returned feature type.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">example_x</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">117.196324</span></span>
 <span><span class="va">example_y</span> <span class="op">&lt;-</span> <span class="fl">34.059217</span></span>
@@ -293,6 +293,7 @@ Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
 </tr></tbody>
 </table></section><section class="level3"><h3 id="example-3-return-a-locality-match">Example 3: Return a <code>Locality</code> match<a class="anchor" aria-label="anchor" href="#example-3-return-a-locality-match"></a>
 </h3>
+<p>Set <code>featuretypes = "Locality"</code> to restrict the request to locality features.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">api_local</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/arc_reverse_geo.html">arc_reverse_geo</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">example_x</span>,</span>

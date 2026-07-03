@@ -35,12 +35,11 @@ filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-ca
 for details and examples.
 
 The ArcGIS geocoding service supports searches for many types of
-addresses and places around the world. This simplifies application
-development because developers do not need to know what types of places
-their users are searching for. However, ambiguous searches can match
-many different places and produce unexpected results. For example, a
-search for a city may match a street name, or an airport code may match
-a country abbreviation.
+addresses and places around the world, so applications do not need to
+anticipate the types of places that users may search for. However,
+ambiguous searches can match many different places and produce
+unexpected results. For example, a search for a city may match a street
+name, or an airport code may match a country abbreviation.
 
 In these cases, the `category` argument can filter out unwanted results.
 It limits the types of places that the service searches for, which can
@@ -57,12 +56,10 @@ Data extracted on **15 January 2026**.
 
 ## See also
 
-[`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md),
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo.md),
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_multi.md)
-
-Other datasets:
-[`arc_spatial_references`](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
+and
+[`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md).
 
 ## Examples
 
@@ -138,7 +135,7 @@ dplyr::glimpse(sea_2)
 #> $ wkid       <int> 4326, 4326
 #> $ latestWkid <int> 4326, 4326
 
-# Use a list of categories.
+# Use multiple categories.
 sea_3 <- arc_geo("sea",
   custom_query = list(outFields = c("LongLabel", "Type")),
   sourcecountry = "UK", limit = 5,

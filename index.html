@@ -101,13 +101,13 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p><strong>arcgeocoder</strong> provides a lightweight interface to the <a href="https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm" class="external-link">ArcGIS REST API</a>. It converts addresses into geographic coordinates, converts coordinates into addresses and finds places by category.</p>
+<p><strong>arcgeocoder</strong> provides a lightweight interface to the <a href="https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm" class="external-link">ArcGIS REST API</a>. It geocodes single-line and structured addresses, reverse geocodes coordinates and finds places by category.</p>
 <p>The full site with examples and vignettes is available at <a href="https://dieghernan.github.io/arcgeocoder/" class="uri">https://dieghernan.github.io/arcgeocoder/</a>.</p>
 <div class="section level2">
 <h2 id="why-arcgeocoder">Why arcgeocoder?<a class="anchor" aria-label="anchor" href="#why-arcgeocoder"></a>
 </h2>
 <p><strong>arcgeocoder</strong> accesses the ArcGIS REST API without requiring an API key or an additional HTTP package such as <strong>curl</strong>. It uses base R download functions, which keeps its dependency footprint small.</p>
-<p>The package provides focused interfaces to the <code>findAddressCandidates</code> and <code>reverseGeocode</code> endpoints. These interfaces support single-line addresses, structured address components, category filters and reverse geocoding.</p>
+<p>The package provides focused interfaces to the <code>findAddressCandidates</code> and <code>reverseGeocode</code> endpoints. It supports single-line addresses, structured address components, category filters and reverse geocoding.</p>
 </div>
 <div class="section level2">
 <h2 id="recommended-packages">Recommended packages<a class="anchor" aria-label="anchor" href="#recommended-packages"></a>
@@ -280,12 +280,12 @@ Table 1: Example: geocoding addresses.
 <p class="caption">
 Table 2: Example: reverse geocoding addresses.
 </p>
-<p>The <code><a href="reference/arc_geo_categories.html">arc_geo_categories()</a></code> function finds places by category near a location or within a bounding box. Available categories are documented in <code>arc_categories</code> and in the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">ArcGIS category filtering documentation</a>.</p>
+<p>The <code><a href="reference/arc_geo_categories.html">arc_geo_categories()</a></code> function finds places by category near a location or within a bounding box. Available categories are documented in the <code>arc_categories</code> dataset and in the <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">ArcGIS category filtering documentation</a>.</p>
 <p>The following example finds food-related places, such as restaurants, coffee shops and bakeries, near the Eiffel Tower in France.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># For plotting.</span></span>
 <span></span>
-<span><span class="co"># Step 1: Locate the Eiffel Tower using a multi-field query.</span></span>
+<span><span class="co"># Step 1: Locate the Eiffel Tower using a structured query.</span></span>
 <span></span>
 <span><span class="va">eiffel_tower</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/arc_geo_multi.html">arc_geo_multi</a></span><span class="op">(</span></span>
 <span>  address <span class="op">=</span> <span class="st">"Tour Eiffel"</span>,</span>

@@ -2,8 +2,8 @@
 
 **arcgeocoder** provides a lightweight interface to the [ArcGIS REST
 API](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
-It converts addresses into geographic coordinates, converts coordinates
-into addresses and finds places by category.
+It geocodes single-line and structured addresses, reverse geocodes
+coordinates and finds places by category.
 
 The full site with examples and vignettes is available at
 <https://dieghernan.github.io/arcgeocoder/>.
@@ -15,9 +15,8 @@ key or an additional HTTP package such as **curl**. It uses base R
 download functions, which keeps its dependency footprint small.
 
 The package provides focused interfaces to the `findAddressCandidates`
-and `reverseGeocode` endpoints. These interfaces support single-line
-addresses, structured address components, category filters and reverse
-geocoding.
+and `reverseGeocode` endpoints. It supports single-line addresses,
+structured address components, category filters and reverse geocoding.
 
 ## Recommended packages
 
@@ -117,8 +116,8 @@ Table 2: Example: reverse geocoding addresses.
 The
 [`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/reference/arc_geo_categories.md)
 function finds places by category near a location or within a bounding
-box. Available categories are documented in `arc_categories` and in the
-[ArcGIS category filtering
+box. Available categories are documented in the `arc_categories` dataset
+and in the [ArcGIS category filtering
 documentation](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
 
 The following example finds food-related places, such as restaurants,
@@ -128,7 +127,7 @@ coffee shops and bakeries, near the Eiffel Tower in France.
 
 library(ggplot2) # For plotting.
 
-# Step 1: Locate the Eiffel Tower using a multi-field query.
+# Step 1: Locate the Eiffel Tower using a structured query.
 
 eiffel_tower <- arc_geo_multi(
   address = "Tour Eiffel",

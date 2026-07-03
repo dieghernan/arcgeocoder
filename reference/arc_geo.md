@@ -54,21 +54,22 @@ arc_geo(
 
 - full_results:
 
-  A logical value. If `TRUE`, returns all available API fields via
-  `outFields = "*"`. The default is `FALSE`.
+  A logical value indicating whether to return all available API fields
+  via `outFields = "*"`. The default is `FALSE`.
 
 - return_addresses:
 
-  A logical value. If `TRUE`, includes the input query in the output.
+  A logical value indicating whether to include the input query in the
+  output.
 
 - verbose:
 
-  A logical value. If `TRUE`, displays API request details.
+  A logical value indicating whether to display API request details.
 
 - progressbar:
 
-  A logical value. If `TRUE`, displays a progress bar for multiple
-  queries.
+  A logical value indicating whether to display a progress bar for
+  multiple queries.
 
 - outsr:
 
@@ -98,8 +99,8 @@ arc_geo(
 ## Value
 
 A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
-or more matches for each query. For details about the available fields,
-see [ArcGIS REST API service
+or more matches for each query. For descriptions of the available
+fields, see [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 ## Details

@@ -89,11 +89,11 @@ three variables:</p><dl><dt>level_1</dt>
     <p>See <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm" class="external-link">ArcGIS REST API category filtering</a> for details and
 examples.</p>
 <p>The ArcGIS geocoding service supports searches for many types of addresses
-and places around the world. This simplifies application development because
-developers do not need to know what types of places their users are searching
-for. However, ambiguous searches can match many different places and produce
-unexpected results. For example, a search for a city may match a street name,
-or an airport code may match a country abbreviation.</p>
+and places around the world, so applications do not need to anticipate the
+types of places that users may search for. However, ambiguous searches can
+match many different places and produce unexpected results. For example, a
+search for a city may match a street name, or an airport code may match a
+country abbreviation.</p>
 <p>In these cases, the <code>category</code> argument can filter out unwanted results. It
 limits the types of places that the service searches for, which can eliminate
 false-positive matches and speed up the search.</p>
@@ -107,9 +107,7 @@ its child categories may also be included in the results.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="arc_geo_categories.html">arc_geo_categories()</a></code>, <code><a href="arc_geo.html">arc_geo()</a></code>, <code><a href="arc_geo_multi.html">arc_geo_multi()</a></code></p>
-<p>Other datasets:
-<code><a href="arc_spatial_references.html">arc_spatial_references</a></code></p></div>
+    <div class="dont-index"><p><code><a href="arc_geo.html">arc_geo()</a></code>, <code><a href="arc_geo_multi.html">arc_geo_multi()</a></code> and <code><a href="arc_geo_categories.html">arc_geo_categories()</a></code>.</p></div>
     </div>
 
     <div class="section level2">
@@ -185,7 +183,7 @@ its child categories may also be included in the results.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ wkid       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4326<span style="color: #949494;">, </span>4326</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ latestWkid <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4326<span style="color: #949494;">, </span>4326</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Use a list of categories.</span></span></span>
+<span class="r-in"><span><span class="co"># Use multiple categories.</span></span></span>
 <span class="r-in"><span><span class="va">sea_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="arc_geo.html">arc_geo</a></span><span class="op">(</span><span class="st">"sea"</span>,</span></span>
 <span class="r-in"><span>  custom_query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>outFields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LongLabel"</span>, <span class="st">"Type"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  sourcecountry <span class="op">=</span> <span class="st">"UK"</span>, limit <span class="op">=</span> <span class="fl">5</span>,</span></span>

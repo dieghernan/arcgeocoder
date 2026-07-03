@@ -61,21 +61,22 @@ arc_geo_multi(
 
 - full_results:
 
-  A logical value. If `TRUE`, returns all available API fields via
-  `outFields = "*"`. The default is `FALSE`.
+  A logical value indicating whether to return all available API fields
+  via `outFields = "*"`. The default is `FALSE`.
 
 - return_addresses:
 
-  A logical value. If `TRUE`, includes the input query in the output.
+  A logical value indicating whether to include the input query in the
+  output.
 
 - verbose:
 
-  A logical value. If `TRUE`, displays API request details.
+  A logical value indicating whether to display API request details.
 
 - progressbar:
 
-  A logical value. If `TRUE`, displays a progress bar for multiple
-  queries.
+  A logical value indicating whether to display a progress bar for
+  multiple queries.
 
 - outsr:
 
@@ -100,8 +101,8 @@ arc_geo_multi(
 ## Value
 
 A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
-or more matches for each query. For details about the available fields,
-see [ArcGIS REST API service
+or more matches for each query. For descriptions of the available
+fields, see [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 The output also includes the input arguments as columns prefixed with
@@ -149,8 +150,8 @@ The following list provides a brief description of each argument:
 - `region`: The largest administrative division associated with an
   address, typically a state or province.
 
-- `postal`: The standard postal code for an address, typically a three–
-  to six-digit alphanumeric code.
+- `postal`: The standard postal code for an address, typically a three-
+  to six-character alphanumeric code.
 
 - `postalext`: A postal code extension, such as the United States Postal
   Service ZIP+4 code.

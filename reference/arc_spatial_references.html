@@ -99,14 +99,14 @@ Useful when working with <a href="https://CRAN.R-project.org/package=sf" class="
 </dl></div>
     <div class="section level2">
     <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
-    <p><a href="https://github.com/Esri/projection-engine-db-doc" class="external-link">Esri Projection Engine factory</a></p>
+    <p><a href="https://github.com/Esri/projection-engine-db-doc" class="external-link">Esri Projection Engine factory</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This dataset is useful when using the <code>outsr</code> argument.</p>
 <p>Some projection IDs have changed over time. For example, Web Mercator
-<code>wkid = 102100</code> is deprecated and is currently <code>wkid = 3857</code>. However, both
-values work and return equivalent results.</p>
+<code>wkid = 102100</code> is deprecated and its current equivalent is <code>wkid = 3857</code>.
+Both values work and return equivalent results.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -114,9 +114,11 @@ values work and return equivalent results.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">sf::st_crs()</a></code></p>
-<p>Other datasets:
-<code><a href="arc_categories.html">arc_categories</a></code></p></div>
+    <div class="dont-index">
+<ul><li><p><code><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">sf::st_crs()</a></code> inspects coordinate reference systems.</p></li>
+<li><p><code><a href="arc_geo.html">arc_geo()</a></code>, <code><a href="arc_geo_multi.html">arc_geo_multi()</a></code>, <code><a href="arc_geo_categories.html">arc_geo_categories()</a></code> and
+<code><a href="arc_reverse_geo.html">arc_reverse_geo()</a></code> accept spatial references.</p></li>
+</ul></div>
     </div>
 
     <div class="section level2">
@@ -171,7 +173,7 @@ values work and return equivalent results.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ wkid       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 102100</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ latestWkid <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3857</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Look up the deprecated WKID with `sf`.</span></span></span>
+<span class="r-in"><span><span class="co"># Look up the deprecated WKID.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">st_crs</a></span><span class="op">(</span><span class="va">wkid</span><span class="op">$</span><span class="va">wkid</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_create_from_database: crs not found</span>
