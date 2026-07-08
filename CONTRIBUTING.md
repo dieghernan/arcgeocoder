@@ -64,7 +64,9 @@ advice.
   unit tests. Contributions with test cases included are easier to
   accept.
 
-## Thanks for contributing!
+## Code of Conduct
 
-This contributing guide is adapted from the tidyverse contributing guide
-available at <https://tidyverse.tidyverse.org/CONTRIBUTING.html>.
+Please note that the arcgeocoder project is released with a [Contributor
+Code of
+Conduct](https://dieghernan.github.io/arcgeocoder/CODE_OF_CONDUCT.md).
+By contributing to this project you agree to abide by its terms.
