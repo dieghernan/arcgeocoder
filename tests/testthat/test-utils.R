@@ -324,6 +324,30 @@ test_that("multi_row_query omits missing fields", {
   expect_identical(multi_row_query(empty_row), NA_character_)
 })
 
+test_that("input_multi validates structured address input", {
+  expect_snapshot(error = TRUE, input_multi())
+  expect_snapshot(error = TRUE, input_multi("a", c("a", "b")))
+
+  result <- input_multi(
+    address = c("Calle Mayor", NA),
+    city = c("Madrid", "Guanajuato"),
+    countrycode = c("ESP", NA)
+  )
+
+  expect_s3_class(result, "tbl_df")
+  expect_named(result, c("q_address", "q_city", "q_countrycode", "query"))
+  expect_identical(result$q_address, c("Calle Mayor", NA_character_))
+  expect_identical(result$q_city, c("Madrid", "Guanajuato"))
+  expect_identical(result$q_countrycode, c("ESP", NA_character_))
+  expect_identical(
+    result$query,
+    c(
+      "address=Calle Mayor&city=Madrid&countryCode=ESP",
+      "city=Guanajuato"
+    )
+  )
+})
+
 test_that("unnest_reverse extracts address and location fields", {
   x <- list(
     address = list(LongLabel = "Main Street", City = "Madrid"),
@@ -402,7 +426,10 @@ test_that("empty table helpers create correctly named missing columns", {
   geo <- empty_tbl(data.frame(query = "unknown"), "y", "x")
   expect_named(geo, c("query", "y", "x"))
   expect_type(geo$y, "double")
-  expect_true(all(is.na(geo[c("y", "x")])))
+  expect_identical(
+    unname(vapply(geo[c("y", "x")], is.na, FUN.VALUE = logical(1))),
+    c(TRUE, TRUE)
+  )
 
   reverse <- empty_tbl_rev(data.frame(query = 1), "result")
   expect_named(reverse, "result")

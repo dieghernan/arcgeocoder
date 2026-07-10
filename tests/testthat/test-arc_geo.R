@@ -4,14 +4,14 @@ test_that("Returning empty query", {
 
   expect_snapshot(obj <- arc_geo("alsksjdhfg 561bata lorem ipsum"))
 
-  expect_true(nrow(obj) == 1)
-  expect_true(obj$query == "alsksjdhfg 561bata lorem ipsum")
+  expect_equal(nrow(obj), 1)
+  expect_equal(obj$query, "alsksjdhfg 561bata lorem ipsum")
   expect_s3_class(obj, "tbl")
   expect_named(obj, c("query", "lat", "lon"))
-  expect_true(all(
-    vapply(obj, class, FUN.VALUE = character(1)) ==
-      c("character", rep("numeric", 2))
-  ))
+  expect_equal(
+    unname(vapply(obj, class, FUN.VALUE = character(1))),
+    c("character", rep("numeric", 2))
+  )
   expect_true(is.na(obj$lat))
   expect_true(is.na(obj$lon))
 

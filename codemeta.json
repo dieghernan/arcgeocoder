@@ -165,7 +165,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "arcgis", "address", "coordinates", "location-search", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "cran-r", "gis", "cran", "spatial-search", "geocoder", "geocoding", "reverse-geocoder", "reverse-geocoding"],
-  "fileSize": "435.801KB",
+  "fileSize": "436.149KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

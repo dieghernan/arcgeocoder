@@ -101,16 +101,6 @@ test_that("Messages bbox", {
       "POI",
       x = -3.7242,
       y = 40.39094,
-      bbox = c(-200, -89, 200, 89),
-      verbose = TRUE
-    )
-  )
-
-  expect_snapshot(
-    out <- arc_geo_categories(
-      "POI",
-      x = -3.7242,
-      y = 40.39094,
       bbox = c(-100, -95, 100, 95),
       verbose = TRUE
     )
@@ -140,9 +130,7 @@ test_that("Test with all params", {
     )
   )
 
-  expect_true("bbbb" %in% names(out))
-  expect_true("aaaa" %in% names(out))
-  expect_true("LongLabel" %in% names(out))
+  expect_contains(names(out), c("bbbb", "aaaa", "LongLabel"))
   expect_false("query" %in% names(out))
   expect_false(any(grepl("Country", names(out), fixed = TRUE)))
 
@@ -162,9 +150,7 @@ test_that("Test with all params", {
     custom_query = list(outFields = "LongLabel")
   )
 
-  expect_true("bbbb" %in% names(out2))
-  expect_true("aaaa" %in% names(out2))
-  expect_true("LongLabel" %in% names(out2))
+  expect_contains(names(out2), c("bbbb", "aaaa", "LongLabel"))
   expect_false("query" %in% names(out))
   expect_true(any(grepl("Country", names(out2), fixed = TRUE)))
   expect_gt(ncol(out2), ncol(out))

@@ -186,7 +186,9 @@ test_that("Progress bar", {
   expect_output(aa <- arc_geo_multi(c("Madrid", "Barcelona")))
 
   # Not
-  expect_silent(aa <- arc_geo(c("Madrid", "Barcelona"), progressbar = FALSE))
+  expect_silent(
+    aa <- arc_geo_multi(c("Madrid", "Barcelona"), progressbar = FALSE)
+  )
 })
 
 test_that("Use categories multi", {

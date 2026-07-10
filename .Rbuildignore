@@ -54,3 +54,4 @@
 ^\.claude$
 ^\.gitattributes$
 ^dev$
+^AGENTS\.md$

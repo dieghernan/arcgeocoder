@@ -26,9 +26,9 @@ test_that("Returning empty query", {
     obj <- arc_reverse_geo(179.9999, 89.999999, featuretypes = "StreetInt")
   )
 
-  expect_true(nrow(obj) == 1)
-  expect_true(obj$y == 89.999999)
-  expect_true(obj$x == 179.9999)
+  expect_equal(nrow(obj), 1)
+  expect_equal(obj$y, 89.999999)
+  expect_equal(obj$x, 179.9999)
   expect_s3_class(obj, "tbl")
   expect_named(obj, c("x", "y", "address"))
   expect_true(is.na(obj$address))
@@ -148,6 +148,11 @@ test_that("Check unnesting", {
   # Classes of all cols
 
   colclass <- vapply(sev, class, FUN.VALUE = character(1))
+  expect_named(colclass, names(sev))
+  expect_equal(
+    unname(colclass[c("x", "y", "lat", "lon")]),
+    rep("numeric", 4)
+  )
 })
 #
 test_that("Dedupe", {

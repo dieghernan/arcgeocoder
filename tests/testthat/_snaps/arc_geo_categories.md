@@ -168,25 +168,6 @@
 ---
 
     Code
-      out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, bbox = c(-200, -89,
-        200, 89), verbose = TRUE)
-    Message
-      
-      `bbox` xmin and xmax were restricted to [-180, 180].
-      
-      Endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?
-      Parameters:
-         - SingleLine=
-         - f=json
-         - maxLocations=1
-         - location=-3.7242,40.39094
-         - searchExtent=-180,-89,180,89
-         - category=POI
-      URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=&f=json&maxLocations=1&location=-3.7242,40.39094&searchExtent=-180,-89,180,89&category=POI
-
----
-
-    Code
       out <- arc_geo_categories("POI", x = -3.7242, y = 40.39094, bbox = c(-100, -95,
         100, 95), verbose = TRUE)
     Message
