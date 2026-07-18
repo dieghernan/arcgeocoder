@@ -1,6 +1,6 @@
 ---
 title: Static maps with arcgeocoder
-description: Map geocoding results with **sf**, **terra** and **ggplot2**.
+description: Map geocoding results with sf, terra and ggplot2.
 knitr:
   opts_chunk:
     collapse: true

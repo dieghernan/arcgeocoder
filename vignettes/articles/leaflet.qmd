@@ -1,6 +1,6 @@
 ---
 title: Interactive maps with arcgeocoder
-description: Map and filter geocoding results with **leaflet** and **crosstalk**.
+description: Map and filter geocoding results with leaflet and crosstalk.
 knitr:
   opts_chunk:
     collapse: true

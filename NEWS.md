@@ -1,7 +1,5 @@
 # arcgeocoder 0.4.1
 
-- Reviewed and aligned terminology across **roxygen2**, README and vignettes with AI assistance.
-- Refactored internal geocoding helpers for simpler maintenance, including shared query, progress, validation and API call utilities. The refactor was developed with AI assistance and does not change the public API.
 - Improved the clarity and consistency of user-facing messages.
 
 # arcgeocoder 0.4.0
