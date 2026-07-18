@@ -296,9 +296,9 @@ Display geocoding results on static and interactive maps.
 - [Static maps with
   arcgeocoder](https://dieghernan.github.io/arcgeocoder/articles/static.md):
 
-  Map geocoding results with **sf**, **terra** and **ggplot2**.
+  Map geocoding results with sf, terra and ggplot2.
 
 - [Interactive maps with
   arcgeocoder](https://dieghernan.github.io/arcgeocoder/articles/leaflet.md):
 
-  Map and filter geocoding results with **leaflet** and **crosstalk**.
+  Map and filter geocoding results with leaflet and crosstalk.
