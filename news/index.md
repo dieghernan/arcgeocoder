@@ -10,14 +10,14 @@ CRAN release: 2026-06-03
 
 CRAN release: 2026-03-20
 
-- Migrated the documentation to Quarto
+- Migrated the documentation to **Quarto**
   ([\#24](https://github.com/dieghernan/arcgeocoder/issues/24)).
 
 ## arcgeocoder 0.3.0
 
 CRAN release: 2026-01-15
 
-- The minimum required **R** version is now `4.1.0`.
+- The minimum required **R** version is now 4.1.0.
 
 ## arcgeocoder 0.2.1
 

@@ -57,9 +57,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Reverse geocoding</h6></li>
-    <li><a class="dropdown-item" href="../articles/feature-types.html">Reverse geocoding and feature types</a></li>
+<li><a class="dropdown-item" href="../articles/feature-types.html">Reverse geocoding and feature types</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Mapping</h6></li>
     <li><a class="dropdown-item" href="../articles/static.html">Static maps with arcgeocoder</a></li>
@@ -108,7 +106,7 @@
     <!-- feature-types.qmd is generated from feature-types.qmd.orig. Please edit that file --><p><em>Adapted from <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm" class="external-link uri">https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm</a>.</em></p>
 <section class="level2"><h2 id="how-reverse-geocoding-selects-a-feature">How reverse geocoding selects a feature<a class="anchor" aria-label="anchor" href="#how-reverse-geocoding-selects-a-feature"></a>
 </h2>
-<p>Reverse geocoding converts longitude and latitude values into an address. The ArcGIS REST API <code>reverseGeocode</code> operation selects the most relevant feature near the input location by using a prioritized hierarchy of feature types.</p>
+<p>Reverse geocoding converts longitude and latitude values into an address. The <strong>ArcGIS REST API</strong> <code>reverseGeocode</code> operation selects the most relevant feature near the input location by using a prioritized hierarchy of feature types.</p>
 <p>The following table lists this hierarchy in descending order of priority. Unless otherwise noted, a feature type is returned only when the distance between the input location and the feature is within the tolerance specified in the <em>Search tolerance</em> column.</p>
 <div id="tbl-hier" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-hier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -176,7 +174,7 @@
 </table>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-hier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 1: Adapted from ArcGIS REST API <code>reverseGeocode</code>
+Table 1: Adapted from <strong>ArcGIS REST API</strong> <code>reverseGeocode</code>
 </figcaption></figure>
 </div>
 <p>In <strong>arcgeocoder</strong>, the <code>featuretypes</code> argument of <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code> controls which feature types the API can return. With the default <code>featuretypes = NULL</code>, the request does not filter feature types and the full hierarchy in <a href="#tbl-hier" class="quarto-xref">Table 1</a> applies.</p>

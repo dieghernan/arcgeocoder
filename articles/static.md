@@ -1,6 +1,6 @@
 # Static maps with arcgeocoder
 
-## Example 1: Map **sf** objects
+## Example 1: Map sf objects
 
 This example converts results from **arcgeocoder** into an **sf** object
 and displays them on a static map.

@@ -29,9 +29,7 @@ the range \(\left[-90, 90 \right]\) and longitudes in the range
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Reverse geocoding</h6></li>
-    <li><a class="dropdown-item" href="../articles/feature-types.html">Reverse geocoding and feature types</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/feature-types.html">Reverse geocoding and feature types</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Mapping</h6></li>
     <li><a class="dropdown-item" href="../articles/static.html">Static maps with arcgeocoder</a></li>
@@ -57,7 +55,7 @@ the range \(\left[-90, 90 \right]\) and longitudes in the range
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Reverse geocode coordinates with the ArcGIS REST API</h1>
-      <small class="dont-index">Source: <a href="https://github.com/dieghernan/arcgeocoder/blob/main/R/arc_reverse_geo.R" class="external-link"><code>R/arc_reverse_geo.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dieghernan/arcgeocoder/blob/main/R/arc-reverse-geo.R" class="external-link"><code>R/arc-reverse-geo.R</code></a></small>
       <div class="d-none name"><code>arc_reverse_geo.Rd</code></div>
     </div>
 
@@ -223,23 +221,21 @@ request. Possible values are <code>"StreetInt"</code>, <code>"DistanceMarker"</c
 <span class="r-in"><span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>, full_results <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Parameters:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Request endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Request parameters:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>    - location=-73.98586,40.75728</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>    - f=json</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>    - outSR=102100</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>    - featureTypes=POI,StreetInt</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-73.98586,40.75728&amp;f=json&amp;outSR=102100&amp;featureTypes=POI,StreetInt</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Encoded URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-73.98586,40.75728&amp;f=json&amp;outSR=102100&amp;featureTypes=POI,StreetInt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                          |==================================================| 100%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Parameters:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Request endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Request parameters:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>    - location=-3.188375,55.95335</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>    - f=json</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>    - outSR=102100</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>    - featureTypes=POI,StreetInt</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-3.188375,55.95335&amp;f=json&amp;outSR=102100&amp;featureTypes=POI,StreetInt</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Encoded URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-3.188375,55.95335&amp;f=json&amp;outSR=102100&amp;featureTypes=POI,StreetInt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">sev</span><span class="op">)</span></span></span>

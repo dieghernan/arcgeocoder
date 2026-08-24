@@ -1,6 +1,6 @@
 # Articles
 
-### Get started
+### Start here
 
 Geocode addresses, reverse geocode coordinates and find places by
 category.

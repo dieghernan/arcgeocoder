@@ -6,8 +6,8 @@
 ## How reverse geocoding selects a feature
 
 Reverse geocoding converts longitude and latitude values into an
-address. The ArcGIS REST API `reverseGeocode` operation selects the most
-relevant feature near the input location by using a prioritized
+address. The **ArcGIS REST API** `reverseGeocode` operation selects the
+most relevant feature near the input location by using a prioritized
 hierarchy of feature types.
 
 The following table lists this hierarchy in descending order of
@@ -26,7 +26,7 @@ tolerance specified in the *Search tolerance* column.
 | `POI` area | within boundary | A business or landmark that can be represented by an area, such as a large park or university. Not available in all countries. |
 | `Postal` or `Locality` area | within boundary | If the input location intersects multiple boundaries, the feature with the smallest area is returned. |
 
-Table 1: Adapted from ArcGIS REST API `reverseGeocode`
+Table 1: Adapted from **ArcGIS REST API** `reverseGeocode`
 
 In **arcgeocoder**, the `featuretypes` argument of
 [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/reference/arc_reverse_geo.md)

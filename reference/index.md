@@ -23,9 +23,7 @@ Browse supported place categories and coordinate reference systems.
 - [`arc_spatial_references`](https://dieghernan.github.io/arcgeocoder/reference/arc_spatial_references.md)
   : Spatial references supported by the ArcGIS REST API
 
-## Package documentation
-
-View package-level documentation and useful links.
+## About the package
 
 - [`arcgeocoder`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder-package.md)
   [`arcgeocoder-package`](https://dieghernan.github.io/arcgeocoder/reference/arcgeocoder-package.md)
