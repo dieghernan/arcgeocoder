@@ -29,8 +29,8 @@ is_named <- function(x) {
 restrict_arc_limit <- function(limit) {
   if (limit > 50) {
     message(paste0(
-      "\nThe ArcGIS REST API returns at most 50 results per request.",
-      " Only the first 50 results will be requested."
+      "The ArcGIS REST API limits each request to 50 results.",
+      " `limit` was reduced to 50."
     ))
     limit <- min(50, limit)
   }
@@ -136,7 +136,10 @@ restrict_lat <- function(x) {
     x,
     min_value = -90,
     max_value = 90,
-    message_text = "\nLatitudes were restricted to [-90, 90].",
+    message_text = paste0(
+      "Latitude values outside [-90, 90] were replaced with ",
+      "the nearest boundary."
+    ),
     use_identical = TRUE
   )
 }
@@ -146,7 +149,10 @@ restrict_lon <- function(x) {
     x,
     min_value = -180,
     max_value = 180,
-    message_text = "\nLongitudes were restricted to [-180, 180]."
+    message_text = paste0(
+      "Longitude values outside [-180, 180] were replaced with ",
+      "the nearest boundary."
+    )
   )
 }
 
@@ -155,7 +161,10 @@ restrict_bbox_lat <- function(x) {
     x,
     min_value = -90,
     max_value = 90,
-    message_text = "\n`bbox` ymin and ymax were restricted to [-90, 90]."
+    message_text = paste0(
+      "`bbox` latitude values outside [-90, 90] were replaced with ",
+      "the nearest boundary."
+    )
   )
 }
 
@@ -164,7 +173,10 @@ restrict_bbox_lon <- function(x) {
     x,
     min_value = -180,
     max_value = 180,
-    message_text = "\n`bbox` xmin and xmax were restricted to [-180, 180]."
+    message_text = paste0(
+      "`bbox` longitude values outside [-180, 180] were replaced with ",
+      "the nearest boundary."
+    )
   )
 }
 
@@ -211,11 +223,11 @@ message_api_call <- function(url) {
   encoded_url <- URLencode(url)
 
   message(
-    "\nEndpoint: ",
+    "Request endpoint: ",
     decomp[1],
-    "?\nParameters:\n",
+    "?\nRequest parameters:\n",
     paste0("   - ", params, collapse = "\n"),
-    "\nURL: ",
+    "\nEncoded URL: ",
     encoded_url
   )
 }

@@ -7,7 +7,7 @@
 #' @name arc_categories
 #' @docType data
 #' @format
-#' A [tibble][dplyr::tibble] with
+#' A [tibble][dplyr::tibble()] with
 #' `r prettyNum(nrow(arcgeocoder::arc_categories), big.mark=",")` rows and
 #' three variables:
 #' \describe{
@@ -89,7 +89,7 @@ NULL
 #' @name arc_spatial_references
 #' @docType data
 #' @format
-#' A [tibble][dplyr::tibble] with
+#' A [tibble][dplyr::tibble()] with
 #' `r prettyNum(nrow(arcgeocoder::arc_spatial_references), big.mark=",")` rows
 #' and eight variables:
 #' \describe{

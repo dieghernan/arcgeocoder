@@ -2,7 +2,7 @@
 #| echo: false
 #| results: asis
 cat(paste0(
-  "A [tibble][dplyr::tibble] with one or more matches for each query. ",
+  "A [tibble][dplyr::tibble()] with one or more matches for each query. ",
   "For descriptions of the available fields, see ",
   "[ArcGIS REST API service output](",
   arcgeocoder:::arcurl("out"), ")."

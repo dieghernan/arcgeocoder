@@ -6,12 +6,6 @@
 #'
 #' For a single-line address, use [arc_geo()].
 #'
-#' @param address,address2,address3,neighborhood,city,subregion Address
-#'   components. See **Details**.
-#' @param region,postal,postalext,countrycode Additional address components.
-#'   See **Details**.
-#' @inheritParams arc_geo
-#'
 #' @details
 #' See the [ArcGIS REST API documentation](`r arcurl("cand")`) for more
 #' information and valid values.
@@ -54,7 +48,13 @@
 #'   name in English or the official language of the country, the two-character
 #'   country code or the three-character country code.
 #'
-#' @inheritSection arc_reverse_geo `outsr`
+#' @param address,address2,address3,neighborhood,city,subregion Address
+#'   components. See **Details**.
+#' @param region,postal,postalext,countrycode Additional address components.
+#'   See **Details**.
+#' @inheritParams arc_geo lat long limit full_results return_addresses
+#' @inheritParams arc_geo category custom_query
+#' @inheritParams arc_reverse_geo verbose progressbar outsr langcode
 #'
 #' @returns
 #' ```{r child = "man/chunks/out1.Rmd"}
@@ -63,8 +63,9 @@
 #' The output also includes the input arguments as columns prefixed with `q_`
 #' to help track the results.
 #'
-#' @references
-#' [ArcGIS REST API `findAddressCandidates`](`r arcurl("cand")`).
+#' @inheritSection arc_reverse_geo `outsr`
+#'
+#' @inherit arc_geo references
 #'
 #' @family geocoders
 #'
@@ -152,7 +153,10 @@ arc_geo_multi <- function(
   key <- key[!is.na(key)]
 
   if (length(key) == 0) {
-    stop("Provide at least one address component that is not `NA`.")
+    stop(paste0(
+      "Provide at least one address component that is not ",
+      "`NA` or `NULL`."
+    ))
   }
 
   # Add API arguments to the custom query.
@@ -208,12 +212,15 @@ input_multi <- function(
   getlen <- lengths(multi_list)
   nolens <- getlen[getlen != 0]
   if (length(nolens) == 0) {
-    stop("Provide at least one address component that is not `NA`.")
+    stop(paste0(
+      "Provide at least one address component that is not ",
+      "`NA` or `NULL`."
+    ))
   }
   if (length(unique(nolens)) != 1) {
     stop(paste0(
-      "When providing multiple address components, ",
-      "their lengths must be the same."
+      "All supplied address components must have ",
+      "the same length."
     ))
   }
 

@@ -5,6 +5,31 @@
 #' the range \eqn{\left[-90, 90 \right]} and longitudes in the range
 #' \eqn{\left[-180, 180 \right]}. Returns one match for each coordinate pair.
 #'
+#' @details
+#' See the [ArcGIS REST API documentation](`r arcurl("rev")`) for more
+#' information and valid values.
+#'
+#' # `outsr`
+#'
+#' The spatial reference can be specified as a well-known ID (WKID). If not
+#' specified, the spatial reference of the output locations is the same as that
+#' of the service (WGS 84, that is, WKID 4326).
+#'
+#' See [arc_spatial_references] for values and examples.
+#'
+#' # `featuretypes`
+#'
+#' See `vignette("feature-types", package = "arcgeocoder")` for a detailed
+#' explanation of this argument.
+#'
+#' This argument restricts the feature types returned by a reverse geocoding
+#' request. Possible values are `"StreetInt"`, `"DistanceMarker"`,
+#' `"StreetAddress"`, `"StreetName"`, `"POI"`, `"Subaddress"`,
+#' `"PointAddress"`, `"Postal"` and `"Locality"`.
+#'
+#' Supply multiple values as a character vector, for example,
+#' `c("PointAddress", "StreetAddress")`.
+#'
 #' @param x A numeric vector of longitude values in the range
 #'   \eqn{\left[-180, 180 \right]}.
 #' @param y A numeric vector of latitude values in the range
@@ -32,33 +57,8 @@
 #'   `"rooftop"` and `"street"`. The default is `NULL`.
 #' @param custom_query A named list with additional API parameters.
 #'
-#' @details
-#' See the [ArcGIS REST API documentation](`r arcurl("rev")`) for more
-#' information and valid values.
-#'
-#' # `outsr`
-#'
-#' The spatial reference can be specified as a well-known ID (WKID). If not
-#' specified, the spatial reference of the output locations is the same as that
-#' of the service (WGS 84, that is, WKID 4326).
-#'
-#' See [arc_spatial_references] for values and examples.
-#'
-#' # `featuretypes`
-#'
-#' See `vignette("feature-types", package = "arcgeocoder")` for a detailed
-#' explanation of this argument.
-#'
-#' This argument restricts the feature types returned by a reverse geocoding
-#' request. Possible values are `"StreetInt"`, `"DistanceMarker"`,
-#' `"StreetAddress"`, `"StreetName"`, `"POI"`, `"Subaddress"`,
-#' `"PointAddress"`, `"Postal"` and `"Locality"`.
-#'
-#' Supply multiple values as a character vector, for example,
-#' `c("PointAddress", "StreetAddress")`.
-#'
 #' @returns
-#' A [tibble][dplyr::tibble] with one match for each coordinate pair. The API
+#' A [tibble][dplyr::tibble()] with one match for each coordinate pair. The API
 #' output fields `x` and `y` are named `lon` and `lat`. These coordinates
 #' correspond to the matched feature and may differ from the input `x` and `y`
 #' values.
@@ -109,11 +109,11 @@ arc_reverse_geo <- function(
 ) {
   # Check inputs.
   if (!is.numeric(x) || !is.numeric(y)) {
-    stop("`x` and `y` must be numeric.")
+    stop("`x` and `y` must both be numeric.")
   }
 
   if (length(x) != length(y)) {
-    stop("`x` and `y` must have the same number of elements.")
+    stop("`x` and `y` must have the same length.")
   }
 
   y_cap <- restrict_lat(y)
@@ -161,7 +161,7 @@ arc_reverse_geo <- function(
     by = c("x_key_int", "y_key_int")
   )
 
-  # Clean final names.
+  # Clean final column names.
   nm <- names(all_res)
   nm <- gsub("x_key_int", "x", nm, fixed = TRUE)
   nm <- gsub("y_key_int", "y", nm, fixed = TRUE)
@@ -199,22 +199,21 @@ arc_reverse_geo_single <- function(
   tbl_query <- dplyr::tibble(lat = lat_cap, lon = long_cap)
 
   if (isFALSE(res)) {
-    message("\nUnable to reach URL: ", url)
+    message("Unable to reach the ArcGIS REST API endpoint: ", url)
     out <- empty_tbl_rev(tbl_query, address)
     return(invisible(out))
   }
 
   result_init <- jsonlite::fromJSON(json, flatten = TRUE)
 
-  # Handle empty queries.
+  # Handle API errors.
   if ("error" %in% names(result_init)) {
     message(
-      "\n",
-      "No results found for location: ",
+      "The ArcGIS REST API returned an error for location: ",
       long_cap,
       ", ",
       lat_cap,
-      "\n",
+      "\nMessage: ",
       result_init$error$message,
       "\nDetails: ",
       result_init$error$details
@@ -229,7 +228,7 @@ arc_reverse_geo_single <- function(
   result$lat <- as.double(result$lat)
   result$lon <- as.double(result$lon)
 
-  # Keep requested names.
+  # Keep the requested output columns.
   result_out <- keep_names_rev(
     result,
     address = address,

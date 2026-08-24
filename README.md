@@ -24,8 +24,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-**arcgeocoder** provides a lightweight interface to the [ArcGIS REST
-API](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
+**arcgeocoder** provides a lightweight interface to the [**ArcGIS REST
+API**](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm).
 It geocodes single-line and structured addresses, reverse geocodes
 coordinates and finds places by category.
 
@@ -34,9 +34,9 @@ The full site with examples and vignettes is available at
 
 ## Why arcgeocoder?
 
-**arcgeocoder** accesses the ArcGIS REST API without requiring an API
-key or an additional HTTP package such as **curl**. It uses base R
-download functions, which keeps its dependency footprint small.
+**arcgeocoder** accesses the **ArcGIS REST API** without requiring an
+API key or an additional HTTP package such as **curl**. It uses base
+**R** download functions, which keeps its dependency footprint small.
 
 The package provides focused interfaces to the `findAddressCandidates`
 and `reverseGeocode` endpoints. It supports single-line addresses,
@@ -48,12 +48,12 @@ The following packages provide related geocoding features:
 
 - [**tidygeocoder**](https://jessecambon.github.io/tidygeocoder/)
   ([Cambon et al. 2021](#ref-R-tidygeocoder)) provides an interface to
-  ArcGIS, Nominatim (OpenStreetMap), Google, TomTom, Mapbox and other
-  geocoding services.
+  **ArcGIS**, **Nominatim** (**OpenStreetMap**), **Google**, **TomTom**,
+  **Mapbox** and other geocoding services.
 - [**nominatimlite**](https://dieghernan.github.io/nominatimlite/)
   ([Hernangómez 2024](#ref-R-nominatimlite)) is similar to
-  **arcgeocoder** but uses data from OpenStreetMap through the
-  [Nominatim API](https://nominatim.org/release-docs/latest/).
+  **arcgeocoder** but uses data from **OpenStreetMap** through the
+  [**Nominatim API**](https://nominatim.org/release-docs/latest/).
 
 ## Installation
 
@@ -81,7 +81,7 @@ pak::pak("dieghernan/arcgeocoder")
 ```
 
 Alternatively, you can install **arcgeocoder** using the
-[r-universe](https://dieghernan.r-universe.dev/arcgeocoder):
+[**r-universe**](https://dieghernan.r-universe.dev/arcgeocoder):
 
 ``` r
 # Install arcgeocoder in R.
@@ -169,7 +169,8 @@ Table 2: Example: reverse geocoding addresses.
 
 The `arc_geo_categories()` function finds places by category near a
 location or within a bounding box. Available categories are documented
-in the `arc_categories` dataset and in the [ArcGIS category filtering
+in the `arc_categories` dataset and in the [**ArcGIS** category
+filtering
 documentation](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
 
 The following example finds food-related places, such as restaurants,
@@ -262,7 +263,7 @@ with the ArcGIS REST API</em>.
 <a href="https://dieghernan.github.io/arcgeocoder/">https://dieghernan.github.io/arcgeocoder/</a>.
 </p>
 
-A BibTeX entry for LaTeX users is shown below.
+A **BibTeX** entry for **LaTeX** users is shown below.
 
     @Manual{R-arcgeocoder,
       title = {{arcgeocoder}: Address and Coordinate Search with the {ArcGIS} {REST} {API}},

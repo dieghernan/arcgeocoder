@@ -1,0 +1,22 @@
+{
+  "spatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326
+  },
+  "candidates": [
+    {
+      "address": "Madrid, Spain",
+      "score": 100,
+      "location": {
+        "x": -3.7038,
+        "y": 40.4168
+      },
+      "attributes": {
+        "PlaceName": "Madrid",
+        "Country": "ESP",
+        "LongLabel": "Madrid, Spain",
+        "Type": "City"
+      }
+    }
+  ]
+}

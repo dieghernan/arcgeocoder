@@ -12,21 +12,6 @@
 #' You can combine both approaches by providing `x`, `y` and `bbox`. See
 #' **Examples**.
 #'
-#' @param category A place or address type used to filter results. Multiple
-#'   values can be supplied as a vector (for example,
-#'   `c("Cinema", "Museum")`), which performs one call for each value.
-#'   See **Details**.
-#' @param limit Maximum number of results per query. The ArcGIS REST API limits
-#'   a single request to 50 results.
-#' @param bbox A numeric vector specifying a bounding box used to limit the
-#'   search. It must contain **longitude** (`x`) and **latitude** (`y`) values
-#'   in the form `c(xmin, ymin, xmax, ymax)`. See **Details**.
-#' @param name An optional string containing the name or address to match.
-#'
-#' @inheritParams arc_geo lat long full_results verbose custom_query
-#' @inheritParams arc_reverse_geo
-#' @inheritDotParams arc_geo sourcecountry outsr langcode
-#'
 #' @details
 #' Bounding boxes can be located using online tools, such as
 #' [Bounding Box Tool](https://boundingbox.klokantech.com/).
@@ -39,11 +24,24 @@
 #' separated by commas (`"Cinema,Museum"`), which is treated internally as
 #' `c("Cinema", "Museum")`.
 #'
-#' @inheritSection arc_reverse_geo `outsr`
+#' @param category A place or address type used to filter results. Multiple
+#'   values can be supplied as a vector (for example,
+#'   `c("Cinema", "Museum")`), which performs one call for each value.
+#'   See **Details**.
+#' @param limit Maximum number of results per query. The ArcGIS REST API limits
+#'   a single request to 50 results.
+#' @param bbox A numeric vector specifying a bounding box used to limit the
+#'   search. It must contain **longitude** (`x`) and **latitude** (`y`) values
+#'   in the form `c(xmin, ymin, xmax, ymax)`. See **Details**.
+#' @param name An optional string containing the name or address to match.
 #'
-#' @returns
-#' ```{r child = "man/chunks/out1.Rmd"}
-#' ```
+#' @inheritParams arc_geo lat long full_results verbose custom_query
+#' @inheritParams arc_reverse_geo x y
+#' @inheritDotParams arc_geo sourcecountry outsr langcode
+#'
+#' @inherit arc_geo return
+#'
+#' @inheritSection arc_reverse_geo `outsr`
 #'
 #' @seealso
 #' - [arc_categories] lists supported values.
@@ -149,10 +147,7 @@ arc_geo_categories <- function(
   bbox <- validate_bbox(bbox)
 
   if (all(is.na(c(locs, bbox)))) {
-    stop(paste0(
-      "Provide either a valid combination of `x` and `y` arguments or ",
-      "a valid `bbox`."
-    ))
+    stop(paste0("Provide both `x` and `y`, or provide ", "a valid `bbox`."))
   }
 
   cats <- category_values(category)
@@ -181,7 +176,10 @@ arc_geo_categories <- function(
       ...
     )
     if (all(is.na(qry[, c(2, 3)]))) {
-      message("No results found for category: ", bs$q_category)
+      message(
+        "The ArcGIS REST API returned no results for category: ",
+        bs$q_category
+      )
     }
     end <- dplyr::bind_cols(bs, qry)
     remove_query_col(end)
@@ -197,21 +195,21 @@ validate_location <- function(x = NULL, y = NULL) {
   if (is.null(y)) {
     y <- NA
   }
-  # Return NAs if both coordinates are missing.
+  # Return `NA` values if both coordinates are missing.
   if (all(is.na(x), is.na(y))) {
     return(missing_location())
   }
 
-  # Return NAs with a message if either coordinate is missing.
+  # Return `NA` values with a message if either coordinate is missing.
   if (anyNA(c(x, y))) {
     return(missing_location(
-      "Either `x` or `y` is missing. The location will not be used."
+      "Both `x` and `y` are required. The location was ignored."
     ))
   }
 
-  # Check inputs.
+  # Validate coordinate types.
   if (!is.numeric(x) || !is.numeric(y)) {
-    stop("`x` and `y` must be numeric.")
+    stop("`x` and `y` must both be numeric.")
   }
 
   # Use only the first coordinate pair.
@@ -229,19 +227,19 @@ validate_bbox <- function(bbox = NULL) {
     return(missing_bbox())
   }
 
-  # Return NAs with a message if any `bbox` value is missing.
+  # Return `NA` values with a message if any `bbox` value is missing.
   if (anyNA(bbox)) {
-    return(missing_bbox("`bbox` contains `NA` values and will not be used."))
+    return(missing_bbox("`bbox` contains `NA` values and was ignored."))
   }
 
   if (length(bbox) < 4) {
     return(missing_bbox(
-      "`bbox` has fewer than four values and will not be used."
+      "`bbox` must contain at least four values and was ignored."
     ))
   }
 
   if (!is.numeric(bbox)) {
-    return(missing_bbox("`bbox` must be numeric and will not be used."))
+    return(missing_bbox("`bbox` must be numeric and was ignored."))
   }
 
   # Use only the first four `bbox` values.

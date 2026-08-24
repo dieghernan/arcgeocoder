@@ -25,6 +25,10 @@ authors:
   Diego Hernangómez:
     href: https://dieghernan.github.io/
 
+# Reference index convention:
+# - Use `has_concept("<family>")` for roxygen2 `@family` topics.
+# - Use `has_keyword("datasets")` for unrelated datasets.
+# - Use direct selectors only for pages without a shared concept or keyword.
 reference:
 - title: Geocoding and reverse geocoding
   desc: >
@@ -39,14 +43,12 @@ reference:
 - contents:
   - has_keyword("datasets")
 
-- title: Package documentation
-  desc: >
-    View package-level documentation and useful links.
+- title: About the package
 - contents:
   - arcgeocoder-package
 
 articles:
-- title: Get started
+- title: Start here
   desc: >
     Geocode addresses, reverse geocode coordinates and find places by category.
   contents:
@@ -56,7 +58,7 @@ articles:
   desc: >
     Understand the ArcGIS feature hierarchy and control the types of features
     returned by reverse geocoding requests.
-  navbar: Reverse geocoding
+  navbar: ~
   contents:
   - feature-types
 

@@ -22,7 +22,7 @@ test_that("restrict_arc_limit caps values above the API limit", {
   expect_no_message(expect_identical(restrict_arc_limit(50), 50))
   expect_message(
     expect_identical(restrict_arc_limit(51), 50),
-    "at most 50 results"
+    "limits each request to 50 results"
   )
 })
 
@@ -111,7 +111,7 @@ test_that("reverse-geocoding parameters are added consistently", {
   )
 })
 
-test_that("coordinate restrictors cap values and report changes", {
+test_that("restrict_range() caps values and reports changes", {
   expect_no_message(expect_identical(
     restrict_range(c(1, 2, 3), 0, 3, "changed"),
     c(1, 2, 3)
@@ -120,23 +120,28 @@ test_that("coordinate restrictors cap values and report changes", {
     expect_identical(restrict_range(c(-1, 4), 0, 3, "changed"), c(0, 3)),
     "changed"
   )
+})
 
+test_that("coordinate restrictors cap latitude and longitude values", {
   expect_message(
     expect_identical(restrict_lat(c(-91, 91)), c(-90, 90)),
-    "Latitudes"
+    "Latitude values"
   )
   expect_no_message(expect_identical(restrict_lat(c(-90, 90)), c(-90, 90)))
   expect_message(
     expect_identical(restrict_lon(c(-181, 181)), c(-180, 180)),
-    "Longitudes"
+    "Longitude values"
   )
+})
+
+test_that("bounding-box restrictors cap latitude and longitude values", {
   expect_message(
     expect_identical(restrict_bbox_lat(c(-91, 91)), c(-90, 90)),
-    "ymin and ymax"
+    "`bbox` latitude values"
   )
   expect_message(
     expect_identical(restrict_bbox_lon(c(-181, 181)), c(-180, 180)),
-    "xmin and xmax"
+    "`bbox` longitude values"
   )
 })
 
@@ -256,7 +261,7 @@ test_that("arc_geo_bulk combines and joins individual results", {
   expect_identical(result$address, c("first", NA_character_))
 })
 
-test_that("category helpers normalise values and query metadata", {
+test_that("category helpers normalize values and query metadata", {
   expect_identical(
     category_values(c("Address,Postal", "POI")),
     c("Address", "Postal", "POI")
@@ -341,10 +346,7 @@ test_that("input_multi validates structured address input", {
   expect_identical(result$q_countrycode, c("ESP", NA_character_))
   expect_identical(
     result$query,
-    c(
-      "address=Calle Mayor&city=Madrid&countryCode=ESP",
-      "city=Guanajuato"
-    )
+    c("address=Calle Mayor&city=Madrid&countryCode=ESP", "city=Guanajuato")
   )
 })
 

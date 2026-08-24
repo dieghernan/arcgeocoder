@@ -8,6 +8,10 @@
 #' [ArcGIS REST API documentation](`r arcurl("cand")`). For structured queries
 #' that use specific address components, use [arc_geo_multi()].
 #'
+#' @details
+#' See the [ArcGIS REST API documentation](`r arcurl("cand")`) for more
+#' information and valid values.
+#'
 #' @param address Single-line address text (for example,
 #'   `"1600 Pennsylvania Ave NW, Washington"`) or a vector of addresses
 #'   (for example, `c("Madrid", "Barcelona")`).
@@ -27,17 +31,13 @@
 #'   are accepted (for example, `c("Cinema", "Museum")`). See [arc_categories].
 #' @param custom_query A named list with additional API parameters.
 #'
-#' @inheritParams arc_reverse_geo
-#'
-#' @details
-#' See the [ArcGIS REST API documentation](`r arcurl("cand")`) for more
-#' information and valid values.
-#'
-#' @inheritSection arc_reverse_geo `outsr`
+#' @inheritParams arc_reverse_geo verbose progressbar outsr langcode
 #'
 #' @returns
 #' ```{r child = "man/chunks/out1.Rmd"}
 #' ```
+#'
+#' @inheritSection arc_reverse_geo `outsr`
 #'
 #' @references
 #' [ArcGIS REST API `findAddressCandidates`](`r arcurl("cand")`).
@@ -149,16 +149,16 @@ arc_geo_single <- function(
   tbl_query <- dplyr::tibble(query = address)
 
   if (isFALSE(res)) {
-    message("\nUnable to reach URL: ", url)
+    message("Unable to reach the ArcGIS REST API endpoint: ", url)
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
 
   result_init <- jsonlite::fromJSON(json, flatten = FALSE)
 
-  # Handle empty queries.
+  # Handle empty results.
   if (length(result_init$candidates) == 0) {
-    message("\nNo results found for query: ", address)
+    message("The ArcGIS REST API returned no results for query: ", address)
     out <- empty_tbl(tbl_query, lat, long)
     return(invisible(out))
   }
@@ -171,7 +171,7 @@ arc_geo_single <- function(
   result_end$lat <- as.double(result_unn$y)
   result_end$lon <- as.double(result_unn$x)
 
-  # Keep names in the requested order.
+  # Keep output columns in the requested order.
   result_out <- keep_names(
     result_end,
     lat,

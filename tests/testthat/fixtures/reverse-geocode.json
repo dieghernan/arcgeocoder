@@ -1,0 +1,15 @@
+{
+  "address": {
+    "LongLabel": "Madrid, Spain",
+    "City": "Madrid",
+    "CountryCode": "ESP"
+  },
+  "location": {
+    "x": -3.7038,
+    "y": 40.4168,
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326
+    }
+  }
+}

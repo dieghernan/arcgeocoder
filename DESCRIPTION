@@ -26,7 +26,8 @@ Suggests:
     knitr,
     quarto,
     sf,
-    testthat (>= 3.0.0)
+    testthat (>= 3.2.0),
+    withr (>= 3.0.0)
 VignetteBuilder:
     quarto
 Config/Needs/website: dieghernan/gitdevr, leaflet, terra, tidyterra,
@@ -35,7 +36,7 @@ Config/Needs/website: dieghernan/gitdevr, leaflet, terra, tidyterra,
 Config/roxygen2/markdown: TRUE
 Config/roxygen2/version: 8.1.0
 Config/testthat/edition: 3
-Config/testthat/parallel: true
+Config/testthat/parallel: false
 Encoding: UTF-8
 LazyData: true
 X-schema.org-applicationCategory: cartography

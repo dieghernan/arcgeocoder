@@ -46,11 +46,12 @@ arcgeocoder_check_access <- function() {
 #' @param url URL to download.
 #' @param destfile Path where the downloaded file will be saved.
 #' @param quiet A logical value indicating whether to suppress request details.
+#' @param wait Function used to pause before retrying a request.
 #'
 #' @returns `TRUE` if the file was downloaded, otherwise `FALSE`.
 #'
 #' @noRd
-arc_api_call <- function(url, destfile, quiet) {
+arc_api_call <- function(url, destfile, quiet, wait = Sys.sleep) {
   if (!quiet) {
     message_api_call(url)
   }
@@ -61,9 +62,9 @@ arc_api_call <- function(url, destfile, quiet) {
 
   if (isFALSE(dwn_res)) {
     if (isFALSE(quiet)) {
-      message("\nRetrying request.")
+      message("The request failed. Retrying once.")
     }
-    Sys.sleep(1)
+    wait(1)
 
     dwn_res <- arc_download_file(url, destfile)
   }
