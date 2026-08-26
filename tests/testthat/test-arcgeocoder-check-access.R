@@ -9,7 +9,7 @@ test_that("arcgeocoder_check_access() validates the ArcGIS response", {
 test_that("arcgeocoder_check_access() stops before requests on CRAN", {
   withr::local_envvar(NOT_CRAN = "false")
   local_mocked_bindings(arc_api_call = function(...) {
-    stop("API request should not be made")
+    stop("API request should not be made", call. = FALSE)
   })
 
   expect_false(arcgeocoder_check_access())

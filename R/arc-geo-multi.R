@@ -153,10 +153,11 @@ arc_geo_multi <- function(
   key <- key[!is.na(key)]
 
   if (length(key) == 0) {
-    stop(paste0(
+    stop(
       "Provide at least one address component that is not ",
-      "`NA` or `NULL`."
-    ))
+      "`NA` or `NULL`.",
+      call. = FALSE
+    )
   }
 
   # Add API arguments to the custom query.
@@ -212,16 +213,18 @@ input_multi <- function(
   getlen <- lengths(multi_list)
   nolens <- getlen[getlen != 0]
   if (length(nolens) == 0) {
-    stop(paste0(
+    stop(
       "Provide at least one address component that is not ",
-      "`NA` or `NULL`."
-    ))
+      "`NA` or `NULL`.",
+      call. = FALSE
+    )
   }
   if (length(unique(nolens)) != 1) {
-    stop(paste0(
+    stop(
       "All supplied address components must have ",
-      "the same length."
-    ))
+      "the same length.",
+      call. = FALSE
+    )
   }
 
   the_df <- dplyr::bind_rows(multi_list[names(nolens)])

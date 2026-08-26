@@ -109,11 +109,11 @@ arc_reverse_geo <- function(
 ) {
   # Check inputs.
   if (!is.numeric(x) || !is.numeric(y)) {
-    stop("`x` and `y` must both be numeric.")
+    stop("`x` and `y` must both be numeric.", call. = FALSE)
   }
 
   if (length(x) != length(y)) {
-    stop("`x` and `y` must have the same length.")
+    stop("`x` and `y` must have the same length.", call. = FALSE)
   }
 
   y_cap <- restrict_lat(y)

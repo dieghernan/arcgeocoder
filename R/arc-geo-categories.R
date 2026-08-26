@@ -147,7 +147,11 @@ arc_geo_categories <- function(
   bbox <- validate_bbox(bbox)
 
   if (all(is.na(c(locs, bbox)))) {
-    stop(paste0("Provide both `x` and `y`, or provide ", "a valid `bbox`."))
+    stop(
+      "Provide both `x` and `y`, or provide ",
+      "a valid `bbox`.",
+      call. = FALSE
+    )
   }
 
   cats <- category_values(category)
@@ -209,7 +213,7 @@ validate_location <- function(x = NULL, y = NULL) {
 
   # Validate coordinate types.
   if (!is.numeric(x) || !is.numeric(y)) {
-    stop("`x` and `y` must both be numeric.")
+    stop("`x` and `y` must both be numeric.", call. = FALSE)
   }
 
   # Use only the first coordinate pair.

@@ -14,7 +14,7 @@
     Code
       input_multi()
     Condition
-      Error in `input_multi()`:
+      Error:
       ! Provide at least one address component that is not `NA` or `NULL`.
 
 ---
@@ -22,6 +22,6 @@
     Code
       input_multi("a", c("a", "b"))
     Condition
-      Error in `input_multi()`:
+      Error:
       ! All supplied address components must have the same length.
 

@@ -446,7 +446,7 @@ keep_names <- function(
 empty_tbl_rev <- function(x, address) {
   init_nm <- names(x)
   x <- dplyr::as_tibble(x)
-  x$n <- as.character(NA)
+  x$n <- NA_character_
 
   names(x) <- c(init_nm, address)
 
@@ -459,7 +459,7 @@ empty_tbl_rev <- function(x, address) {
 empty_tbl <- function(x, lat, lon) {
   init_nm <- names(x)
   x <- dplyr::as_tibble(x)
-  x$lat <- as.double(NA)
+  x$lat <- NA_real_
   x$lon <- x$lat
 
   names(x) <- c(init_nm, lat, lon)

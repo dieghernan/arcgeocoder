@@ -3,7 +3,7 @@
     Code
       arc_reverse_geo(0, c(2, 3))
     Condition
-      Error in `arc_reverse_geo()`:
+      Error:
       ! `x` and `y` must have the same length.
 
 ---
@@ -11,7 +11,7 @@
     Code
       arc_reverse_geo("a", "a")
     Condition
-      Error in `arc_reverse_geo()`:
+      Error:
       ! `x` and `y` must both be numeric.
 
 # arc_reverse_geo() reports capped coordinates and verbose requests

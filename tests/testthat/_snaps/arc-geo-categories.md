@@ -3,7 +3,7 @@
     Code
       arc_geo_categories("Food")
     Condition
-      Error in `arc_geo_categories()`:
+      Error:
       ! Provide both `x` and `y`, or provide a valid `bbox`.
 
 ---
@@ -11,7 +11,7 @@
     Code
       arc_geo_categories("Food", "a", "a")
     Condition
-      Error in `validate_location()`:
+      Error:
       ! `x` and `y` must both be numeric.
 
 ---

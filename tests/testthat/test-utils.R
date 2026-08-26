@@ -56,7 +56,9 @@ test_that("map_with_progress maps values and indices", {
 
   expect_identical(result, list("a1", "b2"))
   expect_identical(
-    map_with_progress(character(), FALSE, function(...) stop("not called")),
+    map_with_progress(character(), FALSE, function(...) {
+      stop("not called", call. = FALSE)
+    }),
     list()
   )
 })
@@ -192,7 +194,9 @@ test_that("arc_download_file delegates downloads and handles failures", {
     "destination"
   )))
 
-  local_mocked_bindings(download.file = function(...) stop("Download failed"))
+  local_mocked_bindings(download.file = function(...) {
+    stop("Download failed", call. = FALSE)
+  })
   expect_no_error(expect_false(arc_download_file(
     "https://example.com/file",
     "destination"
