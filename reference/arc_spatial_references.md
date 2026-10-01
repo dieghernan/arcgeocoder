@@ -5,8 +5,8 @@ REST API.
 
 ## Format
 
-A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with
-9,608 rows and eight variables:
+A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
+with 9,608 rows and eight variables:
 
 - projtype:
 

@@ -11,7 +11,8 @@ arcgeocoder_check_access()
 
 ## Value
 
-`TRUE` if the service is accessible, otherwise `FALSE`.
+A [logical](https://rdrr.io/r/base/logical.html) value, `TRUE` if the
+service is accessible, otherwise `FALSE`.
 
 ## Examples
 

@@ -98,9 +98,9 @@ arc_geo(
 
 ## Value
 
-A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
-or more matches for each query. For descriptions of the available
-fields, see [ArcGIS REST API service
+A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
+with one or more matches for each query. For descriptions of the
+available fields, see [ArcGIS REST API service
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm).
 
 ## Details

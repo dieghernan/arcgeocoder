@@ -86,10 +86,10 @@ arc_reverse_geo(
 
 ## Value
 
-A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
-match for each coordinate pair. The API output fields `x` and `y` are
-named `lon` and `lat`. These coordinates correspond to the matched
-feature and may differ from the input `x` and `y` values.
+A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
+with one match for each coordinate pair. The API output fields `x` and
+`y` are named `lon` and `lat`. These coordinates correspond to the
+matched feature and may differ from the input `x` and `y` values.
 
 See [ArcGIS REST API
 output](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm)

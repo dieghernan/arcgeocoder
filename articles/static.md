@@ -1,6 +1,6 @@
 # Static maps with arcgeocoder
 
-## Example 1: Map sf objects
+## Example 1: Map **sf** objects
 
 This example converts results from **arcgeocoder** into an **sf** object
 and displays them on a static map.
@@ -41,7 +41,10 @@ ggplot(bcn) +
   geom_sf(data = mc_sf, color = "red")
 ```
 
-![](static_files/figure-html/fig-sf-1.png)
+![Point map with longitude and latitude grid lines. Red dots mark
+restaurant locations against a gray polygon outlining Barcelona's
+municipal boundary. The search uses the city name without a bounding box
+restriction. ](static_files/figure-html/fig-sf-1.png)
 
 Figure 1: A map showing the location of McDonald’s restaurants around
 Barcelona, Spain
@@ -72,7 +75,11 @@ ggplot(bcn) +
   geom_sf(data = mc2_sf, color = "red")
 ```
 
-![](static_files/figure-html/fig-sf2-1.png)
+![Point map with longitude and latitude grid lines. Red dots mark
+restaurant locations against a gray polygon outlining Barcelona's
+municipal boundary. The search is restricted to the rectangle enclosing
+the municipality, rather than its exact boundary.
+](static_files/figure-html/fig-sf2-1.png)
 
 Figure 2: A map showing the location of McDonald’s restaurants in
 Barcelona, Spain
@@ -101,7 +108,11 @@ ggplot() +
   labs(caption = get_credit("CartoDB.Positron"))
 ```
 
-![](static_files/figure-html/fig-terra-1.png)
+![Street map with longitude and latitude grid lines. Red dots mark
+restaurant locations, and a black outline traces Barcelona's municipal
+boundary. The street basemap provides geographic context for the points
+returned by the bounding box search.
+](static_files/figure-html/fig-terra-1.png)
 
 Figure 3: A map showing the location of McDonald’s restaurants in
 Barcelona, Spain, over an image provided by CARTO

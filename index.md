@@ -5,7 +5,7 @@ API**](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-g
 It geocodes single-line and structured addresses, reverse geocodes
 coordinates and finds places by category.
 
-The full site with examples and vignettes is available at
+The package website includes examples and vignettes:
 <https://dieghernan.github.io/arcgeocoder/>.
 
 ## Why arcgeocoder?
@@ -109,7 +109,7 @@ reverse <- arc_reverse_geo(
 |---:|---:|:---|
 | -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA |
 | -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA |
-| -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
+| -87.63587 | 41.87867 | Willis Tower, Chicago, IL, USA |
 
 Table 2: Example: reverse geocoding addresses.
 

@@ -8,8 +8,8 @@ and
 
 ## Format
 
-A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with 383
-rows and three variables:
+A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
+with 383 rows and three variables:
 
 - level_1:
 

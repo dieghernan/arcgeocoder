@@ -149,7 +149,7 @@
 <tr class="odd">
 <td><code>PointAddress</code></td>
 <td>50 meters</td>
-<td>A <code>PointAddress</code> match is not returned if it is on the opposite side of the street as the input location, even if it is within 50 meters of the location.</td>
+<td>A <code>PointAddress</code> match is not returned if it is on the opposite side of the street from the input location, even if it is within 50 meters of the location.</td>
 </tr>
 <tr class="even">
 <td>
@@ -161,13 +161,13 @@
 <tr class="odd">
 <td>
 <code>POI</code> area</td>
-<td>within boundary</td>
+<td>Within boundary</td>
 <td>A business or landmark that can be represented by an area, such as a large park or university. Not available in all countries.</td>
 </tr>
 <tr class="even">
 <td>
 <code>Postal</code> or <code>Locality</code> area</td>
-<td>within boundary</td>
+<td>Within boundary</td>
 <td>If the input location intersects multiple boundaries, the feature with the smallest area is returned.</td>
 </tr>
 </tbody>
@@ -243,7 +243,7 @@ Table 1: Adapted from <strong>ArcGIS REST API</strong> <code>reverseGeocode</co
 <tbody><tr class="odd">
 <td style="text-align: right;">-117.1963</td>
 <td style="text-align: right;">34.05922</td>
-<td style="text-align: left;">1025-1141 W Park Ave, Redlands, CA, 92373, USA</td>
+<td style="text-align: left;">1025-1105 W Park Ave, Redlands, CA, 92373, USA</td>
 <td style="text-align: right;">-117.1963</td>
 <td style="text-align: right;">34.05917</td>
 <td style="text-align: left;">StreetAddress</td>
@@ -284,7 +284,7 @@ Table 1: Adapted from <strong>ArcGIS REST API</strong> <code>reverseGeocode</co
 <tbody><tr class="odd">
 <td style="text-align: right;">-117.1963</td>
 <td style="text-align: right;">34.05922</td>
-<td style="text-align: left;">1025-1141 W Park Ave, Redlands, CA, 92373, USA</td>
+<td style="text-align: left;">1025-1105 W Park Ave, Redlands, CA, 92373, USA</td>
 <td style="text-align: right;">-117.1963</td>
 <td style="text-align: right;">34.05917</td>
 <td style="text-align: left;">StreetAddress</td>
@@ -366,14 +366,14 @@ Table 1: Adapted from <strong>ArcGIS REST API</strong> <code>reverseGeocode</co
 <tbody><tr class="odd">
 <td style="text-align: right;">-117.1963</td>
 <td style="text-align: right;">34.05922</td>
-<td style="text-align: left;">1025-1141 W Park Ave, Redlands, CA, 92373, USA</td>
+<td style="text-align: left;">1025-1105 W Park Ave, Redlands, CA, 92373, USA</td>
 <td style="text-align: right;">-117.1963</td>
 <td style="text-align: right;">34.05917</td>
 <td style="text-align: left;">StreetAddress</td>
 </tr></tbody>
-</table></section><section class="level3"><h3 id="example-5-handle-no-results-for-a-feature-type">Example 5: Handle no results for a feature type<a class="anchor" aria-label="anchor" href="#example-5-handle-no-results-for-a-feature-type"></a>
+</table></section><section class="level3"><h3 id="example-5-handle-a-feature-type-with-no-results">Example 5: Handle a feature type with no results<a class="anchor" aria-label="anchor" href="#example-5-handle-a-feature-type-with-no-results"></a>
 </h3>
-<p>Only some feature types are available near certain locations. When reverse geocoding the North Pole, the API returns a <code>Locality</code> but does not find a <code>StreetAddress</code>.</p>
+<p>The available feature types depend on the location. When reverse geocoding the North Pole, the default request can return a match, but restricting the request to <code>StreetAddress</code> can produce no result.</p>
 <p>When no result is available, <code><a href="../reference/arc_reverse_geo.html">arc_reverse_geo()</a></code> returns a <strong>tibble</strong> with the requested address column set to <code>NA</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Reverse geocode the North Pole.</span></span>

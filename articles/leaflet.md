@@ -128,6 +128,12 @@ tb <- reactable(cf_bk_data,
 
 ## Display the widget
 
+The interactive map centers on the Eiffel Tower in Paris. A tower icon
+marks the landmark, cup icons mark coffee shops and croissant icons mark
+bakeries. The table below lists place names, types, addresses, cities,
+websites and phone numbers. Search, filter or select rows to narrow the
+places shown on the map.
+
 ``` r
 
 # Display all components.

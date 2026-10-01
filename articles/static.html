@@ -103,7 +103,7 @@
 
 
 
-    <section class="level2"><h2 id="example-1-map-sf-objects">Example 1: Map sf objects<a class="anchor" aria-label="anchor" href="#example-1-map-sf-objects"></a>
+    <section class="level2"><h2 id="example-1-map-sf-objects">Example 1: Map <strong>sf</strong> objects<a class="anchor" aria-label="anchor" href="#example-1-map-sf-objects"></a>
 </h2>
 <p>This example converts results from <strong>arcgeocoder</strong> into an <strong>sf</strong> object and displays them on a static map.</p>
 <div class="cell">
@@ -141,9 +141,9 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mc_sf</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-sf" class="quarto-float quarto-figure quarto-figure-center">
+<div id="fig-sf" class="quarto-float quarto-figure quarto-figure-center" alt="Point map with longitude and latitude grid lines. Red dots mark restaurant locations against a gray polygon outlining Barcelona's municipal boundary. The search uses the city name without a bounding box restriction. ">
 <figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-sf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="static_files/figure-html/fig-sf-1.png" style="width:100.0%">
+<img src="static_files/figure-html/fig-sf-1.png" style="width:100.0%" alt="Point map with longitude and latitude grid lines. Red dots mark restaurant locations against a gray polygon outlining Barcelona's municipal boundary. The search uses the city name without a bounding box restriction. ">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure 1: A map showing the location of McDonald’s restaurants around Barcelona, Spain
@@ -176,9 +176,9 @@ Figure 1: A map showing the location of McDonald’s restaurants around Barcelo
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mc2_sf</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-sf2" class="quarto-float quarto-figure quarto-figure-center">
+<div id="fig-sf2" class="quarto-float quarto-figure quarto-figure-center" alt="Point map with longitude and latitude grid lines. Red dots mark restaurant locations against a gray polygon outlining Barcelona's municipal boundary. The search is restricted to the rectangle enclosing the municipality, rather than its exact boundary. ">
 <figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-sf2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="static_files/figure-html/fig-sf2-1.png" style="width:100.0%">
+<img src="static_files/figure-html/fig-sf2-1.png" style="width:100.0%" alt="Point map with longitude and latitude grid lines. Red dots mark restaurant locations against a gray polygon outlining Barcelona's municipal boundary. The search is restricted to the rectangle enclosing the municipality, rather than its exact boundary. ">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sf2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure 2: A map showing the location of McDonald’s restaurants in Barcelona, Spain
@@ -206,9 +206,9 @@ Figure 2: A map showing the location of McDonald’s restaurants in Barcelona, 
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/maptiles/man/get_credit.html" class="external-link">get_credit</a></span><span class="op">(</span><span class="st">"CartoDB.Positron"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-terra" class="quarto-float quarto-figure quarto-figure-center">
+<div id="fig-terra" class="quarto-float quarto-figure quarto-figure-center" alt="Street map with longitude and latitude grid lines. Red dots mark restaurant locations, and a black outline traces Barcelona's municipal boundary. The street basemap provides geographic context for the points returned by the bounding box search. ">
 <figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-terra-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="static_files/figure-html/fig-terra-1.png" style="width:100.0%">
+<img src="static_files/figure-html/fig-terra-1.png" style="width:100.0%" alt="Street map with longitude and latitude grid lines. Red dots mark restaurant locations, and a black outline traces Barcelona's municipal boundary. The street basemap provides geographic context for the points returned by the bounding box search. ">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-terra-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure 3: A map showing the location of McDonald’s restaurants in Barcelona, Spain, over an image provided by CARTO
