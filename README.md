@@ -29,7 +29,7 @@ API**](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-g
 It geocodes single-line and structured addresses, reverse geocodes
 coordinates and finds places by category.
 
-The full site with examples and vignettes is available at
+The package website includes examples and vignettes:
 <https://dieghernan.github.io/arcgeocoder/>.
 
 ## Why arcgeocoder?
@@ -80,7 +80,7 @@ You can install the development version of **arcgeocoder** with:
 pak::pak("dieghernan/arcgeocoder")
 ```
 
-Alternatively, you can install **arcgeocoder** using the
+Alternatively, you can install **arcgeocoder** from
 [**r-universe**](https://dieghernan.r-universe.dev/arcgeocoder):
 
 ``` r
@@ -160,7 +160,7 @@ reverse <- arc_reverse_geo(
 |---:|---:|:---|
 | -77.03655 | 38.89768 | White House, 1600 Pennsylvania Ave NW, Washington, DC, 20500, USA |
 | -122.40273 | 37.79516 | Chess Ventures, 600 Montgomery St, San Francisco, CA, 94111, USA |
-| -87.63587 | 41.87867 | The Metropolitan, 233 South Wacker Drive, Chicago, IL, 60606, USA |
+| -87.63587 | 41.87867 | Willis Tower, Chicago, IL, USA |
 
 <p class="caption">
 
@@ -221,6 +221,7 @@ ggplot(eiffel_tower, aes(x, y)) +
 ```
 
 <img src="man/figures/README-eiffel-1.png" style="width:100.0%"
+data-fig-alt="Point map. Longitude is on the horizontal axis and latitude on the vertical axis. A blue square marks the Eiffel Tower in Paris, and colored dots distinguish food place types. Places are scattered around the tower, with a cluster to the east."
 alt="Example: Food places near the Eiffel Tower" />
 
 ### Convert results to spatial data
@@ -251,6 +252,7 @@ ggplot(eiffel_tower_sf) +
 ```
 
 <img src="man/figures/README-eiffel_sf-1.png" style="width:100.0%"
+data-fig-alt="Projected point map with longitude and latitude grid lines. A blue square marks the Eiffel Tower in Paris, and colored dots distinguish food place types. Places are scattered around the tower, with a cluster to the east."
 alt="Example: Food places near the Eiffel Tower using the sf package." />
 
 ## Citation

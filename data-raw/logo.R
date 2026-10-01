@@ -1,4 +1,4 @@
-## code to prepare `logo` dataset goes here
+# Prepare the package logo.
 
 rm(list = ls())
 
@@ -14,7 +14,6 @@ small <- !st_is_empty(mad2)
 mad2 <- mad2[small, ]
 mad <- mad[small, ]
 
-
 set.seed(1234)
 r <- st_sample(mad, 2000)
 
@@ -23,7 +22,7 @@ max(st_coordinates(r))
 
 st_bbox(mad)
 
-## Section----
+# Logo text ----
 
 df1 <- data.frame(label = "arc", lon = -3.544387, lat = 40.55039)
 
@@ -34,7 +33,7 @@ df2 <- data.frame(label = "geocoder", lon = -3.405387, lat = 40.55039)
 p2 <- st_as_sf(df2, coords = c("lon", "lat"), crs = 4326) |> st_transform(3857)
 
 library(showtext)
-## Loading Google fonts (http://www.google.com/fonts)
+# Load Google Fonts (http://www.google.com/fonts).
 font_add_google("Nunito Sans", "nunito")
 
 showtext_auto()
@@ -43,7 +42,6 @@ map <- ggplot(mad) +
   geom_sf(fill = "#130d4e", col = "#130d4e", linewidth = 0.01) +
   geom_sf(data = r, col = "white", size = 0.0001) +
   theme_void()
-
 
 map
 

@@ -67,7 +67,7 @@ Multiple values can be supplied as a comma-separated string.}
   }}
 }
 \value{
-A \link[dplyr:tibble]{tibble} with one or more matches for each query. For descriptions of the available fields, see \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
+A \link[tibble:tbl_df]{tibble} with one or more matches for each query. For descriptions of the available fields, see \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 }
 \description{
 Finds places that match one or more categories near a location or within a

@@ -32,7 +32,7 @@ API**](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-g
 It geocodes single-line and structured addresses, reverse geocodes coordinates
 and finds places by category.
 
-The full site with examples and vignettes is available at
+The package website includes examples and vignettes:
 <https://dieghernan.github.io/arcgeocoder/>.
 
 ## Why arcgeocoder?
@@ -135,6 +135,11 @@ shops and bakeries, near the Eiffel Tower in France.
 ```{r}
 #| label: eiffel
 #| fig-cap: 'Example: Food places near the Eiffel Tower'
+#| fig-alt: >
+#|   Point map. Longitude is on the horizontal axis and latitude on the
+#|   vertical axis. A blue square marks the Eiffel Tower in Paris, and colored
+#|   dots distinguish food place types. Places are scattered around the tower,
+#|   with a cluster to the east.
 library(ggplot2) # For plotting.
 
 # Step 1: Locate the Eiffel Tower using a structured query.

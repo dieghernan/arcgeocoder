@@ -60,7 +60,7 @@ The default is \code{NULL}, which does not filter by feature type. See
 \item{custom_query}{A named list with additional API parameters.}
 }
 \value{
-A \link[dplyr:tibble]{tibble} with one match for each coordinate pair. The API
+A \link[tibble:tbl_df]{tibble} with one match for each coordinate pair. The API
 output fields \code{x} and \code{y} are named \code{lon} and \code{lat}. These coordinates
 correspond to the matched feature and may differ from the input \code{x} and \code{y}
 values.

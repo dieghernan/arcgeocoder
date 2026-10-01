@@ -370,7 +370,7 @@ unnest_reverse <- function(x) {
   endobj_loc <- dplyr::as_tibble(x_loc[lngths_loc == 1])
   names(endobj_loc) <- c("lon", "lat")
 
-  # Use ArcGIS address label when available.
+  # Use the ArcGIS address label when available.
   if ("LongLabel" %in% names(lngths)) {
     ad <- dplyr::as_tibble(x_add$LongLabel)[1, ]
     names(ad) <- "address"

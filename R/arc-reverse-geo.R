@@ -58,7 +58,7 @@
 #' @param custom_query A named list with additional API parameters.
 #'
 #' @returns
-#' A [tibble][dplyr::tibble()] with one match for each coordinate pair. The API
+#' A [tibble][tibble::tbl_df] with one match for each coordinate pair. The API
 #' output fields `x` and `y` are named `lon` and `lat`. These coordinates
 #' correspond to the matched feature and may differ from the input `x` and `y`
 #' values.
@@ -185,7 +185,7 @@ arc_reverse_geo_single <- function(
   # Step 1: Download ----
   api <- arc_endpoint_url("reverseGeocode")
 
-  # Compose URL.
+  # Compose the URL.
   url <- paste0(api, "location=", long_cap, ",", lat_cap, "&f=json")
 
   # Add options.

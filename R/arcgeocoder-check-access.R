@@ -4,7 +4,9 @@
 #' Checks whether the current \R session can access the ArcGIS REST API at
 #' <`r arcurl("over")`>.
 #'
-#' @returns `TRUE` if the service is accessible, otherwise `FALSE`.
+#' @returns
+#' A [logical][base::logical] value, `TRUE` if the service is accessible,
+#' otherwise `FALSE`.
 #'
 #' @keywords internal
 #'
@@ -22,7 +24,7 @@ arcgeocoder_check_access <- function() {
 
   api <- arc_endpoint_url("reverseGeocode")
 
-  # Compose URL.
+  # Compose the URL.
   url <- paste0(api, "location=0,0&f=json")
   destfile <- tempfile(fileext = ".json")
 
@@ -48,7 +50,9 @@ arcgeocoder_check_access <- function() {
 #' @param quiet A logical value indicating whether to suppress request details.
 #' @param wait Function used to pause before retrying a request.
 #'
-#' @returns `TRUE` if the file was downloaded, otherwise `FALSE`.
+#' @returns
+#' A [logical][base::logical] value, `TRUE` if the file was downloaded,
+#' otherwise `FALSE`.
 #'
 #' @noRd
 arc_api_call <- function(url, destfile, quiet, wait = Sys.sleep) {
@@ -77,7 +81,9 @@ arc_api_call <- function(url, destfile, quiet, wait = Sys.sleep) {
 
 #' Check whether the current session is running on CRAN
 #'
-#' @returns `TRUE` when running on CRAN, otherwise `FALSE`.
+#' @returns
+#' A [logical][base::logical] value, `TRUE` if running on CRAN,
+#' otherwise `FALSE`.
 #' @noRd
 on_cran <- function() {
   env <- Sys.getenv("NOT_CRAN")

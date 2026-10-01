@@ -130,7 +130,7 @@ arc_geo_single <- function(
   # Step 1: Download ----
   api <- arc_endpoint_url("findAddressCandidates")
 
-  # Compose URL.
+  # Compose the URL.
   if (singleline) {
     ad_q <- paste0("SingleLine=", address)
   } else {

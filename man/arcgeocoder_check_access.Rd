@@ -8,7 +8,8 @@
 arcgeocoder_check_access()
 }
 \value{
-\code{TRUE} if the service is accessible, otherwise \code{FALSE}.
+A \link[base:logical]{logical} value, \code{TRUE} if the service is accessible,
+otherwise \code{FALSE}.
 }
 \description{
 Checks whether the current \R session can access the ArcGIS REST API at

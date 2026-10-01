@@ -6,7 +6,7 @@
 \alias{arc_categories}
 \title{Place categories supported by the ArcGIS REST API}
 \format{
-A \link[dplyr:tibble]{tibble} with
+A \link[tibble:tbl_df]{tibble} with
 383 rows and
 three variables:
 \describe{

@@ -69,7 +69,7 @@ are accepted (for example, \code{c("Cinema", "Museum")}). See \link{arc_categori
 \item{custom_query}{A named list with additional API parameters.}
 }
 \value{
-A \link[dplyr:tibble]{tibble} with one or more matches for each query. For descriptions of the available fields, see \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
+A \link[tibble:tbl_df]{tibble} with one or more matches for each query. For descriptions of the available fields, see \href{https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm}{ArcGIS REST API service output}.
 
 The output also includes the input arguments as columns prefixed with \code{q_}
 to help track the results.

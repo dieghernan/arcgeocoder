@@ -1,4 +1,4 @@
-## code to prepare `arc_spatial_references` dataset goes here
+# Prepare the `arc_spatial_references` dataset.
 rm(list = ls())
 library(dplyr)
 library(jsonlite)
@@ -35,7 +35,7 @@ end <- lapply(proj_url, function(x) {
 })
 
 prev <- bind_rows(end)
-# Relocate cols
+# Select columns in the required order.
 
 arc_spatial_references <- prev |>
   select(

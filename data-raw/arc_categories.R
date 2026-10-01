@@ -1,4 +1,4 @@
-## code to prepare `arc_categories` dataset goes here
+# Prepare the `arc_categories` dataset.
 
 # Step 1: Download ----
 url <- paste0(
@@ -6,29 +6,28 @@ url <- paste0(
   "services/World/GeocodeServer?f=pjson"
 )
 
-# Download to temp file
+# Download to a temporary file.
 json <- tempfile(fileext = ".json")
 res <- arc_api_call(url, json, FALSE)
-
 
 # Step 2: Read and parse results ----
 result_init <- jsonlite::fromJSON(json, flatten = FALSE)
 
-# Get categories
+# Extract categories.
 cats <- as.list(result_init$categories)
 
-# top names
+# Extract top-level category names.
 topnames <- cats$name
 
-# Second level cats, no localized
+# Extract second-level categories without localized names.
 second_lev <- lapply(cats$categories, function(x) {
   x[!grepl("local", names(x), fixed = TRUE)]
 })
 
-# There are special cases here...
+# Identify categories with nested subcategories.
 lng_list <- lengths(second_lev)
 
-# When lenght 1 is trivial
+# Handle categories without nested subcategories.
 seq_tot <- seq_len(length(second_lev))
 easy <- lapply(seq_tot[lng_list == 1], function(x) {
   end <- as.data.frame(second_lev[x])
@@ -38,7 +37,7 @@ easy <- lapply(seq_tot[lng_list == 1], function(x) {
 })
 
 easy_end <- dplyr::bind_rows(easy)
-# For others (POI) not so easy...
+# Handle nested POI subcategories separately.
 
 n_hard <- seq_tot[lng_list > 1]
 
@@ -48,7 +47,7 @@ pois_end <- lapply(pois, function(x) {
   x$name
 })
 
-# Compose sub data frames
+# Build data frames for the subcategories.
 n_pois <- seq_len(length(pois_sub))
 
 pois_2nd_lev <- lapply(n_pois, function(x) {
@@ -61,13 +60,12 @@ pois_tbl <- dplyr::bind_rows(pois_2nd_lev)
 
 pois_tbl$level_1 <- topnames[n_hard]
 
-# End, rename and reorder cols
+# Combine the category levels and reorder columns.
 
 all_end <- dplyr::bind_rows(easy_end, pois_tbl)
 
 all_end <- all_end[, c(2, 1, 3)]
 
 arc_categories <- dplyr::as_tibble(all_end)
-
 
 usethis::use_data(arc_categories, overwrite = TRUE)

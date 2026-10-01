@@ -34,10 +34,10 @@ tolerance* column.
 | `StreetAddress` (near), `DistanceMarker` or `StreetName` | 3 meters | Candidates of type `StreetName` are only returned if `featuretypes = "StreetName"` is included in the request. |
 | `POI` centroid | 25 meters | A business or landmark that can be represented by a point. |
 | `Subaddress` | 10 meters | `Subaddress` candidates, which can be features such as apartments or floors in a building, may not be returned under certain conditions. |
-| `PointAddress` | 50 meters | A `PointAddress` match is not returned if it is on the opposite side of the street as the input location, even if it is within 50 meters of the location. |
+| `PointAddress` | 50 meters | A `PointAddress` match is not returned if it is on the opposite side of the street from the input location, even if it is within 50 meters of the location. |
 | `StreetAddress` (distant), `DistanceMarker` or `StreetName` | 100 meters | Candidates of type `StreetName` are only returned if `featuretypes = "StreetName"` is included in the request. |
-| `POI` area | within boundary | A business or landmark that can be represented by an area, such as a large park or university. Not available in all countries. |
-| `Postal` or `Locality` area | within boundary | If the input location intersects multiple boundaries, the feature with the smallest area is returned. |
+| `POI` area | Within boundary | A business or landmark that can be represented by an area, such as a large park or university. Not available in all countries. |
+| `Postal` or `Locality` area | Within boundary | If the input location intersects multiple boundaries, the feature with the smallest area is returned. |
 
 : Adapted from **ArcGIS REST API** `reverseGeocode`
 :::
@@ -115,7 +115,7 @@ api_poi |>
 
 |         x|        y|address                                        |       lon|      lat|Addr_type     |
 |---------:|--------:|:----------------------------------------------|---------:|--------:|:-------------|
-| -117.1963| 34.05922|1025-1141 W Park Ave, Redlands, CA, 92373, USA | -117.1963| 34.05917|StreetAddress |
+| -117.1963| 34.05922|1025-1105 W Park Ave, Redlands, CA, 92373, USA | -117.1963| 34.05917|StreetAddress |
 
 
 
@@ -144,7 +144,7 @@ api_address |>
 
 |         x|        y|address                                        |       lon|      lat|Addr_type     |
 |---------:|--------:|:----------------------------------------------|---------:|--------:|:-------------|
-| -117.1963| 34.05922|1025-1141 W Park Ave, Redlands, CA, 92373, USA | -117.1963| 34.05917|StreetAddress |
+| -117.1963| 34.05922|1025-1105 W Park Ave, Redlands, CA, 92373, USA | -117.1963| 34.05917|StreetAddress |
 
 
 
@@ -201,15 +201,15 @@ api_multiple |>
 
 |         x|        y|address                                        |       lon|      lat|Addr_type     |
 |---------:|--------:|:----------------------------------------------|---------:|--------:|:-------------|
-| -117.1963| 34.05922|1025-1141 W Park Ave, Redlands, CA, 92373, USA | -117.1963| 34.05917|StreetAddress |
+| -117.1963| 34.05922|1025-1105 W Park Ave, Redlands, CA, 92373, USA | -117.1963| 34.05917|StreetAddress |
 
 
 
-### Example 5: Handle no results for a feature type
+### Example 5: Handle a feature type with no results
 
-Only some feature types are available near certain locations. When reverse
-geocoding the North Pole, the API returns a `Locality` but does not find a
-`StreetAddress`.
+The available feature types depend on the location. When reverse geocoding the
+North Pole, the default request can return a match, but restricting the request
+to `StreetAddress` can produce no result.
 
 When no result is available, `arc_reverse_geo()` returns a **tibble** with the
 requested address column set to `NA`.

@@ -27,6 +27,7 @@ Suggests:
     quarto,
     sf,
     testthat (>= 3.2.0),
+    tibble,
     withr (>= 3.0.0)
 VignetteBuilder:
     quarto

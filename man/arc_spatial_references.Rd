@@ -6,7 +6,7 @@
 \alias{arc_spatial_references}
 \title{Spatial references supported by the ArcGIS REST API}
 \format{
-A \link[dplyr:tibble]{tibble} with
+A \link[tibble:tbl_df]{tibble} with
 9,608 rows
 and eight variables:
 \describe{

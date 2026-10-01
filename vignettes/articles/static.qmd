@@ -13,13 +13,17 @@ knitr:
     out.width: "100%"
 ---
 
-## Example 1: Map sf objects
+## Example 1: Map **sf** objects
 
 This example converts results from **arcgeocoder** into an **sf** object and
 displays them on a static map.
 
 ```{r}
 #| label: fig-sf
+#| fig-alt: >
+#|   Point map with longitude and latitude grid lines. Red dots mark restaurant
+#|   locations against a gray polygon outlining Barcelona's municipal boundary.
+#|   The search uses the city name without a bounding box restriction.
 #| fig-cap: A map showing the location of McDonald's restaurants around
 #|   Barcelona, Spain
 library(arcgeocoder)
@@ -58,6 +62,11 @@ ggplot(bcn) +
 
 ```{r}
 #| label: fig-sf2
+#| fig-alt: >
+#|   Point map with longitude and latitude grid lines. Red dots mark restaurant
+#|   locations against a gray polygon outlining Barcelona's municipal boundary.
+#|   The search is restricted to the rectangle enclosing the municipality,
+#|   rather than its exact boundary.
 #| fig-cap: A map showing the location of McDonald's restaurants in Barcelona,
 #|   Spain
 # Restrict results to the Barcelona bounding box in the query.
@@ -90,6 +99,11 @@ The **maptiles** package retrieves static map tiles as **terra** objects. The
 
 ```{r}
 #| label: fig-terra
+#| fig-alt: >
+#|   Street map with longitude and latitude grid lines. Red dots mark
+#|   restaurant locations, and a black outline traces Barcelona's municipal
+#|   boundary. The street basemap provides geographic context for the points
+#|   returned by the bounding box search.
 #| fig-cap: A map showing the location of McDonald's restaurants in Barcelona,
 #|   Spain, over an image provided by CARTO
 library(maptiles)
