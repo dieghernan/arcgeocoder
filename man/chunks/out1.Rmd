@@ -1,12 +1,11 @@
 ```{r}
 #| echo: false
 #| results: asis
-# jarl-ignore-start internal_function: Helper for documentation
 cat(paste0(
   "A [tibble][tibble::tbl_df] with one or more matches for each query. ",
   "For descriptions of the available fields, see ",
   "[ArcGIS REST API service output](",
-  arcgeocoder:::arcurl("out"), ")."
+  "https://developers.arcgis.com/rest/geocode/api-reference/",
+  "geocoding-service-output.htm)."
 ))
-# jarl-ignore-end internal_function
 ```

@@ -23,9 +23,10 @@ test_that("arcgeocoder_check_access() handles failed API requests", {
 })
 
 test_that("arc_api_call() retries failed downloads once", {
-  downloads <- 0L
+  state <- new.env(parent = emptyenv())
+  state$downloads <- 0L
   local_mocked_bindings(arc_download_file = function(...) {
-    downloads <<- downloads + 1L
+    state$downloads <- state$downloads + 1L
     FALSE
   })
 
@@ -34,14 +35,15 @@ test_that("arc_api_call() retries failed downloads once", {
   destfile <- withr::local_tempfile(fileext = ".json")
 
   expect_snapshot(arc_api_call(url, destfile, FALSE, wait = function(...) NULL))
-  expect_equal(downloads, 2L)
+  expect_equal(state$downloads, 2L)
 })
 
 test_that("arc_api_call() succeeds when the retry succeeds", {
-  downloads <- 0L
+  state <- new.env(parent = emptyenv())
+  state$downloads <- 0L
   local_mocked_bindings(arc_download_file = function(...) {
-    downloads <<- downloads + 1L
-    downloads == 2L
+    state$downloads <- state$downloads + 1L
+    state$downloads == 2L
   })
 
   destfile <- withr::local_tempfile(fileext = ".json")
@@ -52,7 +54,7 @@ test_that("arc_api_call() succeeds when the retry succeeds", {
     TRUE,
     wait = function(...) NULL
   ))
-  expect_equal(downloads, 2L)
+  expect_equal(state$downloads, 2L)
 })
 
 test_that("on_cran() follows NOT_CRAN", {
