@@ -149,7 +149,13 @@ arc_reverse_geo(x = -73.98586, y = 40.75728)
 
 # Several coordinate pairs.
 arc_reverse_geo(x = c(-73.98586, -3.188375), y = c(40.75728, 55.95335))
-#>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
+#> 
+  |                                                        
+  |                                                  |   0%
+  |                                                        
+  |=========================                         |  50%
+  |                                                        
+  |==================================================| 100%
 #> # A tibble: 2 × 3
 #>        x     y address                                                          
 #>    <dbl> <dbl> <chr>                                                            
@@ -166,7 +172,11 @@ sev <- arc_reverse_geo(
   outsr = 102100,
   verbose = TRUE, full_results = TRUE
 )
-#>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%
+#> 
+  |                                                        
+  |                                                  |   0%
+  |                                                        
+  |=========================                         |  50%
 #> Request endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?
 #> Request parameters:
 #>    - location=-73.98586,40.75728
@@ -174,7 +184,9 @@ sev <- arc_reverse_geo(
 #>    - outSR=102100
 #>    - featureTypes=POI,StreetInt
 #> Encoded URL: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=-73.98586,40.75728&f=json&outSR=102100&featureTypes=POI,StreetInt
-#>   |                                                          |==================================================| 100%
+#> 
+  |                                                        
+  |==================================================| 100%
 #> Request endpoint: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?
 #> Request parameters:
 #>    - location=-3.188375,55.95335

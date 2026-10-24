@@ -156,7 +156,13 @@ library(dplyr)
 with_params <- arc_geo(c("Madrid", "Barcelona"),
   custom_query = list(outFields = c("LongLabel", "CntryName"))
 )
-#>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
+#> 
+  |                                                        
+  |                                                  |   0%
+  |                                                        
+  |=========================                         |  50%
+  |                                                        
+  |==================================================| 100%
 
 with_params |>
   select(lat, lon, CntryName, LongLabel)
@@ -171,7 +177,13 @@ with_params_usa <- arc_geo(c("Madrid", "Barcelona"),
   sourcecountry = "USA",
   custom_query = list(outFields = c("LongLabel", "CntryName"))
 )
-#>   |                                                          |                                                  |   0%  |                                                          |=========================                         |  50%  |                                                          |==================================================| 100%
+#> 
+  |                                                        
+  |                                                  |   0%
+  |                                                        
+  |=========================                         |  50%
+  |                                                        
+  |==================================================| 100%
 
 with_params_usa |>
   select(lat, lon, CntryName, LongLabel)
