@@ -83,8 +83,8 @@ lmend <- leaflet(
 ) |>
   setView(eiffel_tower$lon, eiffel_tower$lat, zoom = 16) |>
   addProviderTiles(
-    provider = "CartoDB.Positron",
-    group = "CartoDB.Positron"
+    provider = "Stadia.AlidadeSmooth",
+    group = "Stadia.AlidadeSmooth"
   ) |>
   addTiles(group = "OSM") |>
   addMarkers(data = eiffel_tower, ~lon, ~lat, icon = eiffel_icon) |>
@@ -92,7 +92,7 @@ lmend <- leaflet(
     lat = cf_bk$lat, lng = cf_bk$lon, popup = labs, icon = leaf_icons
   ) |>
   addLayersControl(
-    baseGroups = c("CartoDB.Positron", "OSM"),
+    baseGroups = c("Stadia.AlidadeSmooth", "OSM"),
     position = "topleft",
     options = layersControlOptions(collapsed = FALSE)
   )
