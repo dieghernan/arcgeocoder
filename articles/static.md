@@ -98,14 +98,14 @@ library(tidyterra)
 # Use EPSG:3857 to retrieve tiles.
 bcn_3857 <- st_transform(bcn, 3857)
 
-osm_tiles <- get_tiles(bcn_3857, provider = "CartoDB.Positron", crop = TRUE)
+osm_tiles <- get_tiles(bcn_3857, provider = "OpenStreetMap", crop = TRUE)
 
 ggplot() +
   geom_spatraster_rgb(data = osm_tiles, maxcell = Inf) +
   geom_sf(data = bcn, fill = NA, color = "black", linewidth = 1) +
   geom_sf(data = mc2_sf, color = "red") +
   coord_sf(crs = 3857) +
-  labs(caption = get_credit("CartoDB.Positron"))
+  labs(caption = get_credit("OpenStreetMap"))
 ```
 
 ![Street map with longitude and latitude grid lines. Red dots mark
@@ -115,4 +115,4 @@ returned by the bounding box search.
 ](static_files/figure-html/fig-terra-1.png)
 
 Figure 3: A map showing the location of McDonald’s restaurants in
-Barcelona, Spain, over an image provided by CARTO
+Barcelona, Spain, over an image provided by OpenStreetMap

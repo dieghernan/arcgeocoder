@@ -69,19 +69,10 @@ lmend <- leaflet(
   options = leafletOptions(minZoom = 12)
 ) |>
   setView(eiffel_tower$lon, eiffel_tower$lat, zoom = 16) |>
-  addProviderTiles(
-    provider = "CartoDB.Positron",
-    group = "CartoDB.Positron"
-  ) |>
   addTiles(group = "OSM") |>
   addMarkers(data = eiffel_tower, ~lon, ~lat, icon = eiffel_icon) |>
   addMarkers(
     lat = cf_bk$lat, lng = cf_bk$lon, popup = labs, icon = leaf_icons
-  ) |>
-  addLayersControl(
-    baseGroups = c("CartoDB.Positron", "OSM"),
-    position = "topleft",
-    options = layersControlOptions(collapsed = FALSE)
   )
 
 # Step 5: Create a filterable table.
