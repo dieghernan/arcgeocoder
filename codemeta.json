@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.6.1 (2026-06-24 ucrt)",
+  "runtimePlatform": "R version 4.6.2 (2026-10-29 ucrt)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -190,7 +190,7 @@
   },
   "applicationCategory": "cartography",
   "keywords": ["r", "arcgis", "address", "coordinates", "location-search", "rstats", "r-package", "api-wrapper", "api-rest", "arcgis-api", "cran-r", "gis", "cran", "spatial-search", "geocoder", "geocoding", "reverse-geocoder", "reverse-geocoding"],
-  "fileSize": "441.405KB",
+  "fileSize": "441.245KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
