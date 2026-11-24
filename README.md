@@ -272,7 +272,7 @@ A **BibTeX** entry for **LaTeX** users is shown below.
       doi = {10.32614/CRAN.package.arcgeocoder},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.4.1},
+      version = {0.4.1.9000},
       url = {https://dieghernan.github.io/arcgeocoder/},
       abstract = {Provides a lightweight interface to the ArcGIS REST API for converting addresses and structured address components into geographic coordinates, finding places by category and converting coordinates into addresses. It uses the ArcGIS service documented at <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>. No API key is required.},
     }
