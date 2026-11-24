@@ -1,13 +1,11 @@
-# arcgeocoder and leaflet maps
+# Interactive maps with arcgeocoder
 
-## Example
+## Build the interactive map
 
-The following example shows how to create an interactive [**leaflet**
-map](https://rstudio.github.io/leaflet/) using data retrieved with
-**arcgeocoder**.
+This example displays results from **arcgeocoder** on an interactive
+[**leaflet** map](https://rstudio.github.io/leaflet/).
 
-This widget can be browsed and filtered with **crosstalk** and
-**reactable**.
+**crosstalk** links the map to a filterable **reactable** table.
 
 ``` r
 
@@ -58,7 +56,7 @@ leaf_icons <- icons(
   iconAnchorX = 10, iconAnchorY = 10
 )
 
-# Step 3: Create a crosstalk object.
+# Step 3: Create a shared data object.
 cf_bk_data <- cf_bk |>
   select(Place = ShortLabel, Type, Address = Place_addr, City, URL, Phone) |>
   SharedData$new(group = "Food")
@@ -71,22 +69,13 @@ lmend <- leaflet(
   options = leafletOptions(minZoom = 12)
 ) |>
   setView(eiffel_tower$lon, eiffel_tower$lat, zoom = 16) |>
-  addProviderTiles(
-    provider = "CartoDB.Positron",
-    group = "CartoDB.Positron"
-  ) |>
   addTiles(group = "OSM") |>
   addMarkers(data = eiffel_tower, ~lon, ~lat, icon = eiffel_icon) |>
   addMarkers(
     lat = cf_bk$lat, lng = cf_bk$lon, popup = labs, icon = leaf_icons
-  ) |>
-  addLayersControl(
-    baseGroups = c("CartoDB.Positron", "OSM"),
-    position = "topleft",
-    options = layersControlOptions(collapsed = FALSE)
   )
 
-# Step 5: Create a reactable for filtering.
+# Step 5: Create a filterable table.
 tb <- reactable(cf_bk_data,
   selection = "multiple",
   onClick = "select",
@@ -117,8 +106,8 @@ tb <- reactable(cf_bk_data,
       if (any(is.null(value), is.na(value))) {
         return("")
       }
-      clearphone <- gsub("-", "", value)
-      clearphone <- gsub(" ", "", clearphone)
+      clearphone <- gsub("-", "", value, fixed = TRUE)
+      clearphone <- gsub(" ", "", clearphone, fixed = TRUE)
       htmltools::a(
         href = paste0("tel:", clearphone), target = "_blank",
         as.character(value)
@@ -128,11 +117,17 @@ tb <- reactable(cf_bk_data,
 )
 ```
 
-## Widget
+## Display the widget
+
+The interactive map centers on the Eiffel Tower in Paris. A tower icon
+marks the landmark, cup icons mark coffee shops and croissant icons mark
+bakeries. The table below lists place names, types, addresses, cities,
+websites and phone numbers. Search, filter or select rows to narrow the
+places shown on the map.
 
 ``` r
 
-# Last step: Display all components.
+# Display all components.
 htmltools::browsable(
   htmltools::tagList(lmend, tb)
 )
@@ -140,9 +135,9 @@ htmltools::browsable(
 
 ## Attributions
 
-- [Eiffel Tower icons created by Freepik -
-  Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons")
-- [Mug icons created by Freepik -
-  Flaticon](https://www.flaticon.com/free-icons/mug "mug icons")
-- [Croissant icons created by Freepik -
-  Flaticon](https://www.flaticon.com/free-icons/croissant "croissant icons")
+- [Eiffel Tower icons by Freepik -
+  Flaticon](https://www.flaticon.com/free-icons/eiffel-tower "eiffel tower icons").
+- [Mug icons by Freepik -
+  Flaticon](https://www.flaticon.com/free-icons/mug "mug icons").
+- [Croissant icons by Freepik -
+  Flaticon](https://www.flaticon.com/free-icons/croissant "croissant icons").

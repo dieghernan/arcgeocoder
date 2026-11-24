@@ -1,17 +1,17 @@
-# arcgeocoder and static maps
+# Static maps with arcgeocoder
 
-## Example 1: sf objects
+## Example 1: Map **sf** objects
 
-The following example shows how to create a static map using data
-retrieved with **arcgeocoder** and converted to an **sf** object.
+This example converts results from **arcgeocoder** into an **sf** object
+and displays them on a static map.
 
 ``` r
 
 library(arcgeocoder)
 library(dplyr)
-library(sf) # Spatial objects.
+library(sf) # Work with spatial objects.
 library(ggplot2)
-library(mapSpain) # **sf** objects of Spain.
+library(mapSpain) # Get municipality boundaries for Spain.
 
 # McDonald's restaurants in Barcelona, Spain.
 
@@ -41,7 +41,10 @@ ggplot(bcn) +
   geom_sf(data = mc_sf, color = "red")
 ```
 
-![](static_files/figure-html/fig-sf-1.png)
+![Point map with longitude and latitude grid lines. Red dots mark
+restaurant locations against a gray polygon outlining Barcelona's
+municipal boundary. The search uses the city name without a bounding box
+restriction. ](static_files/figure-html/fig-sf-1.png)
 
 Figure 1: A map showing the location of McDonald’s restaurants around
 Barcelona, Spain
@@ -72,16 +75,20 @@ ggplot(bcn) +
   geom_sf(data = mc2_sf, color = "red")
 ```
 
-![](static_files/figure-html/fig-sf2-1.png)
+![Point map with longitude and latitude grid lines. Red dots mark
+restaurant locations against a gray polygon outlining Barcelona's
+municipal boundary. The search is restricted to the rectangle enclosing
+the municipality, rather than its exact boundary.
+](static_files/figure-html/fig-sf2-1.png)
 
 Figure 2: A map showing the location of McDonald’s restaurants in
 Barcelona, Spain
 
-## Example 2: terra objects
+## Example 2: Add map tiles
 
-We can add static map tiles with the **maptiles** package and use the
-**tidyterra** package for plotting. The tiles are represented here as
-**terra** objects.
+The **maptiles** package retrieves static map tiles as **terra**
+objects. The **tidyterra** package then adds the tiles to a **ggplot2**
+map.
 
 ``` r
 
@@ -91,17 +98,21 @@ library(tidyterra)
 # Use EPSG:3857 to retrieve tiles.
 bcn_3857 <- st_transform(bcn, 3857)
 
-osm_tiles <- get_tiles(bcn_3857, provider = "CartoDB.Positron", crop = TRUE)
+osm_tiles <- get_tiles(bcn_3857, provider = "OpenStreetMap", crop = TRUE)
 
 ggplot() +
   geom_spatraster_rgb(data = osm_tiles, maxcell = Inf) +
   geom_sf(data = bcn, fill = NA, color = "black", linewidth = 1) +
   geom_sf(data = mc2_sf, color = "red") +
   coord_sf(crs = 3857) +
-  labs(caption = get_credit("CartoDB.Positron"))
+  labs(caption = get_credit("OpenStreetMap"))
 ```
 
-![](static_files/figure-html/fig-terra-1.png)
+![Street map with longitude and latitude grid lines. Red dots mark
+restaurant locations, and a black outline traces Barcelona's municipal
+boundary. The street basemap provides geographic context for the points
+returned by the bounding box search.
+](static_files/figure-html/fig-terra-1.png)
 
 Figure 3: A map showing the location of McDonald’s restaurants in
-Barcelona, Spain, over an image provided by CARTO
+Barcelona, Spain, over an image provided by OpenStreetMap

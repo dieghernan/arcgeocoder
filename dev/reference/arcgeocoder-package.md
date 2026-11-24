@@ -1,10 +1,11 @@
-# arcgeocoder: Geocode with the 'ArcGIS' REST API Service
+# arcgeocoder: Address and Coordinate Search with the 'ArcGIS' REST API
 
-Lightweight interface for geocoding addresses and reverse geocoding
-coordinates around the world with the 'ArcGIS' REST API service
+Provides a lightweight interface to the 'ArcGIS' REST API for converting
+addresses and structured address components into geographic coordinates,
+finding places by category and converting coordinates into addresses. It
+uses the ArcGIS service documented at
 <https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm>.
-Address text can be converted to location candidates and coordinates can
-be converted into addresses. No API key is required.
+No API key is required.
 
 ## See also
 

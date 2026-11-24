@@ -1,13 +1,12 @@
-# Esri (ArcGIS) spatial reference data
+# Spatial references supported by the ArcGIS REST API
 
-Dataset of available spatial references (CRS) in
-[tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-format.
+A dataset of coordinate reference systems (CRSs) supported by the ArcGIS
+REST API.
 
 ## Format
 
 A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-with 9,608 rows and fields:
+with 9,608 rows and eight variables:
 
 - projtype:
 
@@ -16,46 +15,46 @@ with 9,608 rows and fields:
 
 - wkid:
 
-  Well-Known ID.
+  Well-known ID (WKID).
 
 - latestWkid:
 
-  Most recent `wkid`, if `wkid` is deprecated.
+  Current WKID if `wkid` is deprecated.
 
 - authority:
 
-  `wkid` authority (Esri or EPSG).
+  WKID authority (Esri or EPSG).
 
 - deprecated:
 
-  Logical indicating whether `wkid` is deprecated.
+  Whether `wkid` is deprecated.
 
 - description:
 
-  Human-readable description of the `wkid`.
+  Human-readable description of the spatial reference.
 
 - areaname:
 
-  Use area of the `wkid`.
+  Area of use of the spatial reference.
 
 - wkt:
 
-  Representation of `wkid` in Well-Known Text (WKT). Useful when working
-  with [sf](https://CRAN.R-project.org/package=sf) or
+  Well-known text (WKT) representation of the spatial reference. Useful
+  when working with [sf](https://CRAN.R-project.org/package=sf) or
   [terra](https://CRAN.R-project.org/package=terra).
 
 ## Source
 
 [Esri Projection Engine
-factory](https://github.com/Esri/projection-engine-db-doc)
+factory](https://github.com/Esri/projection-engine-db-doc).
 
 ## Details
 
 This dataset is useful when using the `outsr` argument.
 
 Some projection IDs have changed over time. For example, Web Mercator
-`wkid = 102100` is deprecated and is currently `wkid = 3857`. However,
-both values work and return similar results.
+`wkid = 102100` is deprecated and its current equivalent is
+`wkid = 3857`. Both values work and return equivalent results.
 
 ## Note
 
@@ -63,10 +62,15 @@ Data extracted on **15 January 2026**.
 
 ## See also
 
-[`sf::st_crs()`](https://r-spatial.github.io/sf/reference/st_crs.html)
+- [`sf::st_crs()`](https://r-spatial.github.io/sf/reference/st_crs.html)
+  inspects coordinate reference systems.
 
-Other datasets:
-[`arc_categories`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_categories.md)
+- [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo.md),
+  [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo_multi.md),
+  [`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo_categories.md)
+  and
+  [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_reverse_geo.md)
+  accept spatial references.
 
 ## Examples
 
@@ -90,7 +94,7 @@ arc_spatial_references
 #> 10 ProjectedCo…  2009       2009 EPSG      FALSE      NAD 1927 C… Canada … "PRO…
 #> # ℹ 9,598 more rows
 
-# Request with deprecated Web Mercator.
+# Find the deprecated Web Mercator WKID.
 library(dplyr)
 wkid <- arc_spatial_references |>
   filter(latestWkid == 3857 & deprecated) |>
@@ -110,8 +114,7 @@ glimpse(wkid)
 
 add <- arc_geo("London, United Kingdom", outsr = wkid$wkid)
 
-# Note values for `lat`, `lon` and `wkid`. `latestWkid` gives the current
-# valid `wkid`.
+# Compare `lat`, `lon`, `wkid` and the current ID in `latestWkid`.
 add |>
   select(lat, lon, wkid, latestWkid) |>
   glimpse()
@@ -122,16 +125,13 @@ add |>
 #> $ wkid       <int> 102100
 #> $ latestWkid <int> 3857
 
-# Try with `sf`.
+# Look up the deprecated WKID.
 
 try(sf::st_crs(wkid$wkid))
-#> Warning: GDAL Error 1: PROJ: proj_create_from_database: crs not found
-#> Coordinate Reference System: NA
-
-# Try the latest WKID.
-try(sf::st_crs(wkid$latestWkid))
+#> Warning: GDAL Message 1: EPSG:102100 is not a valid CRS code, but ESRI:102100 is. Assuming ESRI:102100 was meant
+#> Warning: GDAL Message 1: CRS EPSG:102100 is deprecated. Its non-deprecated replacement EPSG:3857 will be used instead. To use the original CRS, set the OSR_USE_NON_DEPRECATED configuration option to NO.
 #> Coordinate Reference System:
-#>   User input: EPSG:3857 
+#>   User input: EPSG:102100 
 #>   wkt:
 #> PROJCRS["WGS 84 / Pseudo-Mercator",
 #>     BASEGEOGCRS["WGS 84",
@@ -143,6 +143,7 @@ try(sf::st_crs(wkid$latestWkid))
 #>             MEMBER["World Geodetic System 1984 (G1674)"],
 #>             MEMBER["World Geodetic System 1984 (G1762)"],
 #>             MEMBER["World Geodetic System 1984 (G2139)"],
+#>             MEMBER["World Geodetic System 1984 (G2296)"],
 #>             ELLIPSOID["WGS 84",6378137,298.257223563,
 #>                 LENGTHUNIT["metre",1]],
 #>             ENSEMBLEACCURACY[2.0]],
@@ -177,7 +178,57 @@ try(sf::st_crs(wkid$latestWkid))
 #>         BBOX[-85.06,-180,85.06,180]],
 #>     ID["EPSG",3857]]
 
-# Or use WKT.
+# Look up the current WKID.
+try(sf::st_crs(wkid$latestWkid))
+#> Coordinate Reference System:
+#>   User input: EPSG:3857 
+#>   wkt:
+#> PROJCRS["WGS 84 / Pseudo-Mercator",
+#>     BASEGEOGCRS["WGS 84",
+#>         ENSEMBLE["World Geodetic System 1984 ensemble",
+#>             MEMBER["World Geodetic System 1984 (Transit)"],
+#>             MEMBER["World Geodetic System 1984 (G730)"],
+#>             MEMBER["World Geodetic System 1984 (G873)"],
+#>             MEMBER["World Geodetic System 1984 (G1150)"],
+#>             MEMBER["World Geodetic System 1984 (G1674)"],
+#>             MEMBER["World Geodetic System 1984 (G1762)"],
+#>             MEMBER["World Geodetic System 1984 (G2139)"],
+#>             MEMBER["World Geodetic System 1984 (G2296)"],
+#>             ELLIPSOID["WGS 84",6378137,298.257223563,
+#>                 LENGTHUNIT["metre",1]],
+#>             ENSEMBLEACCURACY[2.0]],
+#>         PRIMEM["Greenwich",0,
+#>             ANGLEUNIT["degree",0.0174532925199433]],
+#>         ID["EPSG",4326]],
+#>     CONVERSION["Popular Visualisation Pseudo-Mercator",
+#>         METHOD["Popular Visualisation Pseudo Mercator",
+#>             ID["EPSG",1024]],
+#>         PARAMETER["Latitude of natural origin",0,
+#>             ANGLEUNIT["degree",0.0174532925199433],
+#>             ID["EPSG",8801]],
+#>         PARAMETER["Longitude of natural origin",0,
+#>             ANGLEUNIT["degree",0.0174532925199433],
+#>             ID["EPSG",8802]],
+#>         PARAMETER["False easting",0,
+#>             LENGTHUNIT["metre",1],
+#>             ID["EPSG",8806]],
+#>         PARAMETER["False northing",0,
+#>             LENGTHUNIT["metre",1],
+#>             ID["EPSG",8807]]],
+#>     CS[Cartesian,2],
+#>         AXIS["easting (X)",east,
+#>             ORDER[1],
+#>             LENGTHUNIT["metre",1]],
+#>         AXIS["northing (Y)",north,
+#>             ORDER[2],
+#>             LENGTHUNIT["metre",1]],
+#>     USAGE[
+#>         SCOPE["Web mapping and visualisation."],
+#>         AREA["World between 85.06°S and 85.06°N."],
+#>         BBOX[-85.06,-180,85.06,180]],
+#>     ID["EPSG",3857]]
+
+# Look up the WKT definition.
 try(sf::st_crs(wkid$wkt))
 #> Coordinate Reference System:
 #>   User input: PROJCS["WGS_1984_Web_Mercator_Auxiliary_Sphere",GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137.0,298.257223563]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Mercator_Auxiliary_Sphere"],PARAMETER["False_Easting",0.0],PARAMETER["False_Northing",0.0],PARAMETER["Central_Meridian",0.0],PARAMETER["Standard_Parallel_1",0.0],PARAMETER["Auxiliary_Sphere_Type",0.0],UNIT["Meter",1.0]] 
@@ -186,18 +237,18 @@ try(sf::st_crs(wkid$wkt))
 #>     BASEGEOGCRS["WGS 84",
 #>         DATUM["World Geodetic System 1984",
 #>             ELLIPSOID["WGS 84",6378137,298.257223563,
-#>                 LENGTHUNIT["metre",1]],
-#>             ID["EPSG",6326]],
+#>                 LENGTHUNIT["metre",1]]],
 #>         PRIMEM["Greenwich",0,
-#>             ANGLEUNIT["Degree",0.0174532925199433]]],
+#>             ANGLEUNIT["degree",0.0174532925199433]],
+#>         ID["EPSG",4326]],
 #>     CONVERSION["unnamed",
 #>         METHOD["Popular Visualisation Pseudo Mercator",
 #>             ID["EPSG",1024]],
 #>         PARAMETER["Latitude of natural origin",0,
-#>             ANGLEUNIT["Degree",0.0174532925199433],
+#>             ANGLEUNIT["degree",0.0174532925199433],
 #>             ID["EPSG",8801]],
 #>         PARAMETER["Longitude of natural origin",0,
-#>             ANGLEUNIT["Degree",0.0174532925199433],
+#>             ANGLEUNIT["degree",0.0174532925199433],
 #>             ID["EPSG",8802]],
 #>         PARAMETER["False easting",0,
 #>             LENGTHUNIT["metre",1],

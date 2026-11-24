@@ -1,17 +1,15 @@
-# ArcGIS REST API category data
+# Place categories supported by the ArcGIS REST API
 
-Dataset of available categories used to filter results provided by
+A dataset of categories that can be used to filter results from
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo.md),
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo_multi.md)
 and
-[`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo_categories.md)
-in [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-format.
+[`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo_categories.md).
 
 ## Format
 
 A [tibble](https://tibble.tidyverse.org/reference/tbl_df-class.html)
-with 383 rows and fields:
+with 383 rows and three variables:
 
 - level_1:
 
@@ -27,34 +25,30 @@ with 383 rows and fields:
 
 ## Source
 
-[ArcGIS REST Category
+[ArcGIS REST API category
 filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm).
 
 ## Details
 
-See [ArcGIS REST Category
+See [ArcGIS REST API category
 filtering](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm)
 for details and examples.
 
-The geocoding service allows users to search for and geocode many types
-of addresses and places around the world. This simplifies application
-development because developers do not need to know what types of places
-their users are searching for. However, due to this flexibility, it is
-possible for ambiguous searches to match to many different places, and
-users may sometimes receive unexpected results. For example, a search
-for a city may match to a street name, or a search for an airport code
-may match to a country abbreviation.
+The ArcGIS geocoding service supports searches for many types of
+addresses and places around the world, so applications do not need to
+anticipate the types of places that users may search for. However,
+ambiguous searches can match many different places and produce
+unexpected results. For example, a search for a city may match a street
+name, or an airport code may match a country abbreviation.
 
-For such cases, the service provides the ability to filter out unwanted
-geocode results with the `category` argument. The `category` argument
-limits the types of places for which the service searches, thus
-eliminating false-positive matches and potentially speeding up the
-search process.
+In these cases, the `category` argument can filter out unwanted results.
+It limits the types of places that the service searches for, which can
+eliminate false-positive matches and speed up the search.
 
-The results show a list of categories with three different hierarchy
-levels (`level_1`, `level_2`, `level_3`). If a `level_1` category is
-requested (that is, `POI`), the child categories may also be included in
-the results.
+The dataset lists categories at three hierarchy levels (`level_1`,
+`level_2` and `level_3`). If a `level_1` category is requested (for
+example, `POI`), its child categories may also be included in the
+results.
 
 ## Note
 
@@ -62,12 +56,10 @@ Data extracted on **15 January 2026**.
 
 ## See also
 
-[`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo_categories.md),
 [`arc_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo.md),
 [`arc_geo_multi()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo_multi.md)
-
-Other datasets:
-[`arc_spatial_references`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_spatial_references.md)
+and
+[`arc_geo_categories()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_geo_categories.md).
 
 ## Examples
 
@@ -108,7 +100,7 @@ dplyr::glimpse(sea_1)
 #> $ score      <int> 100, 100
 #> $ x          <dbl> -122.3029, -122.3093
 #> $ y          <dbl> 47.44362, 47.44899
-#> $ LongLabel  <chr> "SEA, 17801 International Blvd, Seatac, WA, 98158, USA", "S…
+#> $ LongLabel  <chr> "SEA, 17801 International Blvd, Seattle, WA, 98158, USA", "…
 #> $ Type       <chr> "Airport", "Airport"
 #> $ xmin       <dbl> -122.3189, -122.3393
 #> $ ymin       <dbl> 47.42762, 47.41899
@@ -143,7 +135,7 @@ dplyr::glimpse(sea_2)
 #> $ wkid       <int> 4326, 4326
 #> $ latestWkid <int> 4326, 4326
 
-# Use a list of categories.
+# Use multiple categories.
 sea_3 <- arc_geo("sea",
   custom_query = list(outFields = c("LongLabel", "Type")),
   sourcecountry = "UK", limit = 5,
@@ -154,18 +146,18 @@ dplyr::glimpse(sea_3)
 #> Rows: 5
 #> Columns: 15
 #> $ query      <chr> "sea", "sea", "sea", "sea", "sea"
-#> $ lat        <dbl> 50.81961, 53.81288, 53.46756, 52.93494, 54.30120
-#> $ lon        <dbl> -0.1357540, -3.0548750, -2.3409094, 0.4834270, -0.4097964
-#> $ address    <chr> "Sea Life Brighton", "Sea Life Blackpool", "Sea Life Manche…
-#> $ score      <dbl> 82.00, 81.88, 81.76, 81.76, 81.67
-#> $ x          <dbl> -0.1357540, -3.0548750, -2.3409094, 0.4834270, -0.4097964
-#> $ y          <dbl> 50.81961, 53.81288, 53.46756, 52.93494, 54.30120
-#> $ LongLabel  <chr> "Sea Life Brighton, 1 Marine Parade, Queen's Park, Brighton…
+#> $ lat        <dbl> 51.50156, 50.81961, 53.81287, 53.46675, 52.93494
+#> $ lon        <dbl> -0.119513, -0.135754, -3.054967, -2.342321, 0.483427
+#> $ address    <chr> "Sea Life London Aquarium", "Sea Life Brighton", "Sea Life …
+#> $ score      <dbl> 85.20, 82.00, 81.88, 81.76, 81.76
+#> $ x          <dbl> -0.119513, -0.135754, -3.054967, -2.342321, 0.483427
+#> $ y          <dbl> 51.50156, 50.81961, 53.81287, 53.46675, 52.93494
+#> $ LongLabel  <chr> "Sea Life London Aquarium, Westminster Bridge Road, Bishop'…
 #> $ Type       <chr> "Aquarium", "Aquarium", "Aquarium", "Aquarium", "Aquarium"
-#> $ xmin       <dbl> -0.1407540, -3.0598750, -2.3459094, 0.4784270, -0.4147964
-#> $ ymin       <dbl> 50.81461, 53.80788, 53.46256, 52.92994, 54.29620
-#> $ xmax       <dbl> -0.1307540, -3.0498750, -2.3359094, 0.4884270, -0.4047964
-#> $ ymax       <dbl> 50.82461, 53.81788, 53.47256, 52.93994, 54.30620
+#> $ xmin       <dbl> -0.124513, -0.140754, -3.059967, -2.347321, 0.478427
+#> $ ymin       <dbl> 51.49656, 50.81461, 53.80787, 53.46175, 52.92994
+#> $ xmax       <dbl> -0.114513, -0.130754, -3.049967, -2.337321, 0.488427
+#> $ ymax       <dbl> 51.50656, 50.82461, 53.81787, 53.47175, 52.93994
 #> $ wkid       <int> 4326, 4326, 4326, 4326, 4326
 #> $ latestWkid <int> 4326, 4326, 4326, 4326, 4326
 # }

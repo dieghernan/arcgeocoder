@@ -3,39 +3,39 @@
 *Adapted from
 <https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm>.*
 
-## Reverse geocoding details
+## How reverse geocoding selects a feature
 
-The purpose of reverse geocoding is to answer the question: what is near
-this location? The `reverseGeocode` operation provided by the ArcGIS
-REST API returns the most relevant feature near an input location based
-on a prioritized hierarchy of feature types.
+Reverse geocoding converts longitude and latitude values into an
+address. The **ArcGIS REST API** `reverseGeocode` operation selects the
+most relevant feature near the input location by using a prioritized
+hierarchy of feature types.
 
-The hierarchy is summarized in the table below and ordered by descending
-priority. Unless otherwise noted, each feature type is returned only
-when the distance between the input location and the feature is within
-the tolerance specified in the *Search tolerance* column.
+The following table lists this hierarchy in descending order of
+priority. Unless otherwise noted, a feature type is returned only when
+the distance between the input location and the feature is within the
+tolerance specified in the *Search tolerance* column.
 
-| Feature type | Search tolerance | Comments |
+| Feature type | Search tolerance | Details |
 |----|----|----|
 | `StreetInt` | 10 meters | Intersections are only returned when `featuretypes = "StreetInt"` is included in the request. |
-| `StreetAddress` (near), `DistanceMarker`, or `StreetName` | 3 meters | Candidates of type `StreetName` are only returned if `featuretypes = "StreetName"` is included in the request. |
+| `StreetAddress` (near), `DistanceMarker` or `StreetName` | 3 meters | Candidates of type `StreetName` are only returned if `featuretypes = "StreetName"` is included in the request. |
 | `POI` centroid | 25 meters | A business or landmark that can be represented by a point. |
 | `Subaddress` | 10 meters | `Subaddress` candidates, which can be features such as apartments or floors in a building, may not be returned under certain conditions. |
-| `PointAddress` | 50 meters | A `PointAddress` match is not returned if it is on the opposite side of the street as the input location, even if it is within 50 meters of the location. |
-| `StreetAddress` (distant), `DistanceMarker`, or `StreetName` | 100 meters | Candidates of type `StreetName` are only returned if `featuretypes = "StreetName"` is included in the request. |
-| `POI` area | within boundary | A business or landmark that can be represented by an area, such as a large park or university. Not available in all countries. |
-| `Postal` or `Locality` area | within boundary | If the input location intersects multiple boundaries, the feature with the smallest area is returned. |
+| `PointAddress` | 50 meters | A `PointAddress` match is not returned if it is on the opposite side of the street from the input location, even if it is within 50 meters of the location. |
+| `StreetAddress` (distant), `DistanceMarker` or `StreetName` | 100 meters | Candidates of type `StreetName` are only returned if `featuretypes = "StreetName"` is included in the request. |
+| `POI` area | Within boundary | A business or landmark that can be represented by an area, such as a large park or university. Not available in all countries. |
+| `Postal` or `Locality` area | Within boundary | If the input location intersects multiple boundaries, the feature with the smallest area is returned. |
 
-Table 1: Adapted from ArcGIS REST API `reverseGeocode`
+Table 1: Adapted from **ArcGIS REST API** `reverseGeocode`
 
-In **arcgeocoder**, this hierarchy is implemented in
-[`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_reverse_geo.md),
-specifically through the `featuretypes` argument. The default value
-(`featuretypes = NULL`) does not include the argument in the API call.
-In this case, the hierarchy presented in the previous table applies.
+In **arcgeocoder**, the `featuretypes` argument of
+[`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_reverse_geo.md)
+controls which feature types the API can return. With the default
+`featuretypes = NULL`, the request does not filter feature types and the
+full hierarchy in [Table 1](#tbl-hier) applies.
 
-You can narrow the query output to a specific feature type or a list of
-feature types. The possible values supported for this argument are:
+Use `featuretypes` to restrict results to one or more of the following
+values:
 
 - `"StreetInt"`
 - `"DistanceMarker"`
@@ -47,9 +47,8 @@ feature types. The possible values supported for this argument are:
 - `"Postal"`
 - `"Locality"`
 
-You can include several feature types. If more than one value is
-specified for the argument, separate the values with commas and no
-spaces after each comma.
+Supply multiple feature types as a character vector. **arcgeocoder**
+converts the vector into the comma-separated value required by the API.
 
 ### Single `featuretypes` value
 
@@ -67,7 +66,7 @@ arc_reverse_geo(..., featuretypes = c("PointAddress", "StreetAddress"))
 
 ## Examples
 
-The following examples show how `featuretypes` changes reverse geocoding
+The following examples show how `featuretypes` affects reverse geocoding
 results.
 
 ``` r
@@ -76,13 +75,11 @@ library(arcgeocoder)
 library(dplyr)
 ```
 
-### Example 1: Match to `POI` centroid returned
+### Example 1: Use the default feature hierarchy
 
-In this example, we do not provide any value to the `featuretypes`
-argument. The input location is within the search tolerance of both
-`POI` and `PointAddress` features, but a match to the `POI` centroid is
-returned because it has a higher priority (see [Table 1](#tbl-hier)).
-Note that the output field `Addr_type` indicates the type of feature.
+This example uses the default `featuretypes = NULL`, so the API selects
+a result from the full hierarchy in [Table 1](#tbl-hier). The
+`Addr_type` field identifies the returned feature type.
 
 ``` r
 
@@ -104,12 +101,12 @@ api_poi |>
 
 | x | y | address | lon | lat | Addr_type |
 |---:|---:|:---|---:|---:|:---|
-| -117.1963 | 34.05922 | 1025-1141 W Park Ave, Redlands, CA, 92373, USA | -117.1963 | 34.05917 | StreetAddress |
+| -117.1963 | 34.05922 | 1025-1105 W Park Ave, Redlands, CA, 92373, USA | -117.1963 | 34.05917 | StreetAddress |
 
-### Example 2: `StreetAddress` match returned
+### Example 2: Return a `StreetAddress` match
 
-Here, we specify the type of feature to return using
-`featuretypes = "StreetAddress"`.
+Set `featuretypes = "StreetAddress"` to restrict the request to street
+addresses.
 
 ``` r
 
@@ -129,9 +126,12 @@ api_address |>
 
 | x | y | address | lon | lat | Addr_type |
 |---:|---:|:---|---:|---:|:---|
-| -117.1963 | 34.05922 | 1025-1141 W Park Ave, Redlands, CA, 92373, USA | -117.1963 | 34.05917 | StreetAddress |
+| -117.1963 | 34.05922 | 1025-1105 W Park Ave, Redlands, CA, 92373, USA | -117.1963 | 34.05917 | StreetAddress |
 
-### Example 3: `Locality` match returned
+### Example 3: Return a `Locality` match
+
+Set `featuretypes = "Locality"` to restrict the request to locality
+features.
 
 ``` r
 
@@ -153,11 +153,10 @@ api_local |>
 |----------:|---------:|:------------------|----------:|---------:|:----------|
 | -117.1963 | 34.05922 | Redlands, CA, USA | -117.1963 | 34.05922 | Locality  |
 
-### Example 4: Multiple values
+### Example 4: Request multiple feature types
 
-When multiple values are included in the API call, the hierarchy
-explained in [Table 1](#tbl-hier) is still applied to the requested
-`featuretypes`.
+When a request includes multiple values, the API applies the hierarchy
+in [Table 1](#tbl-hier) to the requested feature types.
 
 ``` r
 
@@ -177,22 +176,21 @@ api_multiple |>
 
 | x | y | address | lon | lat | Addr_type |
 |---:|---:|:---|---:|---:|:---|
-| -117.1963 | 34.05922 | 1025-1141 W Park Ave, Redlands, CA, 92373, USA | -117.1963 | 34.05917 | StreetAddress |
+| -117.1963 | 34.05922 | 1025-1105 W Park Ave, Redlands, CA, 92373, USA | -117.1963 | 34.05917 | StreetAddress |
 
-### Example 5: No results for specific `featuretypes`
+### Example 5: Handle a feature type with no results
 
-The following example presents a case where only certain `featuretypes`
-are near the requested location. In this case, when reverse geocoding
-the North Pole, the API returns a `Locality`, but no `StreetAddress` is
-found.
+The available feature types depend on the location. When reverse
+geocoding the North Pole, the default request can return a match, but
+restricting the request to `StreetAddress` can produce no result.
 
-When no results are available,
+When no result is available,
 [`arc_reverse_geo()`](https://dieghernan.github.io/arcgeocoder/dev/reference/arc_reverse_geo.md)
 returns a **tibble** with the requested address column set to `NA`.
 
 ``` r
 
-# North Pole
+# Reverse geocode the North Pole.
 
 npole <- arc_reverse_geo(x = 0, y = 90, langcode = "EN", full_results = TRUE)
 
@@ -207,7 +205,7 @@ npole |>
 
 ``` r
 
-# But no `StreetAddress`.
+# Request a feature type that is unavailable.
 npole2 <- arc_reverse_geo(
   x = 0,
   y = 90,
@@ -227,9 +225,8 @@ npole2 |>
 ## Conclusion
 
 The API can return different results for the same `x` and `y` values
-depending on the `featuretypes` value. When `featuretypes = NULL`, the
-feature type returned depends on the hierarchy shown in
-[Table 1](#tbl-hier).
+depending on `featuretypes`. With `featuretypes = NULL`, the API selects
+a result using the hierarchy in [Table 1](#tbl-hier).
 
-Depending on the location, the `featuretypes` filter may not return
-results, so `featuretypes = NULL` is safer for general-purpose queries.
+A restrictive `featuretypes` filter may produce no result. Keep the
+default `featuretypes = NULL` for general-purpose reverse geocoding.
