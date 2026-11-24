@@ -1,6 +1,6 @@
 Package: arcgeocoder
 Title: Address and Coordinate Search with the 'ArcGIS' REST API
-Version: 0.4.1
+Version: 0.4.1.9000
 Authors@R:
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
